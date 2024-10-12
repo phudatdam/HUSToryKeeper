@@ -4,14 +4,21 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
+	GamePanel gp;
 
     public boolean upPressed; // nhấn lên
     public boolean downPressed; // nhấn xuống
     public boolean rightPressed; // nhấn phải
     public boolean leftPressed; // nhấn trái
 
-    @Override
-    public void keyTyped(KeyEvent e) {}
+	public KeyHandler(GamePanel gp) {
+		this.gp = gp;
+	}
+
+	@Override
+    public void keyTyped(KeyEvent e) {
+		
+	}
 
     @Override
     public void keyPressed(KeyEvent e) { // gán nhấn các phím điều khiển lên/xuống/trái/phải.
