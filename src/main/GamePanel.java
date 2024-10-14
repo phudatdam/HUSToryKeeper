@@ -3,7 +3,6 @@ package main;
 import entity.Entity;
 import entity.Player;
 import object.SuperObject;
-import tile.Tile;
 import tile.TileManager;
 
 import javax.swing.*;
@@ -116,7 +115,7 @@ public class GamePanel extends JPanel implements Runnable{
                 }
             }
         }
-
+  
         if(gameState == pauseState){
 
         }
