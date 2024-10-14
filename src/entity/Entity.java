@@ -67,21 +67,22 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
                 spriteNum = 2;
             }
             else if(spriteNum == 2){
-                spriteNum = 3;
-            }
-            else if(spriteNum == 3){
                 spriteNum = 1;
             }
             spriteCounter = 0;
         }
 	}
 
+	// Công cụ tạo ảnh entity
 	public BufferedImage setup(String imagePath) { 	
-    	UtilityTool uTool = new UtilityTool();
+    	// Khai báo công cụ scale
+		UtilityTool uTool = new UtilityTool();
     	BufferedImage image = null;
     	
     	try {
+    		// Fetch ảnh gốc vào entity
     		image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png")); 
+    		// Scale ảnh gốc về kích thước tile
     		image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
     	} catch(IOException e) {
     		e.printStackTrace();
@@ -104,52 +105,40 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
         	switch (direction){
             case "up":
                 if(spriteNum == 1){
-                    image = up3;
-                }
-                if(spriteNum == 2){
                     image = up2;
                 }
-                if(spriteNum == 3){
+                if(spriteNum == 2){
                     image = up1;
                 }
                 break;
             case "down":
                 if(spriteNum == 1){
-                    image = down3;
-                }
-                if(spriteNum == 2){
                     image = down2;
                 }
-                if(spriteNum == 3){
+                if(spriteNum == 2){
                     image = down1;
                 }
                 break;
             case "right":
                 if(spriteNum == 1){
-                    image = right3;
-                }
-                if(spriteNum == 2){
                     image = right2;
                 }
-                if(spriteNum == 3){
+                if(spriteNum == 2){
                     image = right1;
                 }
                 break;
             default:
                 if(spriteNum == 1){
-                    image = left3;
-                }
-                if(spriteNum == 2){
                     image = left2;
                 }
-                if(spriteNum == 3){
+                if(spriteNum == 2){
                     image = left1;
                 }
                 break;
         }
 
             // Vẽ tile nếu nằm trong màn hình hoặc nằm trong lề được mở rộng
-            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(image, screenX, screenY, null);
         }
 	}
 }
