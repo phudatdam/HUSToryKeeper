@@ -9,20 +9,27 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Player extends Entity {
-    GamePanel gp;
+	GamePanel gp;
     KeyHandler keyH;
 
     public final int screenX;
     public final int screenY;
+    public int hasHeart = 0;
+    int standCounter = 0;
+
 
     public Player(GamePanel gp, KeyHandler keyH) {
-        this.gp = gp;
+        super(gp);
+        
+        this.gp = gp; // DEBUG
         this.keyH = keyH;
 
         this.screenX = gp.screenWidth / 2 - gp.tileSize / 2;
         this.screenY = gp.screenHeight / 2 - gp.tileSize / 2;
 
         solidArea = new Rectangle(6, 12, 20, 20);
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
 
         setDefaultValues();
         getPlayerImage();
@@ -75,6 +82,13 @@ public class Player extends Entity {
             // Check va chạm
             collisionOn = false;
             gp.cChecker.checkTile(this);
+            
+            // Check objects collision
+            int objIndex = gp.cChecker.checkObject(this, true);
+            pickUpObject(objIndex);
+            
+            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+            interactNPC(npcIndex);
 
             // Nếu collision = false, player có thể di chuyển
             if(collisionOn == false){
@@ -109,6 +123,25 @@ public class Player extends Entity {
         }
     }
 
+    public void pickUpObject(int i){
+        if(i != 999){
+            String objectName = gp.obj[i].name;
+            switch (objectName){
+                case "Heart":
+                    hasHeart++;
+                    gp.obj[i] = null;
+                    break;
+            }
+
+        }
+    }
+    
+    public void interactNPC(int i) {
+    	if(i != 999){
+    		
+    	}
+    }
+    
     public void draw(Graphics2D g2){
         BufferedImage image = null;
 
