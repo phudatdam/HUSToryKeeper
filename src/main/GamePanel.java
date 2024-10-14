@@ -1,7 +1,8 @@
 package main;
 
+import entity.Entity;
 import entity.Player;
-import tile.Tile;
+import object.SuperObject;
 import tile.TileManager;
 
 import javax.swing.*;
@@ -29,11 +30,24 @@ public class GamePanel extends JPanel implements Runnable{
     // FPS : set Thời gian lặp lại
     int FPS = 60;
 
+    // SYSTEM
     TileManager tileM = new TileManager(this);
-    KeyHandler keyH = new KeyHandler();
+   // KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
+    public AssetSetter aSetter  = new AssetSetter(this);
+    public UI ui = new UI(this);
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
+
+    // ENTITY AND OBJECT
     public Player player = new Player(this, keyH);
+    public SuperObject obj[] = new SuperObject[20];
+    public Entity npc[] = new Entity[5];
+
+    // GAME STATE
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -41,6 +55,16 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+    }
+
+    public void setupGame(){
+        aSetter.setObject();
+        aSetter.setNPC();
+        //playMusic(0);
+        //stopMusic();
+
+        gameState = playState;
+
     }
 
     public void startGameThread(){
@@ -82,17 +106,47 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void update(){ // update nhân vật sau mỗi vòng loop
-        player.update();
+        if(gameState == playState){
+            player.update();
+            
+            for(int i = 0; i < npc.length; i++){
+                if(npc[i] != null){
+                    npc[i].update();
+                }
+            }
+        }
+  
+        if(gameState == pauseState){
+
+        }
     }
 
     public void paintComponent(Graphics g){ // vẽ lại screen
         super.paintComponent(g);
-
         Graphics2D g2 = (Graphics2D)g;
 
+        // TILE
         tileM.draw(g2);
 
+        // OBJECT
+        for(int i = 0; i < obj.length; i++){
+            if(obj[i] != null){
+                obj[i].draw(g2, this);
+            }
+        }
+        
+        // NPC
+        for(int i = 0; i < npc.length; i++){
+            if(npc[i] != null){
+                npc[i].draw(g2);
+            }
+        }
+
+        // PLAYER
         player.draw(g2);
+
+        // UI
+        ui.draw(g2);
 
         g2.dispose();
 

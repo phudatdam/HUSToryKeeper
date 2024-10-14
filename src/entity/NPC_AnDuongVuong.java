@@ -10,7 +10,6 @@ public class NPC_AnDuongVuong extends Entity {
 		
 		direction = "down";
 		speed = 1;
-		
 		getImage();
 	}
 	

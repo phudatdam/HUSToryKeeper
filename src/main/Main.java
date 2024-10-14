@@ -17,6 +17,7 @@ public class Main {
         window.setLocationRelativeTo(null); // Set vị trí cửa sổ game: chính giữa
         window.setVisible(true);
 
+        gamepanel.setupGame();
         gamepanel.startGameThread(); // Khởi chạy game
     }
 }
