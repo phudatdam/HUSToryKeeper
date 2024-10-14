@@ -12,12 +12,12 @@ import java.io.InputStreamReader;
 
 public class TileManager {
     GamePanel gp;
-    public Tile[] tile;
-    public int mapTileNum[][];
+    public Tile[] tile; // mảng chứa tile
+    public int mapTileNum[][]; // mảng 2 chiều chứa tọa độ tile của bản đồ
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        tile = new Tile[40]; // set số lượng gạch = 20
+        tile = new Tile[40]; // set số lượng tile <= 40
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();

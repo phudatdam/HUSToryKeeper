@@ -3,10 +3,8 @@ package entity;
 import main.GamePanel;
 import main.KeyHandler;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Player extends Entity {
 	GamePanel gp;
@@ -43,28 +41,21 @@ public class Player extends Entity {
     }
 
     public void getPlayerImage(){
-        try{
-            up1 = ImageIO.read(getClass().getResourceAsStream("/player/player-up-1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/player/player-up-2.png"));
-            up3 = ImageIO.read(getClass().getResourceAsStream("/player/player-up-3.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/player/player-down-1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/player/player-down-2.png"));
-            down3 = ImageIO.read(getClass().getResourceAsStream("/player/player-down-3.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/player/player-left-1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/player/player-left-2.png"));
-            left3 = ImageIO.read(getClass().getResourceAsStream("/player/player-left-3.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/player/player-right-1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/player/player-right-2.png"));
-            right3 = ImageIO.read(getClass().getResourceAsStream("/player/player-right-3.png"));
-
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        up1 = setup("/player/player-up-1");
+		up2 = setup("/player/player-up-2");
+		up3 = setup("/player/player-up-3");
+		down1 = setup("/player/player-down-1");
+		down2 = setup("/player/player-down-2");
+		down3 = setup("/player/player-down-3");
+		left1 = setup("/player/player-left-1");
+		left2 = setup("/player/player-left-2");
+		left3 = setup("/player/player-left-3");
+		right1 = setup("/player/player-right-1");
+		right2 = setup("/player/player-right-2");
+		right3 = setup("/player/player-right-3");
     }
 
     public void update(){ // được gọi 60 lần trong 1s
-
         if(keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed){
             if(keyH.upPressed){
                 direction = "up";
@@ -116,10 +107,13 @@ public class Player extends Entity {
                     spriteNum = 3;
                 }
                 else if(spriteNum == 3){
-                    spriteNum = 1;
+                    spriteNum = 2;
                 }
                 spriteCounter = 0;
             }
+        }
+        else {
+        	spriteNum = 1;
         }
     }
 
@@ -191,7 +185,7 @@ public class Player extends Entity {
                 }
                 break;
         }
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, null);
 
     }
 }
