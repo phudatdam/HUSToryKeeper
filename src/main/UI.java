@@ -78,7 +78,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,100F));
         String text = "HUSTory Keeper";
         int x = getXforCenteredText(text);
-        int y = gp.tileSize * 2;
+        int y = gp.tileSize * 3 / 2;
 
         // SHADOW
         g2.setColor(Color.black);
