@@ -122,6 +122,7 @@ public class UI {
         text = "QUIT";
         x = getXforCenteredText(text);
         y += gp.tileSize;
+
         g2.drawString(text, x ,y);
         if(commandNum == 3){
             g2.drawString(">", x - gp.tileSize, y);
