@@ -78,7 +78,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,100F));
         String text = "HUSTory Keeper";
         int x = getXforCenteredText(text);
-        int y = gp.tileSize * 4;
+        int y = gp.tileSize * 2;
 
         // SHADOW
         g2.setColor(Color.black);
@@ -90,14 +90,14 @@ public class UI {
 
         // HUSTer
         x = gp.screenWidth / 2 - (gp.tileSize) - 20;
-        y += gp.tileSize * 2 - 10;
+        y += (int) gp.tileSize * 1.5;
         g2.drawImage(gp.player.down3, x, y, gp.tileSize * 3, gp.tileSize * 3, null);
 
         // MENU
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
         text = "NEW GAME";
         x = getXforCenteredText(text);
-        y += gp.tileSize * 5;
+        y += (int) gp.tileSize * 4.5;
         g2.drawString(text, x ,y);
         if(commandNum == 0){
             g2.drawString(">", x - gp.tileSize, y);
@@ -105,7 +105,7 @@ public class UI {
 
         text = "TUTORIAL";
         x = getXforCenteredText(text);
-        y += gp.tileSize * 2;
+        y += gp.tileSize;
         g2.drawString(text, x ,y);
         if(commandNum == 1){
             g2.drawString(">", x - gp.tileSize, y);
@@ -113,7 +113,7 @@ public class UI {
 
         text = "SETTING";
         x = getXforCenteredText(text);
-        y += gp.tileSize * 2 ;
+        y += gp.tileSize;
         g2.drawString(text, x ,y);
         if(commandNum == 2){
             g2.drawString(">", x - gp.tileSize, y);
@@ -121,7 +121,8 @@ public class UI {
 
         text = "QUIT";
         x = getXforCenteredText(text);
-        y += gp.tileSize * 2 ;
+        y += gp.tileSize;
+
         g2.drawString(text, x ,y);
         if(commandNum == 3){
             g2.drawString(">", x - gp.tileSize, y);
