@@ -10,8 +10,8 @@ import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
     // Cài đặt màn hình
-    final int originalTileSize = 16; // 16 x 16 tile
-    final int scale = 3;
+    final int originalTileSize = 32; // 16 x 16 tile
+    final int scale = 2;
 
     public final int tileSize = originalTileSize * scale; // 32 x 32 tile
    // public final int tileSize1 = originalTileSize * 2;
