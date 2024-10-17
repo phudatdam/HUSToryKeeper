@@ -136,12 +136,12 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
         text = "NEW GAME";
         x = getXforCenteredText(text);
-        y += (int) gp.tileSize * 1.5;
+        y += (int) gp.tileSize * 3;
         g2.drawString(text, x ,y);
         if(commandNum == 0){
             g2.drawString(">", x - gp.tileSize, y);
         }
-
+        
         text = "SETTING";
         x = getXforCenteredText(text);
         y += (int) gp.tileSize * 1.5;
