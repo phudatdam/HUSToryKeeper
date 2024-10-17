@@ -13,18 +13,16 @@ public class GamePanel extends JPanel implements Runnable{
     final int originalTileSize = 32; // 32 x 32 tile
     final int scale = 2;
 
-    public final int tileSize = originalTileSize * scale; // 64 x 64 tile
+    public final int tileSize = originalTileSize * 2; // 64 x 64 tile
    // public final int tileSize1 = originalTileSize * 2;
     public final int maxScreenCol = 16; // dài 16 ô
-    public final int maxScreenRow = 12; // rộng 12 ô
+    public final int maxScreenRow = 10; // rộng 12 ô
     public final int screenWidth = maxScreenCol * tileSize; // 768 pixels
     public final int screenHeight = maxScreenRow * tileSize;// 576 pixels
 
     // WORLD SETTINGS
     public final int maxWorldCol = 50; // bản đồ dài 50 ô
     public final int maxWorldRow = 50; // bản đồ rộng 50 ô
-    public final int worldWidth = maxWorldCol * tileSize; // 1600 pixels
-    public final int worldHeight = maxWorldRow * tileSize; // 1600 pixels
 
 
     // FPS : set Thời gian lặp lại
@@ -32,7 +30,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     // SYSTEM
     TileManager tileM = new TileManager(this);
-   // KeyHandler keyH = new KeyHandler();
+    Sound sound = new Sound();
     KeyHandler keyH = new KeyHandler(this);
     public AssetSetter aSetter  = new AssetSetter(this);
     public UI ui = new UI(this);
@@ -62,8 +60,8 @@ public class GamePanel extends JPanel implements Runnable{
     public void setupGame(){
         aSetter.setObject();
         aSetter.setNPC();
-        //playMusic(0);
-        //stopMusic();
+        playMusic(0);
+        // stopMusic();
 
         gameState = titleState;
     }
@@ -155,10 +153,22 @@ public class GamePanel extends JPanel implements Runnable{
 
             // UI
             ui.draw(g2);
-
-
         }
-
         g2.dispose();
+    }
+
+    public void playMusic(int i){
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
+    }
+
+    public void stopMusic(){
+        sound.stop();
+    }
+
+    public void playSE(int i){
+        sound.setFile(i);
+        sound.play();
     }
 }
