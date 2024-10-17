@@ -26,7 +26,7 @@ public class KeyHandler implements KeyListener {
 
         // TITLE STATE
         if(gp.gameState == gp.titleState){
-            if(code == KeyEvent.VK_UP){ // lên
+            if((code == KeyEvent.VK_UP)||(code == KeyEvent.VK_W)){ // lên
                 gp.ui.commandNum--;
                 if(gp.ui.commandNum < 0){
                     gp.ui.commandNum = 2;
@@ -38,7 +38,7 @@ public class KeyHandler implements KeyListener {
                     gp.ui.commandNum = 0;
                 }
             }
-            if(code == KeyEvent.VK_ENTER){
+            if(code == KeyEvent.VK_E){
                 if(gp.ui.commandNum == 0){
                     gp.gameState = gp.playState;
                 }
