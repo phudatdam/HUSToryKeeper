@@ -52,16 +52,16 @@ public class KeyHandler implements KeyListener {
         }
 
         // PLAY STATE
-        if(code == KeyEvent.VK_W){ // lên
+        if(code == KeyEvent.VK_UP){ // lên
             upPressed = true;
         }
-        if(code == KeyEvent.VK_S){ // xuống
+        if(code == KeyEvent.VK_DOWN){ // xuống
             downPressed = true;
         }
-        if(code == KeyEvent.VK_A){ // trái
+        if(code == KeyEvent.VK_LEFT){ // trái
             leftPressed = true;
         }
-        if(code == KeyEvent.VK_D){ // phải
+        if(code == KeyEvent.VK_RIGHT){ // phải
             rightPressed = true;
         }
         if(code == KeyEvent.VK_P){
@@ -77,16 +77,16 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) { // gán nhả các phím điều khiển thì nhân vật không di  chuyển
         int code = e.getKeyCode();
-        if(code == KeyEvent.VK_W){ // lên
+        if(code == KeyEvent.VK_UP){ // lên
             upPressed = false;
         }
-        if(code == KeyEvent.VK_S){ // xuống
+        if(code == KeyEvent.VK_DOWN){ // xuống
             downPressed = false;
         }
-        if(code == KeyEvent.VK_A){ // trái
+        if(code == KeyEvent.VK_LEFT){ // trái
             leftPressed = false;
         }
-        if(code == KeyEvent.VK_D){ // phải
+        if(code == KeyEvent.VK_RIGHT){ // phải
             rightPressed = false;
         }
     }
