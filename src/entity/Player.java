@@ -99,7 +99,7 @@ public class Player extends Entity {
                 }
             }
             spriteCounter++;
-            if(spriteCounter > 7){ // hình ảnh được thay đổi sau 8 khung hình
+            if(spriteCounter > 5){ // hình ảnh được thay đổi sau 6 khung hình
                 if(spriteNum == 1){
                     spriteNum = 2;
                 }
