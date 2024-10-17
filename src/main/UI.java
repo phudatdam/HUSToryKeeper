@@ -128,7 +128,7 @@ public class UI {
         g2.drawString(text, x, y);
 
         // HUSTer
-        x = gp.screenWidth / 2 - (gp.tileSize) - 20;
+        x = gp.screenWidth / 2 - (gp.tileSize);
         y += gp.tileSize;
         g2.drawImage(gp.player.down3, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
 
@@ -136,7 +136,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
         text = "NEW GAME";
         x = getXforCenteredText(text);
-        y += (int) gp.tileSize * 3;
+        y += (int) gp.tileSize * 1.5;
         g2.drawString(text, x ,y);
         if(commandNum == 0){
             g2.drawString(">", x - gp.tileSize, y);
