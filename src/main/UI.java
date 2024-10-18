@@ -114,7 +114,6 @@ public class UI {
         text = "QUIT";
         x = getXforCenteredText(text);
         y += (int) gp.tileSize * 1.5;
-
         g2.drawString(text, x ,y);
         if(commandNum == 2){
             g2.drawString(">", x - gp.tileSize, y);
@@ -123,7 +122,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,25F));
         text = "(Press E to choose)";
         x = getXforCenteredText(text);
-        y += (int) gp.tileSize;
+        y += gp.tileSize;
         g2.drawString(text, x ,y);
     }
 
