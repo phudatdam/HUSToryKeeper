@@ -12,7 +12,7 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
-    public int hasHeart = 0;
+    public int hasHeart = 2;
     int standCounter = 0;
 
 
@@ -125,7 +125,7 @@ public class Player extends Entity {
             String objectName = gp.obj[i].name;
             switch (objectName){
                 case "Heart":
-                    hasHeart++;
+                    hasHeart += 2;
                     gp.obj[i] = null;
                     break;
             }
