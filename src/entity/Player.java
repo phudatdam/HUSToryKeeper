@@ -41,18 +41,18 @@ public class Player extends Entity {
     }
 
     public void getPlayerImage(){
-        up1 = setup("/player/player-up-1");
-		up2 = setup("/player/player-up-2");
-		up3 = setup("/player/player-up-3");
-		down1 = setup("/player/player-down-1");
-		down2 = setup("/player/player-down-2");
-		down3 = setup("/player/player-down-3");
-		left1 = setup("/player/player-left-1");
-		left2 = setup("/player/player-left-2");
-		left3 = setup("/player/player-left-3");
-		right1 = setup("/player/player-right-1");
-		right2 = setup("/player/player-right-2");
-		right3 = setup("/player/player-right-3");
+        up1 = setup("/player/player_up_1");
+		up2 = setup("/player/player_up_2");
+		up3 = setup("/player/player_up_3");
+		down1 = setup("/player/player_down_1");
+		down2 = setup("/player/player_down_2");
+		down3 = setup("/player/player_down_3");
+		left1 = setup("/player/player_left_1");
+		left2 = setup("/player/player_left_2");
+		left3 = setup("/player/player_left_3");
+		right1 = setup("/player/player_right_1");
+		right2 = setup("/player/player_right_2");
+		right3 = setup("/player/player_right_3");
     }
 
     public void update(){ // được gọi 60 lần trong 1s
@@ -99,7 +99,7 @@ public class Player extends Entity {
                 }
             }
             spriteCounter++;
-            if(spriteCounter > 7){ // hình ảnh được thay đổi sau 8 khung hình
+            if(spriteCounter > 5){ // hình ảnh được thay đổi sau 6 khung hình
                 if(spriteNum == 1){
                     spriteNum = 2;
                 }
