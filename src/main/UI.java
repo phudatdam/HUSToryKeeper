@@ -123,7 +123,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,25F));
         text = "(Press E to choose)";
         x = getXforCenteredText(text);
-        y += (int) gp.tileSize;
+        y += gp.tileSize;
         g2.drawString(text, x ,y);
     }
 
