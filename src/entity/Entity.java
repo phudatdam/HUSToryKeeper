@@ -3,6 +3,7 @@ package entity;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -24,19 +25,62 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public int spriteCounter = 0;
     public int spriteNum = 1;
 
-    public Rectangle solidArea = new Rectangle(0, 0, 64, 64);
+    public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
+    String dialogues[] = new String[50];
+    int dialogueIndex = 0;
 
 	public Entity(GamePanel gp) {
 			this.gp = gp;
 		}
 	
 	public void setAction() {
-		
+		actionLockCounter++;
+    	if (actionLockCounter == 120) {
+    		Random random = new Random();
+        	int i = random.nextInt(100) + 1;
+        	
+        	if (i <= 25) {
+        		direction = "up";  		
+        	}
+        	else if ((i > 25)&&(i <= 50)) {
+        		direction = "down";
+        	}
+        	else if ((i > 50)&&(i <= 75)) {
+        		direction = "left";
+        	}
+        	else if ((i > 75)&&(i <= 100)) {
+        		direction = "right";
+        	}
+        	actionLockCounter = 0;
+        }
 	}
 	
+    public void speak() {
+        if (dialogues[dialogueIndex] == null) {
+			dialogueIndex = 0;
+		}
+		gp.ui.currentDialogue = dialogues [dialogueIndex];
+		dialogueIndex++;
+		// quay mặt npc ra chỗ mình
+		switch( gp.player.direction) {
+			case "up":
+			direction = "down";
+			break;
+			case "down":
+			direction = "up";
+			break;
+			case "right":
+			direction = "left";
+			break;
+			case "left":
+			direction = "right";
+			break;
+		}
+    }
+
 	public void update() {
 		setAction();
 		

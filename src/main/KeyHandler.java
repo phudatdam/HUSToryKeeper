@@ -10,7 +10,7 @@ public class KeyHandler implements KeyListener {
     public boolean downPressed; // nhấn xuống
     public boolean rightPressed; // nhấn phải
     public boolean leftPressed; // nhấn trái
-
+    public boolean enterPressed; // nhấn tương tác ( tôi để là E)
 	public KeyHandler(GamePanel gp) {
         this.gp = gp;
 	}
@@ -53,23 +53,35 @@ public class KeyHandler implements KeyListener {
         }
 
         // PLAY STATE
-        if(code == KeyEvent.VK_W){ // lên
-            upPressed = true;
-        }
-        if(code == KeyEvent.VK_S){ // xuống
-            downPressed = true;
-        }
-        if(code == KeyEvent.VK_A){ // trái
-            leftPressed = true;
-        }
-        if(code == KeyEvent.VK_D){ // phải
-            rightPressed = true;
-        }
-        if(code == KeyEvent.VK_P){
-            if(gp.gameState == gp.playState){
+        if (gp.gameState == gp.playState) {
+            if(code == KeyEvent.VK_W){ // lên
+                upPressed = true;
+            }
+            if(code == KeyEvent.VK_S){ // xuống
+                downPressed = true;
+            }
+            if(code == KeyEvent.VK_A){ // trái
+                leftPressed = true;
+            }
+            if(code == KeyEvent.VK_D){ // phải
+                rightPressed = true;
+            }
+            if(code == KeyEvent.VK_ESCAPE){
                 gp.gameState = gp.pauseState;
             }
-            else if(gp.gameState == gp.pauseState){
+            if (code== KeyEvent.VK_E) {
+                enterPressed = true;
+            }
+        }
+        // PAUSE STATE
+        else if (gp.gameState == gp.pauseState) {
+            if(code == KeyEvent.VK_ESCAPE){
+                gp.gameState = gp.playState;
+                }
+            }
+        // DIALOGUE STATE
+        else if (gp.gameState == gp.dialogueState) {
+            if( code == KeyEvent.VK_E) {
                 gp.gameState = gp.playState;
             }
         }

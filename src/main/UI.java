@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DecimalFormat;
+//import java.text.DecimalFormat;
 
 public class UI {
     GamePanel gp;
@@ -17,6 +17,7 @@ public class UI {
     public String message = "";
    // int messageCounter = 0;
    // public boolean gameFinished = false;
+   public String currentDialogue = "";
     public int commandNum = 0;
 
     public UI(GamePanel gp){
@@ -78,7 +79,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,100F));
         String text = "HUSTory Keeper";
         int x = getXforCenteredText(text);
-        int y = gp.tileSize * 3 / 2;
+        int y = gp.tileSize * 2;
 
         // SHADOW
         g2.setColor(Color.black);
@@ -90,14 +91,14 @@ public class UI {
 
         // HUSTer
         x = gp.screenWidth / 2 - (gp.tileSize) - 20;
-        y += gp.tileSize;
+        y += gp.tileSize * 2 - 10;
         g2.drawImage(gp.player.down3, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
 
         // MENU
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
         text = "NEW GAME";
         x = getXforCenteredText(text);
-        y += (int) gp.tileSize * 3;
+        y += gp.tileSize * 3;
         g2.drawString(text, x ,y);
         if(commandNum == 0){
             g2.drawString(">", x - gp.tileSize, y);
@@ -105,7 +106,7 @@ public class UI {
 
         text = "SETTING";
         x = getXforCenteredText(text);
-        y += (int) gp.tileSize * 1.5;
+        y += gp.tileSize * 1.5 ;
         g2.drawString(text, x ,y);
         if(commandNum == 1){
             g2.drawString(">", x - gp.tileSize, y);
@@ -113,8 +114,7 @@ public class UI {
 
         text = "QUIT";
         x = getXforCenteredText(text);
-        y += (int) gp.tileSize * 1.5;
-
+        y += gp.tileSize * 1.5 ;
         g2.drawString(text, x ,y);
         if(commandNum == 2){
             g2.drawString(">", x - gp.tileSize, y);
@@ -125,28 +125,66 @@ public class UI {
         x = getXforCenteredText(text);
         y += (int) gp.tileSize;
         g2.drawString(text, x ,y);
+
     }
 
     public void drawPauseScreen(){
-
+        // WINDOW
+        int x = gp.tileSize * 2;
+        int y = gp.tileSize / 2;
+        int width = gp.screenWidth - (gp.tileSize * 4);
+        int height = gp.tileSize * 10;
+        drawSubWindow(x, y, width, height);
+        // Paused
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
-        g2.setColor(Color.RED);
+        g2.setColor(Color.WHITE);
         String text = "PAUSED";
-        int x = getXforCenteredText(text);
-        int y = gp.screenHeight / 2;
+        x = getXforCenteredText(text);
+        y = gp.screenHeight / 2 - 256;
 
         g2.drawString(text, x, y); // set chữ ở giữa màn hình
-
+        // tutorial
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,28F));
+        text = " W A S D để di chuyển";
+        x = getXforCenteredText(text);
+        y = gp.screenHeight / 2 -128;
+        g2.drawString(text, x, y);
+        text = " E để tương tác";
+        x = getXforCenteredText(text);
+        y = gp.screenHeight / 2 -96;
+        g2.drawString(text, x, y);
+        // Bổ sung thêm tutorial nữa sau
     }
 
     public void drawDialogueState(){
         // WINDOW
         int x = gp.tileSize * 2;
-        int y;
-        int width;
-        int height;
+        int y = gp.tileSize / 2;
+        int width = gp.screenWidth - (gp.tileSize * 4);
+        int height = gp.tileSize * 4;
+        drawSubWindow(x, y, width, height);
+        // dialogue
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
+        x += gp.tileSize;
+        y += gp.tileSize;
+        for ( String line : currentDialogue.split("\n")) {
+            g2.drawString(line, x, y);
+            y += 40;
+        }
+        
     }
-
+    public void drawSubWindow(int x, int y, int width, int height)
+    {
+        // Kẻ ô
+        Color c = new Color(0,0,0,150);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y, width, height, 35, 35);
+        // Kẻ viền
+        c = new Color(255,255,255);
+        g2.setColor(c);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
+    }
     public int getXforCenteredText(String text){ // để tọa độ x ở giữa màn hình
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = gp.screenWidth / 2 - length / 2;

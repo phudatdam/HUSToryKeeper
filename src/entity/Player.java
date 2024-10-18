@@ -25,7 +25,7 @@ public class Player extends Entity {
         this.screenX = gp.screenWidth / 2 - gp.tileSize / 2;
         this.screenY = gp.screenHeight / 2 - gp.tileSize / 2;
 
-        solidArea = new Rectangle(12, 24, 40, 40);
+        solidArea = new Rectangle(6, 12, 20, 20);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
@@ -36,7 +36,7 @@ public class Player extends Entity {
     public void setDefaultValues() {
         worldX = gp.tileSize * 24;
         worldY = gp.tileSize * 48;
-        speed = 4;
+        speed = 3;
         direction = "up";
     }
 
@@ -56,7 +56,7 @@ public class Player extends Entity {
     }
 
     public void update(){ // được gọi 60 lần trong 1s
-        if(keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed){
+        if(keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed || keyH.enterPressed){
             if(keyH.upPressed){
                 direction = "up";
             }
@@ -77,12 +77,12 @@ public class Player extends Entity {
             // Check objects collision
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
-            
+            // check npc collison 
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
 
             // Nếu collision = false, player có thể di chuyển
-            if(collisionOn == false){
+            if(collisionOn == false && keyH.enterPressed == false){
                 switch (direction) {
                     case "up":
                         worldY -= speed;
@@ -98,8 +98,9 @@ public class Player extends Entity {
                         break;
                 }
             }
+            gp.keyH.enterPressed = false;
             spriteCounter++;
-            if(spriteCounter > 5){ // hình ảnh được thay đổi sau 6 khung hình
+            if(spriteCounter > 7){ // hình ảnh được thay đổi sau 8 khung hình
                 if(spriteNum == 1){
                     spriteNum = 2;
                 }
@@ -107,7 +108,7 @@ public class Player extends Entity {
                     spriteNum = 3;
                 }
                 else if(spriteNum == 3){
-                    spriteNum = 1;
+                    spriteNum = 2;
                 }
                 spriteCounter = 0;
             }
@@ -132,8 +133,12 @@ public class Player extends Entity {
     
     public void interactNPC(int i) {
     	if(i != 999){
-    		
+            if( gp.keyH.enterPressed == true) {
+    		    gp.gameState = gp.dialogueState;
+                gp.npc[i].speak();
+            }
     	}
+        gp.keyH.enterPressed = false;
     }
     
     public void draw(Graphics2D g2){
