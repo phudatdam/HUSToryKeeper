@@ -67,6 +67,11 @@ public class UI {
         if(gp.gameState == gp.dialogueState){
             drawDialogueState();
         }
+        
+        // CHARACTER STATE
+        if(gp.gameState == gp.characterState) {
+        	drawCharacterScreen();
+        }
     }
 
     public void drawTitleScreen(){
@@ -146,14 +151,78 @@ public class UI {
         int width;
         int height;
     }
+    
+    public void drawCharacterScreen() {
+    	// FRAME
+    	int frameX = gp.tileSize*1;
+    	int frameY = gp.tileSize*1;
+    	int frameWidth = gp.tileSize*3;
+    	int frameHeight = gp.tileSize*6;
+    	int textX = frameX + 9;
+    	int textY = frameY + 24;
+    	drawSubScreen(frameX, frameY, frameWidth, frameHeight);
+    	
+    	// TEXT
+    	g2.setFont(g2.getFont().deriveFont(16F));
+    	int lineHeight = 16 + 4; // độ cao dòng = cỡ font + khoảng cách các dòng
+    			
+    	// names
+    	g2.drawString("Level:", textX, textY);
+    	textY += lineHeight;
+    	g2.drawString("Strength:", textX, textY);
+    	textY += lineHeight;
+    	g2.drawString("Coin:", textX, textY);
+    	textY += lineHeight;
+    	g2.drawString("Life:", textX, textY);
+    	textY += lineHeight;
+    	
+    	// values
+    	textY = frameY + 24; // reset textY
+    	int tailX = frameX + frameWidth - 9;
+    	String value;
+    	
+    	value = String.valueOf(gp.player.level);
+    	textX = getXforAlignRightText(value, tailX);
+    	g2.drawString(value, textX, textY);
+    	textY += lineHeight;
+    	
+    	value = String.valueOf(gp.player.strength);
+    	textX = getXforAlignRightText(value, tailX);
+    	g2.drawString(value, textX, textY);
+    	textY += lineHeight;
+    	
+    	value = String.valueOf(gp.player.coin);
+    	textX = getXforAlignRightText(value, tailX);
+    	g2.drawString(value, textX, textY);
+    	textY += lineHeight;
+    	
+    	value = String.valueOf(gp.player.life+ "/" + String.valueOf(gp.player.maxLife));
+    	textX = getXforAlignRightText(value, tailX);
+    	g2.drawString(value, textX, textY);
+    	textY += lineHeight;
+    }
+    
+    void drawSubScreen(int x, int y, int width, int height) {
+    	g2.setColor(new Color(0, 0, 0, 210));
+    	g2.fillRoundRect(x, y, width, height, 35, 35);
+    	
+    	g2.setColor(new Color(235, 235, 235, 235));
+    	g2.setStroke(new BasicStroke(5));
+    	g2.drawRoundRect(x, y, width, height, 25, 25);
+    }
 
     public int getXforCenteredText(String text){ // để tọa độ x ở giữa màn hình
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = gp.screenWidth / 2 - length / 2;
         return x;
     }
+    
+    public int getXforAlignRightText(String text, int tailX){ // căn lề phải
+        int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        int x = tailX - length;
+        return x;
+    }
 
-
-
+    
 }
 

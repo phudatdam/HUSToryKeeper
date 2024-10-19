@@ -53,25 +53,44 @@ public class KeyHandler implements KeyListener {
         }
 
         // PLAY STATE
-        if(code == KeyEvent.VK_W){ // lên
-            upPressed = true;
-        }
-        if(code == KeyEvent.VK_S){ // xuống
-            downPressed = true;
-        }
-        if(code == KeyEvent.VK_A){ // trái
-            leftPressed = true;
-        }
-        if(code == KeyEvent.VK_D){ // phải
-            rightPressed = true;
-        }
-        if(code == KeyEvent.VK_P){
-            if(gp.gameState == gp.playState){
-                gp.gameState = gp.pauseState;
+        else if(gp.gameState ==  gp.playState) {
+        	if(code == KeyEvent.VK_W){ // lên
+                upPressed = true;
             }
-            else if(gp.gameState == gp.pauseState){
-                gp.gameState = gp.playState;
+            if(code == KeyEvent.VK_S){ // xuống
+                downPressed = true;
             }
+            if(code == KeyEvent.VK_A){ // trái
+                leftPressed = true;
+            }
+            if(code == KeyEvent.VK_D){ // phải
+                rightPressed = true;
+            }
+            if(code == KeyEvent.VK_P){
+//                if(gp.gameState == gp.playState){
+                    gp.gameState = gp.pauseState;
+//                }
+//                else if(gp.gameState == gp.pauseState){
+//                    gp.gameState = gp.playState;
+//                }
+            }
+            if(code == KeyEvent.VK_C) {
+            	gp.gameState = gp.characterState;
+            }
+        }
+        
+        // PAUSE STATE
+        else if(gp.gameState == gp.pauseState) {
+        	if(code == KeyEvent.VK_P) {
+        		gp.gameState = gp.playState;
+        	}
+        }
+        
+        // CHARACTER SCREEN (STATUS SCREEN)
+        else if(gp.gameState == gp.characterState) {
+        	if(code == KeyEvent.VK_C) {
+        		gp.gameState = gp.playState;
+        	}
         }
     }
 

@@ -14,6 +14,12 @@ public class Player extends Entity {
     public final int screenY;
     public int hasHeart = 0;
     int standCounter = 0;
+    
+    public int level;
+    public int strength;
+    public int coin;
+    public int life;
+    public final int maxLife = 7;
 
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -36,8 +42,13 @@ public class Player extends Entity {
     public void setDefaultValues() {
         worldX = gp.tileSize * 24;
         worldY = gp.tileSize * 48;
-        speed = 4;
+        speed = 5;
         direction = "up";
+        
+        level = 1;
+        strength = 0;
+        coin = 0;
+        life = 7;
     }
 
     public void getPlayerImage(){
