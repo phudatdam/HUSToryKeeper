@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class SuperObject {
-    public BufferedImage image;
+    public BufferedImage image1, image2, image3;
     public String name;
     public boolean collision = false;
     public int worldX, worldY;
@@ -28,7 +28,7 @@ public class SuperObject {
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY + gp.tileSize) {
 
             // Vẽ tile nếu nằm trong màn hình hoặc nằm trong lề được mở rộng
-            g2.drawImage(image, screenX, screenY, gp.tileSize / 2, gp.tileSize / 2, null);
+            g2.drawImage(image1, screenX, screenY, gp.tileSize / 2, gp.tileSize / 2, null);
         }
     }
 }

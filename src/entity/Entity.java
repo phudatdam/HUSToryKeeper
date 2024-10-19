@@ -28,6 +28,10 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
+    
+    // Character status
+    public int maxLife;
+    public int life;
 
 	public Entity(GamePanel gp) {
 			this.gp = gp;
