@@ -26,13 +26,13 @@ public class KeyHandler implements KeyListener {
 
         // TITLE STATE
         if(gp.gameState == gp.titleState){
-            if(code == KeyEvent.VK_UP){ // lên
+            if(code == KeyEvent.VK_W){ // lên
                 gp.ui.commandNum--;
                 if(gp.ui.commandNum < 0){
                     gp.ui.commandNum = 2;
                 }
             }
-            if(code == KeyEvent.VK_DOWN){ // xuống
+            if(code == KeyEvent.VK_S){ // xuống
                 gp.ui.commandNum++;
                 if(gp.ui.commandNum > 2){
                     gp.ui.commandNum = 0;
@@ -46,22 +46,22 @@ public class KeyHandler implements KeyListener {
                     // add later
                 }
                 if(gp.ui.commandNum == 2){
-                	System.exit(0);
+                    System.exit(0);
                 }
             }
         }
 
         // PLAY STATE
-        if(code == KeyEvent.VK_UP){ // lên
+        if(code == KeyEvent.VK_W){ // lên
             upPressed = true;
         }
-        if(code == KeyEvent.VK_DOWN){ // xuống
+        if(code == KeyEvent.VK_S){ // xuống
             downPressed = true;
         }
-        if(code == KeyEvent.VK_LEFT){ // trái
+        if(code == KeyEvent.VK_A){ // trái
             leftPressed = true;
         }
-        if(code == KeyEvent.VK_RIGHT){ // phải
+        if(code == KeyEvent.VK_D){ // phải
             rightPressed = true;
         }
         if(code == KeyEvent.VK_P){
@@ -77,16 +77,16 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) { // gán nhả các phím điều khiển thì nhân vật không di  chuyển
         int code = e.getKeyCode();
-        if(code == KeyEvent.VK_UP){ // lên
+        if(code == KeyEvent.VK_W){ // lên
             upPressed = false;
         }
-        if(code == KeyEvent.VK_DOWN){ // xuống
+        if(code == KeyEvent.VK_S){ // xuống
             downPressed = false;
         }
-        if(code == KeyEvent.VK_LEFT){ // trái
+        if(code == KeyEvent.VK_A){ // trái
             leftPressed = false;
         }
-        if(code == KeyEvent.VK_RIGHT){ // phải
+        if(code == KeyEvent.VK_D){ // phải
             rightPressed = false;
         }
     }

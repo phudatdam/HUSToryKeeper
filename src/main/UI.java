@@ -78,8 +78,6 @@ public class UI {
     }
     
     public void drawPlayerLife() {
-    	gp.player.life = gp.player.hasHeart;
-    	
     	int x = gp.tileSize / 2;
     	int y = gp.tileSize / 2;
     	int i = 0;
@@ -128,7 +126,7 @@ public class UI {
         g2.drawString(text, x, y);
 
         // HUSTer
-        x = gp.screenWidth / 2 - (gp.tileSize);
+        x = gp.screenWidth / 2 - (gp.tileSize) - 20;
         y += gp.tileSize;
         g2.drawImage(gp.player.down3, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
 
@@ -141,7 +139,7 @@ public class UI {
         if(commandNum == 0){
             g2.drawString(">", x - gp.tileSize, y);
         }
-        
+
         text = "SETTING";
         x = getXforCenteredText(text);
         y += (int) gp.tileSize * 1.5;
@@ -162,7 +160,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,25F));
         text = "(Press E to choose)";
         x = getXforCenteredText(text);
-        y += (int) gp.tileSize;
+        y += gp.tileSize;
         g2.drawString(text, x ,y);
     }
 
