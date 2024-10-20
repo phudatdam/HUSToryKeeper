@@ -6,7 +6,7 @@ import main.UtilityTool;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class SuperObject {
+public class SuperObject { // not used anymore
     public BufferedImage image;
     public String name;
     public boolean collision = false;
