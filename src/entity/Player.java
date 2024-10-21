@@ -50,6 +50,7 @@ public class Player extends Entity {
         direction = "down";
         
         maxLife = 6;
+<<<<<<< Upstream, based on master
         life = maxLife;
         hasHeart = 0;
         strength = 0;
@@ -59,6 +60,9 @@ public class Player extends Entity {
     public void setItems() {
     	inventory.add(new OBJ_Coin(gp));
     	inventory.add(new OBJ_Coin(gp));
+=======
+        life = this.hasHeart;
+>>>>>>> af52f77 feat: Add new type of monsters (bronze swords)
     }
 
     public void getPlayerImage(){
@@ -99,9 +103,14 @@ public class Player extends Entity {
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
             
+            // Check NPCs collision
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
 
+            // Check monsters collision
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
+            
             // Nếu collision = false, player có thể di chuyển
             if(collisionOn == false){
                 switch (direction) {
@@ -136,18 +145,26 @@ public class Player extends Entity {
         else {
         	spriteNum = 1;
         }
+        
+        if (invincible == true) {
+        	invincibleCounter++;
+        	if (invincibleCounter > 60) {
+        		invincible = false;
+        		invincibleCounter = 0;
+        	}
+        }
     }
 
-    public void pickUpObject(int i){
+    // Nhặt được tim => hồi máu
+	public void pickUpObject(int i){
         if(i != 999){
             String objectName = gp.obj[i].name;
             switch (objectName){
                 case "Heart":
-                    hasHeart += 2;
+                    life += 2;
                     gp.obj[i] = null;
                     break;
             }
-
         }
     }
     
@@ -158,6 +175,16 @@ public class Player extends Entity {
     	}
         gp.keyH.enterPressed = false;
     }
+    
+    // Player tiếp xúc với quái => nhận sát thương
+    public void contactMonster(int i) {
+    	if(i != 999){
+    		if (invincible == false) {
+        		life -= 1;
+        		invincible = true;
+    		}
+    	}	
+	}
     
     public void draw(Graphics2D g2){
         BufferedImage image = null;
@@ -208,7 +235,14 @@ public class Player extends Entity {
                 }
                 break;
         }
+        
+        // Hiệu ứng chịu sát thương từ quái
+//        if (invincible == true) {
+//        	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+//        }
+//        
         g2.drawImage(image, screenX, screenY, null);
-
+        
+//        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
     }
 }

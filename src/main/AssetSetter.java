@@ -1,6 +1,7 @@
 package main;
 
 import entity.NPC_AnDuongVuong;
+import monsters.MON_BronzeSword;
 import object.OBJ_Heart;
 
 public class AssetSetter {
@@ -24,6 +25,16 @@ public class AssetSetter {
     	gp.npc[0] = new NPC_AnDuongVuong(gp);
     	gp.npc[0].worldX = 37 * gp.tileSize;
         gp.npc[0].worldY = 13 * gp.tileSize;
+    }
+    
+    public void setMonsters() {    	
+    	gp.monster[0] = new MON_BronzeSword(gp);
+        gp.monster[0].worldX = 30 * gp.tileSize;
+        gp.monster[0].worldY = 36 * gp.tileSize;
+        
+    	gp.monster[1] = new MON_BronzeSword(gp);
+        gp.monster[1].worldX = 30 * gp.tileSize;
+        gp.monster[1].worldY = 38 * gp.tileSize;
     }
 }
 

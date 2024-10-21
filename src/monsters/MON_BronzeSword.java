@@ -1,0 +1,58 @@
+package monsters;
+
+import java.awt.Rectangle;
+import java.util.Random;
+
+import entity.Entity;
+import main.GamePanel;
+
+public class MON_BronzeSword extends Entity {
+	public MON_BronzeSword (GamePanel gp) {
+		super(gp);
+		
+		type = 2;
+		name = "Bronze sword";
+		speed = 1;
+		maxLife = 4;
+		life = maxLife;
+		
+		solidArea = new Rectangle(12, 24, 40, 40);
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        
+        getImage();
+	}
+	
+	public void getImage() {
+		up1 = setup("/monsters/bronze_sword_up_1");
+		up2 = setup("/monsters/bronze_sword_up_2");
+		down1 = setup("/monsters/bronze_sword_down_1");
+		down2 = setup("/monsters/bronze_sword_down_2");
+		left1 = setup("/monsters/bronze_sword_left_1");
+		left2 = setup("/monsters/bronze_sword_left_2");
+		right1 = setup("/monsters/bronze_sword_right_1");
+		right2 = setup("/monsters/bronze_sword_right_2");
+	}
+	
+	public void setAction() {
+    	actionLockCounter++;
+    	if (actionLockCounter == 120) {
+    		Random random = new Random();
+        	int i = random.nextInt(100) + 1;
+        	
+        	if (i <= 25) {
+        		direction = "up";  		
+        	}
+        	else if ((i > 25)&&(i <= 50)) {
+        		direction = "down";
+        	}
+        	else if ((i > 50)&&(i <= 75)) {
+        		direction = "left";
+        	}
+        	else if ((i > 75)&&(i <= 100)) {
+        		direction = "right";
+        	}
+        	actionLockCounter = 0;
+    	}
+    }
+}
