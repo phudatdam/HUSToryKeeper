@@ -31,6 +31,10 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     // OBJ ATTRIBUTES
     public String name;
     public String description;
+  
+    // Character status
+    public int maxLife;
+    public int life;
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;

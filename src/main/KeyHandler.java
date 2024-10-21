@@ -48,7 +48,6 @@ public class KeyHandler implements KeyListener {
                 if(gp.ui.commandNum == 2){
                     System.exit(0);
                 }
-
             }
         }
 

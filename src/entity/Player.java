@@ -21,8 +21,6 @@ public class Player extends Entity {
     public int hasHeart;
     public int strength;
     public int coin;
-    public int life;
-    public final int maxLife = 7;
     
     public ArrayList<Entity> inventory = new ArrayList();
     public int maxInventorySize = 15;
@@ -51,10 +49,11 @@ public class Player extends Entity {
         speed = 4;
         direction = "up";
         
+        maxLife = 6;
+        life = maxLife;
         hasHeart = 0;
         strength = 0;
         coin = 0;
-        life = 7;
     }
     
     public void setItems() {
@@ -144,7 +143,7 @@ public class Player extends Entity {
             String objectName = gp.obj[i].name;
             switch (objectName){
                 case "Heart":
-                    hasHeart++;
+                    hasHeart += 2;
                     gp.obj[i] = null;
                     break;
             }

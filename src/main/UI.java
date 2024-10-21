@@ -12,6 +12,7 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font determinationSans;
+    BufferedImage heart_full, heart_half, heart_blank;
     BufferedImage heartImage;
     public boolean messageOn = false;
     public String message = "";
@@ -32,8 +33,13 @@ public class UI {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
         OBJ_Heart heart = new OBJ_Heart(gp);
-        heartImage = heart.image;
+        heartImage = heart.image1;
+        
+        heart_full = heart.image1;
+        heart_half = heart.image2;
+        heart_blank = heart.image3;     
     }
 
     public void showMessage(String text){
@@ -57,16 +63,18 @@ public class UI {
 
         // PLAY STATE
         if(gp.gameState == gp.playState){
-
+        	drawPlayerLife();
         }
 
         // PAUSE STATE
         if(gp.gameState == gp.pauseState){
+        	drawPlayerLife();
             drawPauseScreen();
         }
 
         // DIALOGUE STATE
         if(gp.gameState == gp.dialogueState){
+        	drawPlayerLife();
             drawDialogueState();
         }
         
@@ -75,6 +83,35 @@ public class UI {
         	drawCharacterScreen();
         	drawInventory();
         }
+    }
+    
+    public void drawPlayerLife() {
+    	int x = gp.tileSize / 2;
+    	int y = gp.tileSize / 2;
+    	int i = 0;
+    	
+    	// DRAW MAX LIFE
+    	while (i < gp.player.maxLife / 2) {
+    		g2.drawImage(heart_blank, x, y, null);
+    		i++;
+    		x += gp.tileSize;
+    	}
+    	
+    	// RESET
+    	x = gp.tileSize / 2;
+    	y = gp.tileSize / 2;
+    	i = 0;
+    	
+    	// DRAW CURRENT LIFE
+    	while (i < gp.player.life) {
+    		g2.drawImage(heart_half, x, y, null);
+    		i++;
+    		if (i < gp.player.life) {
+    			g2.drawImage(heart_full, x, y, null);
+    		}
+    		i++;
+    		x += gp.tileSize;
+    	}
     }
 
     public void drawTitleScreen(){
