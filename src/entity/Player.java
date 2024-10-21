@@ -51,6 +51,7 @@ public class Player extends Entity {
         
         maxLife = 6;
 <<<<<<< Upstream, based on master
+<<<<<<< Upstream, based on master
         life = maxLife;
         hasHeart = 0;
         strength = 0;
@@ -61,8 +62,25 @@ public class Player extends Entity {
     	inventory.add(new OBJ_Coin(gp));
     	inventory.add(new OBJ_Coin(gp));
 =======
+=======
+<<<<<<< Upstream, based on feat/monsters-and-attack
+>>>>>>> f106bae Merge branch feat/add-status-screen by nvhuyy
         life = this.hasHeart;
+<<<<<<< Upstream, based on master
 >>>>>>> af52f77 feat: Add new type of monsters (bronze swords)
+=======
+=======
+        life = maxLife;
+        hasHeart = 0;
+        strength = 0;
+        coin = 0;
+    }
+    
+    public void setItems() {
+    	inventory.add(new OBJ_Coin(gp));
+    	inventory.add(new OBJ_Coin(gp));
+>>>>>>> 48684f3 Merge branch feat/add-status-screen by nvhuyy
+>>>>>>> f106bae Merge branch feat/add-status-screen by nvhuyy
     }
 
     public void getPlayerImage(){

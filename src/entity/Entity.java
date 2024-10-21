@@ -18,10 +18,18 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 
     // Khai báo dữ liệu ảnh
     public BufferedImage up1, up2, up3, down1, down2, down3, left1,
+<<<<<<< Upstream, based on master
                         	left2, left3, right1, right2, right3;
+=======
+<<<<<<< Upstream, based on feat/monsters-and-attack
+                        left2, left3, right1, right2, right3;
+>>>>>>> f106bae Merge branch feat/add-status-screen by nvhuyy
 
     public String direction = "down";
 
+=======
+                        	left2, left3, right1, right2, right3;
+>>>>>>> 48684f3 Merge branch feat/add-status-screen by nvhuyy
     public int spriteCounter = 0;
     public int spriteNum = 1;
 
@@ -38,6 +46,14 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 
     // OBJ ATTRIBUTES
     public String name;
+<<<<<<< Upstream, based on master
+=======
+    public boolean collision = false;
+    public int type; // 0=player, 1=npc, 2=monsters
+    
+    // OBJ ATTRIBUTES
+    public String name;
+>>>>>>> f106bae Merge branch feat/add-status-screen by nvhuyy
     public String description;
   
     // Character status
@@ -46,6 +62,13 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
+<<<<<<< Upstream, based on master
+=======
+	}
+	
+	public void setAction() {
+		
+>>>>>>> f106bae Merge branch feat/add-status-screen by nvhuyy
 	}
 	
 	public void setAction() {
