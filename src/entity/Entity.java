@@ -11,7 +11,7 @@ import main.GamePanel;
 import main.UtilityTool;
 
 public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monster, object...
-	GamePanel gp;
+	public GamePanel gp;
 	
 	public int worldX, worldY;
     public int speed;
@@ -19,10 +19,14 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     // Khai báo dữ liệu ảnh
     public BufferedImage up1, up2, up3, down1, down2, down3, left1,
 <<<<<<< Upstream, based on master
+<<<<<<< Upstream, based on master
                         	left2, left3, right1, right2, right3;
 =======
 <<<<<<< Upstream, based on feat/monsters-and-attack
+=======
+>>>>>>> d3fd4bd fix: Rendering image of entities
                         left2, left3, right1, right2, right3;
+<<<<<<< Upstream, based on master
 >>>>>>> f106bae Merge branch feat/add-status-screen by nvhuyy
 
     public String direction = "down";
@@ -30,6 +34,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 =======
                         	left2, left3, right1, right2, right3;
 >>>>>>> 48684f3 Merge branch feat/add-status-screen by nvhuyy
+=======
+>>>>>>> d3fd4bd fix: Rendering image of entities
     public int spriteCounter = 0;
     public int spriteNum = 1;
 
@@ -39,6 +45,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public int solidAreaDefaultY = solidArea.y;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
+<<<<<<< Upstream, based on master
     // dialogue
     public String dialogues[][] = new String[50][50];
     public int dialogueIndex = 0;
@@ -48,6 +55,12 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public String name;
 <<<<<<< Upstream, based on master
 =======
+=======
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
+    
+    public BufferedImage image1, image2, image3;
+>>>>>>> d3fd4bd fix: Rendering image of entities
     public boolean collision = false;
     public int type; // 0=player, 1=npc, 2=monsters
     

@@ -4,8 +4,6 @@ import main.GamePanel;
 import main.KeyHandler;
 import object.OBJ_Coin;
 import object.OBJ_Heart;
-import object.SuperObject;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -52,6 +50,7 @@ public class Player extends Entity {
         maxLife = 6;
 <<<<<<< Upstream, based on master
 <<<<<<< Upstream, based on master
+<<<<<<< Upstream, based on master
         life = maxLife;
         hasHeart = 0;
         strength = 0;
@@ -70,6 +69,8 @@ public class Player extends Entity {
 >>>>>>> af52f77 feat: Add new type of monsters (bronze swords)
 =======
 =======
+=======
+>>>>>>> d3fd4bd fix: Rendering image of entities
         life = maxLife;
         hasHeart = 0;
         strength = 0;
@@ -79,8 +80,11 @@ public class Player extends Entity {
     public void setItems() {
     	inventory.add(new OBJ_Coin(gp));
     	inventory.add(new OBJ_Coin(gp));
+<<<<<<< Upstream, based on master
 >>>>>>> 48684f3 Merge branch feat/add-status-screen by nvhuyy
 >>>>>>> f106bae Merge branch feat/add-status-screen by nvhuyy
+=======
+>>>>>>> d3fd4bd fix: Rendering image of entities
     }
 
     public void getPlayerImage(){
