@@ -56,6 +56,7 @@ public class CollisionChecker {
                 break;
         }
     }
+    
     // OBJECT
     public int checkObject(Entity entity, boolean player){
         int index = 999;
@@ -123,6 +124,7 @@ public class CollisionChecker {
         }
         return index;
     }
+    
     // NPC OR MONSTERS
     public int checkEntity(Entity entity, Entity[] target) {
     	int index = 999;

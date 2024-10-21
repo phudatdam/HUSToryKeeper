@@ -52,25 +52,64 @@ public class KeyHandler implements KeyListener {
         }
 
         // PLAY STATE
-        if(code == KeyEvent.VK_W){ // lên
-            upPressed = true;
-        }
-        if(code == KeyEvent.VK_S){ // xuống
-            downPressed = true;
-        }
-        if(code == KeyEvent.VK_A){ // trái
-            leftPressed = true;
-        }
-        if(code == KeyEvent.VK_D){ // phải
-            rightPressed = true;
-        }
-        if(code == KeyEvent.VK_P){
-            if(gp.gameState == gp.playState){
-                gp.gameState = gp.pauseState;
+        else if(gp.gameState ==  gp.playState) {
+        	if(code == KeyEvent.VK_W){ // lên
+                upPressed = true;
             }
-            else if(gp.gameState == gp.pauseState){
-                gp.gameState = gp.playState;
+            if(code == KeyEvent.VK_S){ // xuống
+                downPressed = true;
             }
+            if(code == KeyEvent.VK_A){ // trái
+                leftPressed = true;
+            }
+            if(code == KeyEvent.VK_D){ // phải
+                rightPressed = true;
+            }
+            if(code == KeyEvent.VK_P){
+//                if(gp.gameState == gp.playState){
+                    gp.gameState = gp.pauseState;
+//                }
+//                else if(gp.gameState == gp.pauseState){
+//                    gp.gameState = gp.playState;
+//                }
+            }
+            if(code == KeyEvent.VK_I) {
+            	gp.gameState = gp.characterState;
+            }
+        }
+        
+        // PAUSE STATE
+        else if(gp.gameState == gp.pauseState) {
+        	if(code == KeyEvent.VK_P) {
+        		gp.gameState = gp.playState;
+        	}
+        }
+        
+        // CHARACTER SCREEN (STATUS SCREEN)
+        else if(gp.gameState == gp.characterState) {
+        	if(code == KeyEvent.VK_I) {
+        		gp.gameState = gp.playState;
+        	}
+        	if(code == KeyEvent.VK_UP) {
+        		if(gp.ui.slotRow != 0) {
+        			gp.ui.slotRow --;
+        		}
+        	}
+        	if(code == KeyEvent.VK_DOWN) {
+        		if(gp.ui.slotRow != 2) {
+        			gp.ui.slotRow ++;
+        		}
+        	}
+        	if(code == KeyEvent.VK_RIGHT) {
+        		if(gp.ui.slotCol != 4) {
+        			gp.ui.slotCol ++;
+        		}
+        	}
+        	if(code == KeyEvent.VK_LEFT) {
+        		if(gp.ui.slotCol != 0) {
+        			gp.ui.slotCol --;
+        		}
+        	}
         }
     }
 

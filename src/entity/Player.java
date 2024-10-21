@@ -2,9 +2,13 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Coin;
+import object.OBJ_Heart;
+import object.SuperObject;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Player extends Entity {
 	GamePanel gp;
@@ -12,9 +16,14 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
-    public int hasHeart = 2;
     int standCounter = 0;
-
+    
+    public int hasHeart;
+    public int strength;
+    public int coin;
+    
+    public ArrayList<Entity> inventory = new ArrayList();
+    public int maxInventorySize = 15;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
@@ -31,6 +40,7 @@ public class Player extends Entity {
 
         setDefaultValues();
         getPlayerImage();
+        setItems();
     }
 
     public void setDefaultValues() {
@@ -41,21 +51,29 @@ public class Player extends Entity {
         
         maxLife = 6;
         life = maxLife;
+        hasHeart = 0;
+        strength = 0;
+        coin = 0;
+    }
+    
+    public void setItems() {
+    	inventory.add(new OBJ_Coin(gp));
+    	inventory.add(new OBJ_Coin(gp));
     }
 
     public void getPlayerImage(){
-        up1 = setup("/player/player_up_1");
-		up2 = setup("/player/player_up_2");
-		up3 = setup("/player/player_up_3");
-		down1 = setup("/player/player_down_1");
-		down2 = setup("/player/player_down_2");
-		down3 = setup("/player/player_down_3");
-		left1 = setup("/player/player_left_1");
-		left2 = setup("/player/player_left_2");
-		left3 = setup("/player/player_left_3");
-		right1 = setup("/player/player_right_1");
-		right2 = setup("/player/player_right_2");
-		right3 = setup("/player/player_right_3");
+        up1 = setup("/player/player_up_1", gp.tileSize, gp.tileSize); //
+		up2 = setup("/player/player_up_2", gp.tileSize, gp.tileSize);
+		up3 = setup("/player/player_up_3", gp.tileSize, gp.tileSize);
+		down1 = setup("/player/player_down_1", gp.tileSize, gp.tileSize);
+		down2 = setup("/player/player_down_2", gp.tileSize, gp.tileSize);
+		down3 = setup("/player/player_down_3", gp.tileSize, gp.tileSize);
+		left1 = setup("/player/player_left_1", gp.tileSize, gp.tileSize);
+		left2 = setup("/player/player_left_2", gp.tileSize, gp.tileSize);
+		left3 = setup("/player/player_left_3", gp.tileSize, gp.tileSize);
+		right1 = setup("/player/player_right_1", gp.tileSize, gp.tileSize);
+		right2 = setup("/player/player_right_2", gp.tileSize, gp.tileSize);
+		right3 = setup("/player/player_right_3", gp.tileSize, gp.tileSize);
     }
 
     public void update(){ // được gọi 60 lần trong 1s

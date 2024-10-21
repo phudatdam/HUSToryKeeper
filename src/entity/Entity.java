@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.UtilityTool;
 
-public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monster, ...
+public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monster, object...
 	GamePanel gp;
 	
 	public int worldX, worldY;
@@ -17,25 +17,28 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 
     // Khai báo dữ liệu ảnh
     public BufferedImage up1, up2, up3, down1, down2, down3, left1,
-                        left2, left3, right1, right2, right3;
-
-    public String direction;
-
+                        	left2, left3, right1, right2, right3;
     public int spriteCounter = 0;
     public int spriteNum = 1;
 
+    public String direction = "down"; //
     public Rectangle solidArea = new Rectangle(0, 0, 64, 64);
-    public int solidAreaDefaultX, solidAreaDefaultY;
+    public int solidAreaDefaultX = solidArea.x;
+    public int solidAreaDefaultY = solidArea.y;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
     
+    // OBJ ATTRIBUTES
+    public String name;
+    public String description;
+  
     // Character status
     public int maxLife;
     public int life;
 
 	public Entity(GamePanel gp) {
-			this.gp = gp;
-		}
+		this.gp = gp;
+	}
 	
 	public void setAction() {
 		
@@ -78,7 +81,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	}
 
 	// Công cụ tạo ảnh entity
-	public BufferedImage setup(String imagePath) { 	
+	public BufferedImage setup(String imagePath, int width, int height) { 	
     	// Khai báo công cụ scale
 		UtilityTool uTool = new UtilityTool();
     	BufferedImage image = null;
@@ -87,7 +90,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     		// Fetch ảnh gốc vào entity
     		image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png")); 
     		// Scale ảnh gốc về kích thước tile
-    		image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+    		image = uTool.scaleImage(image, width, height);
     	} catch(IOException e) {
     		e.printStackTrace();
     	}
