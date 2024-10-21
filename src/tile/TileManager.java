@@ -17,7 +17,7 @@ public class TileManager {
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        tile = new Tile[40]; // set số lượng tile <= 40
+        tile = new Tile[70]; // set số lượng tile <= 70
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
@@ -25,39 +25,50 @@ public class TileManager {
     }
 
     public void getTileImage() {
-        	setup(0, "grass_1", false); // cỏ loại 1
-        	setup(1, "grass_2", false); // cỏ loại 2
-        	setup(2, "bush", true); // bụi cây
-        	setup(3, "rock", true); // đá
-        	setup(4, "tree_1", true); // cây gỗ
-        	setup(5, "water", true); // nước
-        	setup(6, "wall_east", true); // tường hướng đông
-        	setup(7, "wall_west", true); // tường hướng tây
-        	setup(8, "water_corner_north_east", true); // góc nước hướng đông bắc
-        	setup(9, "water_corner_north_west", true); // góc nước hướng tây bắc
-        	setup(10, "water_corner_south_east", true); // góc nước hướng đông nam
-        	setup(11, "water_corner_south_west", true); // góc nước hướng tây nam
-        	setup(12, "water_edge_east", true); // cạnh nước hướng đông
-        	setup(13, "water_edge_north", true); // cạnh nước hướng bắc
-        	setup(14, "water_edge_south", true); // cạnh nước hướng nam
-        	setup(15, "water_edge_west", true); // cạnh nước hướng tây
-        	setup(16, "wall_north", true); // tường hướng bắc
-        	setup(17, "wall_south", true); // tường hướng nam
-        	setup(18, "wall_corner_north_east", true); // tường hướng đông bắc
-        	setup(19, "wall_corner_north_west", true); // tường hướng tây bắc
-        	setup(20, "wall_corner_south_east", true); // tường hướng đông nam
-        	setup(21, "wall_corner_south_west", true); // tường hướng tây nam
-        	setup(22, "path_vertical", false); // đường dọc
-        	setup(23, "path_intersection", false); // đường giao nhau
-        	setup(24, "path_horizontal", false); // đường ngang
-        	setup(25, "path_corner_south_west", false); // góc đường hướng tây nam
-        	setup(26, "path_corner_south_east", false); // góc đường hướng đông nam
-        	setup(27, "path_corner_north_west", false); // góc đường hướng tây bắc
-        	setup(28, "path_corner_north_east", false); // góc đường hướng đông bắc
-        	setup(29, "water_inner_corner_north_east", true); // mép nước trong hướng đông bắc
-        	setup(30, "water_inner_corner_north_west", true); // mép nước trong hướng tây bắc
-        	setup(31, "water_inner_corner_south_east", true); // mép nước trong hướng đông nam
-        	setup(32, "water_inner_corner_south_west", true); // mép nước trong hướng tây nam
+    	// grass
+    	setup(0, "grass_1", false); // cỏ loại 1
+    	setup(1, "grass_2", false); // cỏ loại 2
+    	// resources
+    	setup(10, "bush", true); // bụi cây
+    	setup(11, "rock", true); // đá
+    	setup(12, "tree_1", true); // cây gỗ
+    	setup(13, "iron_ore", true); // sắt
+    	// path
+    	setup(20, "path_vertical", false); // đường dọc
+    	setup(21, "path_horizontal", false); // đường ngang
+    	setup(22, "path_intersection", false); // đường giao nhau
+    	setup(23, "path_corner_north_east", false); // góc đường hướng đông bắc
+    	setup(24, "path_corner_north_west", false); // góc đường hướng tây bắc
+    	setup(25, "path_corner_south_east", false); // góc đường hướng đông nam
+    	setup(26, "path_corner_south_west", false); // góc đường hướng tây nam
+    	// water
+    	setup(30, "water", true); // nước
+    	setup(31, "water_edge_east", true); // cạnh nước hướng đông
+    	setup(32, "water_edge_west", true); // cạnh nước hướng tây
+    	setup(33, "water_edge_south", true); // cạnh nước hướng nam
+    	setup(34, "water_edge_north", true); // cạnh nước hướng bắc
+    	setup(35, "water_corner_north_east", true); // góc nước hướng đông bắc
+    	setup(36, "water_corner_north_west", true); // góc nước hướng tây bắc
+    	setup(37, "water_corner_south_east", true); // góc nước hướng đông nam
+    	setup(38, "water_corner_south_west", true); // góc nước hướng tây nam
+    	setup(39, "water_inner_corner_north_east", true); // mép nước trong hướng đông bắc
+    	setup(40, "water_inner_corner_north_west", true); // mép nước trong hướng tây bắc
+    	setup(41, "water_inner_corner_south_east", true); // mép nước trong hướng đông nam
+    	setup(42, "water_inner_corner_south_west", true); // mép nước trong hướng tây nam
+    	// wall
+    	setup(50, "wall_east", true); // tường hướng đông
+    	setup(51, "wall_west", true); // tường hướng tây
+    	setup(52, "wall_north", true); // tường hướng bắc
+    	setup(53, "wall_south", true); // tường hướng nam
+    	setup(54, "wall_corner_north_east", true); // tường hướng đông bắc
+    	setup(55, "wall_corner_north_west", true); // tường hướng tây bắc
+    	setup(56, "wall_corner_south_east", true); // tường hướng đông nam
+    	setup(57, "wall_corner_south_west", true); // tường hướng tây nam
+    	setup(58, "wall_inner_corner_north_east", true); // góc tường trong hướng đông bắc
+    	setup(59, "wall_inner_corner_north_west", true); // góc tường trong hướng tây bắc
+    	setup(60, "wall_inner_corner_south_east", true); // góc tường trong hướng đông nam
+    	setup(61, "wall_inner_corner_south_west", true); // góc tường trong hướng tây nam
+    	
     }
     
     // Công cụ vẽ hình tile

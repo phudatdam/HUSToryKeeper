@@ -22,8 +22,8 @@ public class AssetSetter {
     
     public void setNPC() {
     	gp.npc[0] = new NPC_AnDuongVuong(gp);
-    	gp.npc[0].worldX = 30 * gp.tileSize;
-        gp.npc[0].worldY = 30 * gp.tileSize;
+    	gp.npc[0].worldX = 37 * gp.tileSize;
+        gp.npc[0].worldY = 13 * gp.tileSize;
     }
 }
 
