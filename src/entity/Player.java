@@ -24,7 +24,7 @@ public class Player extends Entity {
     
     public ArrayList<Entity> inventory = new ArrayList();
     public int maxInventorySize = 15;
-    
+
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
         this.gp = gp; // DEBUG
