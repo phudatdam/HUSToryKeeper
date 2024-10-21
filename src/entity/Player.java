@@ -14,11 +14,9 @@ public class Player extends Entity {
     public final int screenY;
     public int hasHeart = 2;
     int standCounter = 0;
-
-
+    
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
-        
         this.gp = gp; // DEBUG
         this.keyH = keyH;
 
