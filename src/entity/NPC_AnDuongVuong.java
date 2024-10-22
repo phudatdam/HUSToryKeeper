@@ -12,6 +12,7 @@ public class NPC_AnDuongVuong extends Entity {
 		speed = 1;
 		
 		getImage();
+		setDialogue();
 	}
 	
 	public void getImage() {
@@ -30,24 +31,27 @@ public class NPC_AnDuongVuong extends Entity {
     }
     
     public void setAction() {
-    	actionLockCounter++;
-    	if (actionLockCounter == 120) {
-    		Random random = new Random();
-        	int i = random.nextInt(100) + 1;
-        	
-        	if (i <= 25) {
-        		direction = "up";  		
-        	}
-        	else if ((i > 25)&&(i <= 50)) {
-        		direction = "down";
-        	}
-        	else if ((i > 50)&&(i <= 75)) {
-        		direction = "left";
-        	}
-        	else if ((i > 75)&&(i <= 100)) {
-        		direction = "right";
-        	}
-        	actionLockCounter = 0;
-    	}
+    	super.setAction();
     }
+	public void setDialogue()
+	{
+		dialogues[0] = "Nvc :\n đây là đâu vậy ?";
+		dialogues[1] = "An Duong Vuong :\n Chào chàng trai trẻ mặc long bào, ";
+		dialogues[2] = "Adv :\n ta là Thục Phán aka An Dương Vương. ";
+		dialogues[3] = "Adv :\n Cậu là người được ma thuật thần bí lựa chọn để\n bảo vệ lịch sử.";
+		dialogues[4] = "Nvc :\n Có hơi kì lạ không khi mà ngài biết chữ quốc ngữ\n ở thời này ?";
+		dialogues[5] = "Adv :\n Cậu vừa được xuyên không về lịch sử nên điều này\n cũng bình thường thôi.";
+		dialogues[6] = "Nvc :\n Hợp lý. ";
+		dialogues[7] = "Adv :\n Dù sao, quân địch bằng một cách thần kì đã biết\n được về sức mạnh của nỏ thần và phá hủy nó.";
+		dialogues[8] = "Adv :\n Cậu hay nhận lấy thanh kiếm này, Nhấn J để\n tấn công. Quân địch ở ngoài đó nên hãy cẩn thận.";
+		dialogues[9] = "Nvc :\n Kiếm thần ư ?";
+		dialogues[10] = "Adv :\n Không phải, nếu là kiếm thần thì ta đã dùng rồi.\n Cậu hãy tiến lên tìm đủ gỗ và sắt, giao nó cho\n người thợ rèn để sửa lại nỏ thần.";
+		dialogues[11] = "Nvc :\n dùng tay không phá đá chặt cây ạ ? đây có phải\n Minecraft đâu.";
+		dialogues[12] = "Adv :\n ta quên mất. khi phá đá hãy dùng cây cuốc này này.\n Chặt cây hãy dung chiếc rìu này.";
+		dialogues[13] = "Adv :\n hãy kiếm đủ X gỗ và Y sắt. Chúc may mắn";
+	}
+
+	public void speak() {
+		super.speak();
+	}
 }

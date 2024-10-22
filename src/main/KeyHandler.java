@@ -10,7 +10,7 @@ public class KeyHandler implements KeyListener {
     public boolean downPressed; // nhấn xuống
     public boolean rightPressed; // nhấn phải
     public boolean leftPressed; // nhấn trái
-
+    public boolean enterPressed; // nhấn tương tác
 	public KeyHandler(GamePanel gp) {
         this.gp = gp;
 	}
@@ -76,6 +76,9 @@ public class KeyHandler implements KeyListener {
             if(code == KeyEvent.VK_I) {
             	gp.gameState = gp.characterState;
             }
+            if(code == KeyEvent.VK_E) {
+                enterPressed=true;
+            }
         }
         
         // PAUSE STATE
@@ -90,26 +93,32 @@ public class KeyHandler implements KeyListener {
         	if(code == KeyEvent.VK_I) {
         		gp.gameState = gp.playState;
         	}
-        	if(code == KeyEvent.VK_UP) {
+        	if(code == KeyEvent.VK_W) {
         		if(gp.ui.slotRow != 0) {
         			gp.ui.slotRow --;
         		}
         	}
-        	if(code == KeyEvent.VK_DOWN) {
+        	if(code == KeyEvent.VK_S) {
         		if(gp.ui.slotRow != 2) {
         			gp.ui.slotRow ++;
         		}
         	}
-        	if(code == KeyEvent.VK_RIGHT) {
+        	if(code == KeyEvent.VK_D) {
         		if(gp.ui.slotCol != 4) {
         			gp.ui.slotCol ++;
         		}
         	}
-        	if(code == KeyEvent.VK_LEFT) {
+        	if(code == KeyEvent.VK_A) {
         		if(gp.ui.slotCol != 0) {
         			gp.ui.slotCol --;
         		}
         	}
+        }
+        // DIALOGUE STATE
+        else if (gp.gameState == gp.dialogueState) {
+            if( code == KeyEvent.VK_E ) {
+                gp.gameState = gp.playState;
+            }
         }
     }
 
