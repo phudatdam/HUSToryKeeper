@@ -35,23 +35,25 @@ public class NPC_AnDuongVuong extends Entity {
     }
 	public void setDialogue()
 	{
-		dialogues[0] = "Nvc :\n đây là đâu vậy ?";
-		dialogues[1] = "An Duong Vuong :\n Chào chàng trai trẻ mặc long bào, ";
-		dialogues[2] = "Adv :\n ta là Thục Phán aka An Dương Vương. ";
-		dialogues[3] = "Adv :\n Cậu là người được ma thuật thần bí lựa chọn để\n bảo vệ lịch sử.";
-		dialogues[4] = "Nvc :\n Có hơi kì lạ không khi mà ngài biết chữ quốc ngữ\n ở thời này ?";
-		dialogues[5] = "Adv :\n Cậu vừa được xuyên không về lịch sử nên điều này\n cũng bình thường thôi.";
-		dialogues[6] = "Nvc :\n Hợp lý. ";
-		dialogues[7] = "Adv :\n Dù sao, quân địch bằng một cách thần kì đã biết\n được về sức mạnh của nỏ thần và phá hủy nó.";
-		dialogues[8] = "Adv :\n Cậu hay nhận lấy thanh kiếm này, Nhấn J để\n tấn công. Quân địch ở ngoài đó nên hãy cẩn thận.";
-		dialogues[9] = "Nvc :\n Kiếm thần ư ?";
-		dialogues[10] = "Adv :\n Không phải, nếu là kiếm thần thì ta đã dùng rồi.\n Cậu hãy tiến lên tìm đủ gỗ và sắt, giao nó cho\n người thợ rèn để sửa lại nỏ thần.";
-		dialogues[11] = "Nvc :\n dùng tay không phá đá chặt cây ạ ? đây có phải\n Minecraft đâu.";
-		dialogues[12] = "Adv :\n ta quên mất. khi phá đá hãy dùng cây cuốc này này.\n Chặt cây hãy dung chiếc rìu này.";
-		dialogues[13] = "Adv :\n hãy kiếm đủ X gỗ và Y sắt. Chúc may mắn";
+		dialogues[0][0] = "Nvc :\n đây là đâu vậy ?";
+		dialogues[0][1] = "An Duong Vuong :\n Chào chàng trai trẻ mặc long bào, ";
+		dialogues[0][2] = "Adv :\n ta là Thục Phán aka An Dương Vương. ";
+		dialogues[0][3] = "Adv :\n Cậu là người được ma thuật thần bí lựa chọn để\n bảo vệ lịch sử.";
+		dialogues[0][4] = "Nvc :\n Có hơi kì lạ không khi mà ngài biết chữ quốc ngữ\n ở thời này ?";
+		dialogues[0][5] = "Adv :\n Cậu vừa được xuyên không về lịch sử nên điều này\n cũng bình thường thôi.";
+		dialogues[0][6] = "Nvc :\n Hợp lý. ";
+		dialogues[0][7] = "Adv :\n Dù sao, quân địch bằng một cách thần kì đã biết\n được về sức mạnh của nỏ thần và phá hủy nó.";
+		dialogues[0][8] = "Adv :\n Cậu hay nhận lấy thanh kiếm này, Nhấn J để\n tấn công. Quân địch ở ngoài đó nên hãy cẩn thận.";
+		dialogues[0][9] = "Nvc :\n Kiếm thần ư ?";
+		dialogues[0][10] = "Adv :\n Không phải, nếu là kiếm thần thì ta đã dùng rồi.\n Cậu hãy tiến lên tìm đủ gỗ và sắt, giao nó cho\n người thợ rèn để sửa lại nỏ thần.";
+		dialogues[0][11] = "Nvc :\n dùng tay không phá đá chặt cây ạ ? đây có phải\n Minecraft đâu.";
+		dialogues[0][12] = "Adv :\n ta quên mất. khi phá đá hãy dùng cây cuốc này này.\n Chặt cây hãy dung chiếc rìu này.";
+		dialogues[0][13] = "Adv :\n hãy kiếm đủ X gỗ và Y sắt. Chúc may mắn";
 	}
 
 	public void speak() {
-		super.speak();
+		//super.speak();
+		facePlayer();
+		startDialogue(this, dialogueSet);
 	}
 }

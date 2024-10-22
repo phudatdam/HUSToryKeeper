@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 
+import entity.Entity;
+
 public class UI {
     GamePanel gp;
     Graphics2D g2;
@@ -22,6 +24,7 @@ public class UI {
     public int commandNum = 0;
     public int slotCol = 0;
     public int slotRow = 0;
+    public Entity npc;
 
     public UI(GamePanel gp){
         this.gp = gp;
@@ -221,10 +224,25 @@ public class UI {
     g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
     x += gp.tileSize;
     y += gp.tileSize;
+    if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null){
+        currentDialogue=npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
+        if(gp.keyH.enterPressed==true)
+        {
+            if(gp.gameState==gp.dialogueState){
+                npc.dialogueIndex++;
+                gp.keyH.enterPressed=false;
+            }
+        }
+    }
+    else{
+        npc.dialogueIndex--;
+        if(gp.gameState==gp.dialogueState)gp.gameState=gp.playState;
+    }
     for ( String line : currentDialogue.split("\n")) {
     g2.drawString(line, x, y);
     y += 40;
     };
+    
     }
 
     public void drawCharacterScreen() {

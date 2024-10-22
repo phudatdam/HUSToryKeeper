@@ -29,8 +29,9 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
     // dialogue
-    public String dialogues[] = new String[50];
+    public String dialogues[][] = new String[50][50];
     public int dialogueIndex = 0;
+    public int dialogueSet = 0;
 
     // OBJ ATTRIBUTES
     public String name;
@@ -66,13 +67,17 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     	}
 	}
 	public void speak() {
-        if (dialogues[dialogueIndex] == null) {
-			dialogueIndex --;
-		}
-		gp.ui.currentDialogue = dialogues [dialogueIndex];
-		dialogueIndex++;
-		// quay mặt npc ra chỗ mình
-		switch( gp.player.direction) {
+        
+		
+    }
+    public void startDialogue(Entity entity, int setNum){
+        gp.gameState = gp.dialogueState;
+        gp.ui.npc = entity;
+        dialogueSet = setNum;
+    }
+    // quay mặt npc ra chỗ mình	
+    public void facePlayer(){
+        switch( gp.player.direction) {
 			case "up":
 			direction = "down";
 			break;
