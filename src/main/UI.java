@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 
+import entity.Entity;
+
 public class UI {
     GamePanel gp;
     Graphics2D g2;
@@ -16,11 +18,13 @@ public class UI {
     BufferedImage heartImage;
     public boolean messageOn = false;
     public String message = "";
-   // int messageCounter = 0;
-   // public boolean gameFinished = false;
+    // int messageCounter = 0;
+    // public boolean gameFinished = false;
+    public String currentDialogue = "";
     public int commandNum = 0;
     public int slotCol = 0;
     public int slotRow = 0;
+    public Entity npc;
 
     public UI(GamePanel gp){
         this.gp = gp;
@@ -173,25 +177,74 @@ public class UI {
     }
 
     public void drawPauseScreen(){
-
+        
+        int x = gp.tileSize * 2;
+        int y = gp.tileSize / 2;
+        int width = gp.screenWidth - (gp.tileSize * 4);
+        int height = gp.tileSize * 8;
+        drawSubWindow(x, y, width, height);
+        // Paused
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
-        g2.setColor(Color.RED);
+        g2.setColor(Color.WHITE);
         String text = "PAUSED";
-        int x = getXforCenteredText(text);
-        int y = gp.screenHeight / 2;
+        x = getXforCenteredText(text);
+        y = gp.screenHeight / 2 - 192;
 
         g2.drawString(text, x, y); // set chữ ở giữa màn hình
+        // tutorial
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,28F));
+        text = " W A S D để di chuyển";
+        x = getXforCenteredText(text);
+        y = gp.screenHeight / 2 -128;
+        g2.drawString(text, x, y);
+        text = " E để tương tác";
+        x = getXforCenteredText(text);
+        y = gp.screenHeight / 2 -96;
+        g2.drawString(text, x, y);
+        text = " P để tiếp tục/dừng";
+        x = getXforCenteredText(text);
+        y = gp.screenHeight / 2 -64;
+        g2.drawString(text, x, y);
+        text = " I để mở túi đồ";
+        x = getXforCenteredText(text);
+        y = gp.screenHeight / 2 -32;
+        g2.drawString(text, x, y);
+        // Bổ sung thêm tutorial nữa sau
 
     }
 
     public void drawDialogueState(){
-        // WINDOW
-        int x = gp.tileSize * 2;
-        int y;
-        int width;
-        int height;
+    // WINDOW
+    int x = gp.tileSize * 2;
+    int y = gp.tileSize / 2;
+    int width = gp.screenWidth - (gp.tileSize * 4);
+    int height = gp.tileSize * 4;
+    drawSubWindow(x, y, width, height);
+    // dialogue
+    g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
+    x += gp.tileSize;
+    y += gp.tileSize;
+    if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null){
+        currentDialogue=npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
+        if(gp.keyH.enterPressed==true)
+        {
+            if(gp.gameState==gp.dialogueState){
+                npc.dialogueIndex++;
+                gp.keyH.enterPressed=false;
+            }
+        }
     }
+    else{
+        npc.dialogueIndex--;
+        if(gp.gameState==gp.dialogueState)gp.gameState=gp.playState;
+    }
+    for ( String line : currentDialogue.split("\n")) {
+    g2.drawString(line, x, y);
+    y += 40;
+    };
     
+    }
+
     public void drawCharacterScreen() {
     	// FRAME
     	int frameX = gp.tileSize*1;
@@ -334,4 +387,3 @@ public class UI {
 
     
 }
-
