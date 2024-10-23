@@ -45,6 +45,9 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
  
     // ENTITY ATTRIBUTES
     public int type; // 0=player, 1=npc, 2=monsters
+    public final int TYPE_PLAYER = 0;
+    public final int TYPE_NPC = 1;
+    public final int TYPE_MONSTER = 2; 
     public String name;
     public String description;
     public boolean invincible = false;
@@ -113,7 +116,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		gp.cChecker.checkEntity(this, gp.monster);		
 		boolean contactPlayer = gp.cChecker.checkPlayer(this);
 		
-		if((this.type == 2)&&(contactPlayer == true)) {
+		if((this.type == TYPE_MONSTER)&&(contactPlayer == true)) {
 			if (gp.player.invincible == false) {
 				// quái tấn công => gây sát thương lên player
 				gp.player.life -= 1;
@@ -147,6 +150,14 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
             }
             spriteCounter = 0;
         }
+        
+        if (invincible == true) {
+        	invincibleCounter++;
+        	if (invincibleCounter > 40) {
+        		invincible = false;
+        		invincibleCounter = 0;
+        	}
+        }
 	}
 
 	// Công cụ tạo ảnh entity
@@ -178,43 +189,33 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
                 worldY + gp.tileSize > gp.player.worldY - gp.player.screenY - gp.tileSize &&
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY + gp.tileSize) {
         	
-        	switch (direction){
-            case "up":
-                if(spriteNum == 1){
-                    image = up2;
-                }
-                if(spriteNum == 2){
-                    image = up1;
-                }
-                break;
-            case "down":
-                if(spriteNum == 1){
-                    image = down2;
-                }
-                if(spriteNum == 2){
-                    image = down1;
-                }
-                break;
-            case "right":
-                if(spriteNum == 1){
-                    image = right2;
-                }
-                if(spriteNum == 2){
-                    image = right1;
-                }
-                break;
-            default:
-                if(spriteNum == 1){
-                    image = left2;
-                }
-                if(spriteNum == 2){
-                    image = left1;
-                }
-                break;
-        }
-
+	        switch (direction){
+	            case "up":
+	                if(spriteNum == 1) image = up2;
+	                if(spriteNum == 2) image = up1;
+	                break;
+	            case "down":
+	                if(spriteNum == 1) image = down2;
+	                if(spriteNum == 2) image = down1;
+	                break;
+	            case "right":
+	                if(spriteNum == 1) image = right2;
+	                if(spriteNum == 2) image = right1;
+	                break;
+	            default:
+	                if(spriteNum == 1)image = left2;
+	                if(spriteNum == 2) image = left1;
+	                break;
+	        }
+	        
+	        if (invincible == true) {
+	        	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+	        }
+	        
             // Vẽ tile nếu nằm trong màn hình hoặc nằm trong lề được mở rộng
             g2.drawImage(image, screenX, screenY, null);
+            
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
         }
 	}
 }

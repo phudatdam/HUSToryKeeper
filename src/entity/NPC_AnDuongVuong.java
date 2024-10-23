@@ -8,6 +8,7 @@ public class NPC_AnDuongVuong extends Entity {
 	public NPC_AnDuongVuong(GamePanel gp) {
 		super(gp);
 		
+		type = TYPE_NPC;
 		direction = "down";
 		speed = 1;
 		

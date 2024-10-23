@@ -183,5 +183,8 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_D){ // phải
             rightPressed = false;
         }
+        if(code == KeyEvent.VK_E){
+        	enterPressed = false;
+        }
     }
 }

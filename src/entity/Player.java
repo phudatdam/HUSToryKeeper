@@ -78,14 +78,14 @@ public class Player extends Entity {
     }
     
     public void getPlayerAttackImage(){
-        attackUp1 = setup("/player/player_up_1", gp.tileSize, gp.tileSize);
-        attackUp2 = setup("/player/player_up_2", gp.tileSize, gp.tileSize);
-		attackDown1 = setup("/player/player_down_1", gp.tileSize, gp.tileSize);
-		attackDown2 = setup("/player/player_down_2", gp.tileSize, gp.tileSize);
-		attackLeft1 = setup("/player/player_left_1", gp.tileSize, gp.tileSize);
-		attackLeft2 = setup("/player/player_left_2", gp.tileSize, gp.tileSize);
-		attackRight1 = setup("/player/player_right_1", gp.tileSize, gp.tileSize);
-		attackRight2 = setup("/player/player_right_2", gp.tileSize, gp.tileSize);
+        attackUp1 = setup("/player/player_attack_up_1", gp.tileSize, gp.tileSize * 2);
+        attackUp2 = setup("/player/player_attack_up_2", gp.tileSize, gp.tileSize * 2);
+		attackDown1 = setup("/player/player_attack_down_1", gp.tileSize, gp.tileSize * 2);
+		attackDown2 = setup("/player/player_attack_down_2", gp.tileSize, gp.tileSize * 2);
+		attackLeft1 = setup("/player/player_attack_left_1", gp.tileSize * 2, gp.tileSize);
+		attackLeft2 = setup("/player/player_attack_left_2", gp.tileSize * 2, gp.tileSize);
+		attackRight1 = setup("/player/player_attack_right_1", gp.tileSize * 2, gp.tileSize);
+		attackRight2 = setup("/player/player_attack_right_2", gp.tileSize * 2, gp.tileSize);
     }
 
     public void update(){ // được gọi 60 lần trong 1s
@@ -215,7 +215,7 @@ public class Player extends Entity {
             String objectName = gp.obj[i].name;
             switch (objectName){
                 case "Heart":
-                    life += 2;
+            		life += 2;
                     gp.obj[i] = null;
                     break;
             }
@@ -236,7 +236,7 @@ public class Player extends Entity {
     // Player tiếp xúc với quái => nhận sát thương
     public void contactMonster(int i) {
     	if(i != 999){
-    		if (invincible == false) {
+    		if (invincible == false && life > 0) {
         		life -= 1;
         		invincible = true;
     		}
@@ -245,9 +245,16 @@ public class Player extends Entity {
     
     public void damageMonster(int i) {
     	if(i != 999){
-    		System.out.println("Hit");
+    		if (gp.monster[i].invincible == false) {
+    			gp.monster[i].life -= 1;
+    			gp.monster[i].invincible = true;
+    			
+    			if (gp.monster[i].life <= 0) {
+    				gp.monster[i] = null;
+    			}
+    		}
     	} else {
-    		System.out.println("Miss");
+    		
     	}
     }
     
@@ -307,7 +314,7 @@ public class Player extends Entity {
         
         // Hiệu ứng chịu sát thương từ quái
         if (invincible == true) {
-        	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
         }
         
         g2.drawImage(image, tempScreenX, tempScreenY, null);
