@@ -43,10 +43,10 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = gp.tileSize * 24;
-        worldY = gp.tileSize * 48;
-        speed = 4;
-        direction = "up";
+        worldX = gp.tileSize * 35;
+        worldY = gp.tileSize * 13;
+        speed = 5;
+        direction = "down";
         
         maxLife = 6;
         life = maxLife;
@@ -76,7 +76,7 @@ public class Player extends Entity {
     }
 
     public void update(){ // được gọi 60 lần trong 1s
-        if(keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed){
+        if(keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed || keyH.enterPressed){
             if(keyH.upPressed){
                 direction = "up";
             }
@@ -152,8 +152,10 @@ public class Player extends Entity {
     
     public void interactNPC(int i) {
     	if(i != 999){
-    		
+    		    gp.gameState = gp.dialogueState;
+                gp.npc[i].speak();
     	}
+        gp.keyH.enterPressed = false;
     }
     
     public void draw(Graphics2D g2){

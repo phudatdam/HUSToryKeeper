@@ -7,6 +7,7 @@ import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements Runnable{
     // Cài đặt màn hình
@@ -31,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable{
     // SYSTEM
     TileManager tileM = new TileManager(this);
     Sound sound = new Sound();
-    KeyHandler keyH = new KeyHandler(this);
+    public KeyHandler keyH = new KeyHandler(this);
     public AssetSetter aSetter  = new AssetSetter(this);
     public UI ui = new UI(this);
     Thread gameThread;
