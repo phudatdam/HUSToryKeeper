@@ -13,7 +13,7 @@ import entity.Entity;
 public class UI {
     GamePanel gp;
     Graphics2D g2;
-    Font determinationSans;
+    Font determinationSans, retron2000;
     BufferedImage heart_full, heart_half, heart_blank;
     BufferedImage heartImage;
     public boolean messageOn = false;
@@ -32,6 +32,8 @@ public class UI {
         try {
             InputStream is = getClass().getResourceAsStream("/font/SVN-Determination Sans.otf");
             determinationSans = Font.createFont(Font.TRUETYPE_FONT, is);
+            InputStream is1 = getClass().getResourceAsStream("/font/SVN-Retron 2000.otf");
+            retron2000 = Font.createFont(Font.TRUETYPE_FONT, is1);
         } catch (FontFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -192,7 +194,9 @@ public class UI {
 
         g2.drawString(text, x, y); // set chữ ở giữa màn hình
         // tutorial
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,28F));
+        g2.setFont(retron2000);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,23F));
+        g2.setColor(Color.white);
         text = " W A S D để di chuyển";
         x = getXforCenteredText(text);
         y = gp.screenHeight / 2 -128;
@@ -221,7 +225,9 @@ public class UI {
     int height = gp.tileSize * 4;
     drawSubWindow(x, y, width, height);
     // dialogue
-    g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
+    g2.setFont(retron2000);
+    g2.setFont(g2.getFont().deriveFont(Font.BOLD,23F));
+    g2.setColor(Color.WHITE);
     x += gp.tileSize;
     y += gp.tileSize;
     if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null){
