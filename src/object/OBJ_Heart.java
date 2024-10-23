@@ -1,5 +1,7 @@
 package object;
 
+import java.awt.*;
+
 import entity.Entity;
 import main.GamePanel;
 
@@ -13,8 +15,9 @@ public class OBJ_Heart extends Entity {
     	this.gp = gp;
     	
         name = "Heart";
-        down1 = setup("/objects/heart_full", gp.tileSize, gp.tileSize);
-        down2 = setup("/objects/heart_full", gp.tileSize, gp.tileSize);
+        solidArea = new Rectangle (16, 16, 32, 32);
+        down1 = setup("/objects/heart_full", 40, 40);
+        down2 = setup("/objects/heart_full", 40, 40);
         
         image1 = setup("/objects/heart_full", gp.tileSize, gp.tileSize);
         image2 = setup("/objects/heart_half", gp.tileSize, gp.tileSize);

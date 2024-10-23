@@ -22,6 +22,7 @@ public class MON_BronzeSword extends Entity {
         solidAreaDefaultY = solidArea.y;
         
         getImage();
+        getAttackImage();
 	}
 	
 	public void getImage() {
@@ -33,6 +34,17 @@ public class MON_BronzeSword extends Entity {
 		left2 = setup("/monsters/bronze_sword_left_2", gp.tileSize, gp.tileSize);
 		right1 = setup("/monsters/bronze_sword_right_1", gp.tileSize, gp.tileSize);
 		right2 = setup("/monsters/bronze_sword_right_2", gp.tileSize, gp.tileSize);
+	}
+	
+	public void getAttackImage() {
+		attackUp1 = setup("/monsters/bronze_sword_attack_up_1", gp.tileSize, gp.tileSize * 2);
+		attackUp2 = setup("/monsters/bronze_sword_attack_up_2", gp.tileSize, gp.tileSize * 2);
+		attackDown1 = setup("/monsters/bronze_sword_attack_down_1", gp.tileSize, gp.tileSize * 2);
+		attackDown2 = setup("/monsters/bronze_sword_attack_down_2", gp.tileSize, gp.tileSize * 2);
+		attackLeft1 = setup("/monsters/bronze_sword_attack_left_1", gp.tileSize * 2, gp.tileSize);
+		attackLeft2 = setup("/monsters/bronze_sword_attack_left_2", gp.tileSize * 2, gp.tileSize);
+		attackRight1 = setup("/monsters/bronze_sword_attack_right_1", gp.tileSize * 2, gp.tileSize);
+		attackRight2 = setup("/monsters/bronze_sword_attack_right_2", gp.tileSize * 2, gp.tileSize);		
 	}
 	
 	public void setAction() {

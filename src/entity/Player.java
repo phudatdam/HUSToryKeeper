@@ -259,12 +259,12 @@ public class Player extends Entity {
         }
         
         // Hiệu ứng chịu sát thương từ quái
-//        if (invincible == true) {
-//        	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
-//        }
-//        
+        if (invincible == true) {
+        	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
+        
         g2.drawImage(image, screenX, screenY, null);
         
-//        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
     }
 }

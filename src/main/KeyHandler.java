@@ -124,12 +124,12 @@ public class KeyHandler implements KeyListener {
                 rightPressed = true;
             }
             if(code == KeyEvent.VK_P){
-//                if(gp.gameState == gp.playState){
+                if(gp.gameState == gp.playState){
                     gp.gameState = gp.pauseState;
-//                }
-//                else if(gp.gameState == gp.pauseState){
-//                    gp.gameState = gp.playState;
-//                }
+                }
+                else if(gp.gameState == gp.pauseState){
+                    gp.gameState = gp.playState;
+                }
             }
             if(code == KeyEvent.VK_I) {
             	gp.gameState = gp.characterState;

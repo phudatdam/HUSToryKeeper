@@ -16,7 +16,7 @@ public class NPC_AnDuongVuong extends Entity {
 	}
 	
 	public void getImage() {
-        up1 = setup("/npc/an_duong_vuong_up_1", gp.tileSize, gp.tileSize); //
+        up1 = setup("/npc/an_duong_vuong_up_1", gp.tileSize, gp.tileSize); 
 		up2 = setup("/npc/an_duong_vuong_up_2", gp.tileSize, gp.tileSize);
 		up3 = setup("/npc/an_duong_vuong_up_2", gp.tileSize, gp.tileSize);
 		down1 = setup("/npc/an_duong_vuong_down_1", gp.tileSize, gp.tileSize);
