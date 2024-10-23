@@ -58,7 +58,6 @@ public class KeyHandler implements KeyListener {
             }
             if(code == KeyEvent.VK_S){ // xuống
                 downPressed = true;
-<<<<<<< Upstream, based on master
             }
             if(code == KeyEvent.VK_A){ // trái
                 leftPressed = true;
@@ -114,8 +113,6 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.dialogueState) {
             if( code == KeyEvent.VK_E ) {
                 enterPressed=true;
-=======
->>>>>>> f106bae Merge branch feat/add-status-screen by nvhuyy
             }
             if(code == KeyEvent.VK_A){ // trái
                 leftPressed = true;

@@ -15,99 +15,44 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	
     // ENTITY IMAGE
     public BufferedImage up1, up2, up3, down1, down2, down3, left1,
-<<<<<<< Upstream, based on master
-<<<<<<< Upstream, based on master
                         	left2, left3, right1, right2, right3;
-=======
-<<<<<<< Upstream, based on feat/monsters-and-attack
-=======
->>>>>>> d3fd4bd fix: Rendering image of entities
-                        left2, left3, right1, right2, right3;
-<<<<<<< Upstream, based on master
-<<<<<<< Upstream, based on master
->>>>>>> f106bae Merge branch feat/add-status-screen by nvhuyy
-
-    public String direction = "down";
-
-=======
-                        	left2, left3, right1, right2, right3;
->>>>>>> 48684f3 Merge branch feat/add-status-screen by nvhuyy
-=======
->>>>>>> d3fd4bd fix: Rendering image of entities
-    public int spriteCounter = 0;
-    public int spriteNum = 1;
-
     public String direction = "down"; //
-=======
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, 
     					attackLeft1, attackLeft2, attackRight1, attackRight2;
     public BufferedImage image1, image2, image3;
->>>>>>> 9eb5f54 feat: Add new type of monster
     public Rectangle solidArea = new Rectangle(0, 0, 64, 64);
+    public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX = solidArea.x;
     public int solidAreaDefaultY = solidArea.y;
-    public boolean collision = false;
-//    String dialogue[] = new String[20];
     
     // ENTITY STATUS
 	public int worldX, worldY;
-    public String direction = "down";
-//    int dialogueIndex = 0;
     public int spriteNum = 1;
     public boolean collisionOn = false;
-<<<<<<< Upstream, based on master
-    public int actionLockCounter = 0;
-<<<<<<< Upstream, based on master
-    // dialogue
+    public int speed;
+    public int maxLife;
+    public int life;
+    
+    // DIALOGUES
     public String dialogues[][] = new String[50][50];
     public int dialogueIndex = 0;
     public int dialogueSet = 0;
 
-    // OBJ ATTRIBUTES
-    public String name;
-<<<<<<< Upstream, based on master
-=======
-=======
-=======
->>>>>>> 9eb5f54 feat: Add new type of monster
-    public boolean invincible = false;
-    boolean attacking = false;
-    
     // ENTITY COUNTERS
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
-    public int invincibleCounter = 0;
-    
-<<<<<<< Upstream, based on master
-    public BufferedImage image1, image2, image3;
->>>>>>> d3fd4bd fix: Rendering image of entities
-    public boolean collision = false;
-=======
+    public int invincibleCounter = 0;   
+ 
     // ENTITY ATTRIBUTES
->>>>>>> 9eb5f54 feat: Add new type of monster
     public int type; // 0=player, 1=npc, 2=monsters
     public String name;
-<<<<<<< Upstream, based on master
->>>>>>> f106bae Merge branch feat/add-status-screen by nvhuyy
     public String description;
-  
-    // Character status
-=======
-    public int speed;
->>>>>>> 9eb5f54 feat: Add new type of monster
-    public int maxLife;
-    public int life;
-    public String description;
+    public boolean invincible = false;
+    public boolean collision = false;
+    boolean attacking = false;
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
-<<<<<<< Upstream, based on master
-=======
-	}
-	
-	public void setAction() {
-		
->>>>>>> f106bae Merge branch feat/add-status-screen by nvhuyy
 	}
 	
 	public void setAction() {
@@ -140,6 +85,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
         gp.ui.npc = entity;
         dialogueSet = setNum;
     }
+    
     // quay mặt npc ra chỗ mình	
     public void facePlayer(){
         switch( gp.player.direction) {

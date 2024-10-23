@@ -6,11 +6,7 @@ import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
-<<<<<<< Upstream, based on master
-import java.util.ArrayList;
-=======
 import java.util.*;
->>>>>>> af52f77 feat: Add new type of monsters (bronze swords)
 
 public class GamePanel extends JPanel implements Runnable{
     // Cài đặt màn hình
@@ -187,9 +183,7 @@ public class GamePanel extends JPanel implements Runnable{
             }
             
             // EMPTY ENTITY LIST
-            for (int i = 0; i < entityList.size(); i++) {
-            	entityList.remove(i);
-            }
+            entityList.clear();
 
             // UI
             ui.draw(g2);
