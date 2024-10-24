@@ -234,10 +234,10 @@ public class UI {
         }
     }
     else{
-        npc.dialogueIndex--;
-        if(gp.gameState==gp.dialogueState) {
-        	gp.gameState=gp.playState;    	
-        }
+        npc.dialogueIndex = 0;
+    	if(gp.gameState==gp.dialogueState) {
+        	gp.gameState=gp.playState; 
+    	} 	
     }
     for ( String line : currentDialogue.split("\n")) {
     g2.drawString(line, x, y);
