@@ -223,7 +223,7 @@ public class UI {
     drawSubWindow(x, y, width, height);
     // dialogue
     g2.setFont(retron2000);
-    g2.setFont(g2.getFont().deriveFont(Font.PLAIN,13F));
+    g2.setFont(g2.getFont().deriveFont(Font.PLAIN,24F));
     x += gp.tileSize;
     y += gp.tileSize;
     if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null){
@@ -237,7 +237,7 @@ public class UI {
         }
     }
     else{
-        npc.dialogueIndex = 0;
+        npc.dialogueIndex --;
     	if(gp.gameState==gp.dialogueState) {
         	gp.gameState=gp.playState; 
     	} 	

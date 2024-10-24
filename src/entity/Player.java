@@ -227,12 +227,11 @@ public class Player extends Entity {
     }
     
     public void interactNPC(int i) {
-    	if (gp.keyH.enterPressed == true){
-    		if(i != 999) {
+    	if(i != 999) {
     		    gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
-    		}
-    	}
+        }
+        gp.keyH.enterPressed=false;
     }
     
     // Player tiếp xúc với quái => nhận sát thương
