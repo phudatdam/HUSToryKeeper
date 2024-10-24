@@ -11,6 +11,8 @@ public class KeyHandler implements KeyListener {
     public boolean rightPressed; // nhấn phải
     public boolean leftPressed; // nhấn trái
     public boolean enterPressed; // nhấn tương tác
+	public boolean attackPressed; // đánh thường
+	
 	public KeyHandler(GamePanel gp) {
         this.gp = gp;
 	}
@@ -72,7 +74,10 @@ public class KeyHandler implements KeyListener {
             	gp.gameState = gp.characterState;
             }
             if(code == KeyEvent.VK_E) {
-                enterPressed=true;
+                enterPressed = true;
+            }
+            if(code == KeyEvent.VK_J) {
+                attackPressed = true;
             }
         }
         
@@ -112,7 +117,7 @@ public class KeyHandler implements KeyListener {
         // DIALOGUE STATE
         else if (gp.gameState == gp.dialogueState) {
             if( code == KeyEvent.VK_E ) {
-                enterPressed=true;
+                enterPressed = true;
             }
             if(code == KeyEvent.VK_A){ // trái
                 leftPressed = true;
@@ -185,6 +190,9 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_E){
         	enterPressed = false;
+        }
+        if(code == KeyEvent.VK_J){
+        	attackPressed = false;
         }
     }
 }

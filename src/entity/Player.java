@@ -26,7 +26,7 @@ public class Player extends Entity {
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
         
-        this.gp = gp; // DEBUG
+        this.gp = gp;
         this.keyH = keyH;
 
         this.screenX = gp.screenWidth / 2 - gp.tileSize / 2;
@@ -36,8 +36,8 @@ public class Player extends Entity {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         
-        attackArea.width = 36;
-        attackArea.height = 36;
+        attackArea.width = 48;
+        attackArea.height = 48;
 
         setDefaultValues();
         getPlayerImage();
@@ -89,6 +89,10 @@ public class Player extends Entity {
     }
 
     public void update(){ // được gọi 60 lần trong 1s
+    	if (keyH.attackPressed) {
+    		attacking = true;
+    	}
+    		
     	if (attacking == true) {
     		attacking();
     	} else if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed || keyH.enterPressed) {
@@ -227,8 +231,6 @@ public class Player extends Entity {
     		if(i != 999) {
     		    gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
-    		} else {
-    			attacking = true;
     		}
     	}
     }
@@ -243,7 +245,8 @@ public class Player extends Entity {
     	}	
 	}
     
-    public void damageMonster(int i) {
+    // Đánh thường => gây sát thương
+    public void damageMonster(int i) {  
     	if(i != 999){
     		if (gp.monster[i].invincible == false) {
     			gp.monster[i].life -= 1;
@@ -253,8 +256,6 @@ public class Player extends Entity {
     				gp.monster[i] = null;
     			}
     		}
-    	} else {
-    		
     	}
     }
     

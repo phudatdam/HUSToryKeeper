@@ -225,9 +225,9 @@ public class UI {
     y += gp.tileSize;
     if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null){
         currentDialogue=npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
-        if(gp.keyH.enterPressed==true)
+        if(gp.keyH.enterPressed == true)
         {
-            if(gp.gameState==gp.dialogueState){
+            if(gp.gameState == gp.dialogueState){
                 npc.dialogueIndex++;
                 gp.keyH.enterPressed=false;
             }
@@ -235,7 +235,9 @@ public class UI {
     }
     else{
         npc.dialogueIndex--;
-        if(gp.gameState==gp.dialogueState)gp.gameState=gp.playState;
+        if(gp.gameState==gp.dialogueState) {
+        	gp.gameState=gp.playState;    	
+        }
     }
     for ( String line : currentDialogue.split("\n")) {
     g2.drawString(line, x, y);

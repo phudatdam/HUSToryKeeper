@@ -52,7 +52,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public String description;
     public boolean invincible = false;
     public boolean collision = false;
-    boolean attacking = false;
+    public boolean attacking = false;
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -203,7 +203,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	                if(spriteNum == 2) image = right1;
 	                break;
 	            default:
-	                if(spriteNum == 1)image = left2;
+	                if(spriteNum == 1) image = left2;
 	                if(spriteNum == 2) image = left1;
 	                break;
 	        }
