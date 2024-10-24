@@ -4,6 +4,9 @@ import main.GamePanel;
 import main.KeyHandler;
 import object.OBJ_Coin;
 import object.OBJ_Heart;
+import object.OBJ_Iron;
+import object.OBJ_Wood;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -19,6 +22,8 @@ public class Player extends Entity {
     public int hasHeart;
     public int strength;
     public int coin;
+    public int iron = 1;
+    public int wood = 1;
     
     public ArrayList<Entity> inventory = new ArrayList();
     public int maxInventorySize = 15;
@@ -60,6 +65,10 @@ public class Player extends Entity {
     
     public void setItems() {
     	inventory.add(new OBJ_Coin(gp));
+        iron++;
+        inventory.add(new OBJ_Iron(gp));
+        wood++;
+        inventory.add(new OBJ_Wood(gp));
     }
 
     public void getPlayerImage(){

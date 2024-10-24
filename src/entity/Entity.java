@@ -37,7 +37,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public String dialogues[][] = new String[50][50];
     public int dialogueIndex = 0;
     public int dialogueSet = 0;
-
+	public boolean diaEnd = false;
     // ENTITY COUNTERS
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
@@ -53,7 +53,6 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public boolean invincible = false;
     public boolean collision = false;
     public boolean attacking = false;
-
 	public Entity(GamePanel gp) {
 		this.gp = gp;
 	}

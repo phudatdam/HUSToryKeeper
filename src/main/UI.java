@@ -185,7 +185,7 @@ public class UI {
         int height = gp.tileSize * 8;
         drawSubWindow(x, y, width, height);
         // Paused
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,50F));
         g2.setColor(Color.WHITE);
         String text = "PAUSED";
         x = getXforCenteredText(text);
@@ -193,7 +193,7 @@ public class UI {
 
         g2.drawString(text, x, y); // set chữ ở giữa màn hình
         // tutorial
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,28F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
         text = " W A S D để di chuyển";
         x = getXforCenteredText(text);
         y = gp.screenHeight / 2 -128;
@@ -209,6 +209,10 @@ public class UI {
         text = " I để mở túi đồ";
         x = getXforCenteredText(text);
         y = gp.screenHeight / 2 -32;
+        g2.drawString(text, x, y);
+        text = " J để tấn công/chặt gỗ";
+        x = getXforCenteredText(text);
+        y = gp.screenHeight / 2 ;
         g2.drawString(text, x, y);
         // Bổ sung thêm tutorial nữa sau
 
@@ -240,7 +244,8 @@ public class UI {
         npc.dialogueIndex --;
     	if(gp.gameState==gp.dialogueState) {
         	gp.gameState=gp.playState; 
-    	} 	
+    	} 
+        npc.diaEnd=true;
     }
     for ( String line : currentDialogue.split("\n")) {
     g2.drawString(line, x, y);
@@ -266,9 +271,9 @@ public class UI {
     	// names
     	g2.drawString("Heart:", textX, textY);
     	textY += lineHeight;
-    	g2.drawString("Strength:", textX, textY);
+    	g2.drawString("iron:", textX, textY);
     	textY += lineHeight;
-    	g2.drawString("Coin:", textX, textY);
+    	g2.drawString("wood:", textX, textY);
     	textY += lineHeight;
     	g2.drawString("Life:", textX, textY);
     	textY += lineHeight;
@@ -283,12 +288,12 @@ public class UI {
     	g2.drawString(value, textX, textY);
     	textY += lineHeight;
     	
-    	value = String.valueOf(gp.player.strength);
+    	value = String.valueOf(gp.player.iron);
     	textX = getXforAlignRightText(value, tailX);
     	g2.drawString(value, textX, textY);
     	textY += lineHeight;
     	
-    	value = String.valueOf(gp.player.coin);
+    	value = String.valueOf(gp.player.wood);
     	textX = getXforAlignRightText(value, tailX);
     	g2.drawString(value, textX, textY);
     	textY += lineHeight;
@@ -305,7 +310,6 @@ public class UI {
     	g2.drawString("MISSIONS", textX, textY);
     	textY += lineHeight + 2;
     	g2.setFont(g2.getFont().deriveFont(16F)); // reset
-
     }
     
     public void drawInventory() {
