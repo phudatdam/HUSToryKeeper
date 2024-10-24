@@ -17,7 +17,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     int standCounter = 0;
-    
+
     public int hasHeart;
     public int strength;
     public int coin;
@@ -27,7 +27,6 @@ public class Player extends Entity {
 
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
-        
         this.gp = gp; // DEBUG
         this.keyH = keyH;
 
@@ -143,6 +142,7 @@ public class Player extends Entity {
             String objectName = gp.obj[i].name;
             switch (objectName){
                 case "Heart":
+                    //gp.playSE(1);
                     hasHeart += 2;
                     gp.obj[i] = null;
                     break;
