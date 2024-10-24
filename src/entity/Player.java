@@ -142,6 +142,7 @@ public class Player extends Entity {
             String objectName = gp.obj[i].name;
             switch (objectName){
                 case "Heart":
+                    //gp.playSE(1);
                     hasHeart += 2;
                     gp.obj[i] = null;
                     break;
