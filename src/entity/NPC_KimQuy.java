@@ -3,6 +3,7 @@ package entity;
 import java.util.Random;
 
 import main.GamePanel;
+import object.OBJ_Coin;
 import object.OBJ_Iron;
 public class NPC_KimQuy extends Entity{
     public NPC_KimQuy(GamePanel gp) {
@@ -53,21 +54,15 @@ public class NPC_KimQuy extends Entity{
             {
                 dialogueSet=1;
                 dialogueIndex=0;
-                //startDialogue(this, dialogueSet);
                 gp.player.iron-=1;
                 gp.player.wood-=1;
-                //gp.player.inventory.remove());
-
+                gp.player.inventory.add(new OBJ_Coin(gp));
+                gp.player.inventory.remove(new OBJ_Iron(gp));
             }
             else
             {
                 dialogueSet=2;
                 dialogueIndex=0;
-                //startDialogue(this, dialogueSet);
-                //gp.player.iron-=1;
-                //gp.player.wood-=1;
-                //gp.player.inventory.remove());
-
             }
         }
 	}
