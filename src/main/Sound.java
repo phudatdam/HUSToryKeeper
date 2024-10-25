@@ -11,6 +11,7 @@ public class Sound {
 
     public Sound(){
         soundURL[0] = getClass().getResource("/sound/game_hustory_keeper.wav");
+        soundURL[1] = getClass().getResource("/sound/woosh.wav");
     }
 
     public void setFile(int i){

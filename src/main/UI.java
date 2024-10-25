@@ -193,7 +193,9 @@ public class UI {
 
         g2.drawString(text, x, y); // set chữ ở giữa màn hình
         // tutorial
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,28F));
+        g2.setFont(retron2000);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,23F));
+        g2.setColor(Color.white);
         text = " W A S D để di chuyển";
         x = getXforCenteredText(text);
         y = gp.screenHeight / 2 -128;
@@ -223,7 +225,8 @@ public class UI {
     drawSubWindow(x, y, width, height);
     // dialogue
     g2.setFont(retron2000);
-    g2.setFont(g2.getFont().deriveFont(Font.PLAIN,13F));
+    g2.setFont(g2.getFont().deriveFont(Font.BOLD,23F));
+    g2.setColor(Color.WHITE);
     x += gp.tileSize;
     y += gp.tileSize;
     if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null){
