@@ -5,6 +5,9 @@ import entity.Player;
 import tile.TileManager;
 
 import javax.swing.*;
+
+import ai.PathFinder;
+
 import java.awt.*;
 import java.util.*;
 
@@ -29,11 +32,12 @@ public class GamePanel extends JPanel implements Runnable{
     int FPS = 60;
 
     // SYSTEM
-    TileManager tileM = new TileManager(this);
+    public TileManager tileM = new TileManager(this);
     Sound sound = new Sound();
     public KeyHandler keyH = new KeyHandler(this);
     public AssetSetter aSetter  = new AssetSetter(this);
     public UI ui = new UI(this);
+    public PathFinder pFinder = new PathFinder(this);
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
 

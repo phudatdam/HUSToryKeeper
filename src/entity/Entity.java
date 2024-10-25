@@ -32,12 +32,17 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public int speed;
     public int maxLife;
     public int life;
+    public boolean invincible = false;
+    public boolean collision = false;
+    public boolean attacking = false;
+    public boolean onPath = false;
     
     // DIALOGUES
     public String dialogues[][] = new String[50][50];
     public int dialogueIndex = 0;
     public int dialogueSet = 0;
-	  public boolean diaEnd = false;
+	public boolean diaEnd = false;
+	
     // ENTITY COUNTERS
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
@@ -50,39 +55,23 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public final int TYPE_MONSTER = 2; 
     public String name;
     public String description;
-    public boolean invincible = false;
-    public boolean collision = false;
-    public boolean attacking = false;
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
 	}
 	
 	public void setAction() {
-		actionLockCounter++;
-    	if (actionLockCounter == 120) {
-    		Random random = new Random();
-        	int i = random.nextInt(100) + 1;
-        	
-        	if (i <= 25) {
-        		direction = "up";  		
-        	}
-        	else if ((i > 25)&&(i <= 50)) {
-        		direction = "down";
-        	}
-        	else if ((i > 50)&&(i <= 75)) {
-        		direction = "left";
-        	}
-        	else if ((i > 75)&&(i <= 100)) {
-        		direction = "right";
-        	}
-        	actionLockCounter = 0;
-    	}
-	}
-	public void speak() {
-        
 		
+	}
+	
+	public void damageReaction() {
+		
+	}
+	
+	public void speak() {
+        		
     }
+	
     public void startDialogue(Entity entity, int setNum){
         gp.gameState = gp.dialogueState;
         gp.ui.npc = entity;
@@ -106,10 +95,9 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			break;
 		}
     }
-	public void update() {
-		setAction();
-		
-		collisionOn = false;
+    
+    public void checkCollision() {
+    	collisionOn = false;
 		gp.cChecker.checkTile(this);
 		gp.cChecker.checkObject(this, false);
 		gp.cChecker.checkEntity(this, gp.npc);
@@ -123,7 +111,12 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 				gp.player.invincible = true;
 			}
 		}
-		
+    }
+    
+	public void update() {
+		setAction();
+		checkCollision();
+
 		if(collisionOn == false){
             switch (direction) {
                 case "up":
@@ -217,5 +210,73 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
             
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
         }
+	}
+	
+	public void searchPath(int goalCol, int goalRow) {
+		int startCol = (worldX + solidArea.x) / gp.tileSize;
+		int startRow = (worldY + solidArea.y) / gp.tileSize;
+		
+		gp.pFinder.setNodes(startCol, startRow, goalCol, goalRow);
+		
+		if (gp.pFinder.search() == true) {
+			// Next worldX and worldY
+			int nextX = gp.pFinder.pathList.get(0).col * gp.tileSize;
+			int nextY = gp.pFinder.pathList.get(0).row * gp.tileSize;
+			
+			// Entity solidArea's position
+			int enLeftX = worldX + solidArea.x;
+			int enRightX = worldX + solidArea.x + solidArea.width;
+			int enTopY = worldY + solidArea.y;
+			int enBottomY = worldY + solidArea.y + solidArea.height;
+			
+			if (enTopY > nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
+				direction = "up";
+			} else if (enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
+				direction = "down";
+			} else if (enTopY >= nextY && enBottomY < nextY + gp.tileSize) {
+				// left or right
+				if (enLeftX > nextX) {
+					direction = "left";
+				}
+				if (enLeftX < nextX) {
+					direction = "right";
+				}
+			} else if (enTopY > nextY && enLeftX > nextX) {
+				// up or left
+				direction = "up";
+				checkCollision();
+				if (collisionOn == true) {
+					direction = "left";
+				}
+			} else if (enTopY > nextY && enLeftX < nextX) {
+				// up or right
+				direction = "up";
+				checkCollision();
+				if (collisionOn == true) {
+					direction = "right";
+				}
+			} else if (enTopY < nextY && enLeftX > nextX) {
+				// down or left
+				direction = "down";
+				checkCollision();
+				if (collisionOn == true) {
+					direction = "left";
+				}
+			} else if (enTopY < nextY && enLeftX < nextX) {
+				// down or right
+				direction = "down";
+				checkCollision();
+				if (collisionOn == true) {
+					direction = "right";
+				}
+			}
+			
+			// If reached the goal, stop the search
+//			int nextCol = gp.pFinder.pathList.get(0).col;
+//			int nextRow = gp.pFinder.pathList.get(0).row;
+//			if (nextCol == goalCol && nextRow == goalRow) {
+//				onPath = false;
+//			}
+		}
 	}
 }

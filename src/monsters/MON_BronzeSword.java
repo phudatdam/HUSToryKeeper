@@ -49,7 +49,32 @@ public class MON_BronzeSword extends Entity {
 		attackRight2 = setup("/monsters/bronze_sword_attack_right_2", gp.tileSize * 2, gp.tileSize);		
 	}
 	
+	public void update() {
+		super.update();
+		
+		int xDistance = Math.abs(worldX - gp.player.worldX);
+		int yDistance = Math.abs(worldY - gp.player.worldY);
+		int tileDistance = (xDistance + yDistance) / gp.tileSize;
+		
+		if (onPath == false && tileDistance < 5) {
+			int i = new Random().nextInt(100) + 1;
+			if (i > 50) {
+				onPath = true;
+			}
+		}
+		
+		if (onPath == true && tileDistance > 20) {
+			onPath = false;
+		}
+	}
+	
 	public void setAction() {
+		if (onPath == true) {
+			int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
+			int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
+			
+			searchPath(goalCol, goalRow);
+		}
     	actionLockCounter++;
     	if (actionLockCounter == 120) {
     		Random random = new Random();
@@ -70,4 +95,9 @@ public class MON_BronzeSword extends Entity {
         	actionLockCounter = 0;
     	}
     }
+	
+	public void damageReaction() {
+		actionLockCounter = 0;
+		onPath = true;
+	}
 }
