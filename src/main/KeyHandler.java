@@ -214,43 +214,52 @@ public class KeyHandler implements KeyListener {
                 }
             }
         }
-        if(code == KeyEvent.VK_D) { // phải
-            if (gp.ui.subState == 0) {
-                if (gp.ui.commandNum == 1 && gp.music.volumeScale >= 0) {
+        if(code == KeyEvent.VK_D){ // phải
+            if(gp.ui.subState == 0){
+                if(gp.ui.commandNum == 1 && gp.music.volumeScale >= 0){
                     gp.music.volumeScale++;
-                    if (gp.music.volumeScale > 5) gp.music.volumeScale = 0;
+                    if(gp.music.volumeScale > 5) gp.music.volumeScale = 0;
                     gp.music.checkVolume();
                     gp.playSE(2);
                 }
-                if (gp.ui.commandNum == 2 && gp.se.volumeScale >= 0) {
+                if(gp.ui.commandNum == 2 && gp.se.volumeScale >= 0){
                     gp.se.volumeScale++;
-                    if (gp.se.volumeScale > 5) gp.se.volumeScale = 0;
+                    if(gp.se.volumeScale > 5) gp.se.volumeScale = 0;
                     gp.playSE(2);
                 }
             }
         }
-}
+    }
 
-@Override
-public void keyReleased(KeyEvent e) { // gán nhả các phím điều khiển thì nhân vật không di chuyển
-    int code = e.getKeyCode();
-    if(code == KeyEvent.VK_W){ // lên
-        upPressed = false;
+    @Override
+    public void keyReleased(KeyEvent e) { // gán nhả các phím điều khiển thì nhân vật không di chuyển
+        int code = e.getKeyCode();
+
+        if(code == KeyEvent.VK_W){ // lên
+            gp.ui.commandNum--;
+            if(gp.ui.commandNum < 0){
+                gp.ui.commandNum = 2;
+            }
+            gp.playSE(2);
+        }
+        if(code == KeyEvent.VK_S){ // xuống
+            gp.ui.commandNum++;
+            if(gp.ui.commandNum > 2){
+                gp.ui.commandNum = 0;
+            }
+            gp.playSE(2);
+        }
+        if(code == KeyEvent.VK_E){
+            if(gp.ui.commandNum == 0){
+                gp.gameState = gp.playState;
+            }
+            if(gp.ui.commandNum == 1){
+                gp.gameState = gp.optionsState;
+            }
+            if(gp.ui.commandNum == 2){
+                System.exit(0);
+            }
+            gp.playSE(2);
+        }
     }
-    if(code == KeyEvent.VK_S){ // xuống
-        downPressed = false;
-    }
-    if(code == KeyEvent.VK_A){ // trái
-        leftPressed = false;
-    }
-    if(code == KeyEvent.VK_D){ // phải
-        rightPressed = false;
-    }
-    if(code == KeyEvent.VK_E){
-        enterPressed = false;
-    }
-    if(code == KeyEvent.VK_J){
-        attackPressed = false;
-    }
-}
 }
