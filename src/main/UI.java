@@ -265,15 +265,16 @@ public class UI {
     	drawSubWindow(frameX, frameY, frameWidth, frameHeight);
     	
     	// TEXT
-    	g2.setFont(g2.getFont().deriveFont(16F));
+    	g2.setFont(retron2000);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,16F));
     	int lineHeight = 16 + 4; // độ cao dòng = cỡ font + khoảng cách các dòng
     			
     	// names
     	g2.drawString("Heart:", textX, textY);
     	textY += lineHeight;
-    	g2.drawString("iron:", textX, textY);
+    	g2.drawString("Iron:", textX, textY);
     	textY += lineHeight;
-    	g2.drawString("wood:", textX, textY);
+    	g2.drawString("Wood:", textX, textY);
     	textY += lineHeight;
     	g2.drawString("Life:", textX, textY);
     	textY += lineHeight;
@@ -354,8 +355,9 @@ public class UI {
     	int dFrameHeight = frameHeight - 50;
     	
     	int dTextX = dFrameX + 10;
-    	int dTextY = dFrameY + 24;
-		g2.setFont(g2.getFont().deriveFont(20F));
+    	int dTextY = dFrameY + 29;
+    	g2.setFont(retron2000);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,16F));
     	int itemIndex = getItemIndexOnSlot();
     	if(itemIndex < gp.player.inventory.size()) {
         	drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);

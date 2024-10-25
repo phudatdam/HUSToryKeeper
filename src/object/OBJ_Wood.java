@@ -9,7 +9,7 @@ public class OBJ_Wood extends Entity{
 		super(gp);
 		
 		name = "Gỗ";
-		description = "[ "+ name +" ]\nGỗ bình thường, sao chế được đồ\n thần nhỉ ?";
+		description = "[ "+ name +" ]\nGỗ bình thường, sao chế được đồ thần\nnhỉ ?";
 		
 		down1 = setup("/objects/wood", gp.tileSize, gp.tileSize);
 	}
