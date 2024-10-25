@@ -11,6 +11,8 @@ public class KeyHandler implements KeyListener {
     public boolean rightPressed; // nhấn phải
     public boolean leftPressed; // nhấn trái
     public boolean enterPressed; // nhấn tương tác
+	public boolean attackPressed; // đánh thường
+	
 	public KeyHandler(GamePanel gp) {
         this.gp = gp;
 	}
@@ -72,7 +74,10 @@ public class KeyHandler implements KeyListener {
             	gp.gameState = gp.characterState;
             }
             if(code == KeyEvent.VK_E) {
-                enterPressed=true;
+                enterPressed = true;
+            }
+            if(code == KeyEvent.VK_J) {
+                attackPressed = true;
             }
         }
         
@@ -112,8 +117,59 @@ public class KeyHandler implements KeyListener {
         // DIALOGUE STATE
         else if (gp.gameState == gp.dialogueState) {
             if( code == KeyEvent.VK_E ) {
-                enterPressed=true;
+                enterPressed = true;
             }
+            if(code == KeyEvent.VK_A){ // trái
+                leftPressed = true;
+            }
+            if(code == KeyEvent.VK_D){ // phải
+                rightPressed = true;
+            }
+            if(code == KeyEvent.VK_P){
+                if(gp.gameState == gp.playState){
+                    gp.gameState = gp.pauseState;
+                }
+                else if(gp.gameState == gp.pauseState){
+                    gp.gameState = gp.playState;
+                }
+            }
+            if(code == KeyEvent.VK_I) {
+            	gp.gameState = gp.characterState;
+            }
+        }
+        
+        // PAUSE STATE
+        else if(gp.gameState == gp.pauseState) {
+        	if(code == KeyEvent.VK_P) {
+        		gp.gameState = gp.playState;
+        	}
+        }
+        
+        // CHARACTER SCREEN (STATUS SCREEN)
+        else if(gp.gameState == gp.characterState) {
+        	if(code == KeyEvent.VK_I) {
+        		gp.gameState = gp.playState;
+        	}
+        	if(code == KeyEvent.VK_UP) {
+        		if(gp.ui.slotRow != 0) {
+        			gp.ui.slotRow --;
+        		}
+        	}
+        	if(code == KeyEvent.VK_DOWN) {
+        		if(gp.ui.slotRow != 2) {
+        			gp.ui.slotRow ++;
+        		}
+        	}
+        	if(code == KeyEvent.VK_RIGHT) {
+        		if(gp.ui.slotCol != 4) {
+        			gp.ui.slotCol ++;
+        		}
+        	}
+        	if(code == KeyEvent.VK_LEFT) {
+        		if(gp.ui.slotCol != 0) {
+        			gp.ui.slotCol --;
+        		}
+        	}
         }
     }
 
@@ -131,6 +187,12 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_D){ // phải
             rightPressed = false;
+        }
+        if(code == KeyEvent.VK_E){
+        	enterPressed = false;
+        }
+        if(code == KeyEvent.VK_J){
+        	attackPressed = false;
         }
     }
 }

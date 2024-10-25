@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DecimalFormat;
 
 import entity.Entity;
 
@@ -232,17 +231,19 @@ public class UI {
     y += gp.tileSize;
     if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null){
         currentDialogue=npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
-        if(gp.keyH.enterPressed==true)
+        if(gp.keyH.enterPressed == true)
         {
-            if(gp.gameState==gp.dialogueState){
+            if(gp.gameState == gp.dialogueState){
                 npc.dialogueIndex++;
                 gp.keyH.enterPressed=false;
             }
         }
     }
     else{
-        npc.dialogueIndex--;
-        if(gp.gameState==gp.dialogueState)gp.gameState=gp.playState;
+        npc.dialogueIndex = 0;
+    	if(gp.gameState==gp.dialogueState) {
+        	gp.gameState=gp.playState; 
+    	} 	
     }
     for ( String line : currentDialogue.split("\n")) {
     g2.drawString(line, x, y);
@@ -250,7 +251,7 @@ public class UI {
     };
     
     }
-
+    
     public void drawCharacterScreen() {
     	// FRAME
     	int frameX = gp.tileSize*1;
