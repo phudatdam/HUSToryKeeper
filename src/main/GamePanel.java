@@ -14,7 +14,7 @@ public class GamePanel extends JPanel implements Runnable{
     final int scale = 2;
 
     public final int tileSize = originalTileSize * 2; // 64 x 64 tile
-   // public final int tileSize1 = originalTileSize * 2;
+    // public final int tileSize1 = originalTileSize * 2;
     public final int maxScreenCol = 16; // dài 16 ô
     public final int maxScreenRow = 10; // rộng 12 ô
     public final int screenWidth = maxScreenCol * tileSize; // 768 pixels
@@ -30,7 +30,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     // SYSTEM
     TileManager tileM = new TileManager(this);
-    Sound sound = new Sound();
+    Sound music = new Sound();
+    Sound se = new Sound();
     public KeyHandler keyH = new KeyHandler(this);
     public AssetSetter aSetter  = new AssetSetter(this);
     public UI ui = new UI(this);
@@ -51,7 +52,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int pauseState = 2;
     public final int dialogueState = 3;
     public final int characterState = 4;
-
+    public final int optionsState = 5;
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -112,15 +113,15 @@ public class GamePanel extends JPanel implements Runnable{
     public void update(){ // update nhân vật sau mỗi vòng loop
         if(gameState == playState){
             // PLAYER
-        	player.update();
-            
-        	// NPC
+            player.update();
+
+            // NPC
             for(int i = 0; i < npc.length; i++){
                 if(npc[i] != null){
                     npc[i].update();
                 }
             }
-            
+
             // MONSTERS
             for(int i = 0; i < npc.length; i++){
                 if(monster[i] != null){
@@ -128,7 +129,7 @@ public class GamePanel extends JPanel implements Runnable{
                 }
             }
         }
-  
+
         if(gameState == pauseState){
 
         }
@@ -138,7 +139,7 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-     // TITLE SCREEN
+        // TITLE SCREEN
         if(gameState == titleState){
             ui.draw(g2);
         }
@@ -150,39 +151,39 @@ public class GamePanel extends JPanel implements Runnable{
 
             // ADD ENTITIES TO THE LIST
             entityList.add(player);
-            
+
             for (int i = 0; i < npc.length; i++) {
-            	if (npc[i] != null) {
-            		entityList.add(npc[i]);
-            	}
+                if (npc[i] != null) {
+                    entityList.add(npc[i]);
+                }
             }
-            
+
             for (int i = 0; i < obj.length; i++) {
-            	if (obj[i] != null) {
-            		entityList.add(obj[i]);
-            	}
+                if (obj[i] != null) {
+                    entityList.add(obj[i]);
+                }
             }
-            
+
             for (int i = 0; i < monster.length; i++) {
-            	if (monster[i] != null) {
-            		entityList.add(monster[i]);
-            	}
+                if (monster[i] != null) {
+                    entityList.add(monster[i]);
+                }
             }
-            
+
             // SORT
             Collections.sort(entityList, new Comparator<Entity>() {
-				@Override
-				public int compare(Entity e1, Entity e2) {
-					int result = Integer.compare(e1.worldY, e2.worldY);
-					return result;
-				}            	
+                @Override
+                public int compare(Entity e1, Entity e2) {
+                    int result = Integer.compare(e1.worldY, e2.worldY);
+                    return result;
+                }
             });
-            
+
             // DRAW ENTITY LIST
             for (int i = 0; i < entityList.size(); i++) {
-            	entityList.get(i).draw(g2);
+                entityList.get(i).draw(g2);
             }
-            
+
             // EMPTY ENTITY LIST
             entityList.clear();
 
@@ -193,17 +194,17 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void playMusic(int i){
-        sound.setFile(i);
-        sound.play();
-        sound.loop();
+        music.setFile(i);
+        music.play();
+        music.loop();
     }
 
     public void stopMusic(){
-        sound.stop();
+        music.stop();
     }
 
     public void playSE(int i){
-        sound.setFile(i);
-        sound.play();
+        se.setFile(i);
+        se.play();
     }
 }
