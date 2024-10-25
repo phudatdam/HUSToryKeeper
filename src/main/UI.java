@@ -12,7 +12,7 @@ import entity.Entity;
 public class UI {
     GamePanel gp;
     Graphics2D g2;
-    Font determinationSans, retron2000;
+    Font determinationSans, retron2000, maruMonica;
     BufferedImage heart_full, heart_half, heart_blank;
     BufferedImage heartImage;
     public boolean messageOn = false;
@@ -24,6 +24,8 @@ public class UI {
     public int slotCol = 0;
     public int slotRow = 0;
     public Entity npc;
+    int subState = 0;
+    int pauState = 0;
 
     public UI(GamePanel gp){
         this.gp = gp;
@@ -33,6 +35,8 @@ public class UI {
             determinationSans = Font.createFont(Font.TRUETYPE_FONT, is);
             InputStream is1 = getClass().getResourceAsStream("/font/SVN-Retron 2000.otf");
             retron2000 = Font.createFont(Font.TRUETYPE_FONT, is1);
+            InputStream is2 = getClass().getResourceAsStream("/font/SVN-MaruMonica.ttf");
+            maruMonica = Font.createFont(Font.TRUETYPE_FONT, is2);
         } catch (FontFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -88,8 +92,205 @@ public class UI {
         	drawCharacterScreen();
         	drawInventory();
         }
+
+        // OPTIONS STATE
+        if(gp.gameState == gp.optionsState){
+            drawOptionsState();
+        }
     }
-    
+
+    private void drawOptionsState() {
+        g2.setColor(Color.white);
+        g2.setFont(retron2000);
+        g2.setFont(g2.getFont().deriveFont(23f));
+
+        // SUB WINDOW
+        int frameX = gp.tileSize * 5;
+        int frameY = gp.tileSize;
+        int frameWidth = gp.tileSize * 6;
+        int frameHeight = gp.tileSize * 8;
+
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        switch (subState){
+            case 0: options_top(frameX, frameY); break;
+            case 1: options_control(frameX, frameY); break;
+            case 2: options_endGame(frameX, frameY); break;
+
+        }
+        gp.keyH.enterPressed = false;
+    }
+
+    public void options_top(int frameX, int frameY){
+        int textX;
+        int textY;
+
+        // TITLE
+        g2.setFont(determinationSans);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,32f));
+        String text = "SETTING";
+        textX = getXforCenteredText(text);
+        textY = frameY + gp.tileSize;
+        g2.drawString(text, textX, textY);
+
+        // MUSIC
+        g2.setFont(maruMonica); // set font
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,30f));
+
+        textX = frameX + gp.tileSize / 2 + 20;
+        textY += gp.tileSize;
+        g2.drawString("Âm thanh", textX, textY);
+
+        if(commandNum == 1){
+            g2.drawString(">", textX - 30, textY);
+        }
+
+        // SE
+        textY += gp.tileSize;
+        g2.drawString("SE", textX, textY);
+        if(commandNum == 2){
+            g2.drawString(">", textX - 30, textY);
+        }
+
+        // CONTROL
+        textY += gp.tileSize;
+        g2.drawString("Control", textX, textY);
+        if(commandNum == 3){
+            g2.drawString(">", textX - 30, textY);
+            if(gp.keyH.enterPressed == true){
+                subState = 1;
+                commandNum = 0;
+            }
+        }
+
+        // END GAME
+        textY += gp.tileSize;
+        g2.drawString("End game", textX, textY);
+        if(commandNum == 4){
+            g2.drawString(">", textX - 30, textY);
+            if(gp.keyH.enterPressed == true){
+                subState = 2;
+                commandNum = 0;
+            }
+        }
+
+        // BACK
+        textY += gp.tileSize * 2;
+        g2.drawString("Back", textX, textY);
+        if(commandNum == 5){
+            g2.drawString(">", textX - 30, textY);
+            if(gp.keyH.enterPressed == true){
+                if(pauState == 1){
+                    pauState = 0;
+                    gp.gameState = gp.pauseState;
+                    commandNum = 1;
+                }
+                else if(subState == 0){
+                    gp.gameState = gp.titleState;
+                    commandNum = 1;
+                }
+            }
+        }
+
+        // MUSIC VOLUME
+        textX = frameX + gp.tileSize * 3 + 6;
+        textY = frameY + gp.tileSize * 2 - 23;
+        g2.setStroke(new BasicStroke(3));
+        g2.drawRect(textX, textY, 150, 23); // 150/5 = 30
+        int volumeWidth = 30 * gp.music.volumeScale;
+        g2.fillRect(textX, textY, volumeWidth, 23);
+
+        // SE
+        textY += gp.tileSize;
+        g2.drawRect(textX, textY, 150, 23);
+        volumeWidth = 30 * gp.se.volumeScale;
+        g2.fillRect(textX, textY, volumeWidth, 23);
+    }
+
+    public void options_control(int frameX, int frameY){
+        int textX;
+        int textY;
+
+        // TITLE
+        String text = "CONTROL";
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD));
+        textX = getXforCenteredText(text);
+        textY = frameY + gp.tileSize;
+        g2.drawString(text, textX, textY);
+
+        textX = frameX + gp.tileSize / 2 - 15;
+        textY += gp.tileSize;
+        g2.setFont(retron2000);
+        g2.setFont(g2.getFont().deriveFont(17f));
+        g2.drawString("Di chuyển:", textX, textY); textY += gp.tileSize;
+        g2.drawString("Chọn option/ mở hộp thoại:", textX, textY); textY += gp.tileSize;
+        g2.drawString("Tấn công/ Sử dụng công cụ:", textX, textY); textY += gp.tileSize;
+        g2.drawString("Tạm dừng:", textX, textY); textY += gp.tileSize;
+        g2.drawString("Mở ba lô:", textX, textY); textY += gp.tileSize;
+
+        textX = frameX + gp.tileSize * 5 - 32;
+        textY = frameY + gp.tileSize * 2;
+        g2.drawString("W A S D", textX, textY); textY += gp.tileSize;
+        g2.drawString("E", textX + 16, textY); textY += gp.tileSize;
+        g2.drawString("J", textX + 16, textY); textY += gp.tileSize;
+        g2.drawString("P", textX + 16, textY); textY += gp.tileSize;
+        g2.drawString("I", textX + 16, textY); textY += gp.tileSize;
+
+        // BACK
+        textX = frameX + gp.tileSize / 2 - 15;
+        textY = frameY + gp.tileSize * 7;
+        g2.drawString("Back", textX + 20, textY);
+        if(commandNum == 0){
+            g2.drawString(">", textX - 10, textY);
+            if(gp.keyH.enterPressed == true){
+                subState = 0;
+                commandNum = 3;
+            }
+        }
+    }
+
+    public void options_endGame(int frameX, int frameY){
+        int x = frameX + 5;
+        int y = frameY + gp.tileSize * 3 / 2;
+
+        g2.drawImage(gp.player.down3, x, y, 40, 40, null);
+        int textX = frameX + gp.tileSize - 20;
+        int textY = frameY + gp.tileSize * 2;
+        currentDialogue = ": Game hay như này mà nỡ/n thoát à :)??";
+
+        for(String line: currentDialogue.split("/n")){
+            g2.drawString(line, textX, textY);
+            textY += 40;
+        }
+
+        // Chơi tiếp
+        String text = "Nghĩ lại rồi, chơi tiếp :D";
+        textX = getXforCenteredText(text);
+        textY += gp.tileSize * 5 / 2;
+        g2.drawString(text, textX,textY);
+        if(commandNum == 0){
+            g2.drawString(">", textX - 30, textY);
+            if(gp.keyH.enterPressed == true){
+                subState = 0;
+                commandNum = 4;
+            }
+        }
+
+
+        // Thoát
+        text = "Ừ =.=";
+        textX = getXforCenteredText(text);
+        textY += gp.tileSize;
+        g2.drawString(text, textX,textY);
+        if(commandNum == 1){
+            g2.drawString(">", textX - 30, textY);
+            if(gp.keyH.enterPressed == true){
+                System.exit(0);
+            }
+        }
+
+    }
+
     public void drawPlayerLife() {
     	int x = gp.tileSize / 2;
     	int y = gp.tileSize / 2;
@@ -178,44 +379,63 @@ public class UI {
     }
 
     public void drawPauseScreen(){
-        
-        int x = gp.tileSize * 2;
-        int y = gp.tileSize / 2;
-        int width = gp.screenWidth - (gp.tileSize * 4);
-        int height = gp.tileSize * 8;
-        drawSubWindow(x, y, width, height);
-        // Paused
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,50F));
-        g2.setColor(Color.WHITE);
-        String text = "PAUSED";
-        x = getXforCenteredText(text);
-        y = gp.screenHeight / 2 - 192;
+        g2.setColor(Color.white);
+        g2.setFont(retron2000);
+        g2.setFont(g2.getFont().deriveFont(23f));
 
-        g2.drawString(text, x, y); // set chữ ở giữa màn hình
-        // tutorial
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
-        text = " W A S D để di chuyển";
-        x = getXforCenteredText(text);
-        y = gp.screenHeight / 2 -128;
-        g2.drawString(text, x, y);
-        text = " E để tương tác";
-        x = getXforCenteredText(text);
-        y = gp.screenHeight / 2 -96;
-        g2.drawString(text, x, y);
-        text = " P để tiếp tục/dừng";
-        x = getXforCenteredText(text);
-        y = gp.screenHeight / 2 -64;
-        g2.drawString(text, x, y);
-        text = " I để mở túi đồ";
-        x = getXforCenteredText(text);
-        y = gp.screenHeight / 2 -32;
-        g2.drawString(text, x, y);
-        text = " J để tấn công/chặt gỗ";
-        x = getXforCenteredText(text);
-        y = gp.screenHeight / 2 ;
-        g2.drawString(text, x, y);
-        // Bổ sung thêm tutorial nữa sau
+        // SUB WINDOW
+        int frameX = gp.tileSize * 4;
+        int frameY = gp.tileSize * 5 / 2;
+        int frameWidth = gp.tileSize * 8;
+        int frameHeight = gp.tileSize * 4;
 
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        switch (pauState){
+            case 0: ; pause_0(frameX, frameY); break;
+            case 1:
+                gp.gameState = gp.optionsState;
+                break;
+        }
+        gp.keyH.enterPressed = false;
+    }
+
+    public void pause_0(int frameX, int frameY){
+        int textX;
+        int textY;
+
+        // Pause screen
+        g2.setFont(determinationSans);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,32f));
+        String text = "PAUSE";
+        textX = getXforCenteredText(text);
+        textY = frameY + gp.tileSize;
+        g2.drawString(text, textX, textY);
+
+        // Continue
+        g2.setFont(retron2000); // set font
+        g2.setFont(g2.getFont().deriveFont(25f));
+
+        textX = frameX + gp.tileSize / 2;
+        textY += gp.tileSize;
+        g2.drawString("Tiếp tục chơi", textX, textY);
+        if(commandNum == 0){
+            g2.drawString(">", textX - 20, textY);
+            if(gp.keyH.enterPressed == true){
+                gp.gameState = gp.playState;
+            }
+        }
+
+        // Setting
+        textY += gp.tileSize;
+        g2.drawString("Setting", textX, textY);
+        if(commandNum == 1){
+            g2.drawString(">", textX - 20, textY);
+            if(gp.keyH.enterPressed == true){
+                pauState = 1;
+                commandNum = 1;
+            }
+        }
     }
 
     public void drawDialogueState(){

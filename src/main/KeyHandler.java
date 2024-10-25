@@ -28,96 +28,205 @@ public class KeyHandler implements KeyListener {
 
         // TITLE STATE
         if(gp.gameState == gp.titleState){
-            if(code == KeyEvent.VK_W){ // lên
-                gp.ui.commandNum--;
-                if(gp.ui.commandNum < 0){
-                    gp.ui.commandNum = 2;
-                }
-            }
-            if(code == KeyEvent.VK_S){ // xuống
-                gp.ui.commandNum++;
-                if(gp.ui.commandNum > 2){
-                    gp.ui.commandNum = 0;
-                }
-            }
-            if(code == KeyEvent.VK_E){
-                if(gp.ui.commandNum == 0){
-                    gp.gameState = gp.playState;
-                }
-                if(gp.ui.commandNum == 1){
-                    // add later
-                }
-                if(gp.ui.commandNum == 2){
-                    System.exit(0);
-                }
-            }
+            titleState(code);
         }
 
         // PLAY STATE
         else if(gp.gameState ==  gp.playState) {
-        	if(code == KeyEvent.VK_W){ // lên
-                upPressed = true;
-            }
-            if(code == KeyEvent.VK_S){ // xuống
-                downPressed = true;
-            }
-            if(code == KeyEvent.VK_A){ // trái
-                leftPressed = true;
-            }
-            if(code == KeyEvent.VK_D){ // phải
-                rightPressed = true;
-            }
-            if(code == KeyEvent.VK_P){
-                    gp.gameState = gp.pauseState;
-            }
-            if(code == KeyEvent.VK_I) {
-            	gp.gameState = gp.characterState;
-            }
-            if(code == KeyEvent.VK_E) {
-                enterPressed = true;
-            }
-            if(code == KeyEvent.VK_J) {
-                attackPressed = true;
-            }
+            playState(code);
         }
         
         // PAUSE STATE
         else if(gp.gameState == gp.pauseState) {
-        	if(code == KeyEvent.VK_P) {
-        		gp.gameState = gp.playState;
-        	}
+            pauseState(code);
         }
         
         // CHARACTER SCREEN (STATUS SCREEN)
         else if(gp.gameState == gp.characterState) {
-        	if(code == KeyEvent.VK_I) {
-        		gp.gameState = gp.playState;
-        	}
-        	if(code == KeyEvent.VK_W) {
-        		if(gp.ui.slotRow != 0) {
-        			gp.ui.slotRow --;
-        		}
-        	}
-        	if(code == KeyEvent.VK_S) {
-        		if(gp.ui.slotRow != 2) {
-        			gp.ui.slotRow ++;
-        		}
-        	}
-        	if(code == KeyEvent.VK_D) {
-        		if(gp.ui.slotCol != 4) {
-        			gp.ui.slotCol ++;
-        		}
-        	}
-        	if(code == KeyEvent.VK_A) {
-        		if(gp.ui.slotCol != 0) {
-        			gp.ui.slotCol --;
-        		}
-        	}
+            characterState(code);
         }
+
         // DIALOGUE STATE
         else if (gp.gameState == gp.dialogueState) {
-            if( code == KeyEvent.VK_E ) {
-                enterPressed = true;
+            dialogueState(code);
+        }
+
+        // OPTIONS STATE
+        else if (gp.gameState == gp.optionsState){
+            optionsState(code);
+        }
+    }
+
+    public void titleState(int code){
+        if(code == KeyEvent.VK_W){ // lên
+            gp.ui.commandNum--;
+            if(gp.ui.commandNum < 0){
+                gp.ui.commandNum = 2;
+            }
+            gp.playSE(2);
+        }
+        if(code == KeyEvent.VK_S){ // xuống
+            gp.ui.commandNum++;
+            if(gp.ui.commandNum > 2){
+                gp.ui.commandNum = 0;
+            }
+            gp.playSE(2);
+        }
+        if(code == KeyEvent.VK_E){
+            if(gp.ui.commandNum == 0){
+                gp.gameState = gp.playState;
+            }
+            if(gp.ui.commandNum == 1){
+                gp.gameState = gp.optionsState;
+            }
+            if(gp.ui.commandNum == 2){
+                System.exit(0);
+            }
+            gp.playSE(2);
+        }
+    }
+
+    public void playState(int code){
+        if(code == KeyEvent.VK_W){ // lên
+            upPressed = true;
+        }
+        if(code == KeyEvent.VK_S){ // xuống
+            downPressed = true;
+        }
+        if(code == KeyEvent.VK_A){ // trái
+            leftPressed = true;
+        }
+        if(code == KeyEvent.VK_D){ // phải
+            rightPressed = true;
+        }
+        if(code == KeyEvent.VK_P){
+            gp.playSE(2);
+            gp.gameState = gp.pauseState;
+        }
+        if(code == KeyEvent.VK_I) {
+            gp.playSE(2);
+            gp.gameState = gp.characterState;
+        }
+
+        if(code == KeyEvent.VK_E) {
+            enterPressed = true;
+        }
+
+    }
+
+    public void pauseState(int code){
+        if(code == KeyEvent.VK_E) {
+            enterPressed = true;
+        }
+        gp.playSE(2);
+        if(code == KeyEvent.VK_W){ // lên
+            gp.ui.commandNum--;
+            if(gp.ui.commandNum < 0){
+                gp.ui.commandNum = 1;
+            }
+            gp.playSE(2);
+        }
+        if(code == KeyEvent.VK_S){ // xuống
+            gp.ui.commandNum++;
+            if(gp.ui.commandNum > 1){
+                gp.ui.commandNum = 0;
+            }
+            gp.playSE(2);
+        }
+
+    }
+
+    public void dialogueState(int code){
+        if( code == KeyEvent.VK_E ) {
+            enterPressed = true;
+        }
+        gp.playSE(2);
+    }
+
+    public void characterState(int code){
+        if(code == KeyEvent.VK_I) {
+            gp.gameState = gp.playState;
+        }
+        gp.playSE(2);
+        if(code == KeyEvent.VK_W) {
+            if(gp.ui.slotRow != 0) {
+                gp.ui.slotRow --;
+            }
+            gp.playSE(2);
+        }
+        if(code == KeyEvent.VK_S) {
+            if(gp.ui.slotRow != 2) {
+                gp.ui.slotRow ++;
+            }
+            gp.playSE(2);
+        }
+        if(code == KeyEvent.VK_D) {
+            if(gp.ui.slotCol != 4) {
+                gp.ui.slotCol ++;
+            }
+            gp.playSE(2);
+        }
+        if(code == KeyEvent.VK_A) {
+            if(gp.ui.slotCol != 0) {
+                gp.ui.slotCol --;
+            }
+            gp.playSE(2);
+        }
+    }
+
+    public void optionsState(int code){
+        if(code == KeyEvent.VK_E){
+            enterPressed = true;
+        }
+        gp.playSE(2);
+        int maxCommandNum = 0;
+        int minCommandNum = 0;
+        switch (gp.ui.subState){
+            case 0: maxCommandNum = 5; minCommandNum = 1; break;
+            case 2: maxCommandNum = 1; minCommandNum = 0; break;
+        }
+        if(code == KeyEvent.VK_W){ // lên
+            gp.ui.commandNum--;
+            if(gp.ui.commandNum < minCommandNum){
+                gp.ui.commandNum = maxCommandNum;
+            }
+            gp.playSE(2);
+        }
+        if(code == KeyEvent.VK_S){ // xuống
+            gp.ui.commandNum++;
+            if(gp.ui.commandNum > maxCommandNum){
+                gp.ui.commandNum = minCommandNum;
+            }
+            gp.playSE(2);
+        }
+        if(code == KeyEvent.VK_A){ // trái
+            if(gp.ui.subState == 0){
+                if(gp.ui.commandNum == 1 && gp.music.volumeScale > -1){
+                    gp.music.volumeScale--;
+                    if(gp.music.volumeScale < 0) gp.music.volumeScale = 5;
+                    gp.music.checkVolume();
+                    gp.playSE(2);
+                }
+                if(gp.ui.commandNum == 2 && gp.se.volumeScale >= 0){
+                    gp.se.volumeScale--;
+                    if(gp.se.volumeScale < 0) gp.se.volumeScale = 5;
+                    gp.playSE(2);
+                }
+            }
+        }
+        if(code == KeyEvent.VK_D){ // phải
+            if(gp.ui.subState == 0){
+                if(gp.ui.commandNum == 1 && gp.music.volumeScale >= 0){
+                    gp.music.volumeScale++;
+                    if(gp.music.volumeScale > 5) gp.music.volumeScale = 0;
+                    gp.music.checkVolume();
+                    gp.playSE(2);
+                }
+                if(gp.ui.commandNum == 2 && gp.se.volumeScale >= 0){
+                    gp.se.volumeScale++;
+                    if(gp.se.volumeScale > 5) gp.se.volumeScale = 0;
+                    gp.playSE(2);
+                }
             }
             if(code == KeyEvent.VK_A){ // trái
                 leftPressed = true;
@@ -181,7 +290,7 @@ public class KeyHandler implements KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) { // gán nhả các phím điều khiển thì nhân vật không di  chuyển
+    public void keyReleased(KeyEvent e) { // gán nhả các phím điều khiển thì nhân vật không di chuyển
         int code = e.getKeyCode();
         if(code == KeyEvent.VK_W){ // lên
             upPressed = false;

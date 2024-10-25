@@ -30,7 +30,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     // SYSTEM
     TileManager tileM = new TileManager(this);
-    Sound sound = new Sound();
+    Sound music = new Sound();
+    Sound se = new Sound();
     public KeyHandler keyH = new KeyHandler(this);
     public AssetSetter aSetter  = new AssetSetter(this);
     public UI ui = new UI(this);
@@ -51,6 +52,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int pauseState = 2;
     public final int dialogueState = 3;
     public final int characterState = 4;
+    public final int optionsState = 5;
 
 
     public GamePanel(){
@@ -193,17 +195,17 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void playMusic(int i){
-        sound.setFile(i);
-        sound.play();
-        sound.loop();
+        music.setFile(i);
+        music.play();
+        music.loop();
     }
 
     public void stopMusic(){
-        sound.stop();
+        music.stop();
     }
 
     public void playSE(int i){
-        sound.setFile(i);
-        sound.play();
+        se.setFile(i);
+        se.play();
     }
 }
