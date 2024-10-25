@@ -18,7 +18,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     int standCounter = 0;
-    
+
     public int hasHeart;
     public int strength;
     public int coin;
@@ -228,7 +228,7 @@ public class Player extends Entity {
             String objectName = gp.obj[i].name;
             switch (objectName){
                 case "Heart":
-            		life += 2;
+            		    life += 2;
                     gp.obj[i] = null;
                     break;
             }
