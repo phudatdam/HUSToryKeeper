@@ -590,7 +590,7 @@ public class UI {
             }
         }
     }
-
+    
     void drawSubWindow(int x, int y, int width, int height) {
         g2.setColor(new Color(0, 0, 0, 210));
         g2.fillRoundRect(x, y, width, height, 35, 35);
