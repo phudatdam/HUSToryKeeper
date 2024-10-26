@@ -112,6 +112,10 @@ public class KeyHandler implements KeyListener {
             enterPressed = true;
         }
 
+        if(code == KeyEvent.VK_J) {
+            attackPressed = true;
+        }
+
     }
 
     public void pauseState(int code) {
