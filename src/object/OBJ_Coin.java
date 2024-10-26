@@ -9,7 +9,7 @@ public class OBJ_Coin extends Entity{
 		super(gp);
 		
 		name = "Coin";
-		description = "[" + name + "]\nFor trading (test)";
+		description = "[ " + name + " ]\n(test)";
 		
 		down1 = setup("/objects/coin", gp.tileSize, gp.tileSize);
 	}
