@@ -97,11 +97,6 @@ public class UI {
         if(gp.gameState == gp.optionsState){
             drawOptionsState();
         }
-
-        // OPTIONS STATE
-        if(gp.gameState == gp.optionsState){
-            drawOptionsState();
-        }
     }
 
     private void drawOptionsState() {
