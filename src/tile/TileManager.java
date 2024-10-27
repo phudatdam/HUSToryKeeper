@@ -13,7 +13,7 @@ import java.io.InputStreamReader;
 public class TileManager {
     GamePanel gp;
     public Tile[] tile; // mảng chứa tile
-    public int mapTileNum[][][]; // mảng 2 chiều chứa tọa độ tile của bản đồ
+    public int mapTileNum[][][]; // mảng 3 chiều chứa thứ tự bản đồ và tọa độ tile của mỗi bản đồ
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
