@@ -5,6 +5,7 @@ import entity.NPC_KimQuy;
 import monsters.MON_BronzePolearm;
 import monsters.MON_BronzeSword;
 import object.OBJ_Heart;
+import object.OBJ_Well;
 
 public class AssetSetter {
     GamePanel gp;
@@ -21,6 +22,10 @@ public class AssetSetter {
         gp.obj[1] = new OBJ_Heart(gp);
         gp.obj[1].worldX = 28 * gp.tileSize;
         gp.obj[1].worldY = 37 * gp.tileSize;
+        
+        gp.obj[2] = new OBJ_Well(gp);
+        gp.obj[2].worldX = 40 * gp.tileSize;
+        gp.obj[2].worldY = 38 * gp.tileSize;
     }
     
     public void setNPC() {
@@ -29,7 +34,7 @@ public class AssetSetter {
         gp.npc[0].worldY = 13 * gp.tileSize;
         gp.npc[1] = new NPC_KimQuy(gp);
         gp.npc[1].worldX = 40 * gp.tileSize;
-        gp.npc[1].worldY = 40 * gp.tileSize;
+        gp.npc[1].worldY = 36 * gp.tileSize;
     }
     
     public void setMonsters() {    	
