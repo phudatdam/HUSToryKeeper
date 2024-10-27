@@ -191,20 +191,20 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
         	
 	        switch (direction){
 	            case "up":
-	                if(spriteNum == 1) image = up2;
-	                if(spriteNum == 2) image = up1;
+	                if(spriteNum == 1) image = up1;
+	                if(spriteNum == 2) image = up2;
 	                break;
 	            case "down":
-	                if(spriteNum == 1) image = down2;
-	                if(spriteNum == 2) image = down1;
+	                if(spriteNum == 1) image = down1;
+	                if(spriteNum == 2) image = down2;
 	                break;
 	            case "right":
-	                if(spriteNum == 1) image = right2;
-	                if(spriteNum == 2) image = right1;
+	                if(spriteNum == 1) image = right1;
+	                if(spriteNum == 2) image = right2;
 	                break;
 	            default:
-	                if(spriteNum == 1) image = left2;
-	                if(spriteNum == 2) image = left1;
+	                if(spriteNum == 1) image = left1;
+	                if(spriteNum == 2) image = left2;
 	                break;
 	        }
 	        
