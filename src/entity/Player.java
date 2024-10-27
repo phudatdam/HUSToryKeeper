@@ -254,19 +254,20 @@ public class Player extends Entity {
     // Tương tác với vật phẩm
 	public void pickUpObject(int i){
         if(i != 999){
-            String objectName = gp.obj[i].name;
+            String objectName = gp.obj[gp.currentMap][i].name;
             switch (objectName){
                 // Nhặt được tim => hồi máu
                 case "Heart":
             		    life += 2;
                         maxLife +=2;
-                    gp.obj[i] = null;
+                    gp.obj[gp.currentMap][i] = null;
                     break;
                 // Chuyển đến map tiếp theo khi chạm vào giếng
                 case "Well":
                 	if (coink == 1) {
                 		coink = 0;
-                		
+                		inventory.removeIf( item -> item.name.equals("Đồng xu"));
+                		teleport();
                 	}
                 	break;
             }
@@ -276,7 +277,7 @@ public class Player extends Entity {
     public void interactNPC(int i) {
     	if(i != 999) {
     		    gp.gameState = gp.dialogueState;
-                gp.npc[i].speak();
+                gp.npc[gp.currentMap][i].speak();
         }
         gp.keyH.enterPressed=false;
     }
@@ -294,12 +295,12 @@ public class Player extends Entity {
     // Đánh thường => gây sát thương
     public void damageMonster(int i) {  
     	if(i != 999){
-    		if (gp.monster[i].invincible == false) {
-    			gp.monster[i].life -= 1;
-    			gp.monster[i].invincible = true;
+    		if (gp.monster[gp.currentMap][i].invincible == false) {
+    			gp.monster[gp.currentMap][i].life -= 1;
+    			gp.monster[gp.currentMap][i].invincible = true;
     			
-    			if (gp.monster[i].life <= 0) {
-    				gp.monster[i] = null;
+    			if (gp.monster[gp.currentMap][i].life <= 0) {
+    				gp.monster[gp.currentMap][i] = null;
     			}
     		}
     	}
@@ -320,6 +321,24 @@ public class Player extends Entity {
                 //update
             }
         }
+    }
+    
+    public void teleport() {
+    	gp.currentMap++;
+    	int col = 0;
+    	int row = 0;
+    	switch (gp.currentMap) {
+		    case 1:
+			    col = 35;
+			    row = 15;
+			    break;
+		    case 2:
+		    	col = 15;
+		    	row = 12;
+		    	break;
+    	}
+    	worldX = gp.tileSize * col;
+    	worldY = gp.tileSize * row;
     }
 
     public void draw(Graphics2D g2){

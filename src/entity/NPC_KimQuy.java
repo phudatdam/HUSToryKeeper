@@ -50,13 +50,13 @@ public class NPC_KimQuy extends Entity{
 		startDialogue(this, dialogueSet);
         if(diaEnd)
         {
-            if( gp.player.iron >= gp.npc[0].ironneed && gp.player.wood >= gp.npc[0].woodneed)
+            if( gp.player.iron >= gp.npc[gp.currentMap][0].ironneed && gp.player.wood >= gp.npc[gp.currentMap][0].woodneed)
             {
 				dialogueSet=1;
 				dialogueIndex=0;
 				if(gp.player.coink == 0){
-					gp.player.iron-= gp.npc[0].ironneed;
-					gp.player.wood-= gp.npc[0].woodneed;
+					gp.player.iron-= gp.npc[gp.currentMap][0].ironneed;
+					gp.player.wood-= gp.npc[gp.currentMap][0].woodneed;
 					gp.player.coink=1;
 					gp.player.inventory.add(new OBJ_Coin(gp));
 				}

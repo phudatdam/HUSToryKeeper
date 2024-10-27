@@ -13,15 +13,16 @@ import java.io.InputStreamReader;
 public class TileManager {
     GamePanel gp;
     public Tile[] tile; // mảng chứa tile
-    public int mapTileNum[][]; // mảng 2 chiều chứa tọa độ tile của bản đồ
+    public int mapTileNum[][][]; // mảng 2 chiều chứa tọa độ tile của bản đồ
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
         tile = new Tile[70]; // set số lượng tile <= 70
-        mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
+        mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
-        loadMap("/maps/world01.txt");
+        loadMap("/maps/world01.txt", 1);
+        loadMap("/maps/world02.txt", 2);
     }
 
     public void getTileImage() {
@@ -93,7 +94,7 @@ public class TileManager {
     	
     }
 
-    public void loadMap(String filePath){
+    public void loadMap(String filePath, int map){
         try{
             InputStream is = getClass().getResourceAsStream(filePath);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -110,7 +111,7 @@ public class TileManager {
 
                     int num = Integer.parseInt(numbers[col]);
 
-                    mapTileNum[col][row] = num;
+                    mapTileNum[map][col][row] = num;
                     col++;
                 }
                 if(col == gp.maxWorldCol){
@@ -132,7 +133,7 @@ public class TileManager {
         // Bổ sung tile lề thêm bằng cách tăng số lượng tile được vẽ
         while(worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
 
-            int tileNum = mapTileNum[worldCol][worldRow];
+            int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
 
             int worldX = worldCol * gp.tileSize;
             int worldY = worldRow * gp.tileSize;

@@ -551,11 +551,11 @@ public class UI {
         textY += lineHeight;
         g2.drawString("Yêu cầu sắt", textX, textY);
         textY -= lineHeight;
-        value = String.valueOf(gp.player.wood + "/" + gp.npc[0].woodneed);
+        value = String.valueOf(gp.player.wood + "/" + gp.npc[gp.currentMap][0].woodneed);
     	textX = getXforAlignRightText(value, tailX);
     	g2.drawString(value, textX, textY);
     	textY += lineHeight;
-        value = String.valueOf(gp.player.iron + "/" + gp.npc[0].ironneed);
+        value = String.valueOf(gp.player.iron + "/" + gp.npc[gp.currentMap][0].ironneed);
     	textX = getXforAlignRightText(value, tailX);
     	g2.drawString(value, textX, textY);
     	textY += lineHeight;
