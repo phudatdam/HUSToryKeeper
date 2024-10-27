@@ -2,6 +2,7 @@ package main;
 
 import entity.NPC_AnDuongVuong;
 import entity.NPC_KimQuy;
+import entity.NPC_ThanhGiong;
 import monsters.MON_BronzePolearm;
 import monsters.MON_BronzeSword;
 import object.OBJ_Heart;
@@ -34,6 +35,14 @@ public class AssetSetter {
     	gp.npc[mapNum][0] = new NPC_AnDuongVuong(gp);
     	gp.npc[mapNum][0].worldX = 37 * gp.tileSize;
         gp.npc[mapNum][0].worldY = 13 * gp.tileSize;
+        gp.npc[mapNum][1] = new NPC_KimQuy(gp);
+        gp.npc[mapNum][1].worldX = 40 * gp.tileSize;
+        gp.npc[mapNum][1].worldY = 36 * gp.tileSize;
+        
+        mapNum = 2;
+    	gp.npc[mapNum][0] = new NPC_ThanhGiong(gp);
+    	gp.npc[mapNum][0].worldX = 18 * gp.tileSize;
+        gp.npc[mapNum][0].worldY = 10 * gp.tileSize;
         gp.npc[mapNum][1] = new NPC_KimQuy(gp);
         gp.npc[mapNum][1].worldX = 40 * gp.tileSize;
         gp.npc[mapNum][1].worldY = 36 * gp.tileSize;
