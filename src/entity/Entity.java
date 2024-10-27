@@ -37,7 +37,9 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public String dialogues[][] = new String[50][50];
     public int dialogueIndex = 0;
     public int dialogueSet = 0;
-	  public boolean diaEnd = false;
+	public boolean diaEnd = false;
+	public int woodneed ;
+	public int ironneed ;
     // ENTITY COUNTERS
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
@@ -48,6 +50,10 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public final int TYPE_PLAYER = 0;
     public final int TYPE_NPC = 1;
     public final int TYPE_MONSTER = 2; 
+	public final int TYPE_sword = 3;
+    public final int TYPE_axe = 4;
+    public final int TYPE_pickaxe = 5; 
+	public final int TYPE_consumable = 6;
     public String name;
     public String description;
     public boolean invincible = false;
