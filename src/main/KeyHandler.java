@@ -176,6 +176,9 @@ public class KeyHandler implements KeyListener {
             }
             gp.playSE(2);
         }
+        if (code == KeyEvent.VK_E) {
+            gp.player.selectItem();
+        }
     }
 
     public void optionsState(int code) {
