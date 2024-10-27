@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.Random;
-
 import main.GamePanel;
 import object.OBJ_Coin;
 import object.OBJ_Iron;

@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.Random;
-
 import main.GamePanel;
 
 public class NPC_AnDuongVuong extends Entity {
