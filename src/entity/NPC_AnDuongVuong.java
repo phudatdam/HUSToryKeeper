@@ -3,11 +3,16 @@ package entity;
 import java.util.Random;
 
 import main.GamePanel;
+import object.OBJ_Axe;
+import object.OBJ_Pickaxe;
+import object.OBJ_Sword;
 
 public class NPC_AnDuongVuong extends Entity {
+	
 	public NPC_AnDuongVuong(GamePanel gp) {
 		super(gp);
-		
+		woodneed = 2;
+		ironneed = 2;
 		type = TYPE_NPC;
 		direction = "down";
 		speed = 1;
@@ -49,12 +54,22 @@ public class NPC_AnDuongVuong extends Entity {
 		dialogues[0][10] = "Adv :\n Không phải, nếu là kiếm thần thì ta đã dùng rồi.\n Cậu hãy tiến lên tìm đủ gỗ và sắt, giao nó cho\n người thợ rèn để sửa lại nỏ thần.";
 		dialogues[0][11] = "Nvc :\n Dùng tay không phá đá chặt cây ạ? Đây có phải\n Minecraft đâu.";
 		dialogues[0][12] = "Adv :\n Ta quên mất. Khi phá đá hãy dùng cây cuốc này này.\n Chặt cây hãy dùng chiếc rìu này.";
-		dialogues[0][13] = "Adv :\n Hãy kiếm đủ X gỗ và Y sắt. Chúc may mắn!";
+		dialogues[0][13] = "Adv :\n Hãy kiếm đủ " + woodneed + " gỗ và " + ironneed + " sắt. Chúc may mắn!";
 	}
 
 	public void speak() {
 		//super.speak();
 		facePlayer();
 		startDialogue(this, dialogueSet);
+		if( gp.player.axe == 0 && gp.player.sword == 0 && gp.player.pickaxe == 0)
+		{
+			gp.player.inventory.add(new OBJ_Axe(gp));
+			//gp.player.inventory.add(new OBJ_Sword(gp));
+			gp.player.inventory.add(new OBJ_Pickaxe(gp));
+			gp.player.axe=1;
+			gp.player.sword=1;
+			gp.player.pickaxe=1;
+	
+		}
 	}
 }

@@ -4,7 +4,6 @@ import java.util.Random;
 
 import main.GamePanel;
 import object.OBJ_Coin;
-import object.OBJ_Iron;
 public class NPC_KimQuy extends Entity{
     public NPC_KimQuy(GamePanel gp) {
 		super(gp);
@@ -40,7 +39,7 @@ public class NPC_KimQuy extends Entity{
 		dialogues[0][0] = "Rùa Vàng :\n Vậy cậu là người được chọn để bảo vệ lịch sử ư ?";
 		dialogues[0][1] = "Nvc :\n ngài là người thợ rèn ư ? ";
 		dialogues[0][2] = "Rùa vàng:\n Thế cậu nghĩ ai là người đủ phép thuật để sửa\n nỏ thần ? Nào cậu có đủ đồ chưa ?";
-		dialogues[1][0] = "Rùa Vàng:\nĐược rồi,việc của cậu đã xong , hãy tiếp tục\n cuộc hành trình phía trước";
+		dialogues[1][0] = "Rùa Vàng:\nĐược rồi,việc của cậu đã xong , hãy tiếp tục cuộc\n hành trình phía trước. Thả đồng xu này\n xuống giếng đi";
 		dialogues[2][0] = "Rùa Vàng:\nNày vẫn chưa đủ đâu, cố gắng lên.";
 	}
 
@@ -50,14 +49,17 @@ public class NPC_KimQuy extends Entity{
 		startDialogue(this, dialogueSet);
         if(diaEnd)
         {
-            if( gp.player.iron >= 1 && gp.player.wood >=1)
+            if( gp.player.iron >= gp.npc[0].ironneed && gp.player.wood >= gp.npc[0].woodneed)
             {
-                dialogueSet=1;
-                dialogueIndex=0;
-                gp.player.iron-=1;
-                gp.player.wood-=1;
-                gp.player.inventory.add(new OBJ_Coin(gp));
-                gp.player.inventory.remove(new OBJ_Iron(gp));
+				dialogueSet=1;
+				dialogueIndex=0;
+				if(gp.player.coink == 0){
+					gp.player.iron-= gp.npc[0].ironneed;
+					gp.player.wood-= gp.npc[0].woodneed;
+					gp.player.coink=1;
+					gp.player.inventory.add(new OBJ_Coin(gp));
+				}
+              
             }
             else
             {
