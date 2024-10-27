@@ -64,7 +64,6 @@ public class Player extends Entity {
     }
     
     public void setItems() {
-    	inventory.add(new OBJ_Coin(gp));
         iron++;
         inventory.add(new OBJ_Iron(gp));
         wood++;
@@ -222,15 +221,23 @@ public class Player extends Entity {
     	}
     }
     
-    // Nhặt được tim => hồi máu
+    // Tương tác với vật phẩm
 	public void pickUpObject(int i){
         if(i != 999){
             String objectName = gp.obj[i].name;
             switch (objectName){
+                // Nhặt được tim => hồi máu
                 case "Heart":
             		    life += 2;
                     gp.obj[i] = null;
                     break;
+                // Chuyển đến map tiếp theo khi chạm vào giếng
+                case "Well":
+                	if (coin >= 1) {
+                		coin--;
+                		
+                	}
+                	break;
             }
         }
     }

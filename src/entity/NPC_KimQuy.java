@@ -40,7 +40,8 @@ public class NPC_KimQuy extends Entity{
 		dialogues[0][0] = "Rùa Vàng :\n Vậy cậu là người được chọn để bảo vệ lịch sử ư ?";
 		dialogues[0][1] = "Nvc :\n ngài là người thợ rèn ư ? ";
 		dialogues[0][2] = "Rùa vàng:\n Thế cậu nghĩ ai là người đủ phép thuật để sửa\n nỏ thần ? Nào cậu có đủ đồ chưa ?";
-		dialogues[1][0] = "Rùa Vàng:\nĐược rồi,việc của cậu đã xong , hãy tiếp tục\n cuộc hành trình phía trước";
+		dialogues[1][0] = "Rùa Vàng:\nĐược rồi, việc của cậu đã xong, hãy nhận lấy\n đồng xu này";
+		dialogues[1][1] = "Rùa Vàng:\nHãy thả đồng xu vào giếng kia và tiếp tục\n cuộc hành trình phía trước";
 		dialogues[2][0] = "Rùa Vàng:\nNày vẫn chưa đủ đâu, cố gắng lên.";
 	}
 
@@ -56,6 +57,7 @@ public class NPC_KimQuy extends Entity{
                 dialogueIndex=0;
                 gp.player.iron-=1;
                 gp.player.wood-=1;
+                gp.player.coin++;
                 gp.player.inventory.add(new OBJ_Coin(gp));
                 gp.player.inventory.remove(new OBJ_Iron(gp));
             }
