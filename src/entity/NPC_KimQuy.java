@@ -1,10 +1,9 @@
 package entity;
 
-import java.util.Random;
-
 import main.GamePanel;
 import object.OBJ_Coin;
-public class NPC_KimQuy extends Entity{
+
+public class NPC_KimQuy extends NPC {
     public NPC_KimQuy(GamePanel gp) {
 		super(gp);
 		

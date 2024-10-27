@@ -1,11 +1,11 @@
 package main;
 
 import entity.Entity;
+import entity.NPC;
 import entity.Player;
 import tile.TileManager;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicTreeUI;
 import java.awt.*;
 import java.util.*;
 
@@ -44,7 +44,7 @@ public class GamePanel extends JPanel implements Runnable{
     // ENTITY AND OBJECT
     public Player player = new Player(this, keyH);
     public Entity obj[][] = new Entity[maxMap][20];
-    public Entity npc[][] = new Entity[maxMap][5];
+    public NPC npc[][] = new NPC[maxMap][5];
     public Entity monster[][] = new Entity[maxMap][10];
     ArrayList<Entity> entityList = new ArrayList<>();
 
