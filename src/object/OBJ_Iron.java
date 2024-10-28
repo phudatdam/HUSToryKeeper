@@ -9,7 +9,7 @@ public class OBJ_Iron extends Entity{
 		super(gp);
 		
 		name = "Sắt";
-		description = "[ "+ name +" ]\nchỉ là sắt thôi, bạn mong chờ gì.";
+		description = "[ "+ name +" ]\nChỉ là sắt thôi, bạn mong chờ gì.";
 		
 		down1 = setup("/objects/iron", gp.tileSize, gp.tileSize);
 	}

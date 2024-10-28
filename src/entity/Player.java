@@ -2,9 +2,12 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-import object.OBJ_Coin;
-import object.OBJ_Heart;
+//import object.OBJ_Axe;
+//import object.OBJ_Coin;
+//import object.OBJ_Heart;
 import object.OBJ_Iron;
+import object.OBJ_Sword;
+//import object.OBJ_Sword;
 import object.OBJ_Wood;
 
 import java.awt.*;
@@ -19,11 +22,15 @@ public class Player extends Entity {
     public final int screenY;
     int standCounter = 0;
 
-    public int hasHeart;
-    public int strength;
-    public int coin;
-    public int iron = 1;
-    public int wood = 1;
+    public int defense = 0;
+    public int strength = 1;
+    public int coink = 0;
+    public int iron = 0;
+    public int wood = 0;
+    public int sword = 0;
+    public int axe = 0;
+    public int pickaxe = 0;
+    public Entity currentWeapon;
     
     public ArrayList<Entity> inventory = new ArrayList();
     public int maxInventorySize = 15;
@@ -58,16 +65,16 @@ public class Player extends Entity {
         
         maxLife = 6;
         life = maxLife;
-        hasHeart = 0;
-        strength = 0;
-        coin = 0;
+        strength = 1;
+        defense = 0;
+        currentWeapon = new OBJ_Sword(gp);
     }
     
     public void setItems() {
-    	inventory.add(new OBJ_Coin(gp));
-        iron++;
+        inventory.add(currentWeapon);
+        iron+=2;
         inventory.add(new OBJ_Iron(gp));
-        wood++;
+        wood+=2;
         inventory.add(new OBJ_Wood(gp));
     }
 
@@ -87,14 +94,36 @@ public class Player extends Entity {
     }
     
     public void getPlayerAttackImage(){
-        attackUp1 = setup("/player/player_attack_up_1", gp.tileSize, gp.tileSize * 2);
-        attackUp2 = setup("/player/player_attack_up_2", gp.tileSize, gp.tileSize * 2);
-		attackDown1 = setup("/player/player_attack_down_1", gp.tileSize, gp.tileSize * 2);
-		attackDown2 = setup("/player/player_attack_down_2", gp.tileSize, gp.tileSize * 2);
-		attackLeft1 = setup("/player/player_attack_left_1", gp.tileSize * 2, gp.tileSize);
-		attackLeft2 = setup("/player/player_attack_left_2", gp.tileSize * 2, gp.tileSize);
-		attackRight1 = setup("/player/player_attack_right_1", gp.tileSize * 2, gp.tileSize);
-		attackRight2 = setup("/player/player_attack_right_2", gp.tileSize * 2, gp.tileSize);
+        if(currentWeapon.type == TYPE_sword){
+            attackUp1 = setup("/player/player_attack_up_1", gp.tileSize, gp.tileSize * 2);
+            attackUp2 = setup("/player/player_attack_up_2", gp.tileSize, gp.tileSize * 2);
+	    	attackDown1 = setup("/player/player_attack_down_1", gp.tileSize, gp.tileSize * 2);
+	    	attackDown2 = setup("/player/player_attack_down_2", gp.tileSize, gp.tileSize * 2);
+	    	attackLeft1 = setup("/player/player_attack_left_1", gp.tileSize * 2, gp.tileSize);
+	    	attackLeft2 = setup("/player/player_attack_left_2", gp.tileSize * 2, gp.tileSize);
+	    	attackRight1 = setup("/player/player_attack_right_1", gp.tileSize * 2, gp.tileSize);
+	    	attackRight2 = setup("/player/player_attack_right_2", gp.tileSize * 2, gp.tileSize);
+        }
+        if(currentWeapon.type == TYPE_axe){
+            attackUp1 = setup("/player/player_axe_up_1", gp.tileSize, gp.tileSize * 2);
+          attackUp2 = setup("/player/player_axe_up_2", gp.tileSize, gp.tileSize * 2);
+		    attackDown1 = setup("/player/player_axe_down_1", gp.tileSize, gp.tileSize * 2);
+		    attackDown2 = setup("/player/player_axe_down_2", gp.tileSize, gp.tileSize * 2);
+		    attackLeft1 = setup("/player/player_axe_left_1", gp.tileSize * 2, gp.tileSize);
+	    	attackLeft2 = setup("/player/player_axe_left_2", gp.tileSize * 2, gp.tileSize);
+	    	attackRight1 = setup("/player/player_axe_right_1", gp.tileSize * 2, gp.tileSize);
+	    	attackRight2 = setup("/player/player_axe_right_2", gp.tileSize * 2, gp.tileSize);
+        }
+        if(currentWeapon.type == TYPE_pickaxe){
+            attackUp1 = setup("/player/player_pickaxe_up_1", gp.tileSize, gp.tileSize * 2);
+            attackUp2 = setup("/player/player_pickaxe_up_2", gp.tileSize, gp.tileSize * 2);
+		    attackDown1 = setup("/player/player_pickaxe_down_1", gp.tileSize, gp.tileSize * 2);
+	    	attackDown2 = setup("/player/player_pickaxe_down_2", gp.tileSize, gp.tileSize * 2);
+		    attackLeft1 = setup("/player/player_pickaxe_left_1", gp.tileSize * 2, gp.tileSize);
+		    attackLeft2 = setup("/player/player_pickaxe_left_2", gp.tileSize * 2, gp.tileSize);
+		    attackRight1 = setup("/player/player_pickaxe_right_1", gp.tileSize * 2, gp.tileSize);
+		    attackRight2 = setup("/player/player_pickaxe_right_2", gp.tileSize * 2, gp.tileSize);
+        }
     }
 
     public void update(){ // được gọi 60 lần trong 1s
@@ -228,7 +257,12 @@ public class Player extends Entity {
             String objectName = gp.obj[i].name;
             switch (objectName){
                 case "Heart":
+<<<<<<< HEAD
             		life += 2;
+=======
+            		    life += 2;
+                        maxLife +=2;
+>>>>>>> refs/heads/feat/projectile-monsters
                     gp.obj[i] = null;
                     break;
             }
@@ -270,6 +304,23 @@ public class Player extends Entity {
     	}
     }
     
+    public void selectItem(){
+        int itemIndex = gp.ui.getItemIndexOnSlot();
+        if( itemIndex < inventory.size())
+        {
+            Entity selectedItem = inventory.get(itemIndex);
+            if( selectedItem.type == TYPE_sword || selectedItem.type == TYPE_axe || selectedItem.type == TYPE_pickaxe)
+            {
+                currentWeapon= selectedItem;
+                getPlayerAttackImage();
+            }
+            if( selectedItem.type == TYPE_consumable)
+            {
+                //update
+            }
+        }
+    }
+
     public void draw(Graphics2D g2){
         BufferedImage image = null;
         int tempScreenX = screenX;

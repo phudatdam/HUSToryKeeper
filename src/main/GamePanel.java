@@ -5,9 +5,13 @@ import entity.Player;
 import tile.TileManager;
 
 import javax.swing.*;
+<<<<<<< HEAD
 
 import ai.PathFinder;
 
+=======
+import javax.swing.plaf.basic.BasicTreeUI;
+>>>>>>> refs/heads/feat/projectile-monsters
 import java.awt.*;
 import java.util.*;
 
@@ -17,7 +21,7 @@ public class GamePanel extends JPanel implements Runnable{
     final int scale = 2;
 
     public final int tileSize = originalTileSize * 2; // 64 x 64 tile
-   // public final int tileSize1 = originalTileSize * 2;
+    // public final int tileSize1 = originalTileSize * 2;
     public final int maxScreenCol = 16; // dài 16 ô
     public final int maxScreenRow = 10; // rộng 12 ô
     public final int screenWidth = maxScreenCol * tileSize; // 768 pixels
@@ -32,8 +36,14 @@ public class GamePanel extends JPanel implements Runnable{
     int FPS = 60;
 
     // SYSTEM
+<<<<<<< HEAD
     public TileManager tileM = new TileManager(this);
     Sound sound = new Sound();
+=======
+    TileManager tileM = new TileManager(this);
+    Sound music = new Sound();
+    Sound se = new Sound();
+>>>>>>> refs/heads/feat/projectile-monsters
     public KeyHandler keyH = new KeyHandler(this);
     public AssetSetter aSetter  = new AssetSetter(this);
     public UI ui = new UI(this);
@@ -44,9 +54,10 @@ public class GamePanel extends JPanel implements Runnable{
     // ENTITY AND OBJECT
     public Player player = new Player(this, keyH);
     public Entity obj[] = new Entity[20];
-    public Entity npc[] = new Entity[5];
-    public Entity monster[] = new Entity[10];
+    public Entity npc[] = new Entity[10];
+    public Entity monster[] = new Entity[20];
     ArrayList<Entity> entityList = new ArrayList<>();
+    public ArrayList<Entity> projectileList = new ArrayList<>();
 
     // GAME STATE
     public int gameState;
@@ -55,7 +66,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int pauseState = 2;
     public final int dialogueState = 3;
     public final int characterState = 4;
-
+    public final int optionsState = 5;
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -116,17 +127,17 @@ public class GamePanel extends JPanel implements Runnable{
     public void update(){ // update nhân vật sau mỗi vòng loop
         if(gameState == playState){
             // PLAYER
-        	player.update();
-            
-        	// NPC
+            player.update();
+
+            // NPC
             for(int i = 0; i < npc.length; i++){
                 if(npc[i] != null){
                     npc[i].update();
                 }
             }
-            
+
             // MONSTERS
-            for(int i = 0; i < npc.length; i++){
+            for(int i = 0; i < monster.length; i++){
                 if(monster[i] != null){
                 	if(monster[i].alive == true && monster[i].dying == false){
                 		monster[i].update();
@@ -136,8 +147,21 @@ public class GamePanel extends JPanel implements Runnable{
                 	}
                 }
             }
+            
+            // PROJECTILE
+            for(int i = 0; i < projectileList.size(); i++)
+            {
+            	if(projectileList.get(i) != null) {
+            		if(projectileList.get(i).alive == true) {
+            			projectileList.get(i).update();
+            		}
+            		if(projectileList.get(i).alive == false) {
+            			projectileList.remove(i);
+            		}
+            	}
+            }
         }
-  
+
         if(gameState == pauseState){
 
         }
@@ -147,7 +171,7 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-     // TITLE SCREEN
+        // TITLE SCREEN
         if(gameState == titleState){
             ui.draw(g2);
         }
@@ -159,39 +183,45 @@ public class GamePanel extends JPanel implements Runnable{
 
             // ADD ENTITIES TO THE LIST
             entityList.add(player);
-            
+
             for (int i = 0; i < npc.length; i++) {
-            	if (npc[i] != null) {
-            		entityList.add(npc[i]);
-            	}
+                if (npc[i] != null) {
+                    entityList.add(npc[i]);
+                }
             }
-            
+
             for (int i = 0; i < obj.length; i++) {
-            	if (obj[i] != null) {
-            		entityList.add(obj[i]);
-            	}
+                if (obj[i] != null) {
+                    entityList.add(obj[i]);
+                }
             }
-            
+
             for (int i = 0; i < monster.length; i++) {
-            	if (monster[i] != null) {
-            		entityList.add(monster[i]);
-            	}
+                if (monster[i] != null) {
+                    entityList.add(monster[i]);
+                }
             }
             
+            for (int i = 0; i < projectileList.size(); i++) {
+                if (projectileList.get(i) != null) {
+                    entityList.add(projectileList.get(i));
+                }
+            }
+
             // SORT
             Collections.sort(entityList, new Comparator<Entity>() {
-				@Override
-				public int compare(Entity e1, Entity e2) {
-					int result = Integer.compare(e1.worldY, e2.worldY);
-					return result;
-				}            	
+                @Override
+                public int compare(Entity e1, Entity e2) {
+                    int result = Integer.compare(e1.worldY, e2.worldY);
+                    return result;
+                }
             });
-            
+
             // DRAW ENTITY LIST
             for (int i = 0; i < entityList.size(); i++) {
-            	entityList.get(i).draw(g2);
+                entityList.get(i).draw(g2);
             }
-            
+
             // EMPTY ENTITY LIST
             entityList.clear();
 
@@ -202,17 +232,17 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void playMusic(int i){
-        sound.setFile(i);
-        sound.play();
-        sound.loop();
+        music.setFile(i);
+        music.play();
+        music.loop();
     }
 
     public void stopMusic(){
-        sound.stop();
+        music.stop();
     }
 
     public void playSE(int i){
-        sound.setFile(i);
-        sound.play();
+        se.setFile(i);
+        se.play();
     }
 }

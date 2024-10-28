@@ -17,7 +17,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public BufferedImage up1, up2, up3, down1, down2, down3, left1,
                         	left2, left3, right1, right2, right3;
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, 
-    					attackLeft1, attackLeft2, attackRight1, attackRight2;
+    						attackLeft1, attackLeft2, attackRight1, attackRight2;
     public BufferedImage image1, image2, image3;
     public Rectangle solidArea = new Rectangle(0, 0, 64, 64);
     public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
@@ -29,6 +29,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public String direction = "down";
     public int spriteNum = 1;
     public boolean collisionOn = false;
+<<<<<<< HEAD
     public boolean invincible = false;
     public boolean collision = false;
     public boolean attacking = false;
@@ -36,38 +37,66 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public boolean alive = true;
     public boolean dying = false;
     public boolean hpBarOn = false;
+=======
+    public int speed;
+    public int maxLife;
+    public int life;
+    public boolean alive; // trạng thái mũi tên còn đang bay ko
+>>>>>>> refs/heads/feat/projectile-monsters
     
     // DIALOGUES
     public String dialogues[][] = new String[50][50];
     public int dialogueIndex = 0;
     public int dialogueSet = 0;
 	public boolean diaEnd = false;
+<<<<<<< HEAD
 	
+=======
+	public int woodneed ;
+	public int ironneed ;
+>>>>>>> refs/heads/feat/projectile-monsters
     // ENTITY COUNTERS
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
     public int invincibleCounter = 0; 
+<<<<<<< HEAD
     public int dyingCounter = 0;
     public int hpBarCounter = 0;
+=======
+    public int shotAvailableCounter = 0;
+>>>>>>> refs/heads/feat/projectile-monsters
  
     // ENTITY ATTRIBUTES
     public int type; // 0=player, 1=npc, 2=monsters
     public final int TYPE_PLAYER = 0;
     public final int TYPE_NPC = 1;
     public final int TYPE_MONSTER = 2; 
+	public final int TYPE_sword = 3;
+    public final int TYPE_axe = 4;
+    public final int TYPE_pickaxe = 5; 
+	public final int TYPE_consumable = 6;
     public String name;
     public String description;
+<<<<<<< HEAD
     public int speed;
     public int maxLife;
     public int life;
 	public int attack;
 	public int defense;
+=======
+    public boolean invincible = false;
+    public boolean collision = false;
+    public boolean attacking = false;
+    public int attack;
+    public Projectile projectile;
+>>>>>>> refs/heads/feat/projectile-monsters
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
 	}
 	
 	public void setAction() {
+<<<<<<< HEAD
 		
 	}
 	
@@ -77,6 +106,31 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	
 	public void speak() {
         		
+=======
+		actionLockCounter++;
+    	if (actionLockCounter == 120) {
+    		Random random = new Random();
+        	int i = random.nextInt(100) + 1;
+        	
+        	if (i <= 25) {
+        		direction = "up";  		
+        	}
+        	else if ((i > 25)&&(i <= 50)) {
+        		direction = "down";
+        	}
+        	else if ((i > 50)&&(i <= 75)) {
+        		direction = "left";
+        	}
+        	else if ((i > 75)&&(i <= 100)) {
+        		direction = "right";
+        	}
+        	actionLockCounter = 0;
+    	}
+	}
+	
+	public void speak() {
+        
+>>>>>>> refs/heads/feat/projectile-monsters
     }
 	
     public void startDialogue(Entity entity, int setNum){
@@ -103,16 +157,28 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		}
     }
     
+<<<<<<< HEAD
     public void checkCollision() {
     	collisionOn = false;
+=======
+	public void update() {
+		setAction();
+		
+		collisionOn = false;
+>>>>>>> refs/heads/feat/projectile-monsters
 		gp.cChecker.checkTile(this);
 		gp.cChecker.checkObject(this, false);
 		gp.cChecker.checkEntity(this, gp.npc);
 		gp.cChecker.checkEntity(this, gp.monster);		
 		boolean contactPlayer = gp.cChecker.checkPlayer(this);
 		
+<<<<<<< HEAD
 		if((this.type == TYPE_MONSTER)&&(contactPlayer == true)) {
 			damagePlayer(attack);
+=======
+		if((this.type == TYPE_MONSTER) && (contactPlayer == true)) {
+			damagePlayer(1);
+>>>>>>> refs/heads/feat/projectile-monsters
 		}
     }
     
@@ -136,6 +202,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
                     break;
             }
         }
+		
         spriteCounter++;
         if(spriteCounter > 7){ // hình ảnh được thay đổi sau 8 khung hình
             if(spriteNum == 1){
@@ -154,6 +221,18 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
         		invincibleCounter = 0;
         	}
         }
+        
+        if(shotAvailableCounter < 30) { // 30 game loop mới bắn
+        	shotAvailableCounter++;
+        }
+	}
+	
+	public void damagePlayer(int attack) {
+		if (gp.player.invincible == false) {
+			// quái tấn công => gây sát thương lên player
+			gp.player.life -= attack;
+			gp.player.invincible = true;
+		}
 	}
 
 	public void damagePlayer(int attack) {

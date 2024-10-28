@@ -99,9 +99,13 @@ public class MON_BronzePolearm extends Entity{
         	actionLockCounter = 0;
     	}
     }
+<<<<<<< HEAD
 	
 	public void damageReaction() {
 		actionLockCounter = 0;
 		direction = gp.player.direction;
 	}
 }
+=======
+}
+>>>>>>> refs/heads/feat/projectile-monsters
