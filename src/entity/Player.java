@@ -228,7 +228,7 @@ public class Player extends Entity {
             String objectName = gp.obj[i].name;
             switch (objectName){
                 case "Heart":
-            		    life += 2;
+            		life += 2;
                     gp.obj[i] = null;
                     break;
             }
@@ -247,6 +247,7 @@ public class Player extends Entity {
     public void contactMonster(int i) {
     	if(i != 999){
     		if (invincible == false && life > 0) {
+    			// gp.playSE(1);
         		life -= 1;
         		invincible = true;
     		}
@@ -257,12 +258,13 @@ public class Player extends Entity {
     public void damageMonster(int i) {  
     	if(i != 999){
     		if (gp.monster[i].invincible == false) {
+    			gp.playSE(1);
     			gp.monster[i].life -= 1;
     			gp.monster[i].invincible = true;
     			gp.monster[i].damageReaction();
-    			
+   			
     			if (gp.monster[i].life <= 0) {
-    				gp.monster[i] = null;
+    				gp.monster[i].dying = true;
     			}
     		}
     	}

@@ -16,7 +16,6 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     // ENTITY IMAGE
     public BufferedImage up1, up2, up3, down1, down2, down3, left1,
                         	left2, left3, right1, right2, right3;
-    public String direction = "down"; //
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, 
     					attackLeft1, attackLeft2, attackRight1, attackRight2;
     public BufferedImage image1, image2, image3;
@@ -27,15 +26,16 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     
     // ENTITY STATUS
 	public int worldX, worldY;
+    public String direction = "down";
     public int spriteNum = 1;
     public boolean collisionOn = false;
-    public int speed;
-    public int maxLife;
-    public int life;
     public boolean invincible = false;
     public boolean collision = false;
     public boolean attacking = false;
     public boolean onPath = false;
+    public boolean alive = true;
+    public boolean dying = false;
+    public boolean hpBarOn = false;
     
     // DIALOGUES
     public String dialogues[][] = new String[50][50];
@@ -46,7 +46,9 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     // ENTITY COUNTERS
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
-    public int invincibleCounter = 0;   
+    public int invincibleCounter = 0; 
+    public int dyingCounter = 0;
+    public int hpBarCounter = 0;
  
     // ENTITY ATTRIBUTES
     public int type; // 0=player, 1=npc, 2=monsters
@@ -55,6 +57,9 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public final int TYPE_MONSTER = 2; 
     public String name;
     public String description;
+    public int speed;
+    public int maxLife;
+    public int life;
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -201,17 +206,78 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	                break;
 	        }
 	        
-	        if (invincible == true) {
-	        	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+	        if (type == TYPE_MONSTER && hpBarOn == true) {
+	        	// Drawing monsters health bar 
+	        	double oneScale = (double)gp.tileSize / maxLife;
+	        	double hpBarValue = oneScale * life;
+	        	
+	        	g2.setColor(new Color(35,35,35));
+	        	g2.fillRect(screenX - 1, screenY - 13, gp.tileSize + 2, 12);
+	        	
+	        	g2.setColor(new Color(255,0,30));
+	        	g2.fillRect(screenX, screenY - 12, (int)hpBarValue, 10);
+	        	
+	        	// If not attacked, health bar will disappear after 5 secs
+	        	hpBarCounter++;
+	        	if (hpBarCounter > 300) {
+	        		hpBarCounter = 0;
+	        		hpBarOn = false;
+	        	}
 	        }
 	        
+	        // Health bar will appear if the monster is chasing/in aggro
+	        if (type == TYPE_MONSTER && this.onPath == true) {
+	        	hpBarOn = true;
+	        }
+	        
+	        if (dying == true) {
+	        	dyingAnimation(g2);
+	        }
             // Vẽ tile nếu nằm trong màn hình hoặc nằm trong lề được mở rộng
             g2.drawImage(image, screenX, screenY, null);
             
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+            changeAlpha(g2, 1f);
         }
 	}
 	
+	public void dyingAnimation(Graphics2D g2) {
+		dyingCounter++;
+		int i = 5;
+		
+		if (dyingCounter <= i) {
+			changeAlpha(g2, 0f);
+		}
+		if (dyingCounter > i && dyingCounter <= i*2) {
+			changeAlpha(g2, 1f);
+		}
+		if (dyingCounter > i*2 && dyingCounter <= i*3) {
+			changeAlpha(g2, 0f);
+		}
+		if (dyingCounter > i*3 && dyingCounter <= i*4) {
+			changeAlpha(g2, 1f);
+		}
+		if (dyingCounter > i*4 && dyingCounter <= i*5) {
+			changeAlpha(g2, 0f);
+		}
+		if (dyingCounter > i*5 && dyingCounter <= i*6) {
+			changeAlpha(g2, 1f);
+		}
+		if (dyingCounter > i*6 && dyingCounter <= i*7) {
+			changeAlpha(g2, 0f);
+		}
+		if (dyingCounter > i*7 && dyingCounter <= i*8) {
+			changeAlpha(g2, 1f);
+		}
+		if (dyingCounter > i*8) {
+			dying = false;
+			alive = false;
+		}		
+	}
+	
+	public void changeAlpha(Graphics2D g2, float alphaValue) {
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
+	}
+
 	public void searchPath(int goalCol, int goalRow) {
 		int startCol = (worldX + solidArea.x) / gp.tileSize;
 		int startRow = (worldY + solidArea.y) / gp.tileSize;
