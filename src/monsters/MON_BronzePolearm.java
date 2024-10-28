@@ -16,6 +16,8 @@ public class MON_BronzePolearm extends Entity{
 		speed = 1;
 		maxLife = 4;
 		life = maxLife;
+		attack = 1;
+		defense = 0;
 		
 		solidArea = new Rectangle(12, 12, 40, 40);
         solidAreaDefaultX = solidArea.x;
@@ -73,6 +75,10 @@ public class MON_BronzePolearm extends Entity{
 			
 			searchPath(goalCol, goalRow);
 		}
+		
+		if (attacking == false) {
+			checkAttackOrNot(30, gp.tileSize * 3, gp.tileSize * 3);
+		}
     	actionLockCounter++;
     	if (actionLockCounter == 120) {
     		Random random = new Random();
@@ -95,7 +101,7 @@ public class MON_BronzePolearm extends Entity{
     }
 	
 	public void damageReaction() {
-//		actionLockCounter = 0;
-//		direction = gp.player.direction;
+		actionLockCounter = 0;
+		direction = gp.player.direction;
 	}
 }

@@ -16,6 +16,8 @@ public class MON_BronzeSword extends Entity {
 		speed = 1;
 		maxLife = 4;
 		life = maxLife;
+		attack = 1;
+		defense = 0;
 		
 		solidArea = new Rectangle(12, 12, 40, 40);
         solidAreaDefaultX = solidArea.x;
@@ -98,6 +100,6 @@ public class MON_BronzeSword extends Entity {
 	
 	public void damageReaction() {
 		actionLockCounter = 0;
-		onPath = true;
+		direction = gp.player.direction;
 	}
 }

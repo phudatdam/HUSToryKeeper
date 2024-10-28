@@ -60,6 +60,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public int speed;
     public int maxLife;
     public int life;
+	public int attack;
+	public int defense;
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -110,11 +112,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		boolean contactPlayer = gp.cChecker.checkPlayer(this);
 		
 		if((this.type == TYPE_MONSTER)&&(contactPlayer == true)) {
-			if (gp.player.invincible == false) {
-				// quái tấn công => gây sát thương lên player
-				gp.player.life -= 1;
-				gp.player.invincible = true;
-			}
+			damagePlayer(attack);
 		}
     }
     
@@ -158,6 +156,58 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
         }
 	}
 
+	public void damagePlayer(int attack) {
+		if (gp.player.invincible == false) {
+			// gp.playSE(6)
+			
+			int damage = attack;
+			if (damage <= 0) {
+				damage = 0;
+			}
+			gp.player.life -= attack;
+			gp.player.invincible = true;
+		}
+	}
+	
+	public void checkAttackOrNot(int rate, int vertical, int horizontal) {
+		boolean targetInRange = false;
+		int xDis = getXDistance(gp.player);
+		int yDis = getYDistance(gp.player);
+		
+		switch(direction) {
+		case("up"):
+			if (gp.player.worldY < worldY && yDis < vertical && xDis < horizontal) {
+				targetInRange = true;
+			}
+			break;
+		case("down"):
+			if (gp.player.worldY > worldY && yDis < vertical && xDis < horizontal) {
+				targetInRange = true;
+			}
+			break;
+		case("left"):
+			if (gp.player.worldX < worldX && yDis < vertical && xDis < horizontal) {
+				targetInRange = true;
+			}
+			break;
+		case("right"):
+			if (gp.player.worldX > worldX && yDis < vertical && xDis < horizontal) {
+				targetInRange = true;
+			}
+			break;
+		}
+		
+		if (targetInRange == true) {
+			int i = new Random().nextInt(rate);
+			if (i == 0) {
+				attacking = true;
+				spriteNum = 1;
+				spriteCounter = 0;
+				
+			}
+		}
+	}
+	
 	// Công cụ tạo ảnh entity
 	public BufferedImage setup(String imagePath, int width, int height) { 	
     	// Khai báo công cụ scale
