@@ -70,6 +70,5 @@ public class MON_BronzePolearm extends Entity{
 	
 	public void damageReaction() {
 		actionLockCounter = 0;
-		onPath = true;
 	}
 }

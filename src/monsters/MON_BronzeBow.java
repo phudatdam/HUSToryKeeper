@@ -74,6 +74,5 @@ public class MON_BronzeBow extends Entity{
 	
 	public void damageReaction() {
 		actionLockCounter = 0;
-		onPath = true;
 	}
 }

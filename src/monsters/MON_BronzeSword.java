@@ -17,13 +17,13 @@ public class MON_BronzeSword extends Entity {
 		life = maxLife;
 		attack = 1;
 		defense = 0;
+		motion1_duration = 5;
+		motion2_duration = 25;
 		
 		solidArea = new Rectangle(12, 12, 40, 40);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        motion1_duration = 5;
-		motion2_duration = 25;
-		
+        
         getImage();
         getAttackImage();
 	}
@@ -70,6 +70,5 @@ public class MON_BronzeSword extends Entity {
 	
 	public void damageReaction() {
 		actionLockCounter = 0;
-		onPath = true;
 	}
 }

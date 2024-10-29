@@ -20,7 +20,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     						attackLeft1, attackLeft2, attackRight1, attackRight2;
     public BufferedImage image1, image2, image3;
     public Rectangle solidArea = new Rectangle(0, 0, 64, 64);
-    public Rectangle attackArea = new Rectangle(0, 12, 64, 40); // fix
+    public Rectangle attackArea = new Rectangle(12, 12, 40, 40); // fix
     public int solidAreaDefaultX = solidArea.x;
     public int solidAreaDefaultY = solidArea.y;
     public Entity attacker;
@@ -51,12 +51,11 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     // ENTITY COUNTERS
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
-    public int attackCounter = 0;
     public int invincibleCounter = 0; 
-    public int dyingCounter = 0;
-    public int hpBarCounter = 0;
+    int dyingCounter = 0;
+    int hpBarCounter = 0;
     public int shotAvailableCounter = 0;
-	public int knockBackCounter = 0;
+	int knockBackCounter = 0;
  
     // ENTITY ATTRIBUTES
     public int type; // 0=player, 1=npc, 2=monsters
@@ -140,14 +139,21 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		gp.cChecker.checkObject(this, false);
 		gp.cChecker.checkEntity(this, gp.npc);
 		gp.cChecker.checkEntity(this, gp.monster);
+		boolean contactPlayer = gp.cChecker.checkPlayer(this);
+		
+		if(type == TYPE_MONSTER && contactPlayer == true) {
+			damagePlayer(attack);
+		}
     } 
 	public void update() {
 		if (knockBack == true) {
 			checkCollision();
 			if (collisionOn == true) {
 				knockBackCounter = 0;
+				knockBack = false;
+				speed = defaultSpeed;
 			} else if (collisionOn == false) {
-				switch (knockBackDirection) {
+				switch (gp.player.direction) {
 	                case "up":
 	                    worldY -= speed;
 	                    break;
@@ -164,13 +170,11 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			}
 			
 			knockBackCounter++;
-			if (knockBackCounter > 10) {
+			if (knockBackCounter == 10) {
 				knockBackCounter = 0;
 				knockBack = false;
 				speed = defaultSpeed;
 			}
-		} else if (attacking == true) {
-			attacking();
 		} else {
 			setAction();
 			checkCollision();
@@ -243,14 +247,10 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     		solidArea.width = attackArea.width;
     		solidArea.height = attackArea.height;
     		
-    		if (type == TYPE_MONSTER) {
+    		if (this.type == TYPE_MONSTER) {
     			if (gp.cChecker.checkPlayer(this) == true) {
     				damagePlayer(attack);
     			}
-    		} else if (type == TYPE_PLAYER) {
-    			// Check monster collision with the updated worldX, worldY and solidArea
-    			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-        		gp.player.damageMonster(monsterIndex, this, attack);
     		}
     		
     		// Restore the original data
@@ -270,19 +270,12 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			// gp.playSE(1)
 			
 			int damage = attack;
-			setKnockBack(gp.player, this);
-			if (damage <= 0) {
+			if (damage <= 0 && gp.player.life <= 0) {
 				damage = 0;
 			}
-			gp.player.life -= attack;
+			gp.player.life -= damage;
 			gp.player.invincible = true;
 		}
-	}
-	public void setKnockBack(Entity target, Entity attacker) {
-		this.attacker = attacker;
-		target.knockBackDirection = attacker.direction;
-    	target.speed += 10;
-    	target.knockBack = true;
 	}
 	public void checkShootOrNot(int rate, int shotInterval) {
 		int i = new Random().nextInt(rate); // bắn ngẫu nhiên

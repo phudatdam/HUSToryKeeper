@@ -109,7 +109,7 @@ public class Player extends Entity {
         }
         if(currentWeapon.type == TYPE_axe){
             attackUp1 = setup("/player/player_axe_up_1", gp.tileSize, gp.tileSize * 2);
-          attackUp2 = setup("/player/player_axe_up_2", gp.tileSize, gp.tileSize * 2);
+            attackUp2 = setup("/player/player_axe_up_2", gp.tileSize, gp.tileSize * 2);
 		    attackDown1 = setup("/player/player_axe_down_1", gp.tileSize, gp.tileSize * 2);
 		    attackDown2 = setup("/player/player_axe_down_2", gp.tileSize, gp.tileSize * 2);
 		    attackLeft1 = setup("/player/player_axe_left_1", gp.tileSize * 2, gp.tileSize);
@@ -133,7 +133,34 @@ public class Player extends Entity {
     		attacking = true;
     	}
     		
-    	if (attacking == true) {
+    	if (knockBack == true) {
+			checkCollision();
+			if (collisionOn == true) {
+				knockBackCounter = 0;
+			} else if (collisionOn == false) {
+				switch (knockBackDirection) {
+	                case "up":
+	                    worldY -= speed;
+	                    break;
+	                case "down":
+	                    worldY += speed;
+	                    break;
+	                case "right":
+	                    worldX += speed;
+	                    break;
+	                case "left":
+	                    worldX -= speed;
+	                    break;
+				}
+			}
+			
+			knockBackCounter++;
+			if (knockBackCounter > 5) {
+				knockBackCounter = 0;
+				knockBack = false;
+				speed = defaultSpeed;
+			}
+		} else if (attacking == true) {
     		attacking();
     	} else if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed || keyH.enterPressed) {
             if(keyH.upPressed){
@@ -207,7 +234,50 @@ public class Player extends Entity {
         		invincibleCounter = 0;
         	}
         }
-    }    
+    }  
+    public void attacking() {
+    	spriteCounter++;
+    	
+    	if (spriteCounter <= motion1_duration) {
+    		spriteNum = 1;
+    	}
+    	if (spriteCounter > motion1_duration && spriteCounter <= motion2_duration) {
+    		spriteNum = 2;
+    		
+    		// Save the current worldX, worldY, solidArea
+    		int currentWorldX = worldX;
+    		int currentWorldY = worldY;
+    		int solidAreaWidth = solidArea.width;
+    		int solidAreaHeight = solidArea.height;
+    		
+    		// Adjust player worldX/worldY for the attackArea
+    		switch(direction) {
+    			case("up"): worldY -= attackArea.height; 
+    			case("down"): worldY += attackArea.height; 
+    			case("left"): worldY -= attackArea.width;
+    			case("right"): worldY += attackArea.width; 
+    		}
+    		
+    		// Change solidArea to the attackArea
+    		solidArea.width = attackArea.width;
+    		solidArea.height = attackArea.height;
+    		
+    			// Check monster collision with the updated worldX, worldY and solidArea
+    			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+        		gp.player.damageMonster(monsterIndex, attack);
+    		
+    		// Restore the original data
+    		worldX = currentWorldX;
+    		worldY = currentWorldY;
+    		solidArea.width = solidAreaWidth; 
+    		solidArea.height = solidAreaHeight;
+    	}
+    	if (spriteCounter > motion2_duration) {
+    		spriteNum = 1;
+    		spriteCounter = 0;
+    		attacking = false;
+    	}
+    }
     // Nhặt được tim => hồi máu
 	public void pickUpObject(int i){
         if(i != 999){
@@ -237,12 +307,17 @@ public class Player extends Entity {
     		}
     	}	
 	}   
+	public void setKnockBack(Entity entity) {
+		entity.direction = gp.player.direction;
+    	entity.speed += 10;
+    	entity.knockBack = true;
+	}
     // Đánh thường => gây sát thương
-    public void damageMonster(int i, Entity attacker, int attack) {  
+    public void damageMonster(int i, int attack) {  
     	if(i != 999){
     		if (gp.monster[i].invincible == false) {
     			gp.playSE(1);
-    			setKnockBack(gp.monster[i], attacker);
+    			setKnockBack(gp.monster[i]);
     			gp.monster[i].life -= attack;
     			gp.monster[i].invincible = true;
     			gp.monster[i].damageReaction();
@@ -255,7 +330,7 @@ public class Player extends Entity {
     }  
     public void selectItem(){
         int itemIndex = gp.ui.getItemIndexOnSlot();
-        if( itemIndex < inventory.size())
+        if (itemIndex < inventory.size())
         {
             Entity selectedItem = inventory.get(itemIndex);
             if( selectedItem.type == TYPE_sword || selectedItem.type == TYPE_axe || selectedItem.type == TYPE_pickaxe)
