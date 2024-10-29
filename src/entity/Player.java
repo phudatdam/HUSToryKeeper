@@ -24,7 +24,7 @@ public class Player extends Entity {
 
     public int defense = 0;
     public int strength = 1;
-    public int coink = 0;
+    public int coin = 0;
     public int iron = 0;
     public int wood = 0;
     public int sword = 0;
@@ -32,7 +32,7 @@ public class Player extends Entity {
     public int pickaxe = 0;
     public Entity currentWeapon;
     
-    public ArrayList<Entity> inventory = new ArrayList();
+    public ArrayList<Entity> inventory = new ArrayList<Entity>();
     public int maxInventorySize = 15;
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -69,7 +69,6 @@ public class Player extends Entity {
         defense = 0;
         currentWeapon = new OBJ_Sword(gp);
     }
-    
     public void setItems() {
         inventory.add(currentWeapon);
         iron+=2;
@@ -92,7 +91,6 @@ public class Player extends Entity {
 		right2 = setup("/player/player_right_2", gp.tileSize, gp.tileSize);
 		right3 = setup("/player/player_right_3", gp.tileSize, gp.tileSize);
     }
-    
     public void getPlayerAttackImage(){
         if(currentWeapon.type == TYPE_sword){
             attackUp1 = setup("/player/player_attack_up_1", gp.tileSize, gp.tileSize * 2);
@@ -125,7 +123,6 @@ public class Player extends Entity {
 		    attackRight2 = setup("/player/player_pickaxe_right_2", gp.tileSize * 2, gp.tileSize);
         }
     }
-
     public void update(){ // được gọi 60 lần trong 1s
     	if (keyH.attackPressed) {
     		attacking = true;
@@ -206,7 +203,6 @@ public class Player extends Entity {
         	}
         }
     }
-
     public void attacking() {
     	spriteCounter++;
     	
@@ -257,26 +253,19 @@ public class Player extends Entity {
             String objectName = gp.obj[i].name;
             switch (objectName){
                 case "Heart":
-<<<<<<< HEAD
             		life += 2;
-=======
-            		    life += 2;
-                        maxLife +=2;
->>>>>>> refs/heads/feat/projectile-monsters
                     gp.obj[i] = null;
                     break;
             }
         }
-    }
-    
+    }   
     public void interactNPC(int i) {
     	if(i != 999) {
     		    gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
         }
         gp.keyH.enterPressed=false;
-    }
-    
+    }    
     // Player tiếp xúc với quái => nhận sát thương
     public void contactMonster(int i) {
     	if(i != 999){
@@ -286,8 +275,7 @@ public class Player extends Entity {
         		invincible = true;
     		}
     	}	
-	}
-    
+	}   
     // Đánh thường => gây sát thương
     public void damageMonster(int i) {  
     	if(i != 999){
@@ -302,8 +290,7 @@ public class Player extends Entity {
     			}
     		}
     	}
-    }
-    
+    }  
     public void selectItem(){
         int itemIndex = gp.ui.getItemIndexOnSlot();
         if( itemIndex < inventory.size())

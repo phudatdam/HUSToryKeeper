@@ -1,8 +1,6 @@
 package monsters;
 
 import java.awt.Rectangle;
-import java.util.Random;
-
 import entity.Entity;
 import main.GamePanel;
 
@@ -22,8 +20,8 @@ public class MON_BronzeSword extends Entity {
 		solidArea = new Rectangle(12, 12, 40, 40);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        attackArea.width = 48;
-        attackArea.height = 48;
+        attackArea.width = 5;
+        attackArea.height = 25;
         
         getImage();
         getAttackImage();
@@ -51,55 +49,26 @@ public class MON_BronzeSword extends Entity {
 		attackRight2 = setup("/monsters/bronze_sword_attack_right_2", gp.tileSize * 2, gp.tileSize);		
 	}
 	
-	public void update() {
-		super.update();
-		
-		int xDistance = Math.abs(worldX - gp.player.worldX);
-		int yDistance = Math.abs(worldY - gp.player.worldY);
-		int tileDistance = (xDistance + yDistance) / gp.tileSize;
-		
-		if (onPath == false && tileDistance < 5) {
-			int i = new Random().nextInt(100) + 1;
-			if (i > 50) {
-				onPath = true;
-			}
-		}
-		
-		if (onPath == true && tileDistance > 20) {
-			onPath = false;
-		}
-	}
-	
 	public void setAction() {
 		if (onPath == true) {
-			int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
-			int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
-			
-			searchPath(goalCol, goalRow);
+			// Check if it stops chasing
+			checkStopChasingOrNot(gp.player, 15, 30);				
+			// Search the direction to go
+			searchPath(getGoalCol(gp.player), getGoalRow(gp.player));		
+		} else {
+			// Check if it starts chasing
+			checkStartChasingOrNot(gp.player, 5, 30);
+			// Get a random direction
+			getRandomDirection();
 		}
-    	actionLockCounter++;
-    	if (actionLockCounter == 120) {
-    		Random random = new Random();
-        	int i = random.nextInt(100) + 1;
-        	
-        	if (i <= 25) {
-        		direction = "up";  		
-        	}
-        	else if ((i > 25)&&(i <= 50)) {
-        		direction = "down";
-        	}
-        	else if ((i > 50)&&(i <= 75)) {
-        		direction = "left";
-        	}
-        	else if ((i > 75)&&(i <= 100)) {
-        		direction = "right";
-        	}
-        	actionLockCounter = 0;
-    	}
+		
+		if (attacking == false) {
+			checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize * 4);
+		}
     }
 	
 	public void damageReaction() {
 		actionLockCounter = 0;
-		direction = gp.player.direction;
+		onPath = true;
 	}
 }

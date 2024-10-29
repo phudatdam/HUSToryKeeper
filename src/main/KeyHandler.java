@@ -32,37 +32,8 @@ public class KeyHandler implements KeyListener {
         }
 
         // PLAY STATE
-<<<<<<< HEAD
-        else if(gp.gameState ==  gp.playState) {
-        	if(code == KeyEvent.VK_W){ // lên
-                upPressed = true;
-            }
-            if(code == KeyEvent.VK_S){ // xuống
-                downPressed = true;
-            }
-            if(code == KeyEvent.VK_A){ // trái
-                leftPressed = true;
-            }
-            if(code == KeyEvent.VK_D){ // phải
-                rightPressed = true;
-            }
-            if(code == KeyEvent.VK_P){
-                    gp.gameState = gp.pauseState;
-            }
-            if(code == KeyEvent.VK_I) {
-            	gp.gameState = gp.characterState;
-            }
-            if(code == KeyEvent.VK_E) {
-                enterPressed = true;
-            }
-            if(code == KeyEvent.VK_J) {
-                attackPressed = true;
-                gp.playSE(1);
-            }
-=======
         else if (gp.gameState == gp.playState) {
             playState(code);
->>>>>>> refs/heads/feat/projectile-monsters
         }
 
         // PAUSE STATE

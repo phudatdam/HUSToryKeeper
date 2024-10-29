@@ -5,13 +5,9 @@ import entity.Player;
 import tile.TileManager;
 
 import javax.swing.*;
-<<<<<<< HEAD
 
 import ai.PathFinder;
 
-=======
-import javax.swing.plaf.basic.BasicTreeUI;
->>>>>>> refs/heads/feat/projectile-monsters
 import java.awt.*;
 import java.util.*;
 
@@ -36,14 +32,9 @@ public class GamePanel extends JPanel implements Runnable{
     int FPS = 60;
 
     // SYSTEM
-<<<<<<< HEAD
     public TileManager tileM = new TileManager(this);
-    Sound sound = new Sound();
-=======
-    TileManager tileM = new TileManager(this);
     Sound music = new Sound();
     Sound se = new Sound();
->>>>>>> refs/heads/feat/projectile-monsters
     public KeyHandler keyH = new KeyHandler(this);
     public AssetSetter aSetter  = new AssetSetter(this);
     public UI ui = new UI(this);
