@@ -21,10 +21,9 @@ public class MON_BronzeSword extends Entity {
 		solidArea = new Rectangle(12, 12, 40, 40);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        
-        attackArea.width = 48;
-        attackArea.height = 64;
-        
+        motion1_duration = 5;
+		motion2_duration = 25;
+		
         getImage();
         getAttackImage();
 	}
@@ -65,7 +64,7 @@ public class MON_BronzeSword extends Entity {
 		}
 		
 		if (attacking == false) {
-			checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize * 4);
+			checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize);
 		}
     }
 	

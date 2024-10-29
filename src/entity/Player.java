@@ -48,8 +48,8 @@ public class Player extends Entity {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         
-        attackArea.width = 64;
-        attackArea.height = 64;
+        attackArea.width = 64; // fix
+        attackArea.height = 64; // fix
 
         setDefaultValues();
         getPlayerImage();
@@ -63,10 +63,13 @@ public class Player extends Entity {
         defaultSpeed = 5;
         speed = defaultSpeed;
         direction = "down";
+        type = TYPE_PLAYER;
+        motion1_duration = 5; // fix
+		motion2_duration = 25; // fix
         
         maxLife = 6;
         life = maxLife;
-        attack = 1;
+        attack = 1; // fix
         strength = 1;
         defense = 0;
         currentWeapon = new OBJ_Sword(gp);
@@ -204,51 +207,7 @@ public class Player extends Entity {
         		invincibleCounter = 0;
         	}
         }
-    }
-    public void attacking() {
-    	spriteCounter++;
-    	
-    	if (spriteCounter <= 5) {
-    		spriteNum = 1;
-    	}
-    	if (spriteCounter > 5 && spriteCounter <= 25) {
-    		spriteNum = 2;
-    		
-    		// Save the current worldX, worldY, solidArea
-    		int currentWorldX = worldX;
-    		int currentWorldY = worldY;
-    		int solidAreaWidth = solidArea.width;
-    		int solidAreaHeight = solidArea.height;
-    		
-    		// Adjust player worldX/worldY for the attackArea
-    		switch(direction) {
-    			case("up"): worldY -= attackArea.height; 
-    			case("down"): worldY += attackArea.height; 
-    			case("left"): worldY -= attackArea.width;
-    			case("right"): worldY += attackArea.width; 
-    		}
-    		
-    		// Change solidArea to the attackArea
-    		solidArea.width = attackArea.width;
-    		solidArea.height = attackArea.height;
-    		
-    		// Check monster collision with the updated worldX, worldY and solidArea
-    		int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-    		damageMonster(monsterIndex, this, attack);
-    		
-    		// Restore the original data
-    		worldX = currentWorldX;
-    		worldY = currentWorldY;
-    		solidArea.width = solidAreaWidth; 
-    		solidArea.height = solidAreaHeight;
-    	}
-    	if (spriteCounter > 25) {
-    		spriteNum = 1;
-    		spriteCounter = 0;
-    		attacking = false;
-    	}
-    }
-    
+    }    
     // Nhặt được tim => hồi máu
 	public void pickUpObject(int i){
         if(i != 999){

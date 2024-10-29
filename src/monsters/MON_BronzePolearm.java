@@ -24,10 +24,6 @@ public class MON_BronzePolearm extends Entity{
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         
-        attackArea.width = 48;
-        attackArea.height = 64;
-        
-        
         getImage();
         getAttackImage();
 	}
@@ -68,7 +64,7 @@ public class MON_BronzePolearm extends Entity{
 		}
 		
 		if (attacking == false) {
-			checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize * 4);
+			checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize);
 		}
     }
 	

@@ -20,7 +20,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     						attackLeft1, attackLeft2, attackRight1, attackRight2;
     public BufferedImage image1, image2, image3;
     public Rectangle solidArea = new Rectangle(0, 0, 64, 64);
-    public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
+    public Rectangle attackArea = new Rectangle(0, 12, 64, 40); // fix
     public int solidAreaDefaultX = solidArea.x;
     public int solidAreaDefaultY = solidArea.y;
     public Entity attacker;
@@ -169,6 +169,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 				knockBack = false;
 				speed = defaultSpeed;
 			}
+		} else if (attacking == true) {
+			attacking();
 		} else {
 			setAction();
 			checkCollision();
@@ -189,22 +191,22 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	                    break;
 	            }
 	        }
-		}
-		
-        spriteCounter++;
-        if(spriteCounter > 7){ // hình ảnh được thay đổi sau 8 khung hình
-            if(spriteNum == 1){
-                spriteNum = 2;
-            }
-            else if(spriteNum == 2){
-                spriteNum = 1;
-            }
-            spriteCounter = 0;	    
+			
+		    spriteCounter++;
+	        if(spriteCounter > 24){ // hình ảnh được thay đổi sau 8 khung hình
+	            if(spriteNum == 1){
+	                spriteNum = 2;
+	            }
+	            else if(spriteNum == 2){
+	                spriteNum = 1;
+	            }
+	            spriteCounter = 0;	    
+			}
 		}
 		 
         if (invincible == true) {
         	invincibleCounter++;
-        	if (invincibleCounter > 40) {
+        	if (invincibleCounter > 20) {
         		invincible = false;
         		invincibleCounter = 0;
         	}
@@ -268,6 +270,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			// gp.playSE(1)
 			
 			int damage = attack;
+			setKnockBack(gp.player, this);
 			if (damage <= 0) {
 				damage = 0;
 			}
