@@ -23,6 +23,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX = solidArea.x;
     public int solidAreaDefaultY = solidArea.y;
+    public Entity attacker;
     
     // ENTITY STATUS
 	public int worldX, worldY;
@@ -36,6 +37,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public boolean alive = true; // trạng thái mũi tên còn đang bay ko
     public boolean dying = false;
     public boolean hpBarOn = false;
+    public boolean knockBack = false;
+    public String knockBackDirection;
     
     // DIALOGUES
     public String dialogues[][] = new String[50][50];
@@ -53,6 +56,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public int dyingCounter = 0;
     public int hpBarCounter = 0;
     public int shotAvailableCounter = 0;
+	public int knockBackCounter = 0;
  
     // ENTITY ATTRIBUTES
     public int type; // 0=player, 1=npc, 2=monsters
@@ -65,6 +69,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public final int TYPE_consumable = 6;
     public String name;
     public String description;
+    public int defaultSpeed;
     public int speed;
     public int maxLife;
     public int life;
@@ -137,25 +142,54 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		gp.cChecker.checkEntity(this, gp.monster);
     } 
 	public void update() {
-		setAction();
-		checkCollision();
-		
-		if(collisionOn == false){
-            switch (direction) {
-                case "up":
-                    worldY -= speed;
-                    break;
-                case "down":
-                    worldY += speed;
-                    break;
-                case "right":
-                    worldX += speed;
-                    break;
-                case "left":
-                    worldX -= speed;
-                    break;
-            }
-        }
+		if (knockBack == true) {
+			checkCollision();
+			if (collisionOn == true) {
+				knockBackCounter = 0;
+			} else if (collisionOn == false) {
+				switch (knockBackDirection) {
+	                case "up":
+	                    worldY -= speed;
+	                    break;
+	                case "down":
+	                    worldY += speed;
+	                    break;
+	                case "right":
+	                    worldX += speed;
+	                    break;
+	                case "left":
+	                    worldX -= speed;
+	                    break;
+				}
+			}
+			
+			knockBackCounter++;
+			if (knockBackCounter > 10) {
+				knockBackCounter = 0;
+				knockBack = false;
+				speed = defaultSpeed;
+			}
+		} else {
+			setAction();
+			checkCollision();
+			
+			if(collisionOn == false){
+	            switch (direction) {
+	                case "up":
+	                    worldY -= speed;
+	                    break;
+	                case "down":
+	                    worldY += speed;
+	                    break;
+	                case "right":
+	                    worldX += speed;
+	                    break;
+	                case "left":
+	                    worldX -= speed;
+	                    break;
+	            }
+	        }
+		}
 		
         spriteCounter++;
         if(spriteCounter > 7){ // hình ảnh được thay đổi sau 8 khung hình
@@ -214,7 +248,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     		} else if (type == TYPE_PLAYER) {
     			// Check monster collision with the updated worldX, worldY and solidArea
     			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-        		gp.player.damageMonster(monsterIndex);
+        		gp.player.damageMonster(monsterIndex, this, attack);
     		}
     		
     		// Restore the original data
@@ -240,6 +274,12 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			gp.player.life -= attack;
 			gp.player.invincible = true;
 		}
+	}
+	public void setKnockBack(Entity target, Entity attacker) {
+		this.attacker = attacker;
+		target.knockBackDirection = attacker.direction;
+    	target.speed += 10;
+    	target.knockBack = true;
 	}
 	public void checkShootOrNot(int rate, int shotInterval) {
 		int i = new Random().nextInt(rate); // bắn ngẫu nhiên

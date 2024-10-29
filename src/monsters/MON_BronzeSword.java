@@ -11,7 +11,8 @@ public class MON_BronzeSword extends Entity {
 		this.gp = gp;
 		type = TYPE_MONSTER;
 		name = "Bronze sword";
-		speed = 1;
+		defaultSpeed = 1;
+        speed = defaultSpeed;
 		maxLife = 4;
 		life = maxLife;
 		attack = 1;
@@ -20,8 +21,9 @@ public class MON_BronzeSword extends Entity {
 		solidArea = new Rectangle(12, 12, 40, 40);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        attackArea.width = 5;
-        attackArea.height = 25;
+        
+        attackArea.width = 48;
+        attackArea.height = 64;
         
         getImage();
         getAttackImage();

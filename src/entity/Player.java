@@ -48,8 +48,8 @@ public class Player extends Entity {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         
-        attackArea.width = 48;
-        attackArea.height = 48;
+        attackArea.width = 64;
+        attackArea.height = 64;
 
         setDefaultValues();
         getPlayerImage();
@@ -60,11 +60,13 @@ public class Player extends Entity {
     public void setDefaultValues() {
         worldX = gp.tileSize * 35;
         worldY = gp.tileSize * 13;
-        speed = 5;
+        defaultSpeed = 5;
+        speed = defaultSpeed;
         direction = "down";
         
         maxLife = 6;
         life = maxLife;
+        attack = 1;
         strength = 1;
         defense = 0;
         currentWeapon = new OBJ_Sword(gp);
@@ -232,7 +234,7 @@ public class Player extends Entity {
     		
     		// Check monster collision with the updated worldX, worldY and solidArea
     		int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-    		damageMonster(monsterIndex);
+    		damageMonster(monsterIndex, this, attack);
     		
     		// Restore the original data
     		worldX = currentWorldX;
@@ -277,11 +279,12 @@ public class Player extends Entity {
     	}	
 	}   
     // Đánh thường => gây sát thương
-    public void damageMonster(int i) {  
+    public void damageMonster(int i, Entity attacker, int attack) {  
     	if(i != 999){
     		if (gp.monster[i].invincible == false) {
     			gp.playSE(1);
-    			gp.monster[i].life -= 1;
+    			setKnockBack(gp.monster[i], attacker);
+    			gp.monster[i].life -= attack;
     			gp.monster[i].invincible = true;
     			gp.monster[i].damageReaction();
    			

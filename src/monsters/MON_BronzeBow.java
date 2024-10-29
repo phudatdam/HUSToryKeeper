@@ -13,7 +13,8 @@ public class MON_BronzeBow extends Entity{
 		this.gp = gp;
 		type = TYPE_MONSTER;
 		name = "Bronze bow";
-		speed = 1;
+		defaultSpeed = 1;
+        speed = defaultSpeed;
 		maxLife = 4;
 		life = maxLife;
 		attack = 1; //
