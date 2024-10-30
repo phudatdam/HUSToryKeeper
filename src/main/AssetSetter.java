@@ -5,6 +5,7 @@ import entity.NPC_KimQuy;
 import monsters.MON_BronzePolearm;
 import monsters.MON_BronzeSword;
 import object.OBJ_Heart;
+import object.OBJ_Wood;
 
 public class AssetSetter {
     GamePanel gp;
@@ -14,13 +15,15 @@ public class AssetSetter {
     }
     
     public void setObject(){
-        gp.obj[0] = new OBJ_Heart(gp);
-        gp.obj[0].worldX = 16 * gp.tileSize;
-        gp.obj[0].worldY = 22 * gp.tileSize;
+        int i = 0;
+        gp.obj[i] = new OBJ_Wood(gp);
+        gp.obj[i].worldX = 16 * gp.tileSize;
+        gp.obj[i].worldY = 22 * gp.tileSize;
+        i++;
 
-        gp.obj[1] = new OBJ_Heart(gp);
-        gp.obj[1].worldX = 28 * gp.tileSize;
-        gp.obj[1].worldY = 37 * gp.tileSize;
+        gp.obj[i] = new OBJ_Heart(gp);
+        gp.obj[i].worldX = 28 * gp.tileSize;
+        gp.obj[i].worldY = 37 * gp.tileSize;
     }
     
     public void setNPC() {

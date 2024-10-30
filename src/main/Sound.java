@@ -18,6 +18,7 @@ public class Sound {
         soundURL[0] = getClass().getResource("/sound/game_hustory_keeper.wav");
         soundURL[1] = getClass().getResource("/sound/woosh.wav");
         soundURL[2] = getClass().getResource("/sound/cursor.wav");
+        soundURL[3] = getClass().getResource("/sound/tingting.wav");
 
     }
 

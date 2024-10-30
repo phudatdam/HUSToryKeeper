@@ -40,10 +40,14 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public boolean diaEnd = false;
 	public int woodneed ;
 	public int ironneed ;
+
     // ENTITY COUNTERS
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
-    public int invincibleCounter = 0;   
+    public int invincibleCounter = 0;
+
+	// ITEMS ATTRIBUTES
+	public int value;
  
     // ENTITY ATTRIBUTES
     public int type; // 0=player, 1=npc, 2=monsters
@@ -54,6 +58,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public final int TYPE_axe = 4;
     public final int TYPE_pickaxe = 5; 
 	public final int TYPE_consumable = 6;
+	public final int TYPE_pickupOnly = 7;
     public String name;
     public String description;
     public boolean invincible = false;
@@ -112,6 +117,11 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			break;
 		}
     }
+
+	public void use(Entity entity){
+
+	}
+
 	public void update() {
 		setAction();
 		

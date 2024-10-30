@@ -62,9 +62,6 @@ public class UI {
         g2.setFont(determinationSans);
         g2.setColor(Color.white);
 
-        /*g2.drawImage(heartImage, gp.tileSize / 2, gp.tileSize / 2, 26, 26, null);
-        g2.drawString("x " + gp.player.hasHeart, 49, 39);*/
-
         // TITLE STATE
         if(gp.gameState == gp.titleState){
             drawTitleScreen();

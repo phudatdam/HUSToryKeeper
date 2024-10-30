@@ -2,12 +2,12 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-//import object.OBJ_Axe;
-//import object.OBJ_Coin;
-//import object.OBJ_Heart;
+import object.OBJ_Axe;
+import object.OBJ_Coin;
+import object.OBJ_Heart;
 import object.OBJ_Iron;
 import object.OBJ_Sword;
-//import object.OBJ_Sword;
+import object.OBJ_Sword;
 import object.OBJ_Wood;
 
 import java.awt.*;
@@ -254,13 +254,21 @@ public class Player extends Entity {
     // Nhặt được tim => hồi máu
 	public void pickUpObject(int i){
         if(i != 999){
-            String objectName = gp.obj[i].name;
-            switch (objectName){
-                case "Heart":
-            		    life += 2;
-                        maxLife +=2;
-                    gp.obj[i] = null;
-                    break;
+            // PICKUP ONLY ITEMS
+            if(gp.obj[i].type == TYPE_pickupOnly){
+                gp.obj[i].use(this);
+                gp.obj[i] = null;
+            }
+
+            // INVENTORY ITEMS
+            else{
+                String text;
+
+                if(inventory.size() != maxInventorySize){
+                    inventory.add(gp.obj[i]);
+                    gp.playSE(3);
+                }
+                gp.obj[i] = null;
             }
         }
     }
