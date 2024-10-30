@@ -5,10 +5,9 @@ import main.KeyHandler;
 //import object.OBJ_Axe;
 //import object.OBJ_Coin;
 //import object.OBJ_Heart;
-import object.OBJ_Iron;
+//import object.OBJ_Iron;
 import object.OBJ_Sword;
-//import object.OBJ_Sword;
-import object.OBJ_Wood;
+//import object.OBJ_Wood;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -72,10 +71,6 @@ public class Player extends Entity {
     
     public void setItems() {
         inventory.add(currentWeapon);
-        iron+=2;
-        inventory.add(new OBJ_Iron(gp));
-        wood+=2;
-        inventory.add(new OBJ_Wood(gp));
     }
 
     public void getPlayerImage(){
@@ -254,23 +249,35 @@ public class Player extends Entity {
     // Tương tác với vật phẩm
 	public void pickUpObject(int i){
         if(i != 999){
-            String objectName = gp.obj[gp.currentMap][i].name;
-            switch (objectName){
+            
                 // Nhặt được tim => hồi máu
-                case "Heart":
-            		    life += 2;
-                        maxLife +=2;
-                    gp.obj[gp.currentMap][i] = null;
-                    break;
+                if(gp.obj[gp.currentMap][i].name == "Heart")
+                {
+                    life +=2;
+                    maxLife +=2;
+                    gp.obj[gp.currentMap][i]=null;
+                }
                 // Chuyển đến map tiếp theo khi chạm vào giếng
-                case "Well":
-                	if (coink == 1) {
+                else if ( gp.obj[gp.currentMap][i].name == "Well")
+                {
+                    if (coink == 1) {
                 		coink = 0;
                 		inventory.removeIf( item -> item.name.equals("Đồng xu"));
                 		teleport();
-                	}
-                	break;
-            }
+                    }
+                }
+                // Nhặt gỗ, sắt
+                else
+                {
+                    if( canObtainItem(gp.obj[gp.currentMap][i]) == true)
+                    {
+                        gp.playSE(1);
+                        if( gp.obj[gp.currentMap][i].name == "Sắt")iron++;
+                        if( gp.obj[gp.currentMap][i].name == "Gỗ")wood++;
+                    }
+                    gp.obj[gp.currentMap][i]=null;
+                    
+                }
         }
     }
     
@@ -323,6 +330,41 @@ public class Player extends Entity {
         }
     }
     
+    public int SearchItemInInventoty(String itemName) {
+        int itemIndex = 999;
+        for(int i = 0 ; i < inventory.size() ; i++ )
+        {
+            if(inventory.get(i).name.equals(itemName))
+            {
+                itemIndex = i;
+                break;
+            }
+        }
+        return itemIndex;
+    }
+
+    public boolean canObtainItem(Entity item )
+    {
+        boolean canobtain = false;
+        // stackable ?
+        if(item.stackeable == true)
+        {
+            int index = SearchItemInInventoty(item.name);
+            if( index != 999)
+            {
+                inventory.get(index).amount++;
+                canobtain = true;
+            }
+            else
+            {
+                inventory.add(item);
+                canobtain = true;
+            }
+        }
+        return canobtain;
+
+    }
+
     public void teleport() {
     	gp.currentMap++;
     	int col = 0;

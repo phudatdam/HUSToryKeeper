@@ -591,6 +591,21 @@ public class UI {
     			slotX = slotXStart;
     			slotY += gp.tileSize;
     		}
+            if(gp.player.inventory.get(i).amount > 1)
+            {
+                g2.setFont(g2.getFont().deriveFont(32f));
+                int amountX;
+                int amountY;
+                String s = ""+ gp.player.inventory.get(i).amount;
+                amountX = getXforAlignRightText( s , slotX );
+                amountY = slotY + gp.tileSize;
+                //shadow 
+                g2.setColor(new Color(60,60,60));
+                g2.drawString(s, amountX, amountY);
+                // number
+                g2.setColor(Color.white);
+                g2.drawString(s , amountX-3 , amountY-3);
+            }
     	}
     	
     	// CURSOR

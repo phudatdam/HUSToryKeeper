@@ -10,7 +10,8 @@ public class OBJ_Wood extends Entity{
 		
 		name = "Gỗ";
 		description = "[ "+ name +" ]\nGỗ bình thường, sao chế được đồ thần\nnhỉ ?";
-		
+		stackeable = true;
+		collision = true;
 		down1 = setup("/objects/wood", gp.tileSize, gp.tileSize);
 	}
 }

@@ -7,7 +7,9 @@ import monsters.MON_BronzeBow;
 import monsters.MON_BronzePolearm;
 import monsters.MON_BronzeSword;
 import object.OBJ_Heart;
+import object.OBJ_Iron;
 import object.OBJ_Well;
+import object.OBJ_Wood;
 
 public class AssetSetter {
     GamePanel gp;
@@ -30,10 +32,34 @@ public class AssetSetter {
         gp.obj[mapNum][2].worldX = 40 * gp.tileSize;
         gp.obj[mapNum][2].worldY = 38 * gp.tileSize;
         
+        gp.obj[mapNum][3] = new OBJ_Wood(gp);
+        gp.obj[mapNum][3].worldX = 34 * gp.tileSize;
+        gp.obj[mapNum][3].worldY = 18 * gp.tileSize;
+
+        gp.obj[mapNum][4] = new OBJ_Wood(gp);
+        gp.obj[mapNum][4].worldX = 35 * gp.tileSize;
+        gp.obj[mapNum][4].worldY = 18 * gp.tileSize;
+
+        gp.obj[mapNum][5] = new OBJ_Iron(gp);
+        gp.obj[mapNum][5].worldX = 36 * gp.tileSize;
+        gp.obj[mapNum][5].worldY = 19 * gp.tileSize;
+
+        gp.obj[mapNum][6] = new OBJ_Iron(gp);
+        gp.obj[mapNum][6].worldX = 34 * gp.tileSize;
+        gp.obj[mapNum][6].worldY = 19 * gp.tileSize;
+
         mapNum = 2;
         gp.obj[mapNum][0] = new OBJ_Well(gp);
         gp.obj[mapNum][0].worldX = 10 * gp.tileSize;
         gp.obj[mapNum][0].worldY = 27 * gp.tileSize;
+
+        gp.obj[mapNum][1] = new OBJ_Wood(gp);
+        gp.obj[mapNum][1].worldX = 15 * gp.tileSize;
+        gp.obj[mapNum][1].worldY = 12 * gp.tileSize;
+
+        gp.obj[mapNum][2] = new OBJ_Wood(gp);
+        gp.obj[mapNum][2].worldX = 16 * gp.tileSize;
+        gp.obj[mapNum][2].worldY = 12 * gp.tileSize;
     }
     
     public void setNPC() {

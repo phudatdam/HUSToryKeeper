@@ -49,6 +49,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public final int TYPE_axe = 4;
     public final int TYPE_pickaxe = 5; 
 	public final int TYPE_consumable = 6;
+
     public String name;
     public String description;
     public boolean invincible = false;
@@ -56,6 +57,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public boolean attacking = false;
     public int attack;
     public Projectile projectile;
+	public boolean stackeable =false;
+	public int amount = 1;
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
