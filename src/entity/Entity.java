@@ -18,7 +18,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
                         	left2, left3, right1, right2, right3;
     public String direction = "down"; //
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, 
-    					attackLeft1, attackLeft2, attackRight1, attackRight2;
+    						attackLeft1, attackLeft2, attackRight1, attackRight2;
     public BufferedImage image1, image2, image3;
     public Rectangle solidArea = new Rectangle(0, 0, 64, 64);
     public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
@@ -32,11 +32,13 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public int speed;
     public int maxLife;
     public int life;
+    public boolean alive; // trạng thái mũi tên còn đang bay ko
     
     // ENTITY COUNTERS
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
-    public int invincibleCounter = 0;   
+    public int invincibleCounter = 0; 
+    public int shotAvailableCounter = 0;
  
     // ENTITY ATTRIBUTES
     public int type; // 0=player, 1=npc, 2=monsters
@@ -52,6 +54,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public boolean invincible = false;
     public boolean collision = false;
     public boolean attacking = false;
+    public int attack;
+    public Projectile projectile;
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -78,10 +82,10 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
         	actionLockCounter = 0;
     	}
 	}
-	
+
 	public void speak() {}
     public void startDialogue(Entity entity, int setNum) {}
-    // quay mặt npc ra chỗ mình	
+    // quay mặt npc ra chỗ mình
     public void facePlayer() {}
     
 	public void update() {
@@ -94,12 +98,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		gp.cChecker.checkEntity(this, gp.monster);		
 		boolean contactPlayer = gp.cChecker.checkPlayer(this);
 		
-		if((this.type == TYPE_MONSTER)&&(contactPlayer == true)) {
-			if (gp.player.invincible == false) {
-				// quái tấn công => gây sát thương lên player
-				gp.player.life -= 1;
-				gp.player.invincible = true;
-			}
+		if((this.type == TYPE_MONSTER) && (contactPlayer == true)) {
+			damagePlayer(1);
 		}
 		
 		if(collisionOn == false){
@@ -118,6 +118,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
                     break;
             }
         }
+		
         spriteCounter++;
         if(spriteCounter > 7){ // hình ảnh được thay đổi sau 8 khung hình
             if(spriteNum == 1){
@@ -136,6 +137,18 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
         		invincibleCounter = 0;
         	}
         }
+        
+        if(shotAvailableCounter < 30) { // 30 game loop mới bắn
+        	shotAvailableCounter++;
+        }
+	}
+	
+	public void damagePlayer(int attack) {
+		if (gp.player.invincible == false) {
+			// quái tấn công => gây sát thương lên player
+			gp.player.life -= attack;
+			gp.player.invincible = true;
+		}
 	}
 
 	// Công cụ tạo ảnh entity

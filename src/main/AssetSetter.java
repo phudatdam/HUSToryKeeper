@@ -3,6 +3,7 @@ package main;
 import entity.NPC_AnDuongVuong;
 import entity.NPC_KimQuy;
 import entity.NPC_ThanhGiong;
+import monsters.MON_BronzeBow;
 import monsters.MON_BronzePolearm;
 import monsters.MON_BronzeSword;
 import object.OBJ_Heart;
@@ -57,7 +58,7 @@ public class AssetSetter {
     	int mapNum = 1;
     	gp.monster[mapNum][0] = new MON_BronzeSword(gp);
         gp.monster[mapNum][0].worldX = 30 * gp.tileSize;
-        gp.monster[mapNum][0].worldY = 32 * gp.tileSize;
+        gp.monster[mapNum][0].worldY = 33 * gp.tileSize;
         
     	gp.monster[mapNum][1] = new MON_BronzeSword(gp);
         gp.monster[mapNum][1].worldX = 30 * gp.tileSize;
@@ -70,6 +71,14 @@ public class AssetSetter {
         gp.monster[mapNum][3] = new MON_BronzePolearm(gp);
         gp.monster[mapNum][3].worldX = 13 * gp.tileSize;
         gp.monster[mapNum][3].worldY = 22 * gp.tileSize;
+        
+        gp.monster[mapNum][4] = new MON_BronzeBow(gp);
+        gp.monster[mapNum][4].worldX = 9 * gp.tileSize;
+        gp.monster[mapNum][4].worldY = 29 * gp.tileSize;
+        
+        gp.monster[mapNum][5] = new MON_BronzeBow(gp);
+        gp.monster[mapNum][5].worldX = 20 * gp.tileSize;
+        gp.monster[mapNum][5].worldY = 43 * gp.tileSize;
     }
 }
 
