@@ -256,7 +256,7 @@ public class UI {
         g2.drawImage(gp.player.down3, x, y, 40, 40, null);
         int textX = frameX + gp.tileSize - 20;
         int textY = frameY + gp.tileSize * 2;
-        currentDialogue = ": Game hay như này mà lỡ/n thoát à :)??";
+        currentDialogue = ": Game hay như này mà nỡ/n thoát à :)??";
 
         for(String line: currentDialogue.split("/n")){
             g2.drawString(line, textX, textY);
