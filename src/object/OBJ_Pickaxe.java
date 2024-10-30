@@ -11,6 +11,6 @@ public class OBJ_Pickaxe extends Entity{
 		name = "Cuốc";
 		description = "[ "+ name +" ]\nkhông biết bằng cách nào đào được\n cả miếng sắt";
 		
-		down1 = setup("/objects/pickaxe", gp.tileSize, gp.tileSize);
+		image1 = setup("/objects/pickaxe", gp.tileSize, gp.tileSize);
 	}
 }

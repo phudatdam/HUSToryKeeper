@@ -584,7 +584,7 @@ public class UI {
                 g2.fillRoundRect( slotX, slotY, gp.tileSize, gp.tileSize, 10 , 10);
             }
 
-    		g2.drawImage(gp.player.inventory.get(i).down1, slotX, slotY, null);
+    		g2.drawImage(gp.player.inventory.get(i).image1, slotX, slotY, null);
     		slotX += gp.tileSize;
     		
     		if(i == 4 || i == 9 || i == 14) {
