@@ -2,6 +2,7 @@ package main;
 
 import entity.NPC_AnDuongVuong;
 import entity.NPC_KimQuy;
+import monsters.MON_BronzeBow;
 import monsters.MON_BronzePolearm;
 import monsters.MON_BronzeSword;
 import object.OBJ_Heart;
@@ -38,7 +39,7 @@ public class AssetSetter {
     public void setMonsters() {    	
     	gp.monster[0] = new MON_BronzeSword(gp);
         gp.monster[0].worldX = 30 * gp.tileSize;
-        gp.monster[0].worldY = 32 * gp.tileSize;
+        gp.monster[0].worldY = 33 * gp.tileSize;
         
     	gp.monster[1] = new MON_BronzeSword(gp);
         gp.monster[1].worldX = 30 * gp.tileSize;
@@ -51,6 +52,14 @@ public class AssetSetter {
         gp.monster[3] = new MON_BronzePolearm(gp);
         gp.monster[3].worldX = 13 * gp.tileSize;
         gp.monster[3].worldY = 22 * gp.tileSize;
+        
+        gp.monster[4] = new MON_BronzeBow(gp);
+        gp.monster[4].worldX = 9 * gp.tileSize;
+        gp.monster[4].worldY = 29 * gp.tileSize;
+        
+        gp.monster[5] = new MON_BronzeBow(gp);
+        gp.monster[5].worldX = 20 * gp.tileSize;
+        gp.monster[5].worldY = 43 * gp.tileSize;
     }
 }
 

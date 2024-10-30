@@ -11,7 +11,7 @@ public class OBJ_Wood extends Entity{
 	public OBJ_Wood(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
-		value = 1;
+		//value = 1;
 
 		type = TYPE_pickupOnly;
 		name = "Gỗ";
@@ -25,6 +25,6 @@ public class OBJ_Wood extends Entity{
 
 	public void use(Entity entity){
 		gp.playSE(3);
-		gp.player.wood += value;
+		//gp.player.wood += value;
 	}
 }

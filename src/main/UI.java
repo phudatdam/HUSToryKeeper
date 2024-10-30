@@ -488,18 +488,18 @@ public class UI {
     	// TEXT
     	g2.setFont(retron2000);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN,20F));
-    	int lineHeight = 20 + 4; // độ cao dòng = cỡ font + khoảng cách các dòng
+    	int lineHeight = 20 + 6; // độ cao dòng = cỡ font + khoảng cách các dòng
     			
     	// names
-    	g2.drawString("Life", textX, textY);
+    	g2.drawString("Life:", textX, textY);
     	textY += lineHeight;
-    	g2.drawString("Strength", textX, textY);
+    	g2.drawString("Strength:", textX, textY);
         textY += lineHeight;
-        g2.drawString("Defense", textX, textY);
+        g2.drawString("Defense:", textX, textY);
     	textY += lineHeight;
     	g2.drawString("Wood:", textX, textY);
     	textY += lineHeight;
-    	g2.drawString("Iron", textX, textY);
+    	g2.drawString("Iron:", textX, textY);
     	textY += 2*lineHeight;
         g2.drawString("Using", textX + 64, textY);
     	textY += lineHeight;
