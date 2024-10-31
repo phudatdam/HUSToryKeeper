@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
-import entity.Entity;
+import entity.NPC;
 
 public class UI {
     GamePanel gp;
@@ -23,7 +23,7 @@ public class UI {
     public int commandNum = 0;
     public int slotCol = 0;
     public int slotRow = 0;
-    public Entity npc;
+    public NPC npc;
     int subState = 0;
     int pauState = 0;
 
@@ -551,11 +551,11 @@ public class UI {
         textY += lineHeight;
         g2.drawString("Yêu cầu sắt", textX, textY);
         textY -= lineHeight;
-        value = String.valueOf(gp.player.wood + "/" + gp.npc[0].woodneed);
+        value = String.valueOf(gp.player.wood + "/" + gp.npc[gp.currentMap][0].woodneed);
     	textX = getXforAlignRightText(value, tailX);
     	g2.drawString(value, textX, textY);
     	textY += lineHeight;
-        value = String.valueOf(gp.player.iron + "/" + gp.npc[0].ironneed);
+        value = String.valueOf(gp.player.iron + "/" + gp.npc[gp.currentMap][0].ironneed);
     	textX = getXforAlignRightText(value, tailX);
     	g2.drawString(value, textX, textY);
     	textY += lineHeight;
