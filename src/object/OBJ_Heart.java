@@ -9,8 +9,7 @@ public class OBJ_Heart extends Entity {
 	GamePanel gp;
 	
     public OBJ_Heart(GamePanel gp){
-    	super(gp);
-    	
+    	super(gp);    	
     	// DEBUG
     	this.gp = gp;
     	

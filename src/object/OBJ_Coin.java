@@ -10,6 +10,6 @@ public class OBJ_Coin extends Entity{
 		name = "Đồng xu";
 		description = "[ " + name + " ]\nHãy ném xuống giếng thần\n và đợi điều kì diệu";
 		
-		down1 = setup("/objects/coin", gp.tileSize, gp.tileSize);
+		image1 = setup("/objects/coin", gp.tileSize, gp.tileSize);
 	}
 }
