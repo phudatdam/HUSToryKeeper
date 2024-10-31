@@ -31,7 +31,7 @@ public class AssetSetter {
         gp.obj[mapNum][2] = new OBJ_Well(gp);
         gp.obj[mapNum][2].worldX = 40 * gp.tileSize;
         gp.obj[mapNum][2].worldY = 38 * gp.tileSize;
-        
+
         gp.obj[mapNum][3] = new OBJ_Wood(gp);
         gp.obj[mapNum][3].worldX = 34 * gp.tileSize;
         gp.obj[mapNum][3].worldY = 18 * gp.tileSize;

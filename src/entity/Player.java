@@ -329,7 +329,7 @@ public class Player extends Entity {
             }
         }
     }
-    
+
     public int SearchItemInInventoty(String itemName) {
         int itemIndex = 999;
         for(int i = 0 ; i < inventory.size() ; i++ )
