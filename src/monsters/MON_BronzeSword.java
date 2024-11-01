@@ -79,10 +79,7 @@ public class MON_BronzeSword extends Entity {
 		int i = new Random().nextInt(100) + 1;
 
 		// SET THE MONSTER DROP
-		if(i < 25){
-			dropItem(new OBJ_Coin(gp));
-		}
-		else if(i < 50){
+		if(i < 50){
 			dropItem(new OBJ_Heart(gp));
 		}
 		else if(i < 75){
