@@ -130,18 +130,18 @@ public class GamePanel extends JPanel implements Runnable{
                     monster[i].update();
                 }
             }
-            
+
             // PROJECTILE
             for(int i = 0; i < projectileList.size(); i++)
             {
-            	if(projectileList.get(i) != null) {
-            		if(projectileList.get(i).alive == true) {
-            			projectileList.get(i).update();
-            		}
-            		if(projectileList.get(i).alive == false) {
-            			projectileList.remove(i);
-            		}
-            	}
+                if(projectileList.get(i) != null) {
+                    if(projectileList.get(i).alive == true) {
+                        projectileList.get(i).update();
+                    }
+                    if(projectileList.get(i).alive == false) {
+                        projectileList.remove(i);
+                    }
+                }
             }
         }
 
@@ -184,7 +184,7 @@ public class GamePanel extends JPanel implements Runnable{
                     entityList.add(monster[i]);
                 }
             }
-            
+
             for (int i = 0; i < projectileList.size(); i++) {
                 if (projectileList.get(i) != null) {
                     entityList.add(projectileList.get(i));

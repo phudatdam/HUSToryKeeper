@@ -22,6 +22,7 @@ public class Player extends Entity {
     public final int screenY;
     int standCounter = 0;
 
+    public int coin = 0;
     public int defense = 0;
     public int strength = 1;
     public int coink = 0;
@@ -76,6 +77,8 @@ public class Player extends Entity {
         inventory.add(new OBJ_Iron(gp));
         wood+=2;
         inventory.add(new OBJ_Wood(gp));
+        coin+=5;
+        inventory.add(new OBJ_Coin(gp));
     }
 
     public void getPlayerImage(){
@@ -263,7 +266,6 @@ public class Player extends Entity {
             // INVENTORY ITEMS
             else{
                 String text;
-
                 if(inventory.size() != maxInventorySize){
                     inventory.add(gp.obj[i]);
                     gp.playSE(3);
