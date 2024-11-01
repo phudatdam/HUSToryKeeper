@@ -19,7 +19,14 @@ public class OBJ_Wood extends Entity{
 		down2 = setup("/objects/wood", 40, 40);
 
 		description = "[ "+ name +" ]\nGỗ bình thường, sao chế được đồ thần\nnhỉ ?";
+<<<<<<< HEAD
 		down1 = setup("/objects/wood", gp.tileSize, gp.tileSize);
+=======
+		stackeable = true;
+		collision = true;
+		down1 = setup("/objects/wood", 48, 48);
+		image1 = setup("/objects/wood", gp.tileSize, gp.tileSize);
+>>>>>>> a3915806a98e49299a677734f40ced597357acb7
 	}
 
 	public void use(Entity entity){

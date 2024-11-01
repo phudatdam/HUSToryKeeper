@@ -27,44 +27,38 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 
 	// ENTITY STATUS
 	public int worldX, worldY;
-	public int spriteNum = 1;
-	public boolean collisionOn = false;
-	public int speed;
-	public int maxLife;
-	public int life;
-	public boolean alive; // trạng thái mũi tên còn đang bay ko
-
-	// DIALOGUES
-	public String dialogues[][] = new String[50][50];
-	public int dialogueIndex = 0;
-	public int dialogueSet = 0;
-	public boolean diaEnd = false;
-	public int woodneed ;
-	public int ironneed ;
-	// ENTITY COUNTERS
-	public int spriteCounter = 0;
-	public int actionLockCounter = 0;
-	public int invincibleCounter = 0;
-	public int shotAvailableCounter = 0;
-
-	// ENTITY ATTRIBUTES
-	public int type; // 0=player, 1=npc, 2=monsters
-	public final int TYPE_PLAYER = 0;
-	public final int TYPE_NPC = 1;
-	public final int TYPE_MONSTER = 2;
+    public int spriteNum = 1;
+    public boolean collisionOn = false;
+    public int speed;
+    public int maxLife;
+    public int life;
+    public boolean alive; // trạng thái mũi tên còn đang bay ko
+    
+    // ENTITY COUNTERS
+    public int spriteCounter = 0;
+    public int actionLockCounter = 0;
+    public int invincibleCounter = 0; 
+    public int shotAvailableCounter = 0;
+ 
+    // ENTITY ATTRIBUTES
+    public int type; // 0=player, 1=npc, 2=monsters
+    public final int TYPE_PLAYER = 0;
+    public final int TYPE_NPC = 1;
+    public final int TYPE_MONSTER = 2;
 	public final int TYPE_sword = 3;
 	public final int TYPE_axe = 4;
 	public final int TYPE_pickaxe = 5;
 	public final int TYPE_consumable = 6;
-	public final int TYPE_pickupOnly = 7;
-	public String name;
-	public String description;
-	public boolean invincible = false;
-	public boolean collision = false;
-	public boolean attacking = false;
-	public int attack;
-	public Projectile projectile;
-	public int value;
+
+    public String name;
+    public String description;
+    public boolean invincible = false;
+    public boolean collision = false;
+    public boolean attacking = false;
+    public int attack;
+    public Projectile projectile;
+	public boolean stackeable =false;
+	public int amount = 1;
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -72,56 +66,30 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 
 	public void setAction() {
 		actionLockCounter++;
-		if (actionLockCounter == 120) {
-			Random random = new Random();
-			int i = random.nextInt(100) + 1;
-
-			if (i <= 25) {
-				direction = "up";
-			}
-			else if ((i > 25)&&(i <= 50)) {
-				direction = "down";
-			}
-			else if ((i > 50)&&(i <= 75)) {
-				direction = "left";
-			}
-			else if ((i > 75)&&(i <= 100)) {
-				direction = "right";
-			}
-			actionLockCounter = 0;
-		}
+    	if (actionLockCounter == 120) {
+    		Random random = new Random();
+        	int i = random.nextInt(100) + 1;
+        	
+        	if (i <= 25) {
+        		direction = "up";  		
+        	}
+        	else if ((i > 25)&&(i <= 50)) {
+        		direction = "down";
+        	}
+        	else if ((i > 50)&&(i <= 75)) {
+        		direction = "left";
+        	}
+        	else if ((i > 75)&&(i <= 100)) {
+        		direction = "right";
+        	}
+        	actionLockCounter = 0;
+    	}
 	}
 
-	public void speak() {
-
-	}
-
-	public void use(Player player){
-
-	}
-	public void startDialogue(Entity entity, int setNum){
-		gp.gameState = gp.dialogueState;
-		gp.ui.npc = entity;
-		dialogueSet = setNum;
-	}
-
-	// quay mặt npc ra chỗ mình
-	public void facePlayer(){
-		switch( gp.player.direction) {
-			case "up":
-				direction = "down";
-				break;
-			case "down":
-				direction = "up";
-				break;
-			case "right":
-				direction = "left";
-				break;
-			case "left":
-				direction = "right";
-				break;
-		}
-	}
+	public void speak() {}
+    public void startDialogue(Entity entity, int setNum) {}
+    // quay mặt npc ra chỗ mình
+    public void facePlayer() {}
 
 	public void update() {
 		setAction();
@@ -209,39 +177,39 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;
 		int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
-		// Vẽ tile nằm trong phạm vi màn hình và mở rộng thêm tile ngoài viền để tránh "sọc"
-		if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX - gp.tileSize &&
-				worldX - gp.tileSize < gp.player.worldX + gp.player.screenX + gp.tileSize &&
-				worldY + gp.tileSize > gp.player.worldY - gp.player.screenY - gp.tileSize &&
-				worldY - gp.tileSize < gp.player.worldY + gp.player.screenY + gp.tileSize) {
-
-			switch (direction){
-				case "up":
-					if(spriteNum == 1) image = up2;
-					if(spriteNum == 2) image = up1;
-					break;
-				case "down":
-					if(spriteNum == 1) image = down2;
-					if(spriteNum == 2) image = down1;
-					break;
-				case "right":
-					if(spriteNum == 1) image = right2;
-					if(spriteNum == 2) image = right1;
-					break;
-				default:
-					if(spriteNum == 1) image = left2;
-					if(spriteNum == 2) image = left1;
-					break;
-			}
-
-			if (invincible == true) {
-				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
-			}
-
-			// Vẽ tile nếu nằm trong màn hình hoặc nằm trong lề được mở rộng
-			g2.drawImage(image, screenX, screenY, null);
-
-			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
-		}
+        // Vẽ tile nằm trong phạm vi màn hình và mở rộng thêm tile ngoài viền để tránh "sọc"
+        if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX - gp.tileSize &&
+                worldX - gp.tileSize < gp.player.worldX + gp.player.screenX + gp.tileSize &&
+                worldY + gp.tileSize > gp.player.worldY - gp.player.screenY - gp.tileSize &&
+                worldY - gp.tileSize < gp.player.worldY + gp.player.screenY + gp.tileSize) {
+        	
+	        switch (direction){
+	            case "up":
+	                if(spriteNum == 1) image = up1;
+	                if(spriteNum == 2) image = up2;
+	                break;
+	            case "down":
+	                if(spriteNum == 1) image = down1;
+	                if(spriteNum == 2) image = down2;
+	                break;
+	            case "right":
+	                if(spriteNum == 1) image = right1;
+	                if(spriteNum == 2) image = right2;
+	                break;
+	            default:
+	                if(spriteNum == 1) image = left1;
+	                if(spriteNum == 2) image = left2;
+	                break;
+	        }
+	        
+	        if (invincible == true) {
+	        	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+	        }
+	        
+            // Vẽ tile nếu nằm trong màn hình hoặc nằm trong lề được mở rộng
+            g2.drawImage(image, screenX, screenY, null);
+            
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+        }
 	}
 }

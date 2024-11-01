@@ -1,16 +1,16 @@
 package entity;
 
-import java.util.Random;
-
 import main.GamePanel;
 import object.OBJ_Coin;
-public class NPC_KimQuy extends Entity{
+
+public class NPC_KimQuy extends NPC {
     public NPC_KimQuy(GamePanel gp) {
 		super(gp);
 		
 		type = TYPE_NPC;
 		direction = "down";
 		speed = 1;
+		
 		
 		getImage();
 		setDialogue();
@@ -36,34 +36,61 @@ public class NPC_KimQuy extends Entity{
     }
 	public void setDialogue()
 	{
-		dialogues[0][0] = "Rùa Vàng :\n Vậy cậu là người được chọn để bảo vệ lịch sử ư ?";
-		dialogues[0][1] = "Nvc :\n ngài là người thợ rèn ư ? ";
-		dialogues[0][2] = "Rùa vàng:\n Thế cậu nghĩ ai là người đủ phép thuật để sửa\n nỏ thần ? Nào cậu có đủ đồ chưa ?";
-		dialogues[1][0] = "Rùa Vàng:\nĐược rồi,việc của cậu đã xong , hãy tiếp tục cuộc\n hành trình phía trước. Thả đồng xu này\n xuống giếng đi";
-		dialogues[2][0] = "Rùa Vàng:\nNày vẫn chưa đủ đâu, cố gắng lên.";
+		//map1
+		dialogues[1][0] = "Rùa Vàng :\n Vậy cậu là người được chọn để bảo vệ lịch sử ư ?";
+		dialogues[1][1] = "Nvc :\n ngài là người thợ rèn ư ? ";
+		dialogues[1][2] = "Rùa vàng:\n Thế cậu nghĩ ai là người đủ phép thuật để sửa\n nỏ thần ? Nào cậu có đủ đồ chưa ?";
+		//map2
+		dialogues[2][0] = "Rùa Vàng :\n oh, chúng ta lại gặp nhau à ?";
+		dialogues[2][1] = "Nvc :\n sao lại là ngài nữa, tôi tưởng ngựa sắt là do\n triều đình làm ?";
+		dialogues[2][2] = "Rùa Vàng :\n Triều đình nhận deal rồi order cho ta làm.\n Vậy câu có đủ đồ chưa ?";
+		//Đủ nguyên liệu ko
+		dialogues[4][0] = "Rùa Vàng:\nĐược rồi, việc của cậu đã xong, hãy nhận lấy\n đồng xu này";
+		dialogues[4][1] = "Rùa Vàng:\nHãy thả đồng xu xuống giếng kia và tiếp tục\n cuộc hành trình phía trước";
+		dialogues[5][0] = "Rùa Vàng:\nNày vẫn chưa đủ đâu, cố gắng lên.";
 	}
-
 	public void speak() {
 		//super.speak();
 		facePlayer();
+		dialogueSet=gp.currentMap;
 		startDialogue(this, dialogueSet);
         if(diaEnd)
         {
-            if( gp.player.iron >= gp.npc[0].ironneed && gp.player.wood >= gp.npc[0].woodneed)
+            if( gp.player.iron >= gp.npc[gp.currentMap][0].ironneed && gp.player.wood >= gp.npc[gp.currentMap][0].woodneed)
             {
-				dialogueSet=1;
+				dialogueSet=4;
 				dialogueIndex=0;
 				if(gp.player.coink == 0){
-					gp.player.iron-= gp.npc[0].ironneed;
-					gp.player.wood-= gp.npc[0].woodneed;
+					gp.player.iron-= gp.npc[gp.currentMap][0].ironneed;
+					gp.player.wood-= gp.npc[gp.currentMap][0].woodneed;
 					gp.player.coink=1;
 					gp.player.inventory.add(new OBJ_Coin(gp));
+					int index = gp.player.SearchItemInInventoty("Sắt");
+					{
+						if(gp.player.inventory.get(index).amount > gp.npc[gp.currentMap][0].ironneed){
+							gp.player.inventory.get(index).amount-= gp.npc[gp.currentMap][0].ironneed;
+						}
+						else
+						{
+							gp.player.inventory.remove(index);
+						}
+					}
+					index = gp.player.SearchItemInInventoty("Gỗ");
+					{
+						if(gp.player.inventory.get(index).amount > gp.npc[gp.currentMap][0].woodneed){
+							gp.player.inventory.get(index).amount-= gp.npc[gp.currentMap][0].woodneed;
+						}
+						else
+						{
+							gp.player.inventory.remove(index);
+						}
+					}
 				}
               
             }
             else
             {
-                dialogueSet=2;
+                dialogueSet=5;
                 dialogueIndex=0;
             }
         }

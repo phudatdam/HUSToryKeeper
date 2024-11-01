@@ -11,6 +11,6 @@ public class OBJ_Sword extends Entity{
 		name = "Kiếm";
 		description = "[ "+ name +" ]\nKhông phải kiếm thần nhưng đủ dùng";
 		
-		down1 = setup("/objects/sword", gp.tileSize, gp.tileSize);
+		image1 = setup("/objects/sword", gp.tileSize, gp.tileSize);
 	}
 }

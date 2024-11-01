@@ -1,11 +1,11 @@
 package main;
 
 import entity.Entity;
+import entity.NPC;
 import entity.Player;
 import tile.TileManager;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicTreeUI;
 import java.awt.*;
 import java.util.*;
 
@@ -24,6 +24,8 @@ public class GamePanel extends JPanel implements Runnable{
     // WORLD SETTINGS
     public final int maxWorldCol = 50; // bản đồ dài 50 ô
     public final int maxWorldRow = 50; // bản đồ rộng 50 ô
+    public final int maxMap = 4;
+    public int currentMap = 1;
 
 
     // FPS : set Thời gian lặp lại
@@ -41,9 +43,9 @@ public class GamePanel extends JPanel implements Runnable{
 
     // ENTITY AND OBJECT
     public Player player = new Player(this, keyH);
-    public Entity obj[] = new Entity[20];
-    public Entity npc[] = new Entity[10];
-    public Entity monster[] = new Entity[20];
+    public Entity obj[][] = new Entity[maxMap][20];
+    public NPC npc[][] = new NPC[maxMap][5];
+    public Entity monster[][] = new Entity[maxMap][10];
     ArrayList<Entity> entityList = new ArrayList<>();
     public ArrayList<Entity> projectileList = new ArrayList<>();
 
@@ -118,16 +120,16 @@ public class GamePanel extends JPanel implements Runnable{
             player.update();
 
             // NPC
-            for(int i = 0; i < npc.length; i++){
-                if(npc[i] != null){
-                    npc[i].update();
+            for(int i = 0; i < npc[1].length; i++){
+                if(npc[currentMap][i] != null){
+                    npc[currentMap][i].update();
                 }
             }
 
             // MONSTERS
-            for(int i = 0; i < monster.length; i++){
-                if(monster[i] != null){
-                    monster[i].update();
+            for(int i = 0; i < monster[1].length; i++){
+                if(monster[currentMap][i] != null){
+                    monster[currentMap][i].update();
                 }
             }
 
@@ -167,21 +169,21 @@ public class GamePanel extends JPanel implements Runnable{
             // ADD ENTITIES TO THE LIST
             entityList.add(player);
 
-            for (int i = 0; i < npc.length; i++) {
-                if (npc[i] != null) {
-                    entityList.add(npc[i]);
+            for (int i = 0; i < npc[1].length; i++) {
+                if (npc[currentMap][i] != null) {
+                    entityList.add(npc[currentMap][i]);
                 }
             }
 
-            for (int i = 0; i < obj.length; i++) {
-                if (obj[i] != null) {
-                    entityList.add(obj[i]);
+            for (int i = 0; i < obj[1].length; i++) {
+                if (obj[currentMap][i] != null) {
+                    entityList.add(obj[currentMap][i]);
                 }
             }
 
-            for (int i = 0; i < monster.length; i++) {
-                if (monster[i] != null) {
-                    entityList.add(monster[i]);
+            for (int i = 0; i < monster[1].length; i++) {
+                if (monster[currentMap][i] != null) {
+                    entityList.add(monster[currentMap][i]);
                 }
             }
 

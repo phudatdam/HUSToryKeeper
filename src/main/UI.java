@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
-import entity.Entity;
+import entity.NPC;
 
 public class UI {
     GamePanel gp;
@@ -23,7 +23,7 @@ public class UI {
     public int commandNum = 0;
     public int slotCol = 0;
     public int slotRow = 0;
-    public Entity npc;
+    public NPC npc;
     int subState = 0;
     int pauState = 0;
 
@@ -43,7 +43,7 @@ public class UI {
             e.printStackTrace();
         }
 
-        Entity heart = new OBJ_Heart(gp);
+        OBJ_Heart heart = new OBJ_Heart(gp);
         heartImage = heart.image1;
 
         heart_full = heart.image1;
@@ -551,14 +551,14 @@ public class UI {
         textY += lineHeight;
         g2.drawString("Yêu cầu sắt", textX, textY);
         textY -= lineHeight;
-        value = String.valueOf(gp.player.wood + "/" + gp.npc[0].woodneed);
-        textX = getXforAlignRightText(value, tailX);
-        g2.drawString(value, textX, textY);
-        textY += lineHeight;
-        value = String.valueOf(gp.player.iron + "/" + gp.npc[0].ironneed);
-        textX = getXforAlignRightText(value, tailX);
-        g2.drawString(value, textX, textY);
-        textY += lineHeight;
+        value = String.valueOf(gp.player.wood + "/" + gp.npc[gp.currentMap][0].woodneed);
+    	textX = getXforAlignRightText(value, tailX);
+    	g2.drawString(value, textX, textY);
+    	textY += lineHeight;
+        value = String.valueOf(gp.player.iron + "/" + gp.npc[gp.currentMap][0].ironneed);
+    	textX = getXforAlignRightText(value, tailX);
+    	g2.drawString(value, textX, textY);
+    	textY += lineHeight;
     }
 
     public void drawInventory() {
@@ -583,34 +583,48 @@ public class UI {
                 g2.setColor(new Color(240,190,90));
                 g2.fillRoundRect( slotX, slotY, gp.tileSize, gp.tileSize, 10 , 10);
             }
-
-            g2.drawImage(gp.player.inventory.get(i).down1, slotX, slotY, null);
-            slotX += gp.tileSize;
-
-            if(i == 4 || i == 9 || i == 14) {
-                slotX = slotXStart;
-                slotY += gp.tileSize;
+    		g2.drawImage(gp.player.inventory.get(i).image1, slotX, slotY, null);
+    		slotX += gp.tileSize;
+    		
+    		if(i == 4 || i == 9 || i == 14) {
+    			slotX = slotXStart;
+    			slotY += gp.tileSize;
+    		}
+            if(gp.player.inventory.get(i).amount > 1)
+            {
+                g2.setFont(g2.getFont().deriveFont(32f));
+                int amountX;
+                int amountY;
+                String s = ""+ gp.player.inventory.get(i).amount;
+                amountX = getXforAlignRightText( s , slotX );
+                amountY = slotY + gp.tileSize;
+                //shadow 
+                g2.setColor(new Color(60,60,60));
+                g2.drawString(s, amountX, amountY);
+                // number
+                g2.setColor(Color.white);
+                g2.drawString(s , amountX-3 , amountY-3);
             }
-        }
-
-        // CURSOR
-        int cursorX = slotXStart + (gp.tileSize * slotCol);
-        int cursorY = slotYStart + (gp.tileSize * slotRow);
-
-        // DRAW CURSOR
-        g2.setColor(Color.white);
-        g2.setStroke(new BasicStroke(3));
-        g2.drawRoundRect(cursorX, cursorY, gp.tileSize, gp.tileSize, 25, 25);
-
-        // DESCRIPTION
-        int dFrameX = frameX;
-        int dFrameY = frameY + frameHeight + 20;
-        int dFrameWidth = frameWidth;
-        int dFrameHeight = frameHeight - 50;
-
-        int dTextX = dFrameX + 10;
-        int dTextY = dFrameY + 29;
-        g2.setFont(retron2000);
+    	}
+    	
+    	// CURSOR
+    	int cursorX = slotXStart + (gp.tileSize * slotCol);
+    	int cursorY = slotYStart + (gp.tileSize * slotRow);
+    	
+    	// DRAW CURSOR
+    	g2.setColor(Color.white);
+    	g2.setStroke(new BasicStroke(3));
+    	g2.drawRoundRect(cursorX, cursorY, gp.tileSize, gp.tileSize, 25, 25);
+    	
+    	// DESCRIPTION
+    	int dFrameX = frameX;
+    	int dFrameY = frameY + frameHeight + 20;
+    	int dFrameWidth = frameWidth;
+    	int dFrameHeight = frameHeight - 50;
+    	
+    	int dTextX = dFrameX + 10;
+    	int dTextY = dFrameY + 29;
+    	g2.setFont(retron2000);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN,16F));
         int itemIndex = getItemIndexOnSlot();
         if(itemIndex < gp.player.inventory.size()) {

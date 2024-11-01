@@ -1,13 +1,10 @@
 package entity;
 
-import java.util.Random;
-
 import main.GamePanel;
 import object.OBJ_Axe;
 import object.OBJ_Pickaxe;
-import object.OBJ_Sword;
 
-public class NPC_AnDuongVuong extends Entity {
+public class NPC_AnDuongVuong extends NPC {
 	
 	public NPC_AnDuongVuong(GamePanel gp) {
 		super(gp);
