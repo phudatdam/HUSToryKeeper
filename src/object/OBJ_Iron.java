@@ -11,7 +11,7 @@ public class OBJ_Iron extends Entity{
 		name = "Sắt";
 		description = "[ "+ name +" ]\nChỉ là sắt thôi, bạn mong chờ gì.";
 		stackeable = true;
-		down1 = setup("/objects/iron", 48, 48);
+		down1 = setup("/objects/iron", 32, 32);
 		collision = true;
 		image1 = setup("/objects/iron", gp.tileSize, gp.tileSize);
 	}

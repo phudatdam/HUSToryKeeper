@@ -21,6 +21,7 @@ public class Player extends Entity {
     public final int screenY;
     int standCounter = 0;
 
+    public int coin = 0;
     public int defense = 0;
     public int strength = 1;
     public int coink = 0;
@@ -249,10 +250,10 @@ public class Player extends Entity {
     // Tương tác với vật phẩm
 	public void pickUpObject(int i){
         if(i != 999){
-            
                 // Nhặt được tim => hồi máu
                 if(gp.obj[gp.currentMap][i].name == "Heart")
                 {
+                    gp.playSE(3);
                     life +=2;
                     maxLife +=2;
                     gp.obj[gp.currentMap][i]=null;
@@ -269,11 +270,11 @@ public class Player extends Entity {
                 // Nhặt gỗ, sắt
                 else
                 {
-                    if( canObtainItem(gp.obj[gp.currentMap][i]) == true)
+                    if(canObtainItem(gp.obj[gp.currentMap][i]) == true)
                     {
-                        gp.playSE(1);
-                        if( gp.obj[gp.currentMap][i].name == "Sắt")iron++;
-                        if( gp.obj[gp.currentMap][i].name == "Gỗ")wood++;
+                        gp.playSE(3);
+                        if( gp.obj[gp.currentMap][i].name == "Sắt") iron ++;
+                        if( gp.obj[gp.currentMap][i].name == "Gỗ") wood ++;
                     }
                     gp.obj[gp.currentMap][i]=null;
                     
@@ -307,7 +308,8 @@ public class Player extends Entity {
     			gp.monster[gp.currentMap][i].invincible = true;
     			
     			if (gp.monster[gp.currentMap][i].life <= 0) {
-    				gp.monster[gp.currentMap][i] = null;
+                    gp.monster[gp.currentMap][i].checkDrop();
+                    gp.monster[gp.currentMap][i] = null;
     			}
     		}
     	}

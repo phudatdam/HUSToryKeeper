@@ -6,6 +6,7 @@ import entity.NPC_ThanhGiong;
 import monsters.MON_BronzeBow;
 import monsters.MON_BronzePolearm;
 import monsters.MON_BronzeSword;
+import object.OBJ_Coin;
 import object.OBJ_Heart;
 import object.OBJ_Iron;
 import object.OBJ_Well;
