@@ -113,6 +113,7 @@ public class KeyHandler implements KeyListener {
         }
 
         if(code == KeyEvent.VK_J) {
+            gp.playSE(4);
             attackPressed = true;
         }
 

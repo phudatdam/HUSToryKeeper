@@ -91,6 +91,19 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     // quay mặt npc ra chỗ mình
     public void facePlayer() {}
 
+	public void checkDrop(){}
+
+	public void dropItem (Entity droppedItem){
+		for(int i = 0; i < gp.obj.length; i++){
+			if(gp.obj[gp.currentMap][i] == null){
+				gp.obj[gp.currentMap][i] = droppedItem;
+				gp.obj[gp.currentMap][i].worldX = worldX; // the dead monster's worldX
+				gp.obj[gp.currentMap][i].worldY = worldY; // the dead monster's worldY
+				break;
+			}
+		}
+	}
+
 	public void update() {
 		setAction();
 

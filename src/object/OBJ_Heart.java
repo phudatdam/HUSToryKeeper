@@ -15,8 +15,8 @@ public class OBJ_Heart extends Entity {
     	
         name = "Heart";
         solidArea = new Rectangle (16, 16, 32, 32);
-        down1 = setup("/objects/heart_full", gp.tileSize, gp.tileSize);
-        down2 = setup("/objects/heart_full", 40, 40);
+        down1 = setup("/objects/heart_full", 32, 32);
+        down2 = setup("/objects/heart_full", 32, 32);
         
         image1 = setup("/objects/heart_full", gp.tileSize, gp.tileSize);
         image2 = setup("/objects/heart_half", gp.tileSize, gp.tileSize);
