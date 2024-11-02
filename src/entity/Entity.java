@@ -20,7 +20,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     						attackLeft1, attackLeft2, attackRight1, attackRight2;
     public BufferedImage image1, image2, image3;
     public Rectangle solidArea = new Rectangle(0, 0, 64, 64);
-    public Rectangle attackArea = new Rectangle(12, 12, 40, 40); // fix
+    public Rectangle attackArea = new Rectangle(0, 0, 64, 64); // fix
     public int solidAreaDefaultX = solidArea.x;
     public int solidAreaDefaultY = solidArea.y;
     public Entity attacker;
@@ -82,7 +82,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		this.gp = gp;
 	}	
 	public void setAction() {
-		
+		getRandomDirection();
 	}	
 	public void damageReaction() {
 		
@@ -270,10 +270,13 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			// gp.playSE(1)
 			
 			int damage = attack;
-			if (damage <= 0 && gp.player.life <= 0) {
+			if (damage <= 0) {
 				damage = 0;
 			}
 			gp.player.life -= damage;
+			if (gp.player.life <= 0) {
+				gp.player.life = 0;
+			}
 			gp.player.invincible = true;
 		}
 	}
@@ -301,30 +304,42 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			}	
 		}
 	}
-	public void checkAttackOrNot(int rate, int vertical, int horizontal) {
+	public boolean checkAttackOrNot(int rate, int vertical, int horizontal) {
 		boolean targetInRange = false;
 		int xDis = getXDistance(gp.player);	
 		int yDis = getYDistance(gp.player);
 		
 		switch(direction) {
 		case("up"):
-			if (gp.player.worldY < worldY && yDis < vertical && xDis < horizontal) {
+			if (gp.player.worldY <= worldY && yDis <= vertical && xDis <= horizontal) {
 				targetInRange = true;
+			} 
+			if (gp.player.worldY <= worldY && (yDis > vertical || xDis > horizontal)) {
+				targetInRange = false;
 			}
 			break;
 		case("down"):
-			if (gp.player.worldY > worldY && yDis < vertical && xDis < horizontal) {
+			if (gp.player.worldY > worldY && yDis <= vertical && xDis <= horizontal) {
 				targetInRange = true;
+			}
+			if (gp.player.worldY > worldY && (yDis > vertical || xDis > horizontal)) {
+				targetInRange = false;
 			}
 			break;
 		case("left"):
-			if (gp.player.worldX < worldX && yDis < vertical && xDis < horizontal) {
+			if (gp.player.worldX <= worldX && yDis <= vertical && xDis <= horizontal) {
 				targetInRange = true;
+			} 
+			if (gp.player.worldX <= worldX && (yDis > vertical || xDis > horizontal)) {
+				targetInRange = false;
 			}
 			break;
 		case("right"):
-			if (gp.player.worldX > worldX && yDis < vertical && xDis < horizontal) {
+			if (gp.player.worldX > worldX && yDis <= vertical && xDis <= horizontal) {
 				targetInRange = true;
+			} 
+			if (gp.player.worldX > worldX && (yDis > vertical || xDis > horizontal)) {
+				targetInRange = false;
 			}
 			break;
 		}
@@ -338,6 +353,12 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 				shotAvailableCounter = 0;
 			}
 		}
+		
+		if (targetInRange == false) {
+			attacking = false;
+		}
+		
+		return targetInRange;
 	}
 	public void getRandomDirection() {
 		actionLockCounter++;

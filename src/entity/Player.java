@@ -128,7 +128,11 @@ public class Player extends Entity {
 		    attackRight2 = setup("/player/player_pickaxe_right_2", gp.tileSize * 2, gp.tileSize);
         }
     }
-    public void update(){ // được gọi 60 lần trong 1s
+    public void update(){ // được gọi 60 lần trong 1s    	
+    	for (int i = 0; gp.monster[i] != null; i++) {
+    		System.out.println(gp.monster[i].checkAttackOrNot(30, gp.tileSize, gp.tileSize)); // DEBUG
+    	}
+    	
     	if (keyH.attackPressed) {
     		attacking = true;
     	}
@@ -299,13 +303,7 @@ public class Player extends Entity {
     }    
     // Player tiếp xúc với quái => nhận sát thương
     public void contactMonster(int i) {
-    	if(i != 999){
-    		if (invincible == false && life > 0) {
-    			// gp.playSE(1);
-        		life -= 1;
-        		invincible = true;
-    		}
-    	}	
+
 	}   
 	public void setKnockBack(Entity entity) {
 		entity.direction = gp.player.direction;

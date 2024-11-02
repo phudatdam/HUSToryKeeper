@@ -15,7 +15,7 @@ public class OBJ_Heart extends Entity {
     	this.gp = gp;
     	
         name = "Heart";
-        solidArea = new Rectangle (16, 16, 32, 32);
+        solidArea = new Rectangle (20, 20, 24, 24);
         down1 = setup("/objects/heart_full", 40, 40);
         down2 = setup("/objects/heart_full", 40, 40);
         

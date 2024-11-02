@@ -68,7 +68,7 @@ public class MON_BronzeBow extends Entity{
 		}
 		
 		if (attacking == false) {
-			checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize);
+			attacking = checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize);
 		}
     }
 	
