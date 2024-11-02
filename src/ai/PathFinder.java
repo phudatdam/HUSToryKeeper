@@ -70,19 +70,19 @@ public class PathFinder {
 		// Set solid nodes
 		while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
 			// Check tiles
-			int tileNum = gp.tileM.mapTileNum[col][row];
+			int tileNum = gp.tileM.mapTileNum[gp.currentMap][col][row];
 			if (gp.tileM.tile[tileNum].collision == true) {
 				node[col][row].solid = true;
 			}
 			
 			// Check interactive tiles
-//			for (int i = 0; i < gp.iTile[i].length; i++) {
-//				if (gp.iTile[i] != null && gp.iTile[i].destructible == true) {
-//					int itCol = gp.iTile[i].worldX / gp.tileSize;
-//					int itRow = gp.iTile[i].worldY / gp.tileSize;
-//					node[itCol][itRow].solid = true;
-//				}
-//			}
+			for (int i = 0; gp.iTile[gp.currentMap][i] != null; i++) {
+				if (gp.iTile[gp.currentMap][i] != null && gp.iTile[gp.currentMap][i].destructible == true) {
+					int itCol = gp.iTile[gp.currentMap][i].worldX / gp.tileSize;
+					int itRow = gp.iTile[gp.currentMap][i].worldY / gp.tileSize;
+					node[itCol][itRow].solid = true;
+				}
+			}
 			
 			// Set cost
 			getCost(node[col][row]);

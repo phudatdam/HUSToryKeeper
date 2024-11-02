@@ -77,8 +77,6 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public int motion1_duration;
 	public int motion2_duration;
     public Projectile projectile;
-    public int attack;
-    public Projectile projectile;
     public Entity currentWeapon;
 	public boolean stackeable =false;
 	public int amount = 1;
@@ -93,9 +91,9 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		
 	}	
 	public void speak() {}	
-    public void startDialogue(Entity entity, int setNum){
+    public void startDialogue(NPC npc, int setNum){
         gp.gameState = gp.dialogueState;
-        gp.ui.npc = entity;
+        gp.ui.npc = npc;
         dialogueSet = setNum;
     }    
     // quay mặt npc ra chỗ mình	
@@ -113,7 +111,9 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			case "left":
 			direction = "right";
 			break;
-
+        }
+    }
+    
 	public void checkDrop(){}
 
 	public void dropItem (Entity droppedItem){
