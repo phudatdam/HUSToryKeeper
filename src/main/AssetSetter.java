@@ -102,7 +102,7 @@ public class AssetSetter {
         gp.monster[mapNum][3].worldY = 22 * gp.tileSize;
         
         gp.monster[mapNum][4] = new MON_BronzeBow(gp);
-        gp.monster[mapNum][4].worldX = 10 * gp.tileSize;
+        gp.monster[mapNum][4].worldX = 9 * gp.tileSize;
         gp.monster[mapNum][4].worldY = 29 * gp.tileSize;
         
         gp.monster[mapNum][5] = new MON_BronzeBow(gp);
