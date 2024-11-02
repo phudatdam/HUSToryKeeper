@@ -11,6 +11,8 @@ import object.OBJ_Heart;
 import object.OBJ_Iron;
 import object.OBJ_Well;
 import object.OBJ_Wood;
+import tile_interactive.IT_IronOre;
+import tile_interactive.IT_Tree;
 
 public class AssetSetter {
     GamePanel gp;
@@ -106,6 +108,29 @@ public class AssetSetter {
         gp.monster[mapNum][5] = new MON_BronzeBow(gp);
         gp.monster[mapNum][5].worldX = 20 * gp.tileSize;
         gp.monster[mapNum][5].worldY = 43 * gp.tileSize;
+    }
+    
+    public void setInteractiveTile() {
+    	int mapNum = 1;
+    	int i = 0;
+    	while (mapNum < gp.maxMap) {
+    	    for (int row = 0; row < gp.maxWorldRow; row++) {
+    		    for (int col = 0; col < gp.maxWorldCol; col++) {
+    			    // Draw tree on top of chopped tree tiles
+        		    if (gp.tileM.mapTileNum[mapNum][col][row] == 12) {
+        			    gp.iTile[mapNum][i] = new IT_Tree(gp, col, row);
+        			    i++;
+        		    }
+        		    // Draw iron ore on top of mined iron ore tiles
+        		    if (gp.tileM.mapTileNum[mapNum][col][row] == 13) {
+        			    gp.iTile[mapNum][i] = new IT_IronOre(gp, col, row);
+        			    i++;
+        		    }
+        	    }
+    	    }
+    	    i = 0;
+    	    mapNum++;
+    	}
     }
 }
 
