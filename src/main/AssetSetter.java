@@ -11,6 +11,7 @@ import object.OBJ_Heart;
 import object.OBJ_Iron;
 import object.OBJ_Well;
 import object.OBJ_Wood;
+import tile_interactive.IT_IronOre;
 import tile_interactive.IT_Tree;
 
 public class AssetSetter {
@@ -113,6 +114,7 @@ public class AssetSetter {
     	int mapNum = 1;
     	int i = 0;
     	gp.iTile[mapNum][i] = new IT_Tree(gp, 29, 8); i++;
+    	gp.iTile[mapNum][i] = new IT_IronOre(gp, 29, 21); i++;
     }
 }
 
