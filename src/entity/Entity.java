@@ -57,6 +57,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public boolean attacking = false;
     public int attack;
     public Projectile projectile;
+    public Entity currentWeapon;
 	public boolean stackeable =false;
 	public int amount = 1;
 

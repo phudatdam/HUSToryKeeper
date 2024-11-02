@@ -30,7 +30,6 @@ public class Player extends Entity {
     public int sword = 0;
     public int axe = 0;
     public int pickaxe = 0;
-    public Entity currentWeapon;
     
     public ArrayList<Entity> inventory = new ArrayList();
     public int maxInventorySize = 15;
@@ -159,6 +158,9 @@ public class Player extends Entity {
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             contactMonster(monsterIndex);
             
+            // Check interactive tiles collision
+            gp.cChecker.checkEntity(this, gp.iTile);
+            
             // Nếu collision = false, player có thể di chuyển
             if(collisionOn == false && keyH.enterPressed == false){
                 switch (direction) {
@@ -233,6 +235,10 @@ public class Player extends Entity {
     		// Check monster collision with the updated worldX, worldY and solidArea
     		int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
     		damageMonster(monsterIndex);
+    		
+    		// Check interactive tile collision with the updated worldX, worldY and solidArea
+    		int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+    		damageInteractiveTile(iTileIndex);
     		
     		// Restore the original data
     		worldX = currentWorldX;
@@ -311,6 +317,20 @@ public class Player extends Entity {
                     gp.monster[gp.currentMap][i].checkDrop();
                     gp.monster[gp.currentMap][i] = null;
     			}
+    		}
+    	}
+    }
+    
+    //
+    public void damageInteractiveTile(int i) {
+    	if (i != 999 && gp.iTile[gp.currentMap][i].destructible
+    			&& gp.iTile[gp.currentMap][i].isCorrectItem(this)
+    			&& gp.iTile[gp.currentMap][i].invincible == false) {
+    		gp.iTile[gp.currentMap][i].life--;
+    		gp.iTile[gp.currentMap][i].invincible = true;
+    		
+    		if (gp.iTile[gp.currentMap][i].life == 0) {
+    			gp.iTile[gp.currentMap][i] = null;
     		}
     	}
     }

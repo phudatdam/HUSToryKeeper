@@ -11,6 +11,7 @@ import object.OBJ_Heart;
 import object.OBJ_Iron;
 import object.OBJ_Well;
 import object.OBJ_Wood;
+import tile_interactive.IT_Tree;
 
 public class AssetSetter {
     GamePanel gp;
@@ -106,6 +107,12 @@ public class AssetSetter {
         gp.monster[mapNum][5] = new MON_BronzeBow(gp);
         gp.monster[mapNum][5].worldX = 20 * gp.tileSize;
         gp.monster[mapNum][5].worldY = 43 * gp.tileSize;
+    }
+    
+    public void setInteractiveTile() {
+    	int mapNum = 1;
+    	int i = 0;
+    	gp.iTile[mapNum][i] = new IT_Tree(gp, 29, 8); i++;
     }
 }
 
