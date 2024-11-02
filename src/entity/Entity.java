@@ -12,22 +12,21 @@ import main.UtilityTool;
 
 public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monster, object...
 	public GamePanel gp;
-	
-    // ENTITY IMAGE
-    public BufferedImage up1, up2, up3, down1, down2, down3, left1,
-                        	left2, left3, right1, right2, right3;
-    public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, 
-    						attackLeft1, attackLeft2, attackRight1, attackRight2;
-    public BufferedImage image1, image2, image3;
-    public Rectangle solidArea = new Rectangle(0, 0, 64, 64);
-    public Rectangle attackArea = new Rectangle(0, 0, 64, 64); // fix
-    public int solidAreaDefaultX = solidArea.x;
-    public int solidAreaDefaultY = solidArea.y;
-    public Entity attacker;
-    
-    // ENTITY STATUS
+
+	// ENTITY IMAGE
+	public BufferedImage up1, up2, up3, down1, down2, down3, left1,
+			left2, left3, right1, right2, right3;
+	public String direction = "down"; //
+	public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2,
+			attackLeft1, attackLeft2, attackRight1, attackRight2;
+	public BufferedImage image1, image2, image3;
+	public Rectangle solidArea = new Rectangle(0, 0, 64, 64);
+	public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
+	public int solidAreaDefaultX = solidArea.x;
+	public int solidAreaDefaultY = solidArea.y;
+
+	// ENTITY STATUS
 	public int worldX, worldY;
-    public String direction = "down";
     public int spriteNum = 1;
     public boolean collisionOn = false;
     public boolean invincible = false;
@@ -61,11 +60,12 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public int type; // 0=player, 1=npc, 2=monsters
     public final int TYPE_PLAYER = 0;
     public final int TYPE_NPC = 1;
-    public final int TYPE_MONSTER = 2; 
+    public final int TYPE_MONSTER = 2;
 	public final int TYPE_sword = 3;
-    public final int TYPE_axe = 4;
-    public final int TYPE_pickaxe = 5; 
+	public final int TYPE_axe = 4;
+	public final int TYPE_pickaxe = 5;
 	public final int TYPE_consumable = 6;
+
     public String name;
     public String description;
     public int defaultSpeed;
@@ -77,6 +77,11 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public int motion1_duration;
 	public int motion2_duration;
     public Projectile projectile;
+    public int attack;
+    public Projectile projectile;
+    public Entity currentWeapon;
+	public boolean stackeable =false;
+	public int amount = 1;
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -87,9 +92,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public void damageReaction() {
 		
 	}	
-	public void speak() {
-        		
-    }	
+	public void speak() {}	
     public void startDialogue(Entity entity, int setNum){
         gp.gameState = gp.dialogueState;
         gp.ui.npc = entity;
@@ -110,6 +113,17 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			case "left":
 			direction = "right";
 			break;
+
+	public void checkDrop(){}
+
+	public void dropItem (Entity droppedItem){
+		for(int i = 0; i < gp.obj[1].length; i++){
+			if(gp.obj[gp.currentMap][i] == null){
+				gp.obj[gp.currentMap][i] = droppedItem;
+				gp.obj[gp.currentMap][i].worldX = worldX; // the dead monster's worldX
+				gp.obj[gp.currentMap][i].worldY = worldY; // the dead monster's worldY
+				break;
+			}
 		}
     }  
     public int getXDistance(Entity target) {
@@ -210,7 +224,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		 
         if (invincible == true) {
         	invincibleCounter++;
-        	if (invincibleCounter > 20) {
+        	if (invincibleCounter > 40) {
         		invincible = false;
         		invincibleCounter = 0;
         	}
@@ -383,27 +397,27 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	}
 	
 	// Công cụ tạo ảnh entity
-	public BufferedImage setup(String imagePath, int width, int height) { 	
-    	// Khai báo công cụ scale
+	public BufferedImage setup(String imagePath, int width, int height) {
+		// Khai báo công cụ scale
 		UtilityTool uTool = new UtilityTool();
-    	BufferedImage image = null;
-    	
-    	try {
-    		// Fetch ảnh gốc vào entity
-    		image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png")); 
-    		// Scale ảnh gốc về kích thước tile
-    		image = uTool.scaleImage(image, width, height);
-    	} catch(IOException e) {
-    		e.printStackTrace();
-    	}
-    	
-    	return image;
+		BufferedImage image = null;
+
+		try {
+			// Fetch ảnh gốc vào entity
+			image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
+			// Scale ảnh gốc về kích thước tile
+			image = uTool.scaleImage(image, width, height);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+
+		return image;
 	}
 
 	public void draw(Graphics2D g2) {
 		BufferedImage image = null;
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;
-        int screenY = worldY - gp.player.worldY + gp.player.screenY;
+		int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
         // Vẽ tile nằm trong phạm vi màn hình và mở rộng thêm tile ngoài viền để tránh "sọc"
         if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX - gp.tileSize &&

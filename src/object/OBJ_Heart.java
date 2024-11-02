@@ -9,15 +9,14 @@ public class OBJ_Heart extends Entity {
 	GamePanel gp;
 	
     public OBJ_Heart(GamePanel gp){
-    	super(gp);
-    	
+    	super(gp);    	
     	// DEBUG
     	this.gp = gp;
     	
         name = "Heart";
-        solidArea = new Rectangle (20, 20, 24, 24);
-        down1 = setup("/objects/heart_full", 40, 40);
-        down2 = setup("/objects/heart_full", 40, 40);
+        solidArea = new Rectangle (16, 16, 32, 32);
+        down1 = setup("/objects/heart_full", 32, 32);
+        down2 = setup("/objects/heart_full", 32, 32);
         
         image1 = setup("/objects/heart_full", gp.tileSize, gp.tileSize);
         image2 = setup("/objects/heart_half", gp.tileSize, gp.tileSize);

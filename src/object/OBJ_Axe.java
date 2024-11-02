@@ -11,6 +11,6 @@ public class OBJ_Axe extends Entity{
 		name = "Rìu";
 		description = "[ "+ name +" ]\nchỉ để chặt gỗ";
 		
-		down1 = setup("/objects/axe", gp.tileSize, gp.tileSize);
+		image1 = setup("/objects/axe", gp.tileSize, gp.tileSize);
 	}
 }

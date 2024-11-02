@@ -27,22 +27,22 @@ public class KeyHandler implements KeyListener {
         int code = e.getKeyCode();
 
         // TITLE STATE
-        if (gp.gameState == gp.titleState) {
+        if(gp.gameState == gp.titleState){
             titleState(code);
         }
 
         // PLAY STATE
-        else if (gp.gameState == gp.playState) {
+        else if(gp.gameState ==  gp.playState) {
             playState(code);
         }
 
         // PAUSE STATE
-        else if (gp.gameState == gp.pauseState) {
+        else if(gp.gameState == gp.pauseState) {
             pauseState(code);
         }
 
         // CHARACTER SCREEN (STATUS SCREEN)
-        else if (gp.gameState == gp.characterState) {
+        else if(gp.gameState == gp.characterState) {
             characterState(code);
         }
 
@@ -113,6 +113,9 @@ public class KeyHandler implements KeyListener {
         }
 
         if(code == KeyEvent.VK_J) {
+            if(gp.player.currentWeapon.type == 3){ gp.playSE(4);}
+            if(gp.player.currentWeapon.type == 4){ gp.playSE(1);}
+            if(gp.player.currentWeapon.type == 5){ gp.playSE(5);}
             attackPressed = true;
         }
 
@@ -267,5 +270,4 @@ public class KeyHandler implements KeyListener {
         }
     }
 }
-
 

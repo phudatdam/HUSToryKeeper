@@ -5,10 +5,9 @@ import main.KeyHandler;
 //import object.OBJ_Axe;
 //import object.OBJ_Coin;
 //import object.OBJ_Heart;
-import object.OBJ_Iron;
+//import object.OBJ_Iron;
 import object.OBJ_Sword;
-//import object.OBJ_Sword;
-import object.OBJ_Wood;
+//import object.OBJ_Wood;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -22,6 +21,7 @@ public class Player extends Entity {
     public final int screenY;
     int standCounter = 0;
 
+    public int coin = 0;
     public int defense = 0;
     public int strength = 1;
     public int coin = 0;
@@ -30,7 +30,6 @@ public class Player extends Entity {
     public int sword = 0;
     public int axe = 0;
     public int pickaxe = 0;
-    public Entity currentWeapon;
     
     public ArrayList<Entity> inventory = new ArrayList<Entity>();
     public int maxInventorySize = 15;
@@ -74,12 +73,9 @@ public class Player extends Entity {
         defense = 0;
         currentWeapon = new OBJ_Sword(gp);
     }
+    
     public void setItems() {
         inventory.add(currentWeapon);
-        iron+=2;
-        inventory.add(new OBJ_Iron(gp));
-        wood+=2;
-        inventory.add(new OBJ_Wood(gp));
     }
 
     public void getPlayerImage(){
@@ -196,6 +192,9 @@ public class Player extends Entity {
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             contactMonster(monsterIndex);
             
+            // Check interactive tiles collision
+            gp.cChecker.checkEntity(this, gp.iTile);
+            
             // Nếu collision = false, player có thể di chuyển
             if(collisionOn == false && keyH.enterPressed == false){
                 switch (direction) {
@@ -266,9 +265,13 @@ public class Player extends Entity {
     		solidArea.width = attackArea.width;
     		solidArea.height = attackArea.height;
     		
-    			// Check monster collision with the updated worldX, worldY and solidArea
-    			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-        		gp.player.damageMonster(monsterIndex, attack);
+    		// Check monster collision with the updated worldX, worldY and solidArea
+    		int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+    		damageMonster(monsterIndex);
+    		
+    		// Check interactive tile collision with the updated worldX, worldY and solidArea
+    		int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+    		damageInteractiveTile(iTileIndex);
     		
     		// Restore the original data
     		worldX = currentWorldX;
@@ -292,15 +295,46 @@ public class Player extends Entity {
                     gp.obj[i] = null;
                     break;
             }
+                // Nhặt được tim => hồi máu
+                if(gp.obj[gp.currentMap][i].name == "Heart")
+                {
+                    gp.playSE(3);
+                    life +=2;
+                    maxLife +=2;
+                    gp.obj[gp.currentMap][i]=null;
+                }
+                // Chuyển đến map tiếp theo khi chạm vào giếng
+                else if ( gp.obj[gp.currentMap][i].name == "Well")
+                {
+                    if (coink == 1) {
+                		coink = 0;
+                		inventory.removeIf( item -> item.name.equals("Đồng xu"));
+                		teleport();
+                    }
+                }
+                // Nhặt gỗ, sắt
+                else
+                {
+                    if(canObtainItem(gp.obj[gp.currentMap][i]) == true)
+                    {
+                        gp.playSE(3);
+                        if( gp.obj[gp.currentMap][i].name == "Sắt") iron ++;
+                        if( gp.obj[gp.currentMap][i].name == "Gỗ") wood ++;
+                    }
+                    gp.obj[gp.currentMap][i]=null;
+                    
+                }
         }
-    }   
+    }
+    
     public void interactNPC(int i) {
     	if(i != 999) {
     		    gp.gameState = gp.dialogueState;
-                gp.npc[i].speak();
+                gp.npc[gp.currentMap][i].speak();
         }
         gp.keyH.enterPressed=false;
-    }    
+    }
+    
     // Player tiếp xúc với quái => nhận sát thương
     public void contactMonster(int i) {
 
@@ -313,19 +347,36 @@ public class Player extends Entity {
     // Đánh thường => gây sát thương
     public void damageMonster(int i, int attack) {  
     	if(i != 999){
-    		if (gp.monster[i].invincible == false) {
+    		if (gp.monster[gp.currentMap][i].invincible == false) {
     			gp.playSE(1);
-    			setKnockBack(gp.monster[i]);
-    			gp.monster[i].life -= attack;
-    			gp.monster[i].invincible = true;
-    			gp.monster[i].damageReaction();
+    			setKnockBack(gp.monster[gp.currentMap][i]);
+    			gp.monster[gp.currentMap][i].life -= attack;
+    			gp.monster[gp.currentMap][i].invincible = true;
+    			gp.monster[gp.currentMap][i].damageReaction();
    			
-    			if (gp.monster[i].life <= 0) {
-    				gp.monster[i].dying = true;
+    			if (gp.monster[gp.currentMap][i].life <= 0) {
+    				gp.monster[gp.currentMap][i].dying = true;
+                    gp.monster[gp.currentMap][i].checkDrop();
+                    gp.monster[gp.currentMap][i] = null;
     			}
     		}
     	}
     }  
+    //
+    public void damageInteractiveTile(int i) {
+    	if (i != 999 && gp.iTile[gp.currentMap][i].destructible
+    			&& gp.iTile[gp.currentMap][i].isCorrectItem(this)
+    			&& gp.iTile[gp.currentMap][i].invincible == false) {
+    		gp.iTile[gp.currentMap][i].life--;
+    		gp.iTile[gp.currentMap][i].invincible = true;
+    		
+    		if (gp.iTile[gp.currentMap][i].life == 0) {
+    			gp.iTile[gp.currentMap][i].checkDrop();
+    			gp.iTile[gp.currentMap][i] = null;
+    		}
+    	}
+    }
+    
     public void selectItem(){
         int itemIndex = gp.ui.getItemIndexOnSlot();
         if (itemIndex < inventory.size())
@@ -341,6 +392,59 @@ public class Player extends Entity {
                 //update
             }
         }
+    }
+
+    public int SearchItemInInventoty(String itemName) {
+        int itemIndex = 999;
+        for(int i = 0 ; i < inventory.size() ; i++ )
+        {
+            if(inventory.get(i).name.equals(itemName))
+            {
+                itemIndex = i;
+                break;
+            }
+        }
+        return itemIndex;
+    }
+
+    public boolean canObtainItem(Entity item )
+    {
+        boolean canobtain = false;
+        // stackable ?
+        if(item.stackeable == true)
+        {
+            int index = SearchItemInInventoty(item.name);
+            if( index != 999)
+            {
+                inventory.get(index).amount++;
+                canobtain = true;
+            }
+            else
+            {
+                inventory.add(item);
+                canobtain = true;
+            }
+        }
+        return canobtain;
+
+    }
+
+    public void teleport() {
+    	gp.currentMap++;
+    	int col = 0;
+    	int row = 0;
+    	switch (gp.currentMap) {
+		    case 1:
+			    col = 35;
+			    row = 15;
+			    break;
+		    case 2:
+		    	col = 15;
+		    	row = 12;
+		    	break;
+    	}
+    	worldX = gp.tileSize * col;
+    	worldY = gp.tileSize * row;
     }
 
     public void draw(Graphics2D g2){

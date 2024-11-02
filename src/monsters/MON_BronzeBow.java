@@ -1,9 +1,11 @@
 package monsters;
 
 import java.awt.Rectangle;
+import java.util.Random;
+
 import entity.Entity;
 import main.GamePanel;
-import object.OBJ_Arrow;
+import object.*;
 
 public class MON_BronzeBow extends Entity{
 	
@@ -71,6 +73,21 @@ public class MON_BronzeBow extends Entity{
 			attacking = checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize);
 		}
     }
+	
+	public void checkDrop(){
+		int i = new Random().nextInt(100) + 1;
+
+		// SET THE MONSTER DROP
+		if(i < 50){
+			dropItem(new OBJ_Heart(gp));
+		}
+		else if(i < 75){
+			dropItem(new OBJ_Wood(gp));
+		}
+		else{
+			dropItem(new OBJ_Iron(gp));
+		}
+	}
 	
 	public void damageReaction() {
 		actionLockCounter = 0;

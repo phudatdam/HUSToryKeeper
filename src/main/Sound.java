@@ -16,9 +16,11 @@ public class Sound {
 
     public Sound(){
         soundURL[0] = getClass().getResource("/sound/game_hustory_keeper.wav");
-        soundURL[1] = getClass().getResource("/sound/woosh.wav");
+        soundURL[1] = getClass().getResource("/sound/hit_wood.wav");
         soundURL[2] = getClass().getResource("/sound/cursor.wav");
-
+        soundURL[3] = getClass().getResource("/sound/tingting.wav");
+        soundURL[4] = getClass().getResource("/sound/sword.wav");
+        soundURL[5] = getClass().getResource("/sound/iron.wav");
     }
 
     public void setFile(int i){
@@ -56,4 +58,3 @@ public class Sound {
         fc.setValue(volume);
     }
 }
-
