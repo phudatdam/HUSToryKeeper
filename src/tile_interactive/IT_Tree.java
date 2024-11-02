@@ -16,7 +16,7 @@ public class IT_Tree extends InteractiveTile {
 		
 		down1 = setup("/tiles/tree_1", gp.tileSize, gp.tileSize);
 		destructible = true;
-		life = 3;
+		life = 2;
 	}
 	
 	public boolean isCorrectItem(Entity entity) {

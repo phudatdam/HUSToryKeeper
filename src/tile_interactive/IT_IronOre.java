@@ -16,7 +16,7 @@ public class IT_IronOre extends InteractiveTile {
 		
 		down1 = setup("/tiles/iron_ore", gp.tileSize, gp.tileSize);
 		destructible = true;
-		life = 3;
+		life = 2;
 	}
 	
 	public boolean isCorrectItem(Entity entity) {
