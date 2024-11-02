@@ -63,7 +63,7 @@ public class MON_BronzeBow extends Entity{
 			// Check if it stops chasing
 			checkStopChasingOrNot(gp.player, 15, 30);				
 			// Search the direction to go
-			searchPath(getGoalCol(gp.player), getGoalRow(gp.player));		
+			searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
 			// Check if it shoots a projectile
 			checkShootOrNot(100, 30);
 		} else {
