@@ -330,6 +330,7 @@ public class Player extends Entity {
     		gp.iTile[gp.currentMap][i].invincible = true;
     		
     		if (gp.iTile[gp.currentMap][i].life == 0) {
+    			gp.iTile[gp.currentMap][i].checkDrop();
     			gp.iTile[gp.currentMap][i] = null;
     		}
     	}

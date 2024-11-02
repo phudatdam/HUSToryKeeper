@@ -2,6 +2,7 @@ package tile_interactive;
 
 import entity.Entity;
 import main.GamePanel;
+import object.OBJ_Iron;
 
 public class IT_IronOre extends InteractiveTile {
 	GamePanel gp;
@@ -20,6 +21,10 @@ public class IT_IronOre extends InteractiveTile {
 	
 	public boolean isCorrectItem(Entity entity) {
 		return entity.currentWeapon.type == TYPE_pickaxe;
+	}
+	
+	public void checkDrop(){
+		dropItem(new OBJ_Iron(gp));
 	}
 
 }
