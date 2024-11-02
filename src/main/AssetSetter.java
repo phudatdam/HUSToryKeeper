@@ -111,20 +111,25 @@ public class AssetSetter {
     }
     
     public void setInteractiveTile() {
+    	int mapNum = 1;
     	int i = 0;
-    	for (int row = 0; row < gp.maxWorldRow; row++) {
-    		for (int col = 0; col < gp.maxWorldCol; col++) {
-    			// Draw tree on top of chopped tree tiles
-        		if (gp.tileM.mapTileNum[gp.currentMap][col][row] == 12) {
-        			gp.iTile[gp.currentMap][i] = new IT_Tree(gp, col, row);
-        			i++;
-        		}
-        		// Draw iron ore on top of mined iron ore tiles
-        		if (gp.tileM.mapTileNum[gp.currentMap][col][row] == 13) {
-        			gp.iTile[gp.currentMap][i] = new IT_IronOre(gp, col, row);
-        			i++;
-        		}
-        	}
+    	while (mapNum < gp.maxMap) {
+    	    for (int row = 0; row < gp.maxWorldRow; row++) {
+    		    for (int col = 0; col < gp.maxWorldCol; col++) {
+    			    // Draw tree on top of chopped tree tiles
+        		    if (gp.tileM.mapTileNum[mapNum][col][row] == 12) {
+        			    gp.iTile[mapNum][i] = new IT_Tree(gp, col, row);
+        			    i++;
+        		    }
+        		    // Draw iron ore on top of mined iron ore tiles
+        		    if (gp.tileM.mapTileNum[mapNum][col][row] == 13) {
+        			    gp.iTile[mapNum][i] = new IT_IronOre(gp, col, row);
+        			    i++;
+        		    }
+        	    }
+    	    }
+    	    i = 0;
+    	    mapNum++;
     	}
     }
 }
