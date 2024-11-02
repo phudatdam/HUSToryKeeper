@@ -57,6 +57,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public boolean attacking = false;
     public int attack;
     public Projectile projectile;
+    public Entity currentWeapon;
 	public boolean stackeable =false;
 	public int amount = 1;
 
@@ -94,7 +95,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public void checkDrop(){}
 
 	public void dropItem (Entity droppedItem){
-		for(int i = 0; i < gp.obj.length; i++){
+		for(int i = 0; i < gp.obj[1].length; i++){
 			if(gp.obj[gp.currentMap][i] == null){
 				gp.obj[gp.currentMap][i] = droppedItem;
 				gp.obj[gp.currentMap][i].worldX = worldX; // the dead monster's worldX
@@ -112,6 +113,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		gp.cChecker.checkObject(this, false);
 		gp.cChecker.checkEntity(this, gp.npc);
 		gp.cChecker.checkEntity(this, gp.monster);
+		gp.cChecker.checkEntity(this, gp.iTile);
 		boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
 		if((this.type == TYPE_MONSTER) && (contactPlayer == true)) {
