@@ -296,7 +296,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	}
 	public void checkShootOrNot(int rate, int shotInterval) {
 		int i = new Random().nextInt(rate); // bắn ngẫu nhiên
-    	if(i < 97 && projectile.alive == false && shotAvailableCounter == shotInterval) { //
+    	if(i == 0 && projectile.alive == false && shotAvailableCounter == shotInterval) { //
     		projectile.set(worldX, worldY, direction, true, this);
     		gp.projectileList.add(projectile);
     		shotAvailableCounter = 0;
