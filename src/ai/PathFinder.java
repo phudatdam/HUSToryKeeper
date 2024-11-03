@@ -70,7 +70,7 @@ public class PathFinder {
 		// Set solid nodes
 		while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
 			// Check tiles
-			int tileNum = gp.tileM.mapTileNum[col][row];
+			int tileNum = gp.tileM.mapTileNum[gp.currentMap][col][row];
 			if (gp.tileM.tile[tileNum].collision == true) {
 				node[col][row].solid = true;
 			}

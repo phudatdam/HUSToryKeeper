@@ -127,24 +127,21 @@ public class GamePanel extends JPanel implements Runnable{
             player.update();
 
             // NPC
-            for(int i = 0; i < npc[1].length; i++){
+            for(int i = 0; i < npc[currentMap].length; i++){
                 if(npc[currentMap][i] != null){
                     npc[currentMap][i].update();
                 }
             }
 
             // MONSTERS
-            for(int i = 0; i < monster.length; i++){
-                if(monster[i] != null){
-                	if(monster[i].alive == true && monster[i].dying == false){
-                		monster[i].update();
-                	}
-                	if(monster[i].alive == false){
-                		monster[i] = null;
-                	}
-            for(int i = 0; i < monster[1].length; i++){
+            for(int i = 0; i < monster[currentMap].length; i++){
                 if(monster[currentMap][i] != null){
-                    monster[currentMap][i].update();
+                	if(monster[currentMap][i].alive == true && monster[currentMap][i].dying == false){
+                		monster[currentMap][i].update();
+                	}
+                	if(monster[currentMap][i].alive == false){
+                		monster[currentMap][i] = null;
+                	}
                 }
             }
 
@@ -162,7 +159,7 @@ public class GamePanel extends JPanel implements Runnable{
             }
             
             // INTERACTIVE TILES
-            for(int i = 0; i < iTile[1].length; i++){
+            for(int i = 0; i < iTile[currentMap].length; i++){
                 if(iTile[currentMap][i] != null){
                 	iTile[currentMap][i].update();
                 }

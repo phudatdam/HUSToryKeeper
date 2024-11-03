@@ -21,7 +21,6 @@ public class Player extends Entity {
     public final int screenY;
     int standCounter = 0;
 
-    public int coin = 0;
     public int defense = 0;
     public int strength = 1;
     public int coin = 0;
@@ -125,8 +124,8 @@ public class Player extends Entity {
         }
     }
     public void update(){ // được gọi 60 lần trong 1s    	
-    	for (int i = 0; gp.monster[i] != null; i++) {
-    		System.out.println(gp.monster[i].checkAttackOrNot(30, gp.tileSize, gp.tileSize)); // DEBUG
+    	for (int i = 0; gp.monster[gp.currentMap][i] != null; i++) {
+    		System.out.println(gp.monster[gp.currentMap][i].checkAttackOrNot(30, gp.tileSize, gp.tileSize)); // DEBUG
     	}
     	
     	if (keyH.attackPressed) {
@@ -288,7 +287,7 @@ public class Player extends Entity {
     // Nhặt được tim => hồi máu
 	public void pickUpObject(int i){
         if(i != 999){
-            String objectName = gp.obj[i].name;
+            String objectName = gp.obj[gp.currentMap][i].name;
             switch (objectName){
                 case "Heart":
             		life += 2;
@@ -306,8 +305,8 @@ public class Player extends Entity {
                 // Chuyển đến map tiếp theo khi chạm vào giếng
                 else if ( gp.obj[gp.currentMap][i].name == "Well")
                 {
-                    if (coink == 1) {
-                		coink = 0;
+                    if (coin == 1) {
+                		coin = 0;
                 		inventory.removeIf( item -> item.name.equals("Đồng xu"));
                 		teleport();
                     }
