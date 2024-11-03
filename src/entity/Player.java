@@ -24,6 +24,7 @@ public class Player extends Entity {
     public int coin = 0;
     public int defense = 0;
     public int strength = 1;
+    public int coin = 0;
     public int iron = 0;
     public int wood = 0;
     public int sword = 0;
@@ -124,8 +125,8 @@ public class Player extends Entity {
         }
     }
     public void update(){ // được gọi 60 lần trong 1s    	
-    	for (int i = 0; gp.monster[gp.currentMap][i] != null; i++) {
-    		System.out.println(gp.monster[gp.currentMap][i].checkAttackOrNot(30, gp.tileSize, gp.tileSize)); // DEBUG
+    	for (int i = 0; gp.monster[i] != null; i++) {
+    		System.out.println(gp.monster[i].checkAttackOrNot(30, gp.tileSize, gp.tileSize)); // DEBUG
     	}
     	
     	if (keyH.attackPressed) {
@@ -266,7 +267,7 @@ public class Player extends Entity {
     		
     		// Check monster collision with the updated worldX, worldY and solidArea
     		int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-    		damageMonster(gp.currentMap, monsterIndex);
+    		damageMonster(monsterIndex);
     		
     		// Check interactive tile collision with the updated worldX, worldY and solidArea
     		int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
@@ -287,7 +288,7 @@ public class Player extends Entity {
     // Nhặt được tim => hồi máu
 	public void pickUpObject(int i){
         if(i != 999){
-            String objectName = gp.obj[gp.currentMap][i].name;
+            String objectName = gp.obj[i].name;
             switch (objectName){
                 case "Heart":
             		life += 2;
@@ -305,8 +306,8 @@ public class Player extends Entity {
                 // Chuyển đến map tiếp theo khi chạm vào giếng
                 else if ( gp.obj[gp.currentMap][i].name == "Well")
                 {
-                    if (coin == 1) {
-                		coin = 0;
+                    if (coink == 1) {
+                		coink = 0;
                 		inventory.removeIf( item -> item.name.equals("Đồng xu"));
                 		teleport();
                     }
@@ -344,19 +345,19 @@ public class Player extends Entity {
     	entity.knockBack = true;
 	}
     // Đánh thường => gây sát thương
-    public void damageMonster(int map, int i) {  
+    public void damageMonster(int i, int attack) {  
     	if(i != 999){
-    		if (gp.monster[map][i].invincible == false) {
+    		if (gp.monster[gp.currentMap][i].invincible == false) {
     			gp.playSE(1);
-    			setKnockBack(gp.monster[map][i]);
-    			gp.monster[map][i].life -= attack;
-    			gp.monster[map][i].invincible = true;
-    			gp.monster[map][i].damageReaction();
+    			setKnockBack(gp.monster[gp.currentMap][i]);
+    			gp.monster[gp.currentMap][i].life -= attack;
+    			gp.monster[gp.currentMap][i].invincible = true;
+    			gp.monster[gp.currentMap][i].damageReaction();
    			
-    			if (gp.monster[map][i].life <= 0) {
-    				gp.monster[map][i].dying = true;
-                    gp.monster[map][i].checkDrop();
-                    gp.monster[map][i] = null;
+    			if (gp.monster[gp.currentMap][i].life <= 0) {
+    				gp.monster[gp.currentMap][i].dying = true;
+                    gp.monster[gp.currentMap][i].checkDrop();
+                    gp.monster[gp.currentMap][i] = null;
     			}
     		}
     	}

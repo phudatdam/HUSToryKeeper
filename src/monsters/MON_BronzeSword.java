@@ -1,8 +1,6 @@
 package monsters;
 
 import java.awt.Rectangle;
-import java.util.Random;
-
 import entity.Entity;
 import main.GamePanel;
 import object.OBJ_Coin;
