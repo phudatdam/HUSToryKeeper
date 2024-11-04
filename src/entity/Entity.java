@@ -49,6 +49,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public final int TYPE_axe = 4;
 	public final int TYPE_pickaxe = 5;
 	public final int TYPE_consumable = 6;
+	public int attackValue;
+
 
     public String name;
     public String description;
@@ -86,9 +88,10 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
         	actionLockCounter = 0;
     	}
 	}
+    
+	public void speak(){}
 
-	public void speak() {}
-    public void startDialogue(Entity entity, int setNum) {}
+	public void startDialogue(Entity entity, int setNum){}
     // quay mặt npc ra chỗ mình
     public void facePlayer() {}
 
