@@ -30,6 +30,9 @@ public class Player extends Entity {
     public int sword = 0;
     public int axe = 0;
     public int pickaxe = 0;
+    public int exp;
+    public int expNeed;
+    public int Lv;
     
     public ArrayList<Entity> inventory = new ArrayList();
     public int maxInventorySize = 15;
@@ -66,9 +69,23 @@ public class Player extends Entity {
         life = maxLife;
         strength = 1;
         defense = 0;
+        exp = 0;
+        expNeed = 5;
+        Lv = 1;
         currentWeapon = new OBJ_Sword(gp);
     }
     
+    public int getAttack()
+    {
+        return attack = strength + currentWeapon.attackValue;
+    }
+    
+    public void setMessage()
+    {
+        dialogues[0][0] = "Bạn thả đồng xu thần kì xuống giếng.";
+        dialogues[0][1] = "Một sức hút kì ảo hút bạn đi";
+    }
+
     public void setItems() {
         inventory.add(currentWeapon);
     }
@@ -222,10 +239,10 @@ public class Player extends Entity {
     		
     		// Adjust player worldX/worldY for the attackArea
     		switch(direction) {
-    			case("up"): worldY -= attackArea.height; 
-    			case("down"): worldY += attackArea.height; 
-    			case("left"): worldY -= attackArea.width;
-    			case("right"): worldY += attackArea.width; 
+    			case("up"): worldY -= 1 * attackArea.height;break; 
+    			case("down"): worldY += 1 * attackArea.height;break;
+    			case("left"): worldX -= 1 * attackArea.width;break;
+    			case("right"): worldX += 1 * attackArea.width;break;
     		}
     		
     		// Change solidArea to the attackArea
@@ -261,7 +278,11 @@ public class Player extends Entity {
                 {
                     gp.playSE(3);
                     life +=2;
-                    maxLife +=2;
+                    if( life >= maxLife)
+                    {
+                        maxLife++;
+                        life = maxLife;
+                    }
                     gp.obj[gp.currentMap][i]=null;
                 }
                 // Chuyển đến map tiếp theo khi chạm vào giếng
@@ -270,6 +291,7 @@ public class Player extends Entity {
                     if (coink == 1) {
                 		coink = 0;
                 		inventory.removeIf( item -> item.name.equals("Đồng xu"));
+                        startDialogue(this, 0);
                 		teleport();
                     }
                 }
@@ -310,7 +332,7 @@ public class Player extends Entity {
     public void damageMonster(int i) {  
     	if(i != 999){
     		if (gp.monster[gp.currentMap][i].invincible == false) {
-    			gp.monster[gp.currentMap][i].life -= 1;
+    			gp.monster[gp.currentMap][i].life -= getAttack();
     			gp.monster[gp.currentMap][i].invincible = true;
     			
     			if (gp.monster[gp.currentMap][i].life <= 0) {

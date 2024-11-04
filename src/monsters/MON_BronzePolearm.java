@@ -18,7 +18,7 @@ public class MON_BronzePolearm extends Entity{
 		type = TYPE_MONSTER;
 		name = "Bronze polearm";
 		speed = 1;
-		maxLife = 4;
+		maxLife = 24;
 		life = maxLife;
 		
 		solidArea = new Rectangle(12, 12, 40, 40);
@@ -77,10 +77,10 @@ public class MON_BronzePolearm extends Entity{
 		int i = new Random().nextInt(100) + 1;
 
 		// SET THE MONSTER DROP
-		if(i < 50){
+		if(i < 35){
 			dropItem(new OBJ_Heart(gp));
 		}
-		else if(i < 75){
+		else if(i < 70){
 			dropItem(new OBJ_Wood(gp));
 		}
 		else{

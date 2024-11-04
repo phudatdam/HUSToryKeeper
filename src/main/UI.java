@@ -494,17 +494,17 @@ public class UI {
         int lineHeight = 20 + 6; // độ cao dòng = cỡ font + khoảng cách các dòng
 
         // names
-        g2.drawString("Life:", textX, textY);
+        g2.drawString("Hp:", textX, textY);
         textY += lineHeight;
-        g2.drawString("Strength:", textX, textY);
+        g2.drawString("Sức mạnh:", textX, textY);
         textY += lineHeight;
-        g2.drawString("Defense:", textX, textY);
+        g2.drawString("Phòng thủ:", textX, textY);
         textY += lineHeight;
-        g2.drawString("Wood:", textX, textY);
+        g2.drawString("Cấp độ:", textX, textY);
         textY += lineHeight;
-        g2.drawString("Iron:", textX, textY);
+        g2.drawString("kinh nghiệm:", textX, textY);
         textY += 2*lineHeight;
-        g2.drawString("Using", textX + 64, textY);
+        g2.drawString("Đang dùng", textX + 64, textY);
         textY += lineHeight;
 
         // values
@@ -517,7 +517,7 @@ public class UI {
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = String.valueOf(gp.player.strength);
+        value = String.valueOf(gp.player.getAttack());
         textX = getXforAlignRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
@@ -527,12 +527,12 @@ public class UI {
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = String.valueOf(gp.player.wood);
+        value = String.valueOf(gp.player.Lv);
         textX = getXforAlignRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = String.valueOf(gp.player.iron);
+        value = String.valueOf(gp.player.exp +" / "+gp.player.expNeed);
         textX = getXforAlignRightText(value, tailX);
         g2.drawString(value, textX, textY);
         g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize - 64, textY,null);
@@ -551,11 +551,11 @@ public class UI {
         textY += lineHeight;
         g2.drawString("Yêu cầu sắt", textX, textY);
         textY -= lineHeight;
-        value = String.valueOf(gp.player.wood + "/" + gp.npc[gp.currentMap][0].woodneed);
+        value = String.valueOf(gp.player.wood + " / " + gp.npc[gp.currentMap][0].woodneed);
     	textX = getXforAlignRightText(value, tailX);
     	g2.drawString(value, textX, textY);
     	textY += lineHeight;
-        value = String.valueOf(gp.player.iron + "/" + gp.npc[gp.currentMap][0].ironneed);
+        value = String.valueOf(gp.player.iron + " / " + gp.npc[gp.currentMap][0].ironneed);
     	textX = getXforAlignRightText(value, tailX);
     	g2.drawString(value, textX, textY);
     	textY += lineHeight;
