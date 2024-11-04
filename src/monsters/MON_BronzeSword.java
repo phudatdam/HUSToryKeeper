@@ -5,6 +5,10 @@ import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
+import object.OBJ_Coin;
+import object.OBJ_Heart;
+import object.OBJ_Iron;
+import object.OBJ_Wood;
 
 public class MON_BronzeSword extends Entity {
 	public MON_BronzeSword (GamePanel gp) {
@@ -70,4 +74,19 @@ public class MON_BronzeSword extends Entity {
         	actionLockCounter = 0;
     	}
     }
+
+	public void checkDrop(){
+		int i = new Random().nextInt(100) + 1;
+
+		// SET THE MONSTER DROP
+		if(i < 50){
+			dropItem(new OBJ_Heart(gp));
+		}
+		else if(i < 75){
+			dropItem(new OBJ_Wood(gp));
+		}
+		else{
+			dropItem(new OBJ_Iron(gp));
+		}
+	}
 }

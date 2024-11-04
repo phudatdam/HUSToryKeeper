@@ -32,8 +32,9 @@ public class TileManager {
     	// resources
     	setup(10, "bush", true); // bụi cây
     	setup(11, "rock", true); // đá
-    	setup(12, "tree_1", true); // cây gỗ
-    	setup(13, "iron_ore", true); // sắt
+    	setup(12, "tree_chopped", false); // cây gỗ đã bị chặt
+    	setup(13, "iron_ore_mined", false); // sắt đã bị đào
+    	setup(14, "tree_1", true); // cây gỗ
     	// path
     	setup(20, "path_vertical", false); // đường dọc
     	setup(21, "path_horizontal", false); // đường ngang
