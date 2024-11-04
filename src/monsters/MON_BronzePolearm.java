@@ -5,7 +5,6 @@ import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
-import object.OBJ_Coin;
 import object.OBJ_Heart;
 import object.OBJ_Iron;
 import object.OBJ_Wood;

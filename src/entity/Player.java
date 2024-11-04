@@ -57,6 +57,7 @@ public class Player extends Entity {
         getPlayerImage();
         getPlayerAttackImage();
         setItems();
+        setMessage();
     }
 
     public void setDefaultValues() {
@@ -84,6 +85,7 @@ public class Player extends Entity {
     {
         dialogues[0][0] = "Bạn thả đồng xu thần kì xuống giếng.";
         dialogues[0][1] = "Một sức hút kì ảo hút bạn đi";
+        dialogues[0][2] = "Có vẻ như bạn đã du hành thời gian . . . một lần nữa";
     }
 
     public void setItems() {
@@ -280,7 +282,7 @@ public class Player extends Entity {
                     life +=2;
                     if( life >= maxLife)
                     {
-                        maxLife++;
+                        maxLife+=2;
                         life = maxLife;
                     }
                     gp.obj[gp.currentMap][i]=null;
@@ -292,7 +294,7 @@ public class Player extends Entity {
                 		coink = 0;
                 		inventory.removeIf( item -> item.name.equals("Đồng xu"));
                         startDialogue(this, 0);
-                		teleport();
+                	    teleport();
                     }
                 }
                 // Nhặt gỗ, sắt
@@ -411,7 +413,7 @@ public class Player extends Entity {
     }
 
     public void teleport() {
-    	gp.currentMap++;
+        gp.currentMap++;
     	int col = 0;
     	int row = 0;
     	switch (gp.currentMap) {

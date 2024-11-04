@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
+import entity.Entity;
 import entity.NPC;
 
 public class UI {
@@ -23,7 +24,7 @@ public class UI {
     public int commandNum = 0;
     public int slotCol = 0;
     public int slotRow = 0;
-    public NPC npc;
+    public Entity npc;
     int subState = 0;
     int pauState = 0;
 

@@ -4,7 +4,7 @@ import main.GamePanel;
 import object.OBJ_Axe;
 import object.OBJ_Pickaxe;
 
-public class NPC_AnDuongVuong extends NPC {
+public class NPC_AnDuongVuong extends Entity {
 	
 	public NPC_AnDuongVuong(GamePanel gp) {
 		super(gp);
