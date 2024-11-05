@@ -20,6 +20,7 @@ public class MON_BronzeBow extends Entity{
 		maxLife = 4;
 		life = maxLife;
 		attack = 1; //
+		rangedAttack = true;
 		motion1_duration = 40;
 		motion2_duration = 85;
 		projectile = new OBJ_Arrow(gp); //

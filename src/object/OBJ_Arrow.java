@@ -25,7 +25,5 @@ public class OBJ_Arrow extends Projectile{
 		down1 = down2 = setup("/projectiles/arrow_down", gp.tileSize, gp.tileSize);
 		right1 = right2 = setup("/projectiles/arrow_right", gp.tileSize, gp.tileSize);
 		left1= left2 = setup("/projectiles/arrow_left", gp.tileSize, gp.tileSize);
-	}
-	
-	
+	}	
 }

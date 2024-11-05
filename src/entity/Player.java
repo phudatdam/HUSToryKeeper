@@ -124,6 +124,14 @@ public class Player extends Entity {
         }
     }
     public void update(){ // được gọi 60 lần trong 1s    	
+
+    	for (int i = 0; gp.monster[gp.currentMap][i] != null; i++) {
+    		if (gp.monster[gp.currentMap][i].rangedAttack = true) {
+    			gp.monster[gp.currentMap][i].checkAttackOrNot(30, gp.tileSize*4, gp.tileSize);
+    		} else {
+    			gp.monster[gp.currentMap][i].checkAttackOrNot(30, gp.tileSize, gp.tileSize);
+    		}   		
+    	}
     	
     	if (keyH.attackPressed) {
     		attacking = true;

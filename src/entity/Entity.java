@@ -78,7 +78,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public int motion2_duration;
     public Projectile projectile;
     public Entity currentWeapon;
-	public boolean stackeable =false;
+    public boolean rangedAttack = false;
+	public boolean stackeable = false;
 	public int amount = 1;
 
 	public Entity(GamePanel gp) {
