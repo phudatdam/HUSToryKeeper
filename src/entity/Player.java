@@ -266,7 +266,7 @@ public class Player extends Entity {
     		
     		// Check monster collision with the updated worldX, worldY and solidArea
     		int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-    		damageMonster(monsterIndex);
+    		damageMonster(monsterIndex, attack);
     		
     		// Check interactive tile collision with the updated worldX, worldY and solidArea
     		int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
