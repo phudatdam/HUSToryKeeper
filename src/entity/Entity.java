@@ -433,8 +433,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	        switch (direction){
 	        case "up":
             	if (attacking == false) {
-                    if(spriteNum == 1) image = up2;
-                    if(spriteNum == 2) image = up1;
+                    if(spriteNum == 1) image = up1;
+                    if(spriteNum == 2) image = up2;
             	}
             	if (attacking == true) {
             		tempScreenY = screenY - gp.tileSize;
@@ -444,8 +444,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
                 break;
             case "down":
             	if (attacking == false) {
-            		if(spriteNum == 1) image = down2;
-                    if(spriteNum == 2) image = down1;
+            		if(spriteNum == 1) image = down1;
+                    if(spriteNum == 2) image = down2;
             	}
             	if (attacking == true) {
                     if(spriteNum == 1) image = attackDown1;
@@ -454,8 +454,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
                 break;
             case "right":
             	if (attacking == false) {
-            		if(spriteNum == 1) image = right2;
-                    if(spriteNum == 2) image = right1;
+            		if(spriteNum == 1) image = right1;
+                    if(spriteNum == 2) image = right2;
             	}
             	if (attacking == true) {
                     if(spriteNum == 1) image = attackRight1;
@@ -464,8 +464,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
                 break;
             default:
             	if (attacking == false) {
-                    if(spriteNum == 1) image = left2;
-                    if(spriteNum == 2) image = left1;
+                    if(spriteNum == 1) image = left1;
+                    if(spriteNum == 2) image = left2;
             	}
             	if (attacking == true) {
             		tempScreenX = screenX - gp.tileSize;
