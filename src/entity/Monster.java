@@ -14,6 +14,55 @@ public class Monster extends Entity {
 		solidArea = new Rectangle(12, 24, 40, 40);
 	}
 	
+	public void attacking() {
+    	spriteCounter++;
+    	
+    	if (spriteCounter <= motion1_duration) {
+    		spriteNum = 1;
+    	}
+    	if (spriteCounter > motion1_duration && spriteCounter <= motion2_duration) {
+    		spriteNum = 2;
+    		
+    		// Save the current worldX, worldY, solidArea
+    		int currentWorldX = worldX;
+    		int currentWorldY = worldY;
+    		int solidAreaWidth = solidArea.width;
+    		int solidAreaHeight = solidArea.height;
+    		
+    		// Adjust player worldX/worldY for the attackArea
+    		switch(direction) {
+    			case("up"): worldY -= attackArea.height; 
+    			case("down"): worldY += attackArea.height; 
+    			case("left"): worldY -= attackArea.width;
+    			case("right"): worldY += attackArea.width; 
+    		}
+    		
+    		// Change solidArea to the attackArea
+    		solidArea.width = attackArea.width;
+    		solidArea.height = attackArea.height;
+    		
+    		if (gp.cChecker.checkPlayer(this) == true) {
+    			damagePlayer(attack);
+    		}
+    		
+    		if (rangedAttack == true) {
+    			// Shoot a projectile
+    			checkShoot(30);
+    		}
+    		
+    		// Restore the original data
+    		worldX = currentWorldX;
+    		worldY = currentWorldY;
+    		solidArea.width = solidAreaWidth; 
+    		solidArea.height = solidAreaHeight;
+    	}
+    	if (spriteCounter > motion2_duration) {
+    		spriteNum = 1;
+    		spriteCounter = 0;
+    		attacking = false;
+    	}
+    }
+	
 	public void damagePlayer(int attack) {
 		if (gp.player.invincible == false) {
 			// gp.playSE(1)
@@ -32,12 +81,10 @@ public class Monster extends Entity {
 		}
 	}
 	
-	public void checkShootOrNot(int rate, int shotInterval) {
-		int i = new Random().nextInt(rate); // bắn ngẫu nhiên
-    	if(i == 0 && projectile.alive == false && shotAvailableCounter == shotInterval) { //
+	public void checkShoot(int shotInterval) {
+    	if(projectile.alive == false) {
     		projectile.set(worldX, worldY, direction, true, this);
     		gp.projectileList.add(projectile);
-    		shotAvailableCounter = 0;
     	}
 	}
 	
@@ -93,7 +140,6 @@ public class Monster extends Entity {
 				attacking = true;
 				spriteNum = 1;
 				spriteCounter = 0;
-				shotAvailableCounter = 0;
 			}
 		}
 	}

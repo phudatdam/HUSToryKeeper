@@ -25,6 +25,8 @@ public class MON_BronzePolearm extends Monster {
 		
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+        attackArea.width = 48;
+        attackArea.height = 48;
         
         getImage();
         getAttackImage();

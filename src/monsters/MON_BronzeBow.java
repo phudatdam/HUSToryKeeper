@@ -56,9 +56,7 @@ public class MON_BronzeBow extends Monster {
 			// Check if it stops chasing
 			checkStopChasingOrNot(gp.player, 15, 30);				
 			// Search the direction to go
-			searchPath(getGoalCol(gp.player), getGoalRow(gp.player));		
-			// Check if it shoots a projectile
-			checkShootOrNot(100, 30);
+			searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
 		} else {
 			// Check if it starts chasing
 			checkStartChasingOrNot(gp.player, 5, 30);
@@ -67,7 +65,7 @@ public class MON_BronzeBow extends Monster {
 		}
 		
 		if (attacking == false) {
-			checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize);
+			checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize * 4);
 		}
     }
 	
