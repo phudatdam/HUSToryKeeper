@@ -124,9 +124,6 @@ public class Player extends Entity {
         }
     }
     public void update(){ // được gọi 60 lần trong 1s    	
-    	for (int i = 0; gp.monster[gp.currentMap][i] != null; i++) {
-    		System.out.println(gp.monster[gp.currentMap][i].checkAttackOrNot(30, gp.tileSize, gp.tileSize)); // DEBUG
-    	}
     	
     	if (keyH.attackPressed) {
     		attacking = true;
@@ -290,7 +287,7 @@ public class Player extends Entity {
             // Nhặt được tim => hồi máu
             if(gp.obj[gp.currentMap][i].name == "Heart")
             {
-            	int extraLife = 4;
+            	int extraLife = 2;
                 gp.playSE(3);
                 life += extraLife;
                 if (life >= maxLife) {
@@ -351,10 +348,7 @@ public class Player extends Entity {
    			
     			if (gp.monster[gp.currentMap][i].life <= 0) {
     				gp.monster[gp.currentMap][i].dying = true;
-    				if (gp.monster[gp.currentMap][i].alive == false) {
-    					gp.monster[gp.currentMap][i].checkDrop();
-                        gp.monster[gp.currentMap][i] = null;
-    				}                  
+    				gp.monster[gp.currentMap][i].checkDrop();
     			}
     		}
     	}
