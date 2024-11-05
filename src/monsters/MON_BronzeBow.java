@@ -20,6 +20,7 @@ public class MON_BronzeBow extends Entity{
 		maxLife = 4;
 		life = maxLife;
 		attack = 1; //
+		rangedAttack = true;
 		motion1_duration = 40;
 		motion2_duration = 85;
 		projectile = new OBJ_Arrow(gp); //
@@ -73,7 +74,18 @@ public class MON_BronzeBow extends Entity{
 			attacking = checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize);
 		}
     }
-	
+	public void checkCollision() {
+    	collisionOn = false;
+		gp.cChecker.checkTile(this);
+		gp.cChecker.checkEntity(this, gp.npc);
+		gp.cChecker.checkEntity(this, gp.monster);
+		gp.cChecker.checkEntity(this, gp.iTile);
+		boolean contactPlayer = gp.cChecker.checkPlayer(this);
+		
+		if(type == TYPE_MONSTER && contactPlayer == true) {
+			damagePlayer(attack);
+		}
+    } 
 	public void checkDrop(){
 		int i = new Random().nextInt(100) + 1;
 

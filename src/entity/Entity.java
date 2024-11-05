@@ -78,7 +78,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public int motion2_duration;
     public Projectile projectile;
     public Entity currentWeapon;
-	public boolean stackeable =false;
+    public boolean rangedAttack = false;
+	public boolean stackeable = false;
 	public int amount = 1;
 
 	public Entity(GamePanel gp) {
@@ -151,6 +152,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		gp.cChecker.checkObject(this, false);
 		gp.cChecker.checkEntity(this, gp.npc);
 		gp.cChecker.checkEntity(this, gp.monster);
+		gp.cChecker.checkEntity(this, gp.iTile);
 		boolean contactPlayer = gp.cChecker.checkPlayer(this);
 		
 		if(type == TYPE_MONSTER && contactPlayer == true) {

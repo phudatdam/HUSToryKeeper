@@ -73,7 +73,18 @@ public class MON_BronzePolearm extends Entity{
 			attacking = checkAttackOrNot(30, gp.tileSize, gp.tileSize);
 		}
     }
-	
+	public void checkCollision() {
+    	collisionOn = false;
+		gp.cChecker.checkTile(this);
+		gp.cChecker.checkEntity(this, gp.npc);
+		gp.cChecker.checkEntity(this, gp.monster);
+		gp.cChecker.checkEntity(this, gp.iTile);
+		boolean contactPlayer = gp.cChecker.checkPlayer(this);
+		
+		if(type == TYPE_MONSTER && contactPlayer == true) {
+			damagePlayer(attack);
+		}
+    } 
 	public void damageReaction() {
 		actionLockCounter = 0;
 	}
