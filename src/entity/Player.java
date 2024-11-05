@@ -287,42 +287,35 @@ public class Player extends Entity {
     // Nhặt được tim => hồi máu
 	public void pickUpObject(int i){
         if(i != 999){
-            String objectName = gp.obj[gp.currentMap][i].name;
-            switch (objectName){
-                case "Heart":
-            		life += 2;
-                    gp.obj[i] = null;
-                    break;
+            // Nhặt được tim => hồi máu
+            if(gp.obj[gp.currentMap][i].name == "Heart")
+            {
+                gp.playSE(3);
+                life +=2;
+                maxLife +=2;
+                gp.obj[gp.currentMap][i]=null;
             }
-                // Nhặt được tim => hồi máu
-                if(gp.obj[gp.currentMap][i].name == "Heart")
+            // Chuyển đến map tiếp theo khi chạm vào giếng
+            else if ( gp.obj[gp.currentMap][i].name == "Well")
+            {
+                if (coin == 1) {
+            		coin = 0;
+            		inventory.removeIf( item -> item.name.equals("Đồng xu"));
+            		teleport();
+                }
+            }
+            // Nhặt gỗ, sắt
+            else
+            {
+                if(canObtainItem(gp.obj[gp.currentMap][i]) == true)
                 {
                     gp.playSE(3);
-                    life +=2;
-                    maxLife +=2;
-                    gp.obj[gp.currentMap][i]=null;
+                    if( gp.obj[gp.currentMap][i].name == "Sắt") iron ++;
+                    if( gp.obj[gp.currentMap][i].name == "Gỗ") wood ++;
                 }
-                // Chuyển đến map tiếp theo khi chạm vào giếng
-                else if ( gp.obj[gp.currentMap][i].name == "Well")
-                {
-                    if (coin == 1) {
-                		coin = 0;
-                		inventory.removeIf( item -> item.name.equals("Đồng xu"));
-                		teleport();
-                    }
-                }
-                // Nhặt gỗ, sắt
-                else
-                {
-                    if(canObtainItem(gp.obj[gp.currentMap][i]) == true)
-                    {
-                        gp.playSE(3);
-                        if( gp.obj[gp.currentMap][i].name == "Sắt") iron ++;
-                        if( gp.obj[gp.currentMap][i].name == "Gỗ") wood ++;
-                    }
-                    gp.obj[gp.currentMap][i]=null;
-                    
-                }
+                gp.obj[gp.currentMap][i]=null;
+                
+            }
         }
     }
     

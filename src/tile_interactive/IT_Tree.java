@@ -15,6 +15,7 @@ public class IT_Tree extends InteractiveTile {
 		this.worldY = gp.tileSize * row;
 		
 		down1 = setup("/tiles/tree_1", gp.tileSize, gp.tileSize);
+		down2 = setup("/tiles/tree_1", gp.tileSize, gp.tileSize);
 		destructible = true;
 		life = 2;
 	}
