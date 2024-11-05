@@ -209,7 +209,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	        }
 			
 		    spriteCounter++;
-	        if(spriteCounter > 24){ // hình ảnh được thay đổi sau 8 khung hình
+	        if(spriteCounter > 7){ // hình ảnh được thay đổi sau 8 khung hình
 	            if(spriteNum == 1){
 	                spriteNum = 2;
 	            }
@@ -286,6 +286,11 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 				damage = 0;
 			}
 			gp.player.life -= damage;
+			if (gp.player.maxLife > 6) {
+				if (gp.player.life <= 6) {
+					gp.player.maxLife = 6;
+				}
+			}
 			if (gp.player.life <= 0) {
 				gp.player.life = 0;
 			}

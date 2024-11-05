@@ -290,9 +290,12 @@ public class Player extends Entity {
             // Nhặt được tim => hồi máu
             if(gp.obj[gp.currentMap][i].name == "Heart")
             {
+            	int extraLife = 4;
                 gp.playSE(3);
-                life +=2;
-                maxLife +=2;
+                life += extraLife;
+                if (life >= maxLife) {
+            		maxLife = life;
+                }
                 gp.obj[gp.currentMap][i]=null;
             }
             // Chuyển đến map tiếp theo khi chạm vào giếng
@@ -348,8 +351,10 @@ public class Player extends Entity {
    			
     			if (gp.monster[gp.currentMap][i].life <= 0) {
     				gp.monster[gp.currentMap][i].dying = true;
-                    gp.monster[gp.currentMap][i].checkDrop();
-                    gp.monster[gp.currentMap][i] = null;
+    				if (gp.monster[gp.currentMap][i].alive == false) {
+    					gp.monster[gp.currentMap][i].checkDrop();
+                        gp.monster[gp.currentMap][i] = null;
+    				}                  
     			}
     		}
     	}
