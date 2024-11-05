@@ -1,21 +1,17 @@
 package monsters;
 
-import java.awt.Rectangle;
 import java.util.Random;
 
-import entity.Entity;
+import entity.Monster;
 import main.GamePanel;
-import object.OBJ_Coin;
 import object.OBJ_Heart;
 import object.OBJ_Iron;
 import object.OBJ_Wood;
 
-public class MON_BronzeSword extends Entity {
+public class MON_BronzeSword extends Monster {
 	public MON_BronzeSword (GamePanel gp) {
 		super(gp);
 		
-		this.gp = gp;
-		type = TYPE_MONSTER;
 		name = "Bronze sword";
 		defaultSpeed = 1;
         speed = defaultSpeed;
@@ -26,7 +22,7 @@ public class MON_BronzeSword extends Entity {
 		motion1_duration = 5;
 		motion2_duration = 25;
 		
-		solidArea = new Rectangle(12, 12, 40, 40);
+		
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         attackArea.width = 48;
@@ -72,7 +68,7 @@ public class MON_BronzeSword extends Entity {
 		}
 		
 		if (attacking == false) {
-			attacking = checkAttackOrNot(30, gp.tileSize, gp.tileSize);
+			checkAttackOrNot(30, gp.tileSize, gp.tileSize);
 		}
     }
 	

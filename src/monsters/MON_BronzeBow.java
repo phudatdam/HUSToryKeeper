@@ -1,19 +1,16 @@
 package monsters;
 
-import java.awt.Rectangle;
 import java.util.Random;
 
-import entity.Entity;
+import entity.Monster;
 import main.GamePanel;
 import object.*;
 
-public class MON_BronzeBow extends Entity{
+public class MON_BronzeBow extends Monster {
 	
 	public MON_BronzeBow (GamePanel gp) {
 		super(gp);
 		
-		this.gp = gp;
-		type = TYPE_MONSTER;
 		name = "Bronze bow";
 		defaultSpeed = 1;
         speed = defaultSpeed;
@@ -21,11 +18,10 @@ public class MON_BronzeBow extends Entity{
 		life = maxLife;
 		attack = 1; //
 		rangedAttack = true;
-		motion1_duration = 40;
-		motion2_duration = 85;
+		motion1_duration = 5;
+		motion2_duration = 25;
 		projectile = new OBJ_Arrow(gp); //
 		
-		solidArea = new Rectangle(12, 12, 40, 40);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         
@@ -71,7 +67,7 @@ public class MON_BronzeBow extends Entity{
 		}
 		
 		if (attacking == false) {
-			attacking = checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize);
+			checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize);
 		}
     }
 	
