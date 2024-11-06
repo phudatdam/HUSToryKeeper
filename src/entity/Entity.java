@@ -49,6 +49,14 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public final int TYPE_axe = 4;
 	public final int TYPE_pickaxe = 5;
 	public final int TYPE_consumable = 6;
+	public int attackValue;
+
+	public String dialogues[][] = new String[50][50];
+    public int dialogueIndex = 0;
+    public int dialogueSet = 0;
+	public boolean diaEnd = false;
+	public int woodneed;
+	public int ironneed;
 
     public String name;
     public String description;
@@ -86,11 +94,31 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
         	actionLockCounter = 0;
     	}
 	}
+    
+	public void speak(){}
 
-	public void speak() {}
-    public void startDialogue(Entity entity, int setNum) {}
+	public void startDialogue(Entity entity, int setNum){
+		gp.gameState = gp.dialogueState;
+        gp.ui.npc = entity;
+        dialogueSet = setNum;
+	}
     // quay mặt npc ra chỗ mình
-    public void facePlayer() {}
+    public void facePlayer() {
+		switch( gp.player.direction) {
+			case "up":
+			direction = "down";
+			break;
+			case "down":
+			direction = "up";
+			break;
+			case "right":
+			direction = "left";
+			break;
+			case "left":
+			direction = "right";
+			break;
+		}
+	}
 
 	public void checkDrop(){}
 

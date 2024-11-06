@@ -3,7 +3,7 @@ package entity;
 import main.GamePanel;
 import object.OBJ_Coin;
 
-public class NPC_KimQuy extends NPC {
+public class NPC_KimQuy extends Entity {
     public NPC_KimQuy(GamePanel gp) {
 		super(gp);
 		
@@ -61,6 +61,7 @@ public class NPC_KimQuy extends NPC {
 				dialogueSet=4;
 				dialogueIndex=0;
 				if(gp.player.coink == 0){
+					gp.ui.addMessage("Bạn được 1 Đồng xu");
 					gp.player.iron-= gp.npc[gp.currentMap][0].ironneed;
 					gp.player.wood-= gp.npc[gp.currentMap][0].woodneed;
 					gp.player.coink=1;
