@@ -15,7 +15,7 @@ public class MON_BronzeSword extends Entity {
 		
 		this.gp = gp;
 		type = TYPE_MONSTER;
-		name = "Bronze sword";
+		name = "Đồng kiếm thủ";
 		speed = 1;
 		maxLife = 24;
 		life = maxLife;

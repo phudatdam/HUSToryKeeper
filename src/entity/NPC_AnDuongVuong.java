@@ -61,8 +61,9 @@ public class NPC_AnDuongVuong extends Entity {
 		if( gp.player.axe == 0 && gp.player.sword == 0 && gp.player.pickaxe == 0)
 		{
 			gp.player.inventory.add(new OBJ_Axe(gp));
-			//gp.player.inventory.add(new OBJ_Sword(gp));
 			gp.player.inventory.add(new OBJ_Pickaxe(gp));
+			gp.ui.addMessage("Bạn nhận được 1 Rìu");
+			gp.ui.addMessage("Bạn nhận được 1 Cuốc");
 			gp.player.axe=1;
 			gp.player.sword=1;
 			gp.player.pickaxe=1;

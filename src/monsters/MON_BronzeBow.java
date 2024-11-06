@@ -14,9 +14,9 @@ public class MON_BronzeBow extends Entity{
 		
 		this.gp = gp;
 		type = TYPE_MONSTER;
-		name = "Bronze bow";
+		name = "Đồng cung thủ";
 		speed = 1;
-		maxLife = 24;
+		maxLife = 16;
 		life = maxLife;
 		attack = 1; //
 		projectile = new OBJ_Arrow(gp); //
