@@ -375,6 +375,14 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	        	hpBarOn = true;
 	        }
 	        
+	      //Make entity half-transparent (%30) when invincible
+            if(invincible == true)
+            {
+                hpBarOn = true;    //when player attacks monster play hpBar
+                hpBarCounter = 0;  //reset monster aggro
+                changeAlpha(g2,0.4F);
+            }
+	        
 	        if (dying == true) {
 	        	dyingAnimation(g2);
 	        }
