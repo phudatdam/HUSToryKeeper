@@ -12,10 +12,10 @@ public class MON_BronzePolearm extends Monster {
 	public MON_BronzePolearm (GamePanel gp) {
 		super(gp);
 		
-		name = "Bronze polearm";
+		name = "Đồng giáo thủ";
 		defaultSpeed = 1;
         speed = defaultSpeed;
-		maxLife = 4;
+		maxLife = 24;
 		life = maxLife;
 		attack = 1;
 		defense = 0;
@@ -80,10 +80,10 @@ public class MON_BronzePolearm extends Monster {
 		int i = new Random().nextInt(100) + 1;
 
 		// SET THE MONSTER DROP
-		if(i < 50){
+		if(i < 35){
 			dropItem(new OBJ_Heart(gp));
 		}
-		else if(i < 75){
+		else if(i < 70){
 			dropItem(new OBJ_Wood(gp));
 		}
 		else{

@@ -15,6 +15,7 @@ public class NPC extends Entity {
 		super(gp);
 	}
 	
+
 	public void startDialogue(NPC npc, int setNum){
         gp.gameState = gp.dialogueState;
         gp.ui.npc = npc;

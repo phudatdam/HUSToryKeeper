@@ -11,10 +11,10 @@ public class MON_BronzeBow extends Monster {
 	public MON_BronzeBow (GamePanel gp) {
 		super(gp);
 		
-		name = "Bronze bow";
+		name = "Đồng cung thủ";
 		defaultSpeed = 1;
         speed = defaultSpeed;
-		maxLife = 4;
+		maxLife = 16;
 		life = maxLife;
 		attack = 1; //
 		rangedAttack = true;
@@ -73,10 +73,10 @@ public class MON_BronzeBow extends Monster {
 		int i = new Random().nextInt(100) + 1;
 
 		// SET THE MONSTER DROP
-		if(i < 50){
+		if(i < 35){
 			dropItem(new OBJ_Heart(gp));
 		}
-		else if(i < 75){
+		else if(i < 70){
 			dropItem(new OBJ_Wood(gp));
 		}
 		else{

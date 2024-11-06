@@ -69,6 +69,7 @@ public class Monster extends Entity {
 			
 			int damage = attack;
 			gp.player.life -= damage;
+			gp.ui.addMessage("Bạn vùa dính đòn");
 			if (gp.player.maxLife > 6) {
 				if (gp.player.life <= 6) {
 					gp.player.maxLife = 6;
