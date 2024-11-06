@@ -2,7 +2,7 @@ package entity;
 
 import main.GamePanel;
 
-public class NPC_ThanhGiong extends NPC {
+public class NPC_ThanhGiong extends Entity {
 
 	public NPC_ThanhGiong(GamePanel gp) {
 		super(gp);

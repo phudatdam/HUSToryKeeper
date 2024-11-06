@@ -14,9 +14,9 @@ public class MON_BronzeBow extends Entity{
 		
 		this.gp = gp;
 		type = TYPE_MONSTER;
-		name = "Bronze bow";
+		name = "Đồng cung thủ";
 		speed = 1;
-		maxLife = 4;
+		maxLife = 16;
 		life = maxLife;
 		attack = 1; //
 		projectile = new OBJ_Arrow(gp); //
@@ -84,10 +84,10 @@ public class MON_BronzeBow extends Entity{
 		int i = new Random().nextInt(100) + 1;
 
 		// SET THE MONSTER DROP
-		if(i < 50){
+		if(i < 35){
 			dropItem(new OBJ_Heart(gp));
 		}
-		else if(i < 75){
+		else if(i < 70){
 			dropItem(new OBJ_Wood(gp));
 		}
 		else{
