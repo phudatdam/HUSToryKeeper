@@ -11,9 +11,6 @@ public class IT_IronOre extends InteractiveTile {
 		super(gp, col, row);
 		this.gp = gp;
 		
-		this.worldX = gp.tileSize * col;
-		this.worldY = gp.tileSize * row;
-		
 		down1 = setup("/tiles/iron_ore", gp.tileSize, gp.tileSize);
 		destructible = true;
 		life = 2;

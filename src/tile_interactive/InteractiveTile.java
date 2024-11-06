@@ -10,6 +10,9 @@ public class InteractiveTile extends Entity {
 	public InteractiveTile(GamePanel gp, int col, int row) {
 		super(gp);
 		this.gp = gp;
+		
+		this.worldX = gp.tileSize * col;
+		this.worldY = gp.tileSize * row;
 	}
 	
 	public boolean isCorrectItem(Entity entity) {
