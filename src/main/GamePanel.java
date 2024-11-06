@@ -7,6 +7,9 @@ import tile.TileManager;
 import tile_interactive.InteractiveTile;
 
 import javax.swing.*;
+
+import ai.PathFinder;
+
 import java.awt.*;
 import java.util.*;
 
@@ -33,12 +36,13 @@ public class GamePanel extends JPanel implements Runnable{
     int FPS = 60;
 
     // SYSTEM
-    TileManager tileM = new TileManager(this);
+    public TileManager tileM = new TileManager(this);
     Sound music = new Sound();
     Sound se = new Sound();
     public KeyHandler keyH = new KeyHandler(this);
     public AssetSetter aSetter  = new AssetSetter(this);
     public UI ui = new UI(this);
+    public PathFinder pFinder = new PathFinder(this);
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
 
@@ -123,16 +127,21 @@ public class GamePanel extends JPanel implements Runnable{
             player.update();
 
             // NPC
-            for(int i = 0; i < npc[1].length; i++){
+            for(int i = 0; i < npc[currentMap].length; i++){
                 if(npc[currentMap][i] != null){
                     npc[currentMap][i].update();
                 }
             }
 
             // MONSTERS
-            for(int i = 0; i < monster[1].length; i++){
+            for(int i = 0; i < monster[currentMap].length; i++){
                 if(monster[currentMap][i] != null){
-                    monster[currentMap][i].update();
+                	if(monster[currentMap][i].alive == true && monster[currentMap][i].dying == false){
+                		monster[currentMap][i].update();
+                	}
+                	if(monster[currentMap][i].alive == false){
+                		monster[currentMap][i] = null;
+                	}
                 }
             }
 
@@ -150,7 +159,7 @@ public class GamePanel extends JPanel implements Runnable{
             }
             
             // INTERACTIVE TILES
-            for(int i = 0; i < iTile[1].length; i++){
+            for(int i = 0; i < iTile[currentMap].length; i++){
                 if(iTile[currentMap][i] != null){
                 	iTile[currentMap][i].update();
                 }

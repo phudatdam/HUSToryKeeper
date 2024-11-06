@@ -21,10 +21,9 @@ public class Player extends Entity {
     public final int screenY;
     int standCounter = 0;
 
-    public int coin = 0;
     public int defense = 0;
     public int strength = 1;
-    public int coink = 0;
+    public int coin = 0;
     public int iron = 0;
     public int wood = 0;
     public int sword = 0;
@@ -34,7 +33,7 @@ public class Player extends Entity {
     public int expNeed;
     public int Lv;
     
-    public ArrayList<Entity> inventory = new ArrayList();
+    public ArrayList<Entity> inventory = new ArrayList<Entity>();
     public int maxInventorySize = 15;
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -50,8 +49,8 @@ public class Player extends Entity {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         
-        attackArea.width = 48;
-        attackArea.height = 48;
+        attackArea.width = 64; // fix
+        attackArea.height = 64; // fix
 
         setDefaultValues();
         getPlayerImage();
@@ -63,11 +62,16 @@ public class Player extends Entity {
     public void setDefaultValues() {
         worldX = gp.tileSize * 35;
         worldY = gp.tileSize * 13;
-        speed = 5;
+        defaultSpeed = 5;
+        speed = defaultSpeed;
         direction = "down";
+        type = TYPE_PLAYER;
+        motion1_duration = 5; // fix
+		motion2_duration = 25; // fix
         
         maxLife = 10;
         life = maxLife;
+        attack = 1; // fix
         strength = 1;
         defense = 0;
         exp = 0;
@@ -123,7 +127,7 @@ public class Player extends Entity {
         }
         if(currentWeapon.type == TYPE_axe){
             attackUp1 = setup("/player/player_axe_up_1", gp.tileSize, gp.tileSize * 2);
-          attackUp2 = setup("/player/player_axe_up_2", gp.tileSize, gp.tileSize * 2);
+            attackUp2 = setup("/player/player_axe_up_2", gp.tileSize, gp.tileSize * 2);
 		    attackDown1 = setup("/player/player_axe_down_1", gp.tileSize, gp.tileSize * 2);
 		    attackDown2 = setup("/player/player_axe_down_2", gp.tileSize, gp.tileSize * 2);
 		    attackLeft1 = setup("/player/player_axe_left_1", gp.tileSize * 2, gp.tileSize);
@@ -148,7 +152,34 @@ public class Player extends Entity {
     		attacking = true;
     	}
     		
-    	if (attacking == true) {
+    	if (knockBack == true) {
+			checkCollision();
+			if (collisionOn == true) {
+				knockBackCounter = 0;
+			} else if (collisionOn == false) {
+				switch (knockBackDirection) {
+	                case "up":
+	                    worldY -= speed;
+	                    break;
+	                case "down":
+	                    worldY += speed;
+	                    break;
+	                case "right":
+	                    worldX += speed;
+	                    break;
+	                case "left":
+	                    worldX -= speed;
+	                    break;
+				}
+			}
+			
+			knockBackCounter++;
+			if (knockBackCounter > 5) {
+				knockBackCounter = 0;
+				knockBack = false;
+				speed = defaultSpeed;
+			}
+		} else if (attacking == true) {
     		attacking();
     	} else if (keyH.upPressed || keyH.downPressed || keyH.rightPressed || keyH.leftPressed || keyH.enterPressed) {
             if(keyH.upPressed){
@@ -230,10 +261,10 @@ public class Player extends Entity {
     public void attacking() {
     	spriteCounter++;
     	
-    	if (spriteCounter <= 5) {
+    	if (spriteCounter <= motion1_duration) {
     		spriteNum = 1;
     	}
-    	if (spriteCounter > 5 && spriteCounter <= 25) {
+    	if (spriteCounter > motion1_duration && spriteCounter <= motion2_duration) {
     		spriteNum = 2;
     		
     		// Save the current worldX, worldY, solidArea
@@ -256,7 +287,7 @@ public class Player extends Entity {
     		
     		// Check monster collision with the updated worldX, worldY and solidArea
     		int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-    		damageMonster(monsterIndex);
+    		damageMonster(monsterIndex, attack);
     		
     		// Check interactive tile collision with the updated worldX, worldY and solidArea
     		int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
@@ -268,7 +299,7 @@ public class Player extends Entity {
     		solidArea.width = solidAreaWidth; 
     		solidArea.height = solidAreaHeight;
     	}
-    	if (spriteCounter > 25) {
+    	if (spriteCounter > motion2_duration) {
     		spriteNum = 1;
     		spriteCounter = 0;
     		attacking = false;
@@ -278,48 +309,48 @@ public class Player extends Entity {
     // Tương tác với vật phẩm
 	public void pickUpObject(int i){
         if(i != 999){
-                // Nhặt được tim => hồi máu
-                if(gp.obj[gp.currentMap][i].name == "Heart")
+            // Nhặt được tim => hồi máu
+            if(gp.obj[gp.currentMap][i].name == "Heart")
+            {
+            	int extraLife = 2;
+                gp.playSE(3);
+                gp.ui.addMessage("Bạn thấy sinh lực tràn trề");
+                life += extraLife;
+                if (life >= maxLife) {
+                	life = maxLife;
+                }
+                gp.obj[gp.currentMap][i]=null;
+            }
+            // Chuyển đến map tiếp theo khi chạm vào giếng
+            else if ( gp.obj[gp.currentMap][i].name == "Well")
+            {
+                if (coin == 1) {
+            		coin = 0;
+            		inventory.removeIf( item -> item.name.equals("Đồng xu"));
+            		gp.ui.addMessage("Tài khoản trừ 1 xu");
+                    startDialogue(this, 0);
+            		teleport();
+                }
+            }
+            // Nhặt gỗ, sắt
+            else
+            {
+                if(canObtainItem(gp.obj[gp.currentMap][i]) == true)
                 {
                     gp.playSE(3);
-                    gp.ui.addMessage("Bạn thấy sinh lực tràn trề");
-                    life +=2;
-                    if( life >= maxLife)
+                    if( gp.obj[gp.currentMap][i].name == "Sắt")
                     {
-                        life = maxLife;
+                        iron ++;
+                        gp.ui.addMessage("Thêm được 1 Sắt nè");
                     }
-                    gp.obj[gp.currentMap][i]=null;
-                }
-                // Chuyển đến map tiếp theo khi chạm vào giếng
-                else if ( gp.obj[gp.currentMap][i].name == "Well")
-                {
-                    if (coink == 1) {
-                		coink = 0;
-                		inventory.removeIf( item -> item.name.equals("Đồng xu"));
-                        gp.ui.addMessage("Tài khoản trừ 1 xu");
-                        startDialogue(this, 0);
-                	    teleport();
+                    if( gp.obj[gp.currentMap][i].name == "Gỗ") {
+                        wood ++;
+                        gp.ui.addMessage("Thêm được 1 Gỗ nè");
                     }
                 }
-                // Nhặt gỗ, sắt
-                else
-                {
-                    if(canObtainItem(gp.obj[gp.currentMap][i]) == true)
-                    {
-                        gp.playSE(3);
-                        if( gp.obj[gp.currentMap][i].name == "Sắt")
-                        {
-                            iron ++;
-                            gp.ui.addMessage("Thêm được 1 Sắt nè");
-                        }
-                        if( gp.obj[gp.currentMap][i].name == "Gỗ") {
-                            wood ++;
-                            gp.ui.addMessage("Thêm được 1 Gỗ nè");
-                        }
-                    }
-                    gp.obj[gp.currentMap][i]=null;
-                    
-                }
+                gp.obj[gp.currentMap][i]=null;
+                
+            }
         }
     }
     
@@ -333,35 +364,35 @@ public class Player extends Entity {
     
     // Player tiếp xúc với quái => nhận sát thương
     public void contactMonster(int i) {
-    	if(i != 999){
-    		if (invincible == false && life > 0) {
-        		life -= 1;
-                gp.ui.addMessage("Bạn vùa dính đòn");
-        		invincible = true;
-    		}
-    	}	
+
+	}   
+	public void setKnockBack(Entity entity) {
+		entity.direction = gp.player.direction;
+    	entity.speed += 10;
+    	entity.knockBack = true;
 	}
-    
     // Đánh thường => gây sát thương
-    public void damageMonster(int i) {  
+    public void damageMonster(int i, int attack) {  
     	if(i != 999){
     		if (gp.monster[gp.currentMap][i].invincible == false) {
+    			gp.playSE(1);
+    			setKnockBack(gp.monster[gp.currentMap][i]);
     			gp.monster[gp.currentMap][i].life -= getAttack();
                 gp.ui.addMessage("Bạn vừa gây "+ getAttack() +" sát thương");
     			gp.monster[gp.currentMap][i].invincible = true;
-    			
+    			gp.monster[gp.currentMap][i].damageReaction();
+   			
     			if (gp.monster[gp.currentMap][i].life <= 0) {
                     gp.ui.addMessage(gp.monster[gp.currentMap][i].name +" đã rời trận");
-                    gp.monster[gp.currentMap][i].checkDrop();
-                    exp++;
+    				gp.monster[gp.currentMap][i].dying = true;
+    				gp.monster[gp.currentMap][i].checkDrop();
+    				exp++;
                     gp.ui.addMessage(" Kinh nghiệm thêm 1");
-                    gp.monster[gp.currentMap][i] = null;
                     checkLv();
     			}
     		}
     	}
-    }
-    
+    }  
     //
     public void damageInteractiveTile(int i) {
     	if (i != 999 && gp.iTile[gp.currentMap][i].destructible
@@ -379,7 +410,7 @@ public class Player extends Entity {
     
     public void selectItem(){
         int itemIndex = gp.ui.getItemIndexOnSlot();
-        if( itemIndex < inventory.size())
+        if (itemIndex < inventory.size())
         {
             Entity selectedItem = inventory.get(itemIndex);
             if( selectedItem.type == TYPE_sword || selectedItem.type == TYPE_axe || selectedItem.type == TYPE_pickaxe)
