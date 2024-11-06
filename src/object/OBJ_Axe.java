@@ -10,7 +10,7 @@ public class OBJ_Axe extends Entity{
 		type = TYPE_axe;
 		name = "Rìu";
 		description = "[ "+ name +" ]\nchỉ để chặt gỗ";
-		
+		attackValue = 1;
 		image1 = setup("/objects/axe", gp.tileSize, gp.tileSize);
 	}
 }

@@ -30,6 +30,9 @@ public class Player extends Entity {
     public int sword = 0;
     public int axe = 0;
     public int pickaxe = 0;
+    public int exp;
+    public int expNeed;
+    public int Lv;
     
     public ArrayList<Entity> inventory = new ArrayList();
     public int maxInventorySize = 15;
@@ -54,6 +57,7 @@ public class Player extends Entity {
         getPlayerImage();
         getPlayerAttackImage();
         setItems();
+        setMessage();
     }
 
     public void setDefaultValues() {
@@ -62,13 +66,31 @@ public class Player extends Entity {
         speed = 5;
         direction = "down";
         
-        maxLife = 6;
+        maxLife = 10;
         life = maxLife;
         strength = 1;
         defense = 0;
+        exp = 0;
+        expNeed = 5;
+        Lv = 1;
         currentWeapon = new OBJ_Sword(gp);
     }
     
+    public int getAttack()
+    {
+        return attack = strength + currentWeapon.attackValue;
+    }
+    
+    public void setMessage()
+    {
+        dialogues[0][0] = "Bạn thả đồng xu thần kì xuống giếng.";
+        dialogues[0][1] = "Một sức hút kì ảo hút bạn đi";
+        dialogues[0][2] = "Có vẻ như bạn đã du hành thời gian . . . một lần nữa";
+
+        dialogues[1][0] = "Trình độ bạn đã lên 1 cấp";
+        dialogues[1][1] = "Bạn giờ là cấp " + (Lv + 1);
+    }
+
     public void setItems() {
         inventory.add(currentWeapon);
     }
@@ -222,10 +244,10 @@ public class Player extends Entity {
     		
     		// Adjust player worldX/worldY for the attackArea
     		switch(direction) {
-    			case("up"): worldY -= attackArea.height; 
-    			case("down"): worldY += attackArea.height; 
-    			case("left"): worldY -= attackArea.width;
-    			case("right"): worldY += attackArea.width; 
+    			case("up"): worldY -= 1 * attackArea.height;break; 
+    			case("down"): worldY += 1 * attackArea.height;break;
+    			case("left"): worldX -= 1 * attackArea.width;break;
+    			case("right"): worldX += 1 * attackArea.width;break;
     		}
     		
     		// Change solidArea to the attackArea
@@ -260,8 +282,12 @@ public class Player extends Entity {
                 if(gp.obj[gp.currentMap][i].name == "Heart")
                 {
                     gp.playSE(3);
+                    gp.ui.addMessage("Bạn thấy sinh lực tràn trề");
                     life +=2;
-                    maxLife +=2;
+                    if( life >= maxLife)
+                    {
+                        life = maxLife;
+                    }
                     gp.obj[gp.currentMap][i]=null;
                 }
                 // Chuyển đến map tiếp theo khi chạm vào giếng
@@ -270,7 +296,9 @@ public class Player extends Entity {
                     if (coink == 1) {
                 		coink = 0;
                 		inventory.removeIf( item -> item.name.equals("Đồng xu"));
-                		teleport();
+                        gp.ui.addMessage("Tài khoản trừ 1 xu");
+                        startDialogue(this, 0);
+                	    teleport();
                     }
                 }
                 // Nhặt gỗ, sắt
@@ -279,8 +307,15 @@ public class Player extends Entity {
                     if(canObtainItem(gp.obj[gp.currentMap][i]) == true)
                     {
                         gp.playSE(3);
-                        if( gp.obj[gp.currentMap][i].name == "Sắt") iron ++;
-                        if( gp.obj[gp.currentMap][i].name == "Gỗ") wood ++;
+                        if( gp.obj[gp.currentMap][i].name == "Sắt")
+                        {
+                            iron ++;
+                            gp.ui.addMessage("Thêm được 1 Sắt nè");
+                        }
+                        if( gp.obj[gp.currentMap][i].name == "Gỗ") {
+                            wood ++;
+                            gp.ui.addMessage("Thêm được 1 Gỗ nè");
+                        }
                     }
                     gp.obj[gp.currentMap][i]=null;
                     
@@ -301,6 +336,7 @@ public class Player extends Entity {
     	if(i != 999){
     		if (invincible == false && life > 0) {
         		life -= 1;
+                gp.ui.addMessage("Bạn vùa dính đòn");
         		invincible = true;
     		}
     	}	
@@ -310,12 +346,17 @@ public class Player extends Entity {
     public void damageMonster(int i) {  
     	if(i != 999){
     		if (gp.monster[gp.currentMap][i].invincible == false) {
-    			gp.monster[gp.currentMap][i].life -= 1;
+    			gp.monster[gp.currentMap][i].life -= getAttack();
+                gp.ui.addMessage("Bạn vừa gây "+ getAttack() +" sát thương");
     			gp.monster[gp.currentMap][i].invincible = true;
     			
     			if (gp.monster[gp.currentMap][i].life <= 0) {
+                    gp.ui.addMessage(gp.monster[gp.currentMap][i].name +" đã rời trận");
                     gp.monster[gp.currentMap][i].checkDrop();
+                    exp++;
+                    gp.ui.addMessage(" Kinh nghiệm thêm 1");
                     gp.monster[gp.currentMap][i] = null;
+                    checkLv();
     			}
     		}
     	}
@@ -389,7 +430,7 @@ public class Player extends Entity {
     }
 
     public void teleport() {
-    	gp.currentMap++;
+        gp.currentMap++;
     	int col = 0;
     	int row = 0;
     	switch (gp.currentMap) {
@@ -406,6 +447,18 @@ public class Player extends Entity {
     	worldY = gp.tileSize * row;
     }
 
+    public void checkLv(){
+        if(exp == expNeed)
+        {
+            Lv++;
+            expNeed += 5;
+            maxLife +=2;
+            strength ++;
+            gp.playSE(8);
+            startDialogue(this, 1);
+        }
+    }
+    
     public void draw(Graphics2D g2){
         BufferedImage image = null;
         int tempScreenX = screenX;
