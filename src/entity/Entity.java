@@ -178,7 +178,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			}
 			
 			knockBackCounter++;
-			if (knockBackCounter == 10) {
+			if (knockBackCounter == 5) {
 				knockBackCounter = 0;
 				knockBack = false;
 				speed = defaultSpeed;
