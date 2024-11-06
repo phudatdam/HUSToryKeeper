@@ -63,25 +63,6 @@ public class Monster extends Entity {
     	}
     }
 	
-	public void damagePlayer(int attack) {
-		if (gp.player.invincible == false) {
-			// gp.playSE(1)
-			
-			int damage = attack;
-			gp.player.life -= damage;
-			gp.ui.addMessage("Bạn vùa dính đòn");
-			if (gp.player.maxLife > 6) {
-				if (gp.player.life <= 6) {
-					gp.player.maxLife = 6;
-				}
-			}
-			if (gp.player.life <= 0) {
-				gp.player.life = 0;
-			}
-			gp.player.invincible = true;
-		}
-	}
-	
 	public void checkShoot(int shotInterval) {
     	if(projectile.alive == false) {
     		projectile.set(worldX, worldY, direction, true, this);

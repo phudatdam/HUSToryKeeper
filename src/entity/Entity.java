@@ -231,7 +231,24 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
         }
 	}
 	public void attacking() {}
-	public void damagePlayer(int attack) {}
+	public void damagePlayer(int attack) {
+		if (gp.player.invincible == false) {
+			// gp.playSE(1)
+			
+			int damage = attack;
+			gp.player.life -= damage;
+			gp.ui.addMessage("Bạn vùa dính đòn");
+			if (gp.player.maxLife > 6) {
+				if (gp.player.life <= 6) {
+					gp.player.maxLife = 6;
+				}
+			}
+			if (gp.player.life <= 0) {
+				gp.player.life = 0;
+			}
+			gp.player.invincible = true;
+		}
+	}
 	public void checkShoot(int shotInterval) {}
 	public void checkStartChasingOrNot(Entity target, int distance, int rate) {}
 	public void checkStopChasingOrNot(Entity target, int distance, int rate) {}
