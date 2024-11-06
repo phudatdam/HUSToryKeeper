@@ -1,27 +1,27 @@
 package monsters;
 
-import java.awt.Rectangle;
 import java.util.Random;
 
-import entity.Entity;
+import entity.Monster;
 import main.GamePanel;
 import object.*;
 
-public class MON_BronzeBow extends Entity{
+public class MON_BronzeBow extends Monster {
 	
 	public MON_BronzeBow (GamePanel gp) {
 		super(gp);
 		
-		this.gp = gp;
-		type = TYPE_MONSTER;
 		name = "Đồng cung thủ";
-		speed = 1;
+		defaultSpeed = 1;
+        speed = defaultSpeed;
 		maxLife = 16;
 		life = maxLife;
 		attack = 1; //
+		rangedAttack = true;
+		motion1_duration = 5;
+		motion2_duration = 25;
 		projectile = new OBJ_Arrow(gp); //
 		
-		solidArea = new Rectangle(12, 12, 40, 40);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         
@@ -52,34 +52,23 @@ public class MON_BronzeBow extends Entity{
 	}
 	
 	public void setAction() {
-    	actionLockCounter++;
-    	if (actionLockCounter == 120) {
-    		Random random = new Random();
-        	int i = random.nextInt(100) + 1;
-        	
-        	if (i <= 25) {
-        		direction = "up";  		
-        	}
-        	else if ((i > 25)&&(i <= 50)) {
-        		direction = "down";
-        	}
-        	else if ((i > 50)&&(i <= 75)) {
-        		direction = "left";
-        	}
-        	else if ((i > 75)&&(i <= 100)) {
-        		direction = "right";
-        	}
-        	actionLockCounter = 0;
-    	}
-    	
-    	int i = new Random().nextInt(100) + 1; // bắn ngẫu nhiên
-    	if(i > 97 && projectile.alive == false && shotAvailableCounter == 30) { //
-    		projectile.set(worldX, worldY, direction, true, this);
-    		gp.projectileList.add(projectile);
-    		shotAvailableCounter = 0;
-    	}
+		if (onPath == true) {
+			// Check if it stops chasing
+			checkStopChasingOrNot(gp.player, 15, 30);				
+			// Search the direction to go
+			searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
+		} else {
+			// Check if it starts chasing
+			checkStartChasingOrNot(gp.player, 5, 30);
+			// Get a random direction
+			getRandomDirection();
+		}
+		
+		if (attacking == false) {
+			checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize * 4);
+		}
     }
-
+	
 	public void checkDrop(){
 		int i = new Random().nextInt(100) + 1;
 
@@ -93,5 +82,9 @@ public class MON_BronzeBow extends Entity{
 		else{
 			dropItem(new OBJ_Iron(gp));
 		}
+	}
+	
+	public void damageReaction() {
+		actionLockCounter = 0;
 	}
 }

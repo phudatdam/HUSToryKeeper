@@ -1,26 +1,28 @@
 package monsters;
 
-import java.awt.Rectangle;
 import java.util.Random;
 
-import entity.Entity;
+import entity.Monster;
 import main.GamePanel;
 import object.OBJ_Heart;
 import object.OBJ_Iron;
 import object.OBJ_Wood;
 
-public class MON_BronzeSword extends Entity {
+public class MON_BronzeSword extends Monster {
 	public MON_BronzeSword (GamePanel gp) {
 		super(gp);
 		
-		this.gp = gp;
-		type = TYPE_MONSTER;
 		name = "Đồng kiếm thủ";
-		speed = 1;
+		defaultSpeed = 1;
+        speed = defaultSpeed;
 		maxLife = 24;
 		life = maxLife;
+		attack = 1;
+		defense = 0;
+		motion1_duration = 5;
+		motion2_duration = 25;
 		
-		solidArea = new Rectangle(12, 12, 40, 40);
+		
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         attackArea.width = 48;
@@ -53,26 +55,26 @@ public class MON_BronzeSword extends Entity {
 	}
 	
 	public void setAction() {
-    	actionLockCounter++;
-    	if (actionLockCounter == 120) {
-    		Random random = new Random();
-        	int i = random.nextInt(100) + 1;
-        	
-        	if (i <= 25) {
-        		direction = "up";  		
-        	}
-        	else if ((i > 25)&&(i <= 50)) {
-        		direction = "down";
-        	}
-        	else if ((i > 50)&&(i <= 75)) {
-        		direction = "left";
-        	}
-        	else if ((i > 75)&&(i <= 100)) {
-        		direction = "right";
-        	}
-        	actionLockCounter = 0;
-    	}
+		if (onPath == true) {
+			// Check if it stops chasing
+			checkStopChasingOrNot(gp.player, 15, 30);				
+			// Search the direction to go
+			searchPath(getGoalCol(gp.player), getGoalRow(gp.player));		
+		} else {
+			// Check if it starts chasing
+			checkStartChasingOrNot(gp.player, 5, 30);
+			// Get a random direction
+			getRandomDirection();
+		}
+		
+		if (attacking == false) {
+			checkAttackOrNot(30, gp.tileSize, gp.tileSize);
+		}
     }
+	
+	public void damageReaction() {
+		actionLockCounter = 0;
+	}
 
 	public void checkDrop(){
 		int i = new Random().nextInt(100) + 1;

@@ -523,10 +523,10 @@ public class UI {
         // TEXT
         g2.setFont(retron2000);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN,20F));
-        int lineHeight = 20 + 6; // độ cao dòng = cỡ font + khoảng cách các dòng
-
-        // names
-        g2.drawString("Hp:", textX, textY);
+    	int lineHeight = 20 + 6; // độ cao dòng = cỡ font + khoảng cách các dòng
+    			
+    	// names
+    	g2.drawString("Hp:", textX, textY);
         textY += lineHeight;
         g2.drawString("Sức mạnh:", textX, textY);
         textY += lineHeight;
