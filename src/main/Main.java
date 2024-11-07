@@ -19,5 +19,6 @@ public class Main {
 
         gamepanel.setupGame();
         gamepanel.startGameThread(); // Khởi chạy game
+        
     }
 }
