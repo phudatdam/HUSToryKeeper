@@ -135,10 +135,5 @@ public class AssetSetter {
     	    mapNum++;
     	}
     }
-    
-    public void setMisc() {
-    	int mapNum = 1;
-    	
-    }
 }
 
