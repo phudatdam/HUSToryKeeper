@@ -6,7 +6,7 @@ import monsters.MON_BronzeBow;
 import entity.NPC_ThanhGiong;
 import monsters.MON_BronzePolearm;
 import monsters.MON_BronzeSword;
-import object.OBJ_Building;
+import object.OBJ_Decoration;
 import object.OBJ_Heart;
 import object.OBJ_Well;
 import tile_interactive.IT_IronOre;
@@ -33,31 +33,31 @@ public class AssetSetter {
         gp.obj[mapNum][2].worldX = 40 * gp.tileSize;
         gp.obj[mapNum][2].worldY = 38 * gp.tileSize;
         
-        gp.obj[mapNum][3] = new OBJ_Building(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
+        gp.obj[mapNum][3] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
         gp.obj[mapNum][3].worldX = 32 * gp.tileSize;
         gp.obj[mapNum][3].worldY = 10 * gp.tileSize;
         
-        gp.obj[mapNum][4] = new OBJ_Building(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
+        gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
         gp.obj[mapNum][4].worldX = 37 * gp.tileSize;
         gp.obj[mapNum][4].worldY = 10 * gp.tileSize;
         
-        gp.obj[mapNum][5] = new OBJ_Building(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2);
+        gp.obj[mapNum][5] = new OBJ_Decoration(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2);
         gp.obj[mapNum][5].worldX = 34 * gp.tileSize;
         gp.obj[mapNum][5].worldY = 8 * gp.tileSize;
         
-        gp.obj[mapNum][6] = new OBJ_Building(gp, "/misc/bronze_drum", gp.tileSize, gp.tileSize);
+        gp.obj[mapNum][6] = new OBJ_Decoration(gp, "/misc/bronze_drum", gp.tileSize, gp.tileSize);
         gp.obj[mapNum][6].worldX = 35 * gp.tileSize;
         gp.obj[mapNum][6].worldY = 11 * gp.tileSize;
         
-        gp.obj[mapNum][7] = new OBJ_Building(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
+        gp.obj[mapNum][7] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
         gp.obj[mapNum][7].worldX = 21 * gp.tileSize;
         gp.obj[mapNum][7].worldY = 22 * gp.tileSize;
         
-        gp.obj[mapNum][8] = new OBJ_Building(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2);
+        gp.obj[mapNum][8] = new OBJ_Decoration(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2);
         gp.obj[mapNum][8].worldX = 19 * gp.tileSize;
         gp.obj[mapNum][8].worldY = 33 * gp.tileSize;
         
-        gp.obj[mapNum][9] = new OBJ_Building(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
+        gp.obj[mapNum][9] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
         gp.obj[mapNum][9].worldX = 40 * gp.tileSize;
         gp.obj[mapNum][9].worldY = 33 * gp.tileSize;
 
