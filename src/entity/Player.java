@@ -66,7 +66,7 @@ public class Player extends Entity {
         speed = 5;
         direction = "down";
         
-        maxLife = 10;
+        maxLife = 2;
         life = maxLife;
         strength = 1;
         defense = 0;
@@ -74,6 +74,12 @@ public class Player extends Entity {
         expNeed = 5;
         Lv = 1;
         currentWeapon = new OBJ_Sword(gp);
+    }
+
+    public void setDefaultPosittions(){
+        worldX = gp.tileSize * 35;
+        worldY = gp.tileSize * 13;
+        direction = "down";
     }
     
     public int getAttack()
@@ -339,6 +345,10 @@ public class Player extends Entity {
                 gp.ui.addMessage("Bạn vùa dính đòn");
         		invincible = true;
     		}
+            if(life <= 0){
+                gp.stopMusic();
+                gp.gameState = gp.gameOverState;
+            }
     	}	
 	}
     

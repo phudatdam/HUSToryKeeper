@@ -55,6 +55,37 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.optionsState) {
             optionsState(code);
         }
+
+        // GAME OVER STATE
+        else if (gp.gameState == gp.gameOverState) {
+            gameOverState(code);
+        }
+    }
+
+    public void gameOverState(int code){
+        if (code == KeyEvent.VK_W) { // lên
+            gp.ui.commandNum--;
+            if (gp.ui.commandNum < 0) {
+                gp.ui.commandNum = 1;
+            }
+            gp.playSE(2);
+        }
+        if (code == KeyEvent.VK_S) { // xuống
+            gp.ui.commandNum++;
+            if (gp.ui.commandNum > 1) {
+                gp.ui.commandNum = 0;
+            }
+            gp.playSE(2);
+        }
+        if (code == KeyEvent.VK_E) {
+            if (gp.ui.commandNum == 0) {
+                gp.gameState = gp.playState;
+            }
+            if (gp.ui.commandNum == 1) {
+                System.exit(0);
+            }
+            gp.playSE(2);
+        }
     }
 
     public void titleState(int code) {
