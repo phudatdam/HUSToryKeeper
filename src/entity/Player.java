@@ -347,8 +347,8 @@ public class Player extends Entity {
                         wood ++;
                         gp.ui.addMessage("Thêm được 1 Gỗ nè");
                     }
+                    gp.obj[gp.currentMap][i] = null;
                 }
-                gp.obj[gp.currentMap][i]=null;
                 
             }
         }
