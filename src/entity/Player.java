@@ -473,6 +473,10 @@ public class Player extends Entity {
 		    	col = 15;
 		    	row = 12;
 		    	break;
+		    case 3:
+		    	col = 14;
+		    	row = 10;
+		    	break;
     	}
     	worldX = gp.tileSize * col;
     	worldY = gp.tileSize * row;
