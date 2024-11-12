@@ -24,42 +24,38 @@ public class AssetSetter {
         gp.obj[mapNum][0] = new OBJ_Heart(gp);
         gp.obj[mapNum][0].worldX = 16 * gp.tileSize;
         gp.obj[mapNum][0].worldY = 22 * gp.tileSize;
-
-        gp.obj[mapNum][1] = new OBJ_Heart(gp);
-        gp.obj[mapNum][1].worldX = 28 * gp.tileSize;
-        gp.obj[mapNum][1].worldY = 37 * gp.tileSize;
         
-        gp.obj[mapNum][2] = new OBJ_Well(gp);
-        gp.obj[mapNum][2].worldX = 40 * gp.tileSize;
-        gp.obj[mapNum][2].worldY = 38 * gp.tileSize;
+        gp.obj[mapNum][1] = new OBJ_Well(gp);
+        gp.obj[mapNum][1].worldX = 40 * gp.tileSize;
+        gp.obj[mapNum][1].worldY = 38 * gp.tileSize;
+        
+        gp.obj[mapNum][2] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
+        gp.obj[mapNum][2].worldX = 32 * gp.tileSize;
+        gp.obj[mapNum][2].worldY = 10 * gp.tileSize;
         
         gp.obj[mapNum][3] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][3].worldX = 32 * gp.tileSize;
+        gp.obj[mapNum][3].worldX = 37 * gp.tileSize;
         gp.obj[mapNum][3].worldY = 10 * gp.tileSize;
         
-        gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][4].worldX = 37 * gp.tileSize;
-        gp.obj[mapNum][4].worldY = 10 * gp.tileSize;
+        gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2);
+        gp.obj[mapNum][4].worldX = 34 * gp.tileSize;
+        gp.obj[mapNum][4].worldY = 8 * gp.tileSize;
         
-        gp.obj[mapNum][5] = new OBJ_Decoration(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][5].worldX = 34 * gp.tileSize;
-        gp.obj[mapNum][5].worldY = 8 * gp.tileSize;
+        gp.obj[mapNum][5] = new OBJ_Decoration(gp, "/misc/bronze_drum", gp.tileSize, gp.tileSize);
+        gp.obj[mapNum][5].worldX = 35 * gp.tileSize;
+        gp.obj[mapNum][5].worldY = 11 * gp.tileSize;
         
-        gp.obj[mapNum][6] = new OBJ_Decoration(gp, "/misc/bronze_drum", gp.tileSize, gp.tileSize);
-        gp.obj[mapNum][6].worldX = 35 * gp.tileSize;
-        gp.obj[mapNum][6].worldY = 11 * gp.tileSize;
+        gp.obj[mapNum][6] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
+        gp.obj[mapNum][6].worldX = 21 * gp.tileSize;
+        gp.obj[mapNum][6].worldY = 22 * gp.tileSize;
         
-        gp.obj[mapNum][7] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][7].worldX = 21 * gp.tileSize;
-        gp.obj[mapNum][7].worldY = 22 * gp.tileSize;
+        gp.obj[mapNum][7] = new OBJ_Decoration(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2);
+        gp.obj[mapNum][7].worldX = 19 * gp.tileSize;
+        gp.obj[mapNum][7].worldY = 33 * gp.tileSize;
         
-        gp.obj[mapNum][8] = new OBJ_Decoration(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][8].worldX = 19 * gp.tileSize;
-        gp.obj[mapNum][8].worldY = 33 * gp.tileSize;
-        
-        gp.obj[mapNum][9] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][9].worldX = 40 * gp.tileSize;
-        gp.obj[mapNum][9].worldY = 33 * gp.tileSize;
+        gp.obj[mapNum][8] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
+        gp.obj[mapNum][8].worldX = 30 * gp.tileSize;
+        gp.obj[mapNum][8].worldY = 32 * gp.tileSize;
 
         mapNum = 2;
         gp.obj[mapNum][0] = new OBJ_Well(gp);
@@ -111,8 +107,8 @@ public class AssetSetter {
     	gp.npc[mapNum][0].worldX = 37 * gp.tileSize;
         gp.npc[mapNum][0].worldY = 12 * gp.tileSize;
         gp.npc[mapNum][1] = new NPC_KimQuy(gp);
-        gp.npc[mapNum][1].worldX = 40 * gp.tileSize;
-        gp.npc[mapNum][1].worldY = 36 * gp.tileSize;
+        gp.npc[mapNum][1].worldX = 30 * gp.tileSize;
+        gp.npc[mapNum][1].worldY = 34 * gp.tileSize;
         
         mapNum = 2;
     	gp.npc[mapNum][0] = new NPC_ThanhGiong(gp);
