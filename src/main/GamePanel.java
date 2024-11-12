@@ -29,7 +29,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int maxWorldCol = 50; // bản đồ dài 50 ô
     public final int maxWorldRow = 50; // bản đồ rộng 50 ô
     public final int maxMap = 4;
-    public int currentMap = 2;
+    public int currentMap = 1;
 
 
     // FPS : set Thời gian lặp lại
