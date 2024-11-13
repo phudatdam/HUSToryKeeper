@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import entity.Entity;
-import entity.NPC;
 
 public class UI {
     GamePanel gp;
@@ -102,7 +101,67 @@ public class UI {
         if(gp.gameState == gp.optionsState){
             drawOptionsState();
         }
+        // Game over STATE
+        if(gp.gameState == gp.gameoverState){
+            drawOverScreen();
+        }
     }
+
+    public void drawOverScreen(){
+        g2.setColor( new Color(0,0,0,150));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        int x;
+        int y;
+        String text;
+        g2.setFont(retron2000);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,80));
+        text = "Haiza, thua rồi";
+        // shadow
+        g2.setColor(Color.BLACK);
+        x = getXforCenteredText(text);
+        y = gp.tileSize * 4;
+        g2.drawString(text, x, y);
+        // main
+        g2.setColor(Color.WHITE);
+        x = getXforCenteredText(text);
+        y = gp.tileSize * 4;
+        g2.drawString(text, x-4, y-4);
+        // vài câu cổ động
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,24));
+        y += gp.tileSize;
+        // random 
+        if(gp.player.randomtext < 10){
+           text = "Bạn thua à, lạ nhỉ, trò này dễ thế mà ?";
+        }
+        else if(gp.player.randomtext < 20){
+           text = "Thôi nào bạn qua hết mấy môn đại cương được cơ mà.";
+            }
+        else{
+            text = "“Sinh tồn” ở bách khoa khó hơn mà, cố lên";
+        }
+        x = getXforCenteredText(text);
+        g2.drawString(text , x, y);
+        // retry
+        text = "Thử lại nào";
+        x = getXforCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text , x, y);
+        if( commandNum == 0)
+        {
+            g2.drawString(">", x-40, y);
+        }
+        // nghỉ
+        text = "Thôi vậy";
+        x = getXforCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text , x, y);
+        if( commandNum == 1)
+        {
+            g2.drawString(">", x-40, y);
+        }
+    }
+    
 
     private void drawOptionsState() {
         g2.setColor(Color.white);

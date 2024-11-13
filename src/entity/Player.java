@@ -12,6 +12,7 @@ import object.OBJ_Sword;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Player extends Entity {
 	GamePanel gp;
@@ -32,6 +33,7 @@ public class Player extends Entity {
     public int exp;
     public int expNeed;
     public int Lv;
+    public int randomtext;
     
     public ArrayList<Entity> inventory = new ArrayList<Entity>();
     public int maxInventorySize = 15;
@@ -79,7 +81,16 @@ public class Player extends Entity {
         Lv = 1;
         currentWeapon = new OBJ_Sword(gp);
     }
-    
+    // retry
+    public void setbackBegin()
+    {
+        worldX = gp.tileSize * 35;
+        worldY = gp.tileSize * 12;
+        direction = "down";
+        life = maxLife;
+        invincible = false;
+    }
+
     public int getAttack()
     {
         return attack = strength + currentWeapon.attackValue;
@@ -96,6 +107,7 @@ public class Player extends Entity {
     }
 
     public void setItems() {
+        inventory.clear();
         inventory.add(currentWeapon);
     }
 
@@ -255,6 +267,11 @@ public class Player extends Entity {
         		invincible = false;
         		invincibleCounter = 0;
         	}
+        }
+        if ( life <= 0)
+        {
+            randomtext = new Random().nextInt(30) + 1;
+            gp.gameState = gp.gameoverState;
         }
     }
 
