@@ -489,6 +489,7 @@ public class Player extends Entity {
             expNeed += 5;
             maxLife +=2;
             strength ++;
+            life = maxLife;
             gp.playSE(8);
             startDialogue(this, 1);
         }

@@ -37,14 +37,14 @@ public class NPC_ThanhGiong extends Entity {
 	public void setDialogue()
 	{
 		dialogues[0][0] = "Thánh Gióng :\n Xin chào chàng trai trẻ, ta xin tự giới thiệu\n ta là Thánh Gióng.";
-		dialogues[0][1] = "Nvc :\n Ngài có vẻ không đô nhưng họ kể.";
+		dialogues[0][1] = "Bạn :\n Ngài có vẻ không đô nhưng họ kể.";
 		dialogues[0][2] = "Thánh Gióng :\n Cậu biết body shaming bị phạt tiền đúng không.";
-		dialogues[0][3] = "Nvc :\n Dạ em xin lỗi ạ.";
+		dialogues[0][3] = "Bạn :\n Dạ em xin lỗi ạ.";
 		dialogues[0][4] = "Thánh Gióng :\n Quân địch đã đến và chúng đã e sợ sức mạnh của ta.";
 		dialogues[0][5] = "Thánh Gióng :\n Thế nên, bằng mưu hèn kế bẩn, thủ đoạn vô biên\n chúng đã ngăn cản việc ta có ngựa sắt.";
 		dialogues[0][6] = "Thánh Gióng :\n Vì vậy, hãy giúp ta một tay. Hãy tìm đủ sắt và gỗ\n và giao cho người thợ rèn.";
 		dialogues[0][7] = "Thánh Gióng :\n Hãy cẩn thận vì giờ quân địch là rank bạc rồi.";
-		dialogues[0][8] = "Nvc :\n Việc này có vẻ đơn giản với ngài mà nhỉ ?";
+		dialogues[0][8] = "Bạn :\n Việc này có vẻ đơn giản với ngài mà nhỉ ?";
 		dialogues[0][9] = "Thánh Gióng :\n Nếu ta làm thì game còn gì vui nữa.";
 		dialogues[0][10] = "Thánh Gióng :\n Ta cần " + woodneed + " gỗ và " + ironneed + " sắt. Nhanh nhẹn lên nào!";
 	}
