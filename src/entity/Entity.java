@@ -238,11 +238,6 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			int damage = attack;
 			gp.player.life -= damage;
 			gp.ui.addMessage("Bạn vùa dính đòn");
-			if (gp.player.maxLife > 6) {
-				if (gp.player.life <= 6) {
-					gp.player.maxLife = 6;
-				}
-			}
 			if (gp.player.life <= 0) {
 				gp.player.life = 0;
 			}
