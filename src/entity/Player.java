@@ -62,6 +62,7 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
+        gp.currentMap = 1;
         worldX = gp.tileSize * 35;
         worldY = gp.tileSize * 12;
         defaultSpeed = 5;
@@ -84,8 +85,24 @@ public class Player extends Entity {
     // retry
     public void setbackBegin()
     {
-        worldX = gp.tileSize * 35;
-        worldY = gp.tileSize * 12;
+        int col = 0;
+    	int row = 0;
+        switch (gp.currentMap) {
+		    case 1:
+			    col = 35;
+			    row = 12;
+			    break;
+		    case 2:
+		    	col = 15;
+		    	row = 12;
+		    	break;
+		    case 3:
+		    	col = 14;
+		    	row = 10;
+		    	break;
+    	}
+    	worldX = gp.tileSize * col;
+    	worldY = gp.tileSize * row;
         direction = "down";
         life = maxLife;
         invincible = false;
@@ -101,8 +118,6 @@ public class Player extends Entity {
         dialogues[0][0] = "Bạn thả đồng xu thần kì xuống giếng.";
         dialogues[0][1] = "Một sức hút kì ảo hút bạn đi";
         dialogues[0][2] = "Có vẻ như bạn đã du hành thời gian . . . một lần nữa";
-
-        
     }
 
     public void setItems() {
