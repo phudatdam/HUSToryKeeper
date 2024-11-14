@@ -2,17 +2,11 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-//import object.OBJ_Axe;
-//import object.OBJ_Coin;
-//import object.OBJ_Heart;
-//import object.OBJ_Iron;
 import object.OBJ_Sword;
-//import object.OBJ_Wood;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Random;
 
 public class Player extends Entity {
@@ -35,7 +29,7 @@ public class Player extends Entity {
     public int expNeed;
     public int Lv;
     public int randomtext;
-    public int randomtext;
+
     
     public ArrayList<Entity> inventory = new ArrayList<Entity>();
     public int maxInventorySize = 15;
