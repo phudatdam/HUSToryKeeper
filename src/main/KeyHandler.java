@@ -55,6 +55,41 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.optionsState) {
             optionsState(code);
         }
+        // Over STATE
+        else if (gp.gameState == gp.gameoverState) {
+            OverState(code);
+        }
+    }
+
+    public void OverState( int code)
+    {
+        if (code == KeyEvent.VK_W) { // lên
+            gp.ui.commandNum--;
+            if (gp.ui.commandNum < 0) {
+                gp.ui.commandNum = 1;
+            }
+            gp.playSE(2);
+        }
+        if (code == KeyEvent.VK_S) { // xuống
+            gp.ui.commandNum++;
+            if (gp.ui.commandNum > 1) {
+                gp.ui.commandNum = 0;
+            }
+            gp.playSE(2);
+        }
+        if (code == KeyEvent.VK_E) {
+            if (gp.ui.commandNum == 0) {
+                gp.gameState = gp.playState;
+                gp.retry();
+                gp.ui.addMessage("Bạn vừa được quay ngược thời gian");
+            }
+            if (gp.ui.commandNum == 1) {
+                gp.gameState = gp.titleState;
+                gp.restart();
+                gp.ui.addMessage("Bạn bắt đầu hành trình mới");
+            }
+            gp.playSE(2);
+        }
     }
 
     public void titleState(int code) {
