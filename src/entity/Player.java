@@ -102,8 +102,7 @@ public class Player extends Entity {
         dialogues[0][1] = "Một sức hút kì ảo hút bạn đi";
         dialogues[0][2] = "Có vẻ như bạn đã du hành thời gian . . . một lần nữa";
 
-        dialogues[1][0] = "Trình độ bạn đã lên 1 cấp";
-        dialogues[1][1] = "Bạn giờ là cấp " + (Lv + 1);
+        
     }
 
     public void setItems() {
@@ -504,10 +503,11 @@ public class Player extends Entity {
         {
             Lv++;
             expNeed += 5;
-            maxLife +=2;
+            maxLife += 2;
             strength ++;
             life = maxLife;
             gp.playSE(8);
+            dialogues[1][0] = "Trình độ bạn đã lên 1 cấp\nBạn giờ là cấp " + Lv ;
             startDialogue(this, 1);
         }
     }
