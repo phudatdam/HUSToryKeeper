@@ -536,7 +536,7 @@ public class UI {
         textY += lineHeight;
         g2.drawString("kinh nghiệm:", textX, textY);
         textY += 2*lineHeight;
-        g2.drawString("Đang dùng", textX + 64, textY);
+        g2.drawString("Đang dùng", textX + 48, textY);
         textY += lineHeight;
 
         // values
@@ -567,7 +567,7 @@ public class UI {
         value = String.valueOf(gp.player.exp +" / "+gp.player.expNeed);
         textX = getXforAlignRightText(value, tailX);
         g2.drawString(value, textX, textY);
-        g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize - 64, textY,null);
+        g2.drawImage(gp.player.currentWeapon.image1, tailX - gp.tileSize - 48, textY + 8, null);
         textY += 4*lineHeight;
         textX = 23 + (frameX + frameWidth)/2
                 - (int)g2.getFontMetrics().getStringBounds("MISSIONS", g2).getWidth()/2;

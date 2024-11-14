@@ -347,8 +347,8 @@ public class Player extends Entity {
                         wood ++;
                         gp.ui.addMessage("Thêm được 1 Gỗ nè");
                     }
+                    gp.obj[gp.currentMap][i] = null;
                 }
-                gp.obj[gp.currentMap][i]=null;
                 
             }
         }
@@ -472,6 +472,10 @@ public class Player extends Entity {
 		    case 2:
 		    	col = 15;
 		    	row = 12;
+		    	break;
+		    case 3:
+		    	col = 14;
+		    	row = 10;
 		    	break;
     	}
     	worldX = gp.tileSize * col;
