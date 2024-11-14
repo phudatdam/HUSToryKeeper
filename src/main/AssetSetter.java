@@ -188,6 +188,7 @@ public class AssetSetter {
         gp.monster[mapNum][5] = new MON_BronzeBow(gp);
         gp.monster[mapNum][5].worldX = 21 * gp.tileSize;
         gp.monster[mapNum][5].worldY = 43 * gp.tileSize;
+
     }
     
     public void setInteractiveTile() {

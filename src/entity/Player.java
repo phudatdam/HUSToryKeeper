@@ -2,12 +2,7 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-//import object.OBJ_Axe;
-//import object.OBJ_Coin;
-//import object.OBJ_Heart;
-//import object.OBJ_Iron;
 import object.OBJ_Sword;
-//import object.OBJ_Wood;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -34,6 +29,7 @@ public class Player extends Entity {
     public int expNeed;
     public int Lv;
     public int randomtext;
+
     
     public ArrayList<Entity> inventory = new ArrayList<Entity>();
     public int maxInventorySize = 15;
@@ -62,6 +58,7 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
+        gp.currentMap = 1;
         worldX = gp.tileSize * 35;
         worldY = gp.tileSize * 12;
         defaultSpeed = 5;
@@ -84,8 +81,24 @@ public class Player extends Entity {
     // retry
     public void setbackBegin()
     {
-        worldX = gp.tileSize * 35;
-        worldY = gp.tileSize * 12;
+        int col = 0;
+    	int row = 0;
+        switch (gp.currentMap) {
+		    case 1:
+			    col = 35;
+			    row = 12;
+			    break;
+		    case 2:
+		    	col = 15;
+		    	row = 12;
+		    	break;
+		    case 3:
+		    	col = 14;
+		    	row = 10;
+		    	break;
+    	}
+    	worldX = gp.tileSize * col;
+    	worldY = gp.tileSize * row;
         direction = "down";
         life = maxLife;
         invincible = false;
