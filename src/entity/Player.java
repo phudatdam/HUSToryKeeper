@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Random;
 
 public class Player extends Entity {
 	GamePanel gp;
@@ -33,6 +34,7 @@ public class Player extends Entity {
     public int exp;
     public int expNeed;
     public int Lv;
+    public int randomtext;
     public int randomtext;
     
     public ArrayList<Entity> inventory = new ArrayList<Entity>();
@@ -118,6 +120,8 @@ public class Player extends Entity {
         dialogues[0][0] = "Bạn thả đồng xu thần kì xuống giếng.";
         dialogues[0][1] = "Một sức hút kì ảo hút bạn đi";
         dialogues[0][2] = "Có vẻ như bạn đã du hành thời gian . . . một lần nữa";
+
+        
     }
 
     public void setItems() {
