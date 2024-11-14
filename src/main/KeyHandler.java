@@ -80,9 +80,11 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_E) {
             if (gp.ui.commandNum == 0) {
                 gp.gameState = gp.playState;
+                gp.retry();
             }
             if (gp.ui.commandNum == 1) {
-                System.exit(0);
+                gp.gameState = gp.titleState;
+
             }
             gp.playSE(2);
         }

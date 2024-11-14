@@ -244,7 +244,9 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 				}
 			}
 			if (gp.player.life <= 0) {
-				gp.player.life = 0;
+				gp.gameState = gp.gameOverState;
+				gp.stopMusic();
+				gp.playSE(6);
 			}
 			gp.player.invincible = true;
 		}

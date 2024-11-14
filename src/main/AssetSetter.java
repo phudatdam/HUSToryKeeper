@@ -13,13 +13,14 @@ import tile_interactive.IT_Tree;
 
 public class AssetSetter {
     GamePanel gp;
+    public int mapNum;
 
     public AssetSetter(GamePanel gp){
         this.gp = gp;
     }
     
     public void setObject(){
-    	int mapNum = 1;
+    	mapNum = 1;
         gp.obj[mapNum][0] = new OBJ_Heart(gp);
         gp.obj[mapNum][0].worldX = 16 * gp.tileSize;
         gp.obj[mapNum][0].worldY = 22 * gp.tileSize;
@@ -40,7 +41,7 @@ public class AssetSetter {
     }
     
     public void setNPC() {
-    	int mapNum = 1;
+    	mapNum = 1;
     	gp.npc[mapNum][0] = new NPC_AnDuongVuong(gp);
     	gp.npc[mapNum][0].worldX = 37 * gp.tileSize;
         gp.npc[mapNum][0].worldY = 13 * gp.tileSize;
@@ -58,7 +59,7 @@ public class AssetSetter {
     }
     
     public void setMonsters() {
-    	int mapNum = 1;
+    	mapNum = 1;
     	gp.monster[mapNum][0] = new MON_BronzeSword(gp);
         gp.monster[mapNum][0].worldX = 19 * gp.tileSize;
         gp.monster[mapNum][0].worldY = 14 * gp.tileSize;
@@ -82,10 +83,35 @@ public class AssetSetter {
         gp.monster[mapNum][5] = new MON_BronzeBow(gp);
         gp.monster[mapNum][5].worldX = 21 * gp.tileSize;
         gp.monster[mapNum][5].worldY = 43 * gp.tileSize;
+
+        mapNum = 2;
+        gp.monster[mapNum][0] = new MON_BronzeSword(gp);
+        gp.monster[mapNum][0].worldX = 19 * gp.tileSize;
+        gp.monster[mapNum][0].worldY = 14 * gp.tileSize;
+
+        gp.monster[mapNum][1] = new MON_BronzeSword(gp);
+        gp.monster[mapNum][1].worldX = 21 * gp.tileSize;
+        gp.monster[mapNum][1].worldY = 16 * gp.tileSize;
+
+        gp.monster[mapNum][2] = new MON_BronzePolearm(gp);
+        gp.monster[mapNum][2].worldX = 9 * gp.tileSize;
+        gp.monster[mapNum][2].worldY = 28 * gp.tileSize;
+
+        gp.monster[mapNum][3] = new MON_BronzePolearm(gp);
+        gp.monster[mapNum][3].worldX = 11 * gp.tileSize;
+        gp.monster[mapNum][3].worldY = 30 * gp.tileSize;
+
+        gp.monster[mapNum][4] = new MON_BronzeBow(gp);
+        gp.monster[mapNum][4].worldX = 18 * gp.tileSize;
+        gp.monster[mapNum][4].worldY = 42 * gp.tileSize;
+
+        gp.monster[mapNum][5] = new MON_BronzeBow(gp);
+        gp.monster[mapNum][5].worldX = 21 * gp.tileSize;
+        gp.monster[mapNum][5].worldY = 43 * gp.tileSize;
     }
     
     public void setInteractiveTile() {
-    	int mapNum = 1;
+    	mapNum = 1;
     	int i = 0;
     	while (mapNum < gp.maxMap) {
     	    for (int row = 0; row < gp.maxWorldRow; row++) {

@@ -12,6 +12,7 @@ public class Main {
         GamePanel gamepanel = new GamePanel();
         window.add(gamepanel);
 
+
         window.pack();
 
         window.setLocationRelativeTo(null); // Set vị trí cửa sổ game: chính giữa

@@ -21,6 +21,7 @@ public class Sound {
         soundURL[3] = getClass().getResource("/sound/tingting.wav");
         soundURL[4] = getClass().getResource("/sound/sword.wav");
         soundURL[5] = getClass().getResource("/sound/iron.wav");
+        soundURL[6] = getClass().getResource("/sound/game_over.wav");
     }
 
     public void setFile(int i){

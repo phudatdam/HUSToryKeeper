@@ -129,9 +129,14 @@ public class UI {
         g2.setColor(Color.white);
         g2.drawString(text, x - 4, y - 4);
 
+        // HUSTer
+        x = gp.screenWidth / 2 - (gp.tileSize) - 20;
+        y += gp.tileSize / 2;
+        g2.drawImage(gp.player.image1, x, y, gp.tileSize * 3, gp.tileSize * 3, null);
+
         // Thử lại
         g2.setFont(determinationSans);
-        g2.setFont(g2.getFont().deriveFont(40f));
+        g2.setFont(g2.getFont().deriveFont(38f));
         text = "Cay quá, thử lại nào";
         x = getXforCenteredText(text);
         y += gp.tileSize * 4;
@@ -256,6 +261,7 @@ public class UI {
         g2.drawRect(textX, textY, 150, 23);
         volumeWidth = 30 * gp.se.volumeScale;
         g2.fillRect(textX, textY, volumeWidth, 23);
+
     }
 
     public void options_control(int frameX, int frameY){
