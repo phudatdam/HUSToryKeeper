@@ -158,7 +158,7 @@ public class AssetSetter {
         	    }
     	    }
     	    i = 0;
-    	    mapNum++;
+            mapNum++;
     	}
     }
 }

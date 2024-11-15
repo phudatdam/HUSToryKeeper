@@ -88,9 +88,11 @@ public class GamePanel extends JPanel implements Runnable{
         player.restoreLife();
         aSetter.setNPC();
         aSetter.setMonsters();
+        aSetter.setInteractiveTile();
     }
 
     public void restart(){
+        aSetter.setInteractiveTile();
         player.getPlayerDefeat();
         player.selectItem();
         player.checkLv();
@@ -98,7 +100,6 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setObject();
         aSetter.setNPC();
         aSetter.setMonsters();
-        aSetter.setInteractiveTile();
     }
 
     public void startGameThread(){

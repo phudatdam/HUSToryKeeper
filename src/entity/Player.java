@@ -85,7 +85,7 @@ public class Player extends Entity {
     public void setDefaultPosittions(){
         if(gp.aSetter.mapNum == 1){
             worldX = gp.tileSize * 35;
-            worldY = gp.tileSize * 13;
+            worldY = gp.tileSize * 12;
         }
         if(gp.aSetter.mapNum == 2){
             worldX = gp.tileSize * 14;
