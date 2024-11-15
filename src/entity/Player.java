@@ -363,6 +363,7 @@ public class Player extends Entity {
             		gp.ui.addMessage("Tài khoản trừ 1 xu");
                     startDialogue(this, 0);
             		teleport();
+                    gp.playSE(7);
                 }
             }
             // Nhặt gỗ, sắt
