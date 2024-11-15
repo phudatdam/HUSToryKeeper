@@ -120,32 +120,36 @@ public class UI {
         // shadow
         g2.setColor(Color.BLACK);
         x = getXforCenteredText(text);
-        y = gp.tileSize * 4;
+        y = gp.tileSize * 2;
         g2.drawString(text, x, y);
         // main
         g2.setColor(Color.WHITE);
         x = getXforCenteredText(text);
-        y = gp.tileSize * 4;
+        y = gp.tileSize * 2;
         g2.drawString(text, x-4, y-4);
         // vài câu cổ động
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,24));
         y += gp.tileSize;
-        // random 
+        // random
         if(gp.player.randomtext < 10){
-           text = "Bạn thua à, lạ nhỉ, trò này dễ thế mà ?";
+            text = "Bạn thua à, lạ nhỉ, trò này dễ thế mà ?";
         }
         else if(gp.player.randomtext < 20){
-           text = "Thôi nào bạn qua hết mấy môn đại cương được cơ mà.";
-            }
+            text = "Thôi nào bạn qua hết mấy môn đại cương được cơ mà.";
+        }
         else{
             text = "“Sinh tồn” ở bách khoa khó hơn mà, cố lên";
         }
         x = getXforCenteredText(text);
         g2.drawString(text , x, y);
+        // Huster
+        x = gp.screenWidth / 2 - (gp.tileSize) - 30;
+        y += gp.tileSize - 25;
+        g2.drawImage(gp.player.image1, x, y, gp.tileSize * 3, gp.tileSize * 3, null);
         // retry
         text = "Thử lại nào";
         x = getXforCenteredText(text);
-        y += gp.tileSize;
+        y += gp.tileSize * 9 / 2;
         g2.drawString(text , x, y);
         if( commandNum == 0)
         {
@@ -432,15 +436,15 @@ public class UI {
         g2.drawString(text, x, y);
 
         // HUSTer
-        x = gp.screenWidth / 2 - (gp.tileSize) - 20;
-        y += gp.tileSize;
-        g2.drawImage(gp.player.down3, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
+        x = gp.screenWidth / 2 - (gp.tileSize) - 25;
+        y += gp.tileSize - 20;
+        g2.drawImage(gp.player.down3, x, y, gp.tileSize * 5 / 2, gp.tileSize * 5 / 2, null);
 
         // MENU
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
         text = "BẮT ĐẦU CHƠI";
         x = getXforCenteredText(text);
-        y += (int) gp.tileSize * 3;
+        y += (int) gp.tileSize * 3.5;
         g2.drawString(text, x ,y);
         if(commandNum == 0){
             g2.drawString(">", x - gp.tileSize, y);

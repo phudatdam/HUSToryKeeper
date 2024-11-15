@@ -85,6 +85,7 @@ public class GamePanel extends JPanel implements Runnable{
         player.setbackBegin();
         aSetter.setNPC();
         aSetter.setMonsters();
+        playMusic(0);
     }
 
     public void restart()
@@ -98,6 +99,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setNPC();
         aSetter.setMonsters();
         aSetter.setInteractiveTile();
+        playMusic(0);
     }
     public void startGameThread(){
         gameThread = new Thread(this);
