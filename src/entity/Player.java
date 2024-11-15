@@ -69,7 +69,7 @@ public class Player extends Entity {
         motion1_duration = 5; // fix
 		motion2_duration = 25; // fix
         
-        maxLife = 2;
+        maxLife = 6;
         life = maxLife;
         attack = 1; // fix
         strength = 1;
