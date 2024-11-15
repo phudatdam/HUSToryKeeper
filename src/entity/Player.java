@@ -2,16 +2,12 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-//import object.OBJ_Axe;
-//import object.OBJ_Coin;
-//import object.OBJ_Heart;
-//import object.OBJ_Iron;
 import object.OBJ_Sword;
-//import object.OBJ_Wood;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Player extends Entity {
 	GamePanel gp;
@@ -32,6 +28,8 @@ public class Player extends Entity {
     public int exp;
     public int expNeed;
     public int Lv;
+    public int randomtext;
+
     
     public ArrayList<Entity> inventory = new ArrayList<Entity>();
     public int maxInventorySize = 15;
@@ -53,7 +51,6 @@ public class Player extends Entity {
         attackArea.height = 64; // fix
 
         setDefaultValues();
-        setDefaultPosittions();
         getPlayerImage();
         getPlayerAttackImage();
         getPlayerDefeat();
@@ -62,6 +59,7 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
+        gp.currentMap = 1;
         worldX = gp.tileSize * 35;
         worldY = gp.tileSize * 12;
         defaultSpeed = 5;
@@ -81,24 +79,31 @@ public class Player extends Entity {
         Lv = 1;
         currentWeapon = new OBJ_Sword(gp);
     }
-
-    public void setDefaultPosittions(){
-        if(gp.aSetter.mapNum == 1){
-            worldX = gp.tileSize * 35;
-            worldY = gp.tileSize * 12;
-        }
-        if(gp.aSetter.mapNum == 2){
-            worldX = gp.tileSize * 14;
-            worldY = gp.tileSize * 12;
-        }
+    // retry
+    public void setbackBegin()
+    {
+        int col = 0;
+    	int row = 0;
+        switch (gp.currentMap) {
+		    case 1:
+			    col = 35;
+			    row = 12;
+			    break;
+		    case 2:
+		    	col = 15;
+		    	row = 12;
+		    	break;
+		    case 3:
+		    	col = 14;
+		    	row = 10;
+		    	break;
+    	}
+    	worldX = gp.tileSize * col;
+    	worldY = gp.tileSize * row;
         direction = "down";
-    }
-
-    public void restoreLife(){
         life = maxLife;
         invincible = false;
     }
-    
     public int getAttack()
     {
         return attack = strength + currentWeapon.attackValue;
@@ -110,8 +115,7 @@ public class Player extends Entity {
         dialogues[0][1] = "Một sức hút kì ảo hút bạn đi";
         dialogues[0][2] = "Có vẻ như bạn đã du hành thời gian . . . một lần nữa";
 
-        dialogues[1][0] = "Trình độ bạn đã lên 1 cấp";
-        dialogues[1][1] = "Bạn giờ là cấp " + (Lv + 1);
+        
     }
 
     public void setItems() {
@@ -280,6 +284,11 @@ public class Player extends Entity {
         		invincibleCounter = 0;
         	}
         }
+        if ( life <= 0)
+        {
+            randomtext = new Random().nextInt(30) + 1;
+            gp.gameState = gp.gameoverState;
+        }
     }
 
     public void attacking() {
@@ -371,8 +380,8 @@ public class Player extends Entity {
                         wood ++;
                         gp.ui.addMessage("Thêm được 1 Gỗ nè");
                     }
+                    gp.obj[gp.currentMap][i] = null;
                 }
-                gp.obj[gp.currentMap][i]=null;
                 
             }
         }
@@ -498,6 +507,10 @@ public class Player extends Entity {
 		    	col = 15;
 		    	row = 12;
 		    	break;
+		    case 3:
+		    	col = 14;
+		    	row = 10;
+		    	break;
     	}
     	worldX = gp.tileSize * col;
     	worldY = gp.tileSize * row;
@@ -508,9 +521,11 @@ public class Player extends Entity {
         {
             Lv++;
             expNeed += 5;
-            maxLife +=2;
+            maxLife += 2;
             strength ++;
+            life = maxLife;
             gp.playSE(8);
+            dialogues[1][0] = "Trình độ bạn đã lên 1 cấp\nBạn giờ là cấp " + Lv ;
             startDialogue(this, 1);
         }
     }

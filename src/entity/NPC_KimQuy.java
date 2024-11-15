@@ -38,11 +38,11 @@ public class NPC_KimQuy extends Entity {
 	{
 		//map1
 		dialogues[1][0] = "Rùa Vàng :\n Vậy cậu là người được chọn để bảo vệ lịch sử ư ?";
-		dialogues[1][1] = "Nvc :\n ngài là người thợ rèn ư ? ";
+		dialogues[1][1] = "Bạn :\n ngài là người thợ rèn ư ? ";
 		dialogues[1][2] = "Rùa vàng:\n Thế cậu nghĩ ai là người đủ phép thuật để sửa\n nỏ thần ? Nào cậu có đủ đồ chưa ?";
 		//map2
 		dialogues[2][0] = "Rùa Vàng :\n oh, chúng ta lại gặp nhau à ?";
-		dialogues[2][1] = "Nvc :\n sao lại là ngài nữa, tôi tưởng ngựa sắt là do\n triều đình làm ?";
+		dialogues[2][1] = "Bạn :\n sao lại là ngài nữa, tôi tưởng ngựa sắt là do\n triều đình làm ?";
 		dialogues[2][2] = "Rùa Vàng :\n Triều đình nhận deal rồi order cho ta làm.\n Vậy câu có đủ đồ chưa ?";
 		//Đủ nguyên liệu ko
 		dialogues[4][0] = "Rùa Vàng:\nĐược rồi, việc của cậu đã xong, hãy nhận lấy\n đồng xu này";

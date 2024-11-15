@@ -23,6 +23,7 @@ public class TileManager {
         getTileImage();
         loadMap("/maps/world01.txt", 1);
         loadMap("/maps/world02.txt", 2);
+        loadMap("/maps/world03.txt", 3);
     }
 
     public void getTileImage() {

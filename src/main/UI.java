@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import entity.Entity;
-import entity.NPC;
 
 public class UI {
     GamePanel gp;
@@ -102,58 +101,67 @@ public class UI {
         if(gp.gameState == gp.optionsState){
             drawOptionsState();
         }
-
-        // GAME OVER STATE
-        if(gp.gameState == gp.gameOverState){
-            drawGameOverState();
+        // Game over STATE
+        if(gp.gameState == gp.gameoverState){
+            drawOverScreen();
         }
     }
 
-    private void drawGameOverState() {
-        g2.setColor(new Color(0, 0, 0, 150));
+    public void drawOverScreen(){
+        g2.setColor( new Color(0,0,0,150));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
         int x;
         int y;
         String text;
-        g2.setFont(maruMonica);
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
-
-        text = "GAME OVER";
-        // Shadow
-        g2.setColor(Color.black);
+        g2.setFont(retron2000);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,80));
+        text = "Haiza, thua rồi";
+        // shadow
+        g2.setColor(Color.BLACK);
         x = getXforCenteredText(text);
-        y = gp.tileSize * 3;
+        y = gp.tileSize * 4;
         g2.drawString(text, x, y);
         // main
-        g2.setColor(Color.white);
-        g2.drawString(text, x - 4, y - 4);
-
-        // HUSTer
-        x = gp.screenWidth / 2 - (gp.tileSize) - 20;
-        y += gp.tileSize / 2;
-        g2.drawImage(gp.player.image1, x, y, gp.tileSize * 3, gp.tileSize * 3, null);
-
-        // Thử lại
-        g2.setFont(determinationSans);
-        g2.setFont(g2.getFont().deriveFont(38f));
-        text = "Cay quá, thử lại nào";
+        g2.setColor(Color.WHITE);
         x = getXforCenteredText(text);
-        y += gp.tileSize * 4;
-        g2.drawString(text, x, y);
-        if(commandNum == 0){
-            g2.drawString(">", x - 30, y);
+        y = gp.tileSize * 4;
+        g2.drawString(text, x-4, y-4);
+        // vài câu cổ động
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,24));
+        y += gp.tileSize;
+        // random 
+        if(gp.player.randomtext < 10){
+           text = "Bạn thua à, lạ nhỉ, trò này dễ thế mà ?";
         }
-
-        // Quit
-        text = "Khó quá, mai thử lại";
+        else if(gp.player.randomtext < 20){
+           text = "Thôi nào bạn qua hết mấy môn đại cương được cơ mà.";
+            }
+        else{
+            text = "“Sinh tồn” ở bách khoa khó hơn mà, cố lên";
+        }
+        x = getXforCenteredText(text);
+        g2.drawString(text , x, y);
+        // retry
+        text = "Thử lại nào";
         x = getXforCenteredText(text);
         y += gp.tileSize;
-        g2.drawString(text, x, y);
-        if(commandNum == 1){
-            g2.drawString(">", x - 30, y);
+        g2.drawString(text , x, y);
+        if( commandNum == 0)
+        {
+            g2.drawString(">", x-40, y);
+        }
+        // nghỉ
+        text = "Thôi vậy";
+        x = getXforCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text , x, y);
+        if( commandNum == 1)
+        {
+            g2.drawString(">", x-40, y);
         }
     }
+    
 
     private void drawOptionsState() {
         g2.setColor(Color.white);
@@ -184,18 +192,18 @@ public class UI {
         // TITLE
         g2.setFont(determinationSans);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,32f));
-        String text = "SETTING";
+        String text = "CÀI ĐẶT";
         textX = getXforCenteredText(text);
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
 
         // MUSIC
-        g2.setFont(maruMonica); // set font
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,30f));
+        g2.setFont(retron2000); // set font
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,24f));
 
         textX = frameX + gp.tileSize / 2 + 20;
         textY += gp.tileSize;
-        g2.drawString("Âm thanh", textX, textY);
+        g2.drawString("Âm nhạc", textX, textY);
 
         if(commandNum == 1){
             g2.drawString(">", textX - 30, textY);
@@ -203,14 +211,14 @@ public class UI {
 
         // SE
         textY += gp.tileSize;
-        g2.drawString("SE", textX, textY);
+        g2.drawString("Âm thanh", textX, textY);
         if(commandNum == 2){
             g2.drawString(">", textX - 30, textY);
         }
 
         // CONTROL
         textY += gp.tileSize;
-        g2.drawString("Control", textX, textY);
+        g2.drawString("Hướng dẫn chơi", textX, textY);
         if(commandNum == 3){
             g2.drawString(">", textX - 30, textY);
             if(gp.keyH.enterPressed == true){
@@ -221,7 +229,7 @@ public class UI {
 
         // END GAME
         textY += gp.tileSize;
-        g2.drawString("End game", textX, textY);
+        g2.drawString("Thoát game", textX, textY);
         if(commandNum == 4){
             g2.drawString(">", textX - 30, textY);
             if(gp.keyH.enterPressed == true){
@@ -232,7 +240,7 @@ public class UI {
 
         // BACK
         textY += gp.tileSize * 2;
-        g2.drawString("Back", textX, textY);
+        g2.drawString("Quay lại", textX, textY);
         if(commandNum == 5){
             g2.drawString(">", textX - 30, textY);
             if(gp.keyH.enterPressed == true){
@@ -269,7 +277,7 @@ public class UI {
         int textY;
 
         // TITLE
-        String text = "CONTROL";
+        String text = "HƯỚNG DẪN CHƠI";
         g2.setFont(g2.getFont().deriveFont(Font.BOLD));
         textX = getXforCenteredText(text);
         textY = frameY + gp.tileSize;
@@ -296,7 +304,7 @@ public class UI {
         // BACK
         textX = frameX + gp.tileSize / 2 - 15;
         textY = frameY + gp.tileSize * 7;
-        g2.drawString("Back", textX + 20, textY);
+        g2.drawString("Quay lại", textX + 20, textY);
         if(commandNum == 0){
             g2.drawString(">", textX - 10, textY);
             if(gp.keyH.enterPressed == true){
@@ -430,7 +438,7 @@ public class UI {
 
         // MENU
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
-        text = "NEW GAME";
+        text = "BẮT ĐẦU CHƠI";
         x = getXforCenteredText(text);
         y += (int) gp.tileSize * 3;
         g2.drawString(text, x ,y);
@@ -438,7 +446,7 @@ public class UI {
             g2.drawString(">", x - gp.tileSize, y);
         }
 
-        text = "SETTING";
+        text = "CÀI ĐẶT";
         x = getXforCenteredText(text);
         y += (int) gp.tileSize * 1.5;
         g2.drawString(text, x ,y);
@@ -446,7 +454,7 @@ public class UI {
             g2.drawString(">", x - gp.tileSize, y);
         }
 
-        text = "QUIT";
+        text = "THOÁT";
         x = getXforCenteredText(text);
         y += (int) gp.tileSize * 1.5;
 
@@ -456,7 +464,7 @@ public class UI {
         }
 
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,25F));
-        text = "(Press E to choose)";
+        text = "(Nhấn E để chọn)";
         x = getXforCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x ,y);
@@ -491,7 +499,7 @@ public class UI {
         // Pause screen
         g2.setFont(determinationSans);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,32f));
-        String text = "PAUSE";
+        String text = "TẠM DỪNG";
         textX = getXforCenteredText(text);
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
@@ -512,7 +520,7 @@ public class UI {
 
         // Setting
         textY += gp.tileSize;
-        g2.drawString("Setting", textX, textY);
+        g2.drawString("Cài đặt", textX, textY);
         if(commandNum == 1){
             g2.drawString(">", textX - 20, textY);
             if(gp.keyH.enterPressed == true){
@@ -558,7 +566,7 @@ public class UI {
 
         g2.setFont(retron2000);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20f));
-        g2.drawString("Press E to next >>", width - gp.tileSize * 2, height);
+        g2.drawString("Nhấn E để tiếp tục >>", width - gp.tileSize * 2, height);
 
     }
 
@@ -588,7 +596,7 @@ public class UI {
         textY += lineHeight;
         g2.drawString("kinh nghiệm:", textX, textY);
         textY += 2*lineHeight;
-        g2.drawString("Đang dùng", textX + 64, textY);
+        g2.drawString("Đang dùng", textX + 48, textY);
         textY += lineHeight;
 
         // values
@@ -619,13 +627,13 @@ public class UI {
         value = String.valueOf(gp.player.exp +" / "+gp.player.expNeed);
         textX = getXforAlignRightText(value, tailX);
         g2.drawString(value, textX, textY);
-        g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize - 64, textY,null);
+        g2.drawImage(gp.player.currentWeapon.image1, tailX - gp.tileSize - 48, textY + 8, null);
         textY += 4*lineHeight;
         textX = 23 + (frameX + frameWidth)/2
-                - (int)g2.getFontMetrics().getStringBounds("MISSIONS", g2).getWidth()/2;
+                - (int)g2.getFontMetrics().getStringBounds("NHIỆM VỤ", g2).getWidth()/2;
         textY += 6;
         g2.setFont(g2.getFont().deriveFont(24F)); // to hơn tí
-        g2.drawString("MISSIONS", textX, textY);
+        g2.drawString("NHIỆM VỤ", textX, textY);
         textY += lineHeight + 2;
         g2.setFont(g2.getFont().deriveFont(20F)); // reset
         textX = frameX + 9;
