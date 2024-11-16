@@ -44,6 +44,8 @@ public class NPC_KimQuy extends Entity {
 		dialogues[2][0] = "Rùa Vàng :\n oh, chúng ta lại gặp nhau à ?";
 		dialogues[2][1] = "Bạn :\n sao lại là ngài nữa, tôi tưởng ngựa sắt là do\n triều đình làm ?";
 		dialogues[2][2] = "Rùa Vàng :\n Triều đình nhận deal rồi order cho ta làm.\n Vậy câu có đủ đồ chưa ?";
+		//map3
+		dialogues[3][0] = "Rùa Vàng :\n Rất vui khi được gặp lại cậu. Hãy kiếm thêm nguyên\nliệu để chế tạo gươm thần.";
 		//Đủ nguyên liệu ko
 		dialogues[4][0] = "Rùa Vàng:\nĐược rồi, việc của cậu đã xong, hãy nhận lấy\n đồng xu này";
 		dialogues[4][1] = "Rùa Vàng:\nHãy thả đồng xu xuống giếng kia và tiếp tục\n cuộc hành trình phía trước";
