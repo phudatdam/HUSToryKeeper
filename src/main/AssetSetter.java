@@ -2,11 +2,19 @@ package main;
 
 import entity.NPC_AnDuongVuong;
 import entity.NPC_KimQuy;
+import entity.NPC_LeLoi;
 import monsters.MON_BronzeBow;
 import entity.NPC_ThanhGiong;
 import monsters.MON_BronzePolearm;
 import monsters.MON_BronzeSword;
+import monsters.MON_GoldBow;
+import monsters.MON_GoldPolearm;
+import monsters.MON_GoldSword;
+import monsters.MON_SilverBow;
+import monsters.MON_SilverPolearm;
+import monsters.MON_SilverSword;
 import object.OBJ_Decoration;
+import object.OBJ_Forest;
 import object.OBJ_Heart;
 import object.OBJ_Well;
 import tile_interactive.IT_IronOre;
@@ -56,6 +64,16 @@ public class AssetSetter {
         gp.obj[mapNum][8] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
         gp.obj[mapNum][8].worldX = 30 * gp.tileSize;
         gp.obj[mapNum][8].worldY = 32 * gp.tileSize;
+        
+        gp.obj[mapNum][9] = new OBJ_Forest(gp, "/misc/forest_map_1_1", gp.tileSize*32, gp.tileSize*32);
+        gp.obj[mapNum][9].worldX = 0 * gp.tileSize;
+        gp.obj[mapNum][9].worldY = 0 * gp.tileSize;
+        gp.obj[mapNum][10] = new OBJ_Forest(gp, "/misc/forest_map_1_2", gp.tileSize*18, gp.tileSize*32);
+        gp.obj[mapNum][10].worldX = 32 * gp.tileSize;
+        gp.obj[mapNum][10].worldY = 0 * gp.tileSize;
+        gp.obj[mapNum][11] = new OBJ_Forest(gp, "/misc/forest_map_1_3", gp.tileSize*32, gp.tileSize*18);
+        gp.obj[mapNum][11].worldX = 0 * gp.tileSize;
+        gp.obj[mapNum][11].worldY = 32 * gp.tileSize;
 
         mapNum = 2;
         gp.obj[mapNum][0] = new OBJ_Well(gp);
@@ -161,6 +179,14 @@ public class AssetSetter {
         gp.npc[mapNum][1] = new NPC_KimQuy(gp);
         gp.npc[mapNum][1].worldX = 15 * gp.tileSize;
         gp.npc[mapNum][1].worldY = 28 * gp.tileSize;
+        
+        mapNum = 3;
+        gp.npc[mapNum][0] = new NPC_LeLoi(gp);
+    	gp.npc[mapNum][0].worldX = 12 * gp.tileSize;
+        gp.npc[mapNum][0].worldY = 9 * gp.tileSize;
+        gp.npc[mapNum][1] = new NPC_KimQuy(gp);
+        gp.npc[mapNum][1].worldX = 11 * gp.tileSize;
+        gp.npc[mapNum][1].worldY = 28 * gp.tileSize;
     }
     
     public void setMonsters() {
@@ -188,7 +214,71 @@ public class AssetSetter {
         gp.monster[mapNum][5] = new MON_BronzeBow(gp);
         gp.monster[mapNum][5].worldX = 21 * gp.tileSize;
         gp.monster[mapNum][5].worldY = 43 * gp.tileSize;
-
+        
+        mapNum = 2;
+        gp.monster[mapNum][0] = new MON_SilverSword(gp);
+        gp.monster[mapNum][0].worldX = 38 * gp.tileSize;
+        gp.monster[mapNum][0].worldY = 9 * gp.tileSize;
+    	gp.monster[mapNum][1] = new MON_SilverSword(gp);
+        gp.monster[mapNum][1].worldX = 30 * gp.tileSize;
+        gp.monster[mapNum][1].worldY = 16 * gp.tileSize;      
+        gp.monster[mapNum][2] = new MON_SilverSword(gp);
+        gp.monster[mapNum][2].worldX = 29 * gp.tileSize;
+        gp.monster[mapNum][2].worldY = 13 * gp.tileSize;
+        
+        gp.monster[mapNum][3] = new MON_SilverPolearm(gp);
+        gp.monster[mapNum][3].worldX = 33 * gp.tileSize;
+        gp.monster[mapNum][3].worldY = 30 * gp.tileSize;      
+        gp.monster[mapNum][4] = new MON_SilverPolearm(gp);
+        gp.monster[mapNum][4].worldX = 33 * gp.tileSize;
+        gp.monster[mapNum][4].worldY = 32 * gp.tileSize;
+        gp.monster[mapNum][5] = new MON_SilverPolearm(gp);
+        gp.monster[mapNum][5].worldX = 35 * gp.tileSize;
+        gp.monster[mapNum][5].worldY = 34 * gp.tileSize;
+        
+        gp.monster[mapNum][6] = new MON_SilverBow(gp);
+        gp.monster[mapNum][6].worldX = 19 * gp.tileSize;
+        gp.monster[mapNum][6].worldY = 39 * gp.tileSize;
+        gp.monster[mapNum][7] = new MON_SilverBow(gp);
+        gp.monster[mapNum][7].worldX = 16 * gp.tileSize;
+        gp.monster[mapNum][7].worldY = 41 * gp.tileSize;
+        gp.monster[mapNum][8] = new MON_SilverBow(gp);
+        gp.monster[mapNum][8].worldX = 24 * gp.tileSize;
+        gp.monster[mapNum][8].worldY = 40 * gp.tileSize;
+        
+        mapNum = 3;
+        gp.monster[mapNum][0] = new MON_GoldSword(gp);
+        gp.monster[mapNum][0].worldX = 12 * gp.tileSize;
+        gp.monster[mapNum][0].worldY = 34 * gp.tileSize;
+    	gp.monster[mapNum][1] = new MON_GoldSword(gp);
+        gp.monster[mapNum][1].worldX = 29 * gp.tileSize;
+        gp.monster[mapNum][1].worldY = 15 * gp.tileSize;      
+        gp.monster[mapNum][2] = new MON_GoldSword(gp);
+        gp.monster[mapNum][2].worldX = 30 * gp.tileSize;
+        gp.monster[mapNum][2].worldY = 11 * gp.tileSize;
+        gp.monster[mapNum][3] = new MON_GoldSword(gp);
+        gp.monster[mapNum][3].worldX = 31 * gp.tileSize;
+        gp.monster[mapNum][3].worldY = 11 * gp.tileSize;
+        
+        gp.monster[mapNum][4] = new MON_GoldPolearm(gp);
+        gp.monster[mapNum][4].worldX = 40 * gp.tileSize;
+        gp.monster[mapNum][4].worldY = 18 * gp.tileSize;      
+        gp.monster[mapNum][5] = new MON_GoldPolearm(gp);
+        gp.monster[mapNum][5].worldX = 30 * gp.tileSize;
+        gp.monster[mapNum][5].worldY = 28 * gp.tileSize;
+        gp.monster[mapNum][6] = new MON_GoldPolearm(gp);
+        gp.monster[mapNum][6].worldX = 31 * gp.tileSize;
+        gp.monster[mapNum][6].worldY = 28 * gp.tileSize;
+        
+        gp.monster[mapNum][7] = new MON_GoldBow(gp);
+        gp.monster[mapNum][7].worldX = 29 * gp.tileSize;
+        gp.monster[mapNum][7].worldY = 41 * gp.tileSize;
+        gp.monster[mapNum][8] = new MON_GoldBow(gp);
+        gp.monster[mapNum][8].worldX = 32 * gp.tileSize;
+        gp.monster[mapNum][8].worldY = 41 * gp.tileSize;
+        gp.monster[mapNum][9] = new MON_GoldBow(gp);
+        gp.monster[mapNum][9].worldX = 14 * gp.tileSize;
+        gp.monster[mapNum][9].worldY = 35 * gp.tileSize;
     }
     
     public void setInteractiveTile() {
