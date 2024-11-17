@@ -126,8 +126,8 @@ public class AssetSetter {
         
         mapNum = 3;
         gp.obj[mapNum][0] = new OBJ_Well(gp);
-        gp.obj[mapNum][0].worldX = 40 * gp.tileSize;
-        gp.obj[mapNum][0].worldY = 38 * gp.tileSize;
+        gp.obj[mapNum][0].worldX = 14 * gp.tileSize;
+        gp.obj[mapNum][0].worldY = 12 * gp.tileSize;
         
         gp.obj[mapNum][1] = new OBJ_Decoration(gp, "/misc/house_lam_son_1", gp.tileSize*2, gp.tileSize*2);
         gp.obj[mapNum][1].worldX = 8 * gp.tileSize;
@@ -158,8 +158,8 @@ public class AssetSetter {
         gp.obj[mapNum][7].worldY = 30 * gp.tileSize;
         
         gp.obj[mapNum][8] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][8].worldX = 33 * gp.tileSize;
-        gp.obj[mapNum][8].worldY = 40 * gp.tileSize;
+        gp.obj[mapNum][8].worldX = 39 * gp.tileSize;
+        gp.obj[mapNum][8].worldY = 38 * gp.tileSize;
 
     }
     
@@ -185,8 +185,8 @@ public class AssetSetter {
     	gp.npc[mapNum][0].worldX = 12 * gp.tileSize;
         gp.npc[mapNum][0].worldY = 9 * gp.tileSize;
         gp.npc[mapNum][1] = new NPC_KimQuy(gp);
-        gp.npc[mapNum][1].worldX = 11 * gp.tileSize;
-        gp.npc[mapNum][1].worldY = 28 * gp.tileSize;
+        gp.npc[mapNum][1].worldX = 40 * gp.tileSize;
+        gp.npc[mapNum][1].worldY = 40 * gp.tileSize;
     }
     
     public void setMonsters() {
