@@ -34,8 +34,8 @@ public class AssetSetter {
         gp.obj[mapNum][0].worldY = 22 * gp.tileSize;
         
         gp.obj[mapNum][1] = new OBJ_Well(gp);
-        gp.obj[mapNum][1].worldX = 40 * gp.tileSize;
-        gp.obj[mapNum][1].worldY = 38 * gp.tileSize;
+        gp.obj[mapNum][1].worldX = 32 * gp.tileSize;
+        gp.obj[mapNum][1].worldY = 14 * gp.tileSize;
         
         gp.obj[mapNum][2] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
         gp.obj[mapNum][2].worldX = 32 * gp.tileSize;
@@ -62,8 +62,8 @@ public class AssetSetter {
         gp.obj[mapNum][7].worldY = 33 * gp.tileSize;
         
         gp.obj[mapNum][8] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][8].worldX = 30 * gp.tileSize;
-        gp.obj[mapNum][8].worldY = 32 * gp.tileSize;
+        gp.obj[mapNum][8].worldX = 40 * gp.tileSize;
+        gp.obj[mapNum][8].worldY = 33 * gp.tileSize;
         
         gp.obj[mapNum][9] = new OBJ_Forest(gp, "/misc/forest_map_1_1", gp.tileSize*32, gp.tileSize*32);
         gp.obj[mapNum][9].worldX = 0 * gp.tileSize;
@@ -169,8 +169,8 @@ public class AssetSetter {
     	gp.npc[mapNum][0].worldX = 37 * gp.tileSize;
         gp.npc[mapNum][0].worldY = 12 * gp.tileSize;
         gp.npc[mapNum][1] = new NPC_KimQuy(gp);
-        gp.npc[mapNum][1].worldX = 30 * gp.tileSize;
-        gp.npc[mapNum][1].worldY = 34 * gp.tileSize;
+        gp.npc[mapNum][1].worldX = 40 * gp.tileSize;
+        gp.npc[mapNum][1].worldY = 36 * gp.tileSize;
         
         mapNum = 2;
     	gp.npc[mapNum][0] = new NPC_ThanhGiong(gp);
