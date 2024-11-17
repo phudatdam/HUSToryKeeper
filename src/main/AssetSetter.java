@@ -77,8 +77,8 @@ public class AssetSetter {
 
         mapNum = 2;
         gp.obj[mapNum][0] = new OBJ_Well(gp);
-        gp.obj[mapNum][0].worldX = 8 * gp.tileSize;
-        gp.obj[mapNum][0].worldY = 28 * gp.tileSize;
+        gp.obj[mapNum][0].worldX = 15 * gp.tileSize;
+        gp.obj[mapNum][0].worldY = 14 * gp.tileSize;
         
         gp.obj[mapNum][1] = new OBJ_Decoration(gp, "/misc/house_phu_dong_1", gp.tileSize*2, gp.tileSize*2);
         gp.obj[mapNum][1].worldX = 9 * gp.tileSize;
@@ -117,12 +117,12 @@ public class AssetSetter {
         gp.obj[mapNum][9].worldY = 39 * gp.tileSize;
         
         gp.obj[mapNum][10] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][10].worldX = 14 * gp.tileSize;
+        gp.obj[mapNum][10].worldX = 16 * gp.tileSize;
         gp.obj[mapNum][10].worldY = 38 * gp.tileSize;
         
-        gp.obj[mapNum][11] = new OBJ_Decoration(gp, "/misc/house_phu_dong_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][11].worldX = 19 * gp.tileSize;
-        gp.obj[mapNum][11].worldY = 26 * gp.tileSize;
+        gp.obj[mapNum][11] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2);
+        gp.obj[mapNum][11].worldX = 12 * gp.tileSize;
+        gp.obj[mapNum][11].worldY = 25 * gp.tileSize;
         
         mapNum = 3;
         gp.obj[mapNum][0] = new OBJ_Well(gp);
