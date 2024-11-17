@@ -78,7 +78,7 @@ public class AssetSetter {
         mapNum = 2;
         gp.obj[mapNum][0] = new OBJ_Well(gp);
         gp.obj[mapNum][0].worldX = 15 * gp.tileSize;
-        gp.obj[mapNum][0].worldY = 14 * gp.tileSize;
+        gp.obj[mapNum][0].worldY = 10 * gp.tileSize;
         
         gp.obj[mapNum][1] = new OBJ_Decoration(gp, "/misc/house_phu_dong_1", gp.tileSize*2, gp.tileSize*2);
         gp.obj[mapNum][1].worldX = 9 * gp.tileSize;
