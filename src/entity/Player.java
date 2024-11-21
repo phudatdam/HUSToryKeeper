@@ -2,7 +2,7 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-import object.OBJ_Sword;
+import object.OBJ_Wallet;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -75,7 +75,7 @@ public class Player extends Entity {
         exp = 0;
         expNeed = 5;
         Lv = 1;
-        currentWeapon = new OBJ_Sword(gp);
+        currentWeapon = new OBJ_Wallet(gp);
     }
     // retry
     public void setbackBegin()
@@ -113,10 +113,11 @@ public class Player extends Entity {
         dialogues[0][0] = "Bạn thả đồng xu thần kì xuống giếng.";
         dialogues[0][1] = "Một sức hút kì ảo hút bạn đi";
         
-        dialogues[1][0] = "Bạn:\n Ah, oải quá. Đáng lẽ tối qua học xong nên đi ngủ\n luôn. Rút kinh nghiệm lần sau không đi ăn đêm theo\n mấy đứa nũa. Tờ note gì đây ?";
-        dialogues[1][1] = "Note:\n Có vẻ hôm qua ăn hơi muộn nhỉ ? Chắc giờ này m cũng\n tỉnh rồi nhỉ =))). Còn nhớ cách đứng dậy không bạn\n hiền.";
-        dialogues[1][2] = "Note:\n Nhấn WASD để di chuyển. I để mở túi đồ và xem việc\n cần làm. À có gì mượn xe máy luôn nhé, t có hẹn với\n bạn gái chiều nay. M cũng có làm gì hẹn ai =)))";
-        dialogues[1][3] = "Bạn:\n Thô nhưng thật. Dù sao nay mình cũng không có tiết.\n Khô môi quá đi mua nước uống chút nhỉ.";
+        dialogues[1][0] = "Bạn:\n Ah, oải quá. Đáng lẽ tối qua học xong nên đi ngủ\n luôn. Cái bài nghiên cứu lịch sử dài quá đi mất.\n Tờ note gì đây ?";
+        dialogues[1][1] = "Note:\n Có vẻ hôm qua làm bài muộn nhỉ ? Chắc giờ này m\n cũng tỉnh rồi nhỉ =))). Còn nhớ cách đứng dậy không\n bạn hiền.";
+        dialogues[1][2] = "Note:\n Nhấn WASD để di chuyển. I để mở túi đồ và xem việc\n nếu muốn dừng lại để suy nghĩ hay điều chỉnh gì\n thì nhấn P nhé. ";
+        dialogues[1][3] = "Note:\n À có gì mượn xe máy luôn nhé, t có hẹn với\n bạn gái chiều nay. M cũng có làm gì hẹn ai =)))";
+        dialogues[1][4] = "Bạn:\n Thô nhưng thật. Dù sao nay mình cũng không có tiết.\n Khát quá đi mua nước uống chút nhỉ.";
     }
 
     public void setItems() {
