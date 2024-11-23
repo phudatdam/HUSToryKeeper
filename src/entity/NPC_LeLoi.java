@@ -1,13 +1,14 @@
 package entity;
 
 import main.GamePanel;
+import object.OBJ_Coin;
 
 public class NPC_LeLoi extends Entity {
 
 	public NPC_LeLoi(GamePanel gp) {
 		super(gp);
-		woodneed = 6;
-		ironneed = 7;
+		woodneed = 1;
+		ironneed = 1;
 		type = TYPE_NPC;
 		direction = "down";
 		speed = 1;
@@ -38,11 +39,30 @@ public class NPC_LeLoi extends Entity {
 	{
 		dialogues[0][0] = "Lê Lợi :\n Chào chàng trai trẻ. Ngoài kia có rất nhiều quân\nđịch hung bạo.";
 		dialogues[0][1] = "Lê Lợi :\n Hết sức cẩn trọng nhé !";
+		
+		dialogues[1][0] = "Lê Lợi :\n Thanh gươm này thật sắc bén. Đa tạ cậu.";
+		dialogues[1][1] = "Lê Lợi :\n Hãy nhận lấy đồng xu này, đi tìm một cái giếng và\nthả nó vào đó, sẽ có điều kì diệu xảy ra.";
+		dialogues[1][2] = "Lê Lợi :\n Chúc cậu thượng lộ bình an.";
 	}
 
 	public void speak() {
 		//super.speak();
 		facePlayer();
 		startDialogue(this, dialogueSet);
+		
+		if(gp.player.hasDivineWeapon == true) {
+			dialogueSet = 1;
+			dialogueIndex = 0;
+			
+			int index = gp.player.SearchItemInInventoty("Gươm thần");
+			gp.player.inventory.remove(index);
+			gp.player.hasDivineWeapon = false;
+			
+			if(gp.player.coin == 0){
+				gp.ui.addMessage("Bạn nhận được 1 Đồng xu");
+				gp.player.coin = 1;
+				gp.player.inventory.add(new OBJ_Coin(gp));
+			}
+		}
 	}
 }

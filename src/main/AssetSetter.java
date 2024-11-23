@@ -168,7 +168,7 @@ public class AssetSetter {
     	gp.npc[mapNum][0] = new NPC_AnDuongVuong(gp);
     	gp.npc[mapNum][0].worldX = 37 * gp.tileSize;
         gp.npc[mapNum][0].worldY = 12 * gp.tileSize;
-        gp.npc[mapNum][1] = new NPC_KimQuy(gp);
+        gp.npc[mapNum][1] = new NPC_KimQuy(gp, mapNum);
         gp.npc[mapNum][1].worldX = 30 * gp.tileSize;
         gp.npc[mapNum][1].worldY = 34 * gp.tileSize;
         
@@ -176,7 +176,7 @@ public class AssetSetter {
     	gp.npc[mapNum][0] = new NPC_ThanhGiong(gp);
     	gp.npc[mapNum][0].worldX = 18 * gp.tileSize;
         gp.npc[mapNum][0].worldY = 10 * gp.tileSize;
-        gp.npc[mapNum][1] = new NPC_KimQuy(gp);
+        gp.npc[mapNum][1] = new NPC_KimQuy(gp, mapNum);
         gp.npc[mapNum][1].worldX = 15 * gp.tileSize;
         gp.npc[mapNum][1].worldY = 28 * gp.tileSize;
         
@@ -184,7 +184,7 @@ public class AssetSetter {
         gp.npc[mapNum][0] = new NPC_LeLoi(gp);
     	gp.npc[mapNum][0].worldX = 12 * gp.tileSize;
         gp.npc[mapNum][0].worldY = 9 * gp.tileSize;
-        gp.npc[mapNum][1] = new NPC_KimQuy(gp);
+        gp.npc[mapNum][1] = new NPC_KimQuy(gp, mapNum);
         gp.npc[mapNum][1].worldX = 11 * gp.tileSize;
         gp.npc[mapNum][1].worldY = 28 * gp.tileSize;
     }

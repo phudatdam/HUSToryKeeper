@@ -29,7 +29,7 @@ public class Player extends Entity {
     public int expNeed;
     public int Lv;
     public int randomtext;
-
+    public boolean hasDivineWeapon = false;
     
     public ArrayList<Entity> inventory = new ArrayList<Entity>();
     public int maxInventorySize = 15;
@@ -114,7 +114,6 @@ public class Player extends Entity {
         dialogues[0][0] = "Bạn thả đồng xu thần kì xuống giếng.";
         dialogues[0][1] = "Một sức hút kì ảo hút bạn đi";
         dialogues[0][2] = "Có vẻ như bạn đã du hành thời gian . . . một lần nữa";
-
         
     }
 
@@ -239,7 +238,7 @@ public class Player extends Entity {
             gp.cChecker.checkEntity(this, gp.iTile);
             
             // Nếu collision = false, player có thể di chuyển
-            if(collisionOn == false && keyH.enterPressed == false){
+            if(collisionOn == false || collisionOn == true && keyH.enterPressed == false){
                 switch (direction) {
                     case "up":
                         worldY -= speed;
