@@ -52,8 +52,6 @@ public class NPC_KimQuy extends Entity {
 		//map3
 		dialogues[3][0] = "Rùa Vàng :\n Đâu để ta xem cậu kiếm đủ nguyên liệu chưa";
 		//Đủ nguyên liệu ko
-//		dialogues[4][0] = "Rùa Vàng:\nĐược rồi, việc của cậu đã xong, hãy nhận lấy\n đồng xu này";
-//		dialogues[4][1] = "Rùa Vàng:\nHãy thả đồng xu xuống giếng kia và tiếp tục\n cuộc hành trình phía trước";
 		dialogues[4][0] = "Rùa Vàng :\n Được rồi, nguyên liệu đã kiếm đủ, bây giờ ta\nsẽ chế tạo vũ khí thần...";
 		switch(mapNum) {
 		case 1:
@@ -80,10 +78,6 @@ public class NPC_KimQuy extends Entity {
             {
 				dialogueSet=4;
 				dialogueIndex=0;
-//				if(gp.player.coin == 0){
-//					gp.ui.addMessage("Bạn được 1 Đồng xu");
-//					gp.player.coin=1;
-//					gp.player.inventory.add(new OBJ_Coin(gp));
 				if(gp.player.hasDivineWeapon == false) {
 					gp.player.hasDivineWeapon = true;
 					switch(gp.currentMap) {

@@ -168,7 +168,7 @@ public class AssetSetter {
     	gp.npc[mapNum][0] = new NPC_AnDuongVuong(gp);
     	gp.npc[mapNum][0].worldX = 37 * gp.tileSize;
         gp.npc[mapNum][0].worldY = 12 * gp.tileSize;
-        gp.npc[mapNum][1] = new NPC_KimQuy(gp);
+        gp.npc[mapNum][1] = new NPC_KimQuy(gp, mapNum);
         gp.npc[mapNum][1].worldX = 40 * gp.tileSize;
         gp.npc[mapNum][1].worldY = 36 * gp.tileSize;
         
@@ -184,7 +184,7 @@ public class AssetSetter {
         gp.npc[mapNum][0] = new NPC_LeLoi(gp);
     	gp.npc[mapNum][0].worldX = 12 * gp.tileSize;
         gp.npc[mapNum][0].worldY = 9 * gp.tileSize;
-        gp.npc[mapNum][1] = new NPC_KimQuy(gp);
+        gp.npc[mapNum][1] = new NPC_KimQuy(gp, mapNum);
         gp.npc[mapNum][1].worldX = 40 * gp.tileSize;
         gp.npc[mapNum][1].worldY = 40 * gp.tileSize;
     }

@@ -54,7 +54,7 @@ public class NPC_AnDuongVuong extends Entity {
 		dialogues[0][12] = "An Dương Vương :\n Ta quên mất. Khi phá đá hãy dùng cây cuốc này này.\n Chặt cây hãy dùng chiếc rìu này.";
 		dialogues[0][13] = "An Dương Vương :\n Hãy kiếm đủ " + woodneed + " gỗ và " + ironneed + " sắt. Chúc may mắn!";
 		
-		dialogues[1][0] = "An Dương Vương :\n Đây chính là nỏ thần ư ?";
+		dialogues[1][0] = "An Dương Vương :\n Đây chính là nỏ thần ư ? Đa tạ cậu.";
 		dialogues[1][1] = "An Dương Vương :\n Hãy nhận lấy đồng xu này, đi tìm một cái giếng và\nthả nó vào đó, sẽ có điều kì diệu xảy ra.";
 		dialogues[1][2] = "An Dương Vương :\n Chúc cậu thượng lộ bình an.";
 	}
