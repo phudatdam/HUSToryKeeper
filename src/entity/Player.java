@@ -7,6 +7,8 @@ import object.OBJ_Sword;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 public class Player extends Entity {
@@ -102,8 +104,7 @@ public class Player extends Entity {
         direction = "down";
         life = maxLife;
         invincible = false;
-    }
-
+    }   
     public int getAttack()
     {
         return attack = strength + currentWeapon.attackValue;
@@ -172,6 +173,7 @@ public class Player extends Entity {
     }
 
     public void update(){ // được gọi 60 lần trong 1s
+        System.out.println(gp.monster[gp.currentMap].length - Collections.frequency(Arrays.asList(gp.monster[gp.currentMap]), null));
     	if (keyH.attackPressed) {
     		attacking = true;
     	}
@@ -454,7 +456,7 @@ public class Player extends Entity {
         }
     }
 
-    public int SearchItemInInventoty(String itemName) {
+    public int SearchItemInInventory(String itemName) {
         int itemIndex = 999;
         for(int i = 0 ; i < inventory.size() ; i++ )
         {
@@ -473,7 +475,7 @@ public class Player extends Entity {
         // stackable ?
         if(item.stackeable == true)
         {
-            int index = SearchItemInInventoty(item.name);
+            int index = SearchItemInInventory(item.name);
             if( index != 999)
             {
                 inventory.get(index).amount++;

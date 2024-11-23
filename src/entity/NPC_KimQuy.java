@@ -67,8 +67,9 @@ public class NPC_KimQuy extends Entity {
 					gp.player.iron-= gp.npc[gp.currentMap][0].ironneed;
 					gp.player.wood-= gp.npc[gp.currentMap][0].woodneed;
 					gp.player.coin=1;
+					gp.aSetter.setMonsters();
 					gp.player.inventory.add(new OBJ_Coin(gp));
-					int index = gp.player.SearchItemInInventoty("Sắt");
+					int index = gp.player.SearchItemInInventory("Sắt");
 					{
 						if(gp.player.inventory.get(index).amount > gp.npc[gp.currentMap][0].ironneed){
 							gp.player.inventory.get(index).amount-= gp.npc[gp.currentMap][0].ironneed;
@@ -78,7 +79,7 @@ public class NPC_KimQuy extends Entity {
 							gp.player.inventory.remove(index);
 						}
 					}
-					index = gp.player.SearchItemInInventoty("Gỗ");
+					index = gp.player.SearchItemInInventory("Gỗ");
 					{
 						if(gp.player.inventory.get(index).amount > gp.npc[gp.currentMap][0].woodneed){
 							gp.player.inventory.get(index).amount-= gp.npc[gp.currentMap][0].woodneed;

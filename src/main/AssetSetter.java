@@ -1,24 +1,11 @@
 package main;
 
-import entity.NPC_AnDuongVuong;
-import entity.NPC_KimQuy;
-import entity.NPC_LeLoi;
-import monsters.MON_BronzeBow;
-import entity.NPC_ThanhGiong;
-import monsters.MON_BronzePolearm;
-import monsters.MON_BronzeSword;
-import monsters.MON_GoldBow;
-import monsters.MON_GoldPolearm;
-import monsters.MON_GoldSword;
-import monsters.MON_SilverBow;
-import monsters.MON_SilverPolearm;
-import monsters.MON_SilverSword;
-import object.OBJ_Decoration;
-import object.OBJ_Forest;
-import object.OBJ_Heart;
-import object.OBJ_Well;
-import tile_interactive.IT_IronOre;
-import tile_interactive.IT_Tree;
+import java.util.*;
+
+import entity.*;
+import monsters.*;
+import object.*;
+import tile_interactive.*;
 
 public class AssetSetter {
     GamePanel gp;
@@ -193,28 +180,29 @@ public class AssetSetter {
     	int mapNum = 1;
     	gp.monster[mapNum][0] = new MON_BronzeSword(gp);
         gp.monster[mapNum][0].worldX = 19 * gp.tileSize;
-        gp.monster[mapNum][0].worldY = 14 * gp.tileSize;
-        
+        gp.monster[mapNum][0].worldY = 14 * gp.tileSize;       
     	gp.monster[mapNum][1] = new MON_BronzeSword(gp);
         gp.monster[mapNum][1].worldX = 21 * gp.tileSize;
         gp.monster[mapNum][1].worldY = 16 * gp.tileSize;
         
         gp.monster[mapNum][2] = new MON_BronzePolearm(gp);
         gp.monster[mapNum][2].worldX = 9 * gp.tileSize;
-        gp.monster[mapNum][2].worldY = 28 * gp.tileSize;
-        
+        gp.monster[mapNum][2].worldY = 28 * gp.tileSize;        
         gp.monster[mapNum][3] = new MON_BronzePolearm(gp);
         gp.monster[mapNum][3].worldX = 11 * gp.tileSize;
         gp.monster[mapNum][3].worldY = 30 * gp.tileSize;
         
         gp.monster[mapNum][4] = new MON_BronzeBow(gp);
         gp.monster[mapNum][4].worldX = 18 * gp.tileSize;
-        gp.monster[mapNum][4].worldY = 42 * gp.tileSize;
-        
+        gp.monster[mapNum][4].worldY = 42 * gp.tileSize;        
         gp.monster[mapNum][5] = new MON_BronzeBow(gp);
         gp.monster[mapNum][5].worldX = 21 * gp.tileSize;
         gp.monster[mapNum][5].worldY = 43 * gp.tileSize;
-        
+        for (int i = 0; i < 5; i++) {
+        	gp.originalWorldX[mapNum][i] = gp.monster[mapNum][i].worldX;
+        	gp.originalWorldY[mapNum][i] = gp.monster[mapNum][i].worldY;
+        }
+        	
         mapNum = 2;
         gp.monster[mapNum][0] = new MON_SilverSword(gp);
         gp.monster[mapNum][0].worldX = 38 * gp.tileSize;
@@ -245,6 +233,10 @@ public class AssetSetter {
         gp.monster[mapNum][8] = new MON_SilverBow(gp);
         gp.monster[mapNum][8].worldX = 24 * gp.tileSize;
         gp.monster[mapNum][8].worldY = 40 * gp.tileSize;
+        for (int i = 0; i < 8; i++) {
+        	gp.originalWorldX[mapNum][i] = gp.monster[mapNum][i].worldX;
+        	gp.originalWorldY[mapNum][i] = gp.monster[mapNum][i].worldY;
+        }
         
         mapNum = 3;
         gp.monster[mapNum][0] = new MON_GoldSword(gp);
@@ -278,7 +270,11 @@ public class AssetSetter {
         gp.monster[mapNum][8].worldY = 41 * gp.tileSize;
         gp.monster[mapNum][9] = new MON_GoldBow(gp);
         gp.monster[mapNum][9].worldX = 14 * gp.tileSize;
-        gp.monster[mapNum][9].worldY = 35 * gp.tileSize;
+        gp.monster[mapNum][9].worldY = 35 * gp.tileSize;   
+        for (int i = 0; i < 9; i++) {
+        	gp.originalWorldX[mapNum][i] = gp.monster[mapNum][i].worldX;
+        	gp.originalWorldY[mapNum][i] = gp.monster[mapNum][i].worldY;
+        }
     }
     
     public void setInteractiveTile() {
@@ -302,6 +298,63 @@ public class AssetSetter {
     	    i = 0;
     	    mapNum++;
     	}
+    }
+    
+    public void getMonsterPositions() {
+    	for (int mapNum = 0; mapNum < gp.monster.length; mapNum++) {
+            for (int i = 0; i < gp.monster[mapNum].length; i++) {
+            	gp.originalWorldX[mapNum][i] = gp.monster[mapNum][i].worldX;
+            	gp.originalWorldY[mapNum][i] = gp.monster[mapNum][i].worldY;
+            }
+    	}
+    }
+
+    
+    public Entity respawnMonster(int i) {
+    	Entity newMonster = null;
+		newMonster = generateMonster(gp.currentMap);
+		newMonster.worldX = gp.originalWorldX[gp.currentMap][i];
+		newMonster.worldY = gp.originalWorldY[gp.currentMap][i];
+		return newMonster;
+    }
+    
+    public Entity generateMonster(int mapNum) {
+    	Entity monster = null;
+    	Random random = new Random();
+    	int generateIndex = random.nextInt(100) + 1;
+    	
+    	if (mapNum == 1) {
+        	if (generateIndex <= 70) {
+        		monster = new MON_BronzeSword(gp);
+        	}
+        	else if ((generateIndex > 70)&&(generateIndex <= 100)) {
+        		monster = new MON_BronzePolearm(gp);
+        	}
+    	}
+    	if (mapNum == 2) {
+    		if (generateIndex <= 55) {
+        		monster = new MON_SilverSword(gp);
+        	}
+        	else if ((generateIndex > 55)&&(generateIndex <= 90)) {
+        		monster = new MON_SilverPolearm(gp);
+        	}
+        	else if ((generateIndex > 90)&&(generateIndex <= 100)) {
+        		monster = new MON_SilverBow(gp);
+        	}
+    	}
+    	if (mapNum == 3) {
+    		if (generateIndex <= 45) {
+        		monster = new MON_GoldSword(gp);
+        	}
+        	else if ((generateIndex > 45)&&(generateIndex <= 85)) {
+        		monster = new MON_GoldPolearm(gp);
+        	}
+        	else if ((generateIndex > 85)&&(generateIndex <= 100)) {
+        		monster = new MON_GoldBow(gp);
+        	}
+    	}
+    	
+    	return monster;
     }
 }
 
