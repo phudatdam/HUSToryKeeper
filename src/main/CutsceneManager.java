@@ -7,6 +7,9 @@ public class CutsceneManager {
     Graphics2D g2;
     public int sceneNum;
     public int scenePhase = 0;
+    int counter = 0;
+    float alpha = 0f;
+    int y;
 
     //scene number
     public final int NA = 0;
@@ -23,9 +26,11 @@ public class CutsceneManager {
             case intro:
                 introScene();
                 break;
+            case ending:
+                endingScene();
+                break;
         }
     }
-    // có gì đó sai nhưng ko biết sai ở đâu
     public void introScene(){
         if(scenePhase == 0)
         {
@@ -40,5 +45,9 @@ public class CutsceneManager {
             scenePhase = 0;
             gp.gameState = gp.playState;
         }
+    }
+    public void endingScene()
+    {
+
     }
 }

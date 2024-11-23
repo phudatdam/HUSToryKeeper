@@ -82,7 +82,6 @@ public class EventHandler {
         previousEventY = gp.player.worldY;
         eventTouch = false;
     }
-    //ko đúng lắm
     public void checkScene(int scenenum)
     {
         if(gp.cutsceneStart == false){

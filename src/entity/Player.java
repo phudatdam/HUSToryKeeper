@@ -362,8 +362,15 @@ public class Player extends Entity {
             		coin = 0;
             		inventory.removeIf( item -> item.name.equals("Đồng xu"));
             		gp.ui.addMessage("Tài khoản trừ 1 xu");
-                    startDialogue(this, 0);
-            		teleport();
+                    if(gp.currentMap == 3)
+                    {
+                        gp.eHandler.checkScene(2);
+                    }
+                    else
+                    {
+                        startDialogue(this, 0);
+                        teleport();
+                    }
                 }
             }
             // Nhặt gỗ, sắt
