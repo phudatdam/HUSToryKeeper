@@ -6,10 +6,7 @@ import object.OBJ_Sword;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
+import java.util.*;
 
 public class Player extends Entity {
 	GamePanel gp;
@@ -173,7 +170,6 @@ public class Player extends Entity {
     }
 
     public void update(){ // được gọi 60 lần trong 1s
-        System.out.println(gp.monster[gp.currentMap].length - Collections.frequency(Arrays.asList(gp.monster[gp.currentMap]), null));
     	if (keyH.attackPressed) {
     		attacking = true;
     	}
