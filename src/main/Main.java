@@ -18,6 +18,7 @@ public class Main {
         window.setVisible(true);
 
         gamepanel.setupGame();
-        gamepanel.startGameThread(); // Khởi chạy game  
+        gamepanel.startGameThread(); // Khởi chạy game
+        
     }
 }

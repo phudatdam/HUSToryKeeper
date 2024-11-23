@@ -1,5 +1,7 @@
 package object;
 
+import java.awt.Rectangle;
+
 import entity.Entity;
 import main.GamePanel;
 
