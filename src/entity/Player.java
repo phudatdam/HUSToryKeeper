@@ -238,7 +238,7 @@ public class Player extends Entity {
             gp.cChecker.checkEntity(this, gp.iTile);
             
             // Nếu collision = false, player có thể di chuyển
-            if(collisionOn == false || collisionOn == true && keyH.enterPressed == false){
+            if(collisionOn == false && keyH.enterPressed == false){
                 switch (direction) {
                     case "up":
                         worldY -= speed;
