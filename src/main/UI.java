@@ -162,7 +162,6 @@ public class UI {
         }
     }
     
-
     private void drawOptionsState() {
         g2.setColor(Color.white);
         g2.setFont(retron2000);
