@@ -162,7 +162,6 @@ public class UI {
         }
     }
     
-
     private void drawOptionsState() {
         g2.setColor(Color.white);
         g2.setFont(retron2000);
@@ -546,7 +545,7 @@ public class UI {
             currentDialogue=npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
             if(gp.keyH.enterPressed == true)
             {
-                if(gp.gameState == gp.dialogueState){
+                if(gp.gameState == gp.dialogueState || gp.gameState == gp.cutsceneState){
                     npc.dialogueIndex++;
                     gp.keyH.enterPressed=false;
                 }
@@ -556,6 +555,10 @@ public class UI {
             npc.dialogueIndex --;
             if(gp.gameState==gp.dialogueState) {
                 gp.gameState=gp.playState;
+            }
+            if(gp.gameState==gp.cutsceneState)
+            {
+                gp.csManager.scenePhase++;
             }
             npc.diaEnd=true;
         }
@@ -637,6 +640,21 @@ public class UI {
         textY += lineHeight + 2;
         g2.setFont(g2.getFont().deriveFont(20F)); // reset
         textX = frameX + 9;
+        switch (gp.currentMap) {
+            case 0:
+                g2.drawString("Ra ngoài mua nước uống đi", textX, textY);
+                textY += lineHeight;
+                break;
+		    case 1:
+		    case 2:
+		    case 3:
+                drawQuest(value, textX, textY, lineHeight, tailX);
+		    	break;
+    	}
+        
+    }
+
+    public void drawQuest(String value,int textX, int textY, int lineHeight, int tailX){
         g2.drawString("Kiếm đủ tài nguyên yêu cầu", textX, textY);
         textY += lineHeight;
         g2.drawString("Yêu cầu Gỗ", textX, textY);

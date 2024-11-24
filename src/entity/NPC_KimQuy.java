@@ -44,10 +44,18 @@ public class NPC_KimQuy extends Entity {
 		dialogues[2][0] = "Rùa Vàng :\n oh, chúng ta lại gặp nhau à ?";
 		dialogues[2][1] = "Bạn :\n sao lại là ngài nữa, tôi tưởng ngựa sắt là do\n triều đình làm ?";
 		dialogues[2][2] = "Rùa Vàng :\n Triều đình nhận deal rồi order cho ta làm.\n Vậy câu có đủ đồ chưa ?";
+		//map3
+		dialogues[3][0] = "Bạn :\n sao tôi không còn bất ngờ khi gặp ngài nhỉ ?";
+		dialogues[3][1] = "Rùa Vàng :\n người gặp ta cũng là chuyện bình thường.\n Dù sao ta cũng là người cung cấp vũ khí mạnh\n nhất lịch sử.";
+		dialogues[3][2] = "Rùa Vàng :\n Hơn nữa việc làm thêm npc nữa tốn thời\n gian lắm. Nào, đủ nguyên liệu chưa chàng trai ?";
 		//Đủ nguyên liệu ko
-		dialogues[4][0] = "Rùa Vàng:\nĐược rồi, việc của cậu đã xong, hãy nhận lấy\n đồng xu này";
-		dialogues[4][1] = "Rùa Vàng:\nHãy thả đồng xu xuống giếng kia và tiếp tục\n cuộc hành trình phía trước";
-		dialogues[5][0] = "Rùa Vàng:\nNày vẫn chưa đủ đâu, cố gắng lên.";
+		dialogues[4][0] = "Rùa Vàng :\n Được rồi, việc của cậu đã xong, hãy nhận lấy\n đồng xu này";
+		dialogues[4][1] = "Rùa Vàng :\n Hãy thả đồng xu xuống giếng kia và tiếp tục\n cuộc hành trình phía trước";
+		//thiếu
+		dialogues[5][0] = "Rùa Vàng :\n Này vẫn chưa đủ đâu, cố gắng lên.";
+		//dialogue end
+		dialogues[6][0] = "Rùa Vàng :\n Ok, nốt lần này là xong rồi nhé.";
+		dialogues[6][1] = "Rùa Vàng :\n Ta chúc cậu mọi chuyện thuận buồm xuôi gió.";
 	}
 	public void speak() {
 		//super.speak();
@@ -58,8 +66,15 @@ public class NPC_KimQuy extends Entity {
         {
             if( gp.player.iron >= gp.npc[gp.currentMap][0].ironneed && gp.player.wood >= gp.npc[gp.currentMap][0].woodneed)
             {
-				dialogueSet=4;
-				dialogueIndex=0;
+				if(gp.currentMap == 3)
+				{
+					dialogueSet = 6;
+					dialogueIndex = 0;
+				}
+				else{
+					dialogueSet=4;
+					dialogueIndex=0;
+				}
 				if(gp.player.coin == 0){
 					gp.ui.addMessage("Bạn được 1 Đồng xu");
 					gp.player.iron-= gp.npc[gp.currentMap][0].ironneed;
