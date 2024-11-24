@@ -48,7 +48,7 @@ public class CutsceneManager {
         {
             gp.cutsceneStart = true;
             gp.ui.npc = gp.player;
-            gp.ui.npc.dialogueSet = 1;
+            gp.ui.npc.dialogueSet = 0;
             gp.ui.drawDialogueState();
         }
         if(scenePhase == 1)

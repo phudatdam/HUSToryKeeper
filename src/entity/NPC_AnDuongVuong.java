@@ -10,8 +10,8 @@ public class NPC_AnDuongVuong extends Entity {
 	
 	public NPC_AnDuongVuong(GamePanel gp) {
 		super(gp);
-		woodneed = 1;
-		ironneed = 1;
+		woodneed = 6;
+		ironneed = 2;
 		type = TYPE_NPC;
 		direction = "down";
 		speed = 1;

@@ -7,8 +7,8 @@ public class NPC_ThanhGiong extends Entity {
 
 	public NPC_ThanhGiong(GamePanel gp) {
 		super(gp);
-		woodneed = 1;
-		ironneed = 1;
+		woodneed = 5;
+		ironneed = 5;
 		type = TYPE_NPC;
 		direction = "down";
 		speed = 1;
