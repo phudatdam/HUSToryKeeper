@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     // FPS : set Thời gian lặp lại
     int FPS = 60;
-	public long respawnInterval = 1000000000 * 90;
+	public long respawnInterval = 90;
 	public long killedTime[][] = new long[maxMap][10]; 
 	public long respawnTime[][] = new long[maxMap][10];
 
@@ -170,15 +170,15 @@ public class GamePanel extends JPanel implements Runnable{
                 		monster[currentMap][i].update();
                 	}
                 	if(monster[currentMap][i].alive == false){
-                		killedTime[currentMap][i] = System.nanoTime(); 
-                    	respawnTime[currentMap][i] = killedTime[currentMap][i] + respawnInterval;   
+                		killedTime[currentMap][i] = System.nanoTime();
                 		monster[currentMap][i] = null;
                 	}
                 }  
                 if(monster[currentMap][i] == null){
                 	if (currentMap != 0) {
+                		respawnTime[currentMap][i] = killedTime[currentMap][i] + respawnInterval * 1000000000;
                     	if (System.nanoTime() > respawnTime[currentMap][i]) {
-                    		monster[currentMap][i] = aSetter.respawnMonster(currentMap, i);
+                    		monster[currentMap][i] = aSetter.respawnMonster(i);
                     		killedTime[currentMap][i] = 0;
                     		respawnTime[currentMap][i] = 0;
                     	}

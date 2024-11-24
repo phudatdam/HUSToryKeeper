@@ -298,23 +298,13 @@ public class AssetSetter {
     	    i = 0;
     	    mapNum++;
     	}
-    }
+    }    
     
-    public void getMonsterPositions() {
-    	for (int mapNum = 0; mapNum < gp.monster.length; mapNum++) {
-            for (int i = 0; i < gp.monster[mapNum].length; i++) {
-            	gp.originalWorldX[mapNum][i] = gp.monster[mapNum][i].worldX;
-            	gp.originalWorldY[mapNum][i] = gp.monster[mapNum][i].worldY;
-            }
-    	}
-    }
-
-    
-    public Entity respawnMonster(int mapNum, int i) {
+    public Entity respawnMonster(int i) {
     	Entity newMonster = null;
-		newMonster = generateMonster(mapNum);
-		newMonster.worldX = gp.originalWorldX[mapNum][i];
-		newMonster.worldY = gp.originalWorldY[mapNum][i];
+		newMonster = generateMonster(gp.currentMap);
+		newMonster.worldX = gp.originalWorldX[gp.currentMap][i];
+		newMonster.worldY = gp.originalWorldY[gp.currentMap][i];
 		return newMonster;
     }
     
