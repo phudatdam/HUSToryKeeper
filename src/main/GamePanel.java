@@ -176,10 +176,12 @@ public class GamePanel extends JPanel implements Runnable{
                 	}
                 }  
                 if(monster[currentMap][i] == null){
-                	if (System.nanoTime() > respawnTime[currentMap][i]) {
-                		monster[currentMap][i] = aSetter.respawnMonster(i);
-                		killedTime[currentMap][i] = 0;
-                		respawnTime[currentMap][i] = 0;
+                	if (currentMap != 0) {
+                    	if (System.nanoTime() > respawnTime[currentMap][i]) {
+                    		monster[currentMap][i] = aSetter.respawnMonster(currentMap, i);
+                    		killedTime[currentMap][i] = 0;
+                    		respawnTime[currentMap][i] = 0;
+                    	}
                 	}
                 }
             }

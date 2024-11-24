@@ -310,11 +310,11 @@ public class AssetSetter {
     }
 
     
-    public Entity respawnMonster(int i) {
+    public Entity respawnMonster(int mapNum, int i) {
     	Entity newMonster = null;
-		newMonster = generateMonster(gp.currentMap);
-		newMonster.worldX = gp.originalWorldX[gp.currentMap][i];
-		newMonster.worldY = gp.originalWorldY[gp.currentMap][i];
+		newMonster = generateMonster(mapNum);
+		newMonster.worldX = gp.originalWorldX[mapNum][i];
+		newMonster.worldY = gp.originalWorldY[mapNum][i];
 		return newMonster;
     }
     
