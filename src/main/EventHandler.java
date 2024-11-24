@@ -48,7 +48,7 @@ public class EventHandler {
         }
         if(eventTouch == true)
         {
-            if(hit(0,4,5) == true){teleportEvevnt(1, 35, 12);}
+            if(hit(0,4,5) == true){teleportEvent(1, 35, 12);}
             if(hit(0,4,4) == true){checkScene(1);}
         }
     }
@@ -73,7 +73,7 @@ public class EventHandler {
         }
         return hit;
     }
-    public void teleportEvevnt(int map, int col, int row)
+    public void teleportEvent(int map, int col, int row)
     {
         gp.currentMap = map;
         gp.player.worldX = gp.tileSize * col;

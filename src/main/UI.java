@@ -645,11 +645,7 @@ public class UI {
                 textY += lineHeight;
                 break;
 		    case 1:
-                drawQuest(value, textX, textY, lineHeight, tailX);
-			    break;
 		    case 2:
-                drawQuest(value, textX, textY, lineHeight, tailX);
-		    	break;
 		    case 3:
                 drawQuest(value, textX, textY, lineHeight, tailX);
 		    	break;
