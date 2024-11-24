@@ -30,7 +30,7 @@ public class Player extends Entity {
     public int expNeed;
     public int Lv;
     public int randomtext;
-
+    public boolean hasDivineWeapon = false;
     
     public ArrayList<Entity> inventory = new ArrayList<Entity>();
     public int maxInventorySize = 15;

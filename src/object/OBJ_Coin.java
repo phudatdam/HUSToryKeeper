@@ -15,7 +15,7 @@ public class OBJ_Coin extends Entity{
 		solidArea = new Rectangle(16, 16, 32, 32);
 		down2 = setup("/objects/coin", 40, 40);
 
-		description = "[ " + name + " ]\nHãy ném xuống giếng thần\n và đợi điều kì diệu";
+		description = "[ " + name + " ]\nHãy ném xuống giếng thần và đợi điều\nkì diệu";
 		
 		image1 = setup("/objects/coin", gp.tileSize, gp.tileSize);
 	}

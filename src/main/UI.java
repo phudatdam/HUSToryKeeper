@@ -357,7 +357,7 @@ public class UI {
     public void drawMessage()
     {
         int messX = gp.tileSize;
-        int messY = gp.tileSize*4;
+        int messY = gp.tileSize*6;
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN,24));
         for( int i = 0; i < message.size() ; i++)
         {
@@ -372,7 +372,7 @@ public class UI {
                 messageCounter.set(i,counter);
                 messY += 32;
 
-                if(messageCounter.get(i) > 120)
+                if(messageCounter.get(i) > 60)
                 {
                     message.remove(i);
                     messageCounter.remove(i);

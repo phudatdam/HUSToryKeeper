@@ -2,6 +2,7 @@ package entity;
 
 import main.GamePanel;
 import object.OBJ_Axe;
+import object.OBJ_Coin;
 import object.OBJ_Pickaxe;
 import object.OBJ_Sword;
 
@@ -9,8 +10,8 @@ public class NPC_AnDuongVuong extends Entity {
 	
 	public NPC_AnDuongVuong(GamePanel gp) {
 		super(gp);
-		woodneed = 2;
-		ironneed = 2;
+		woodneed = 1;
+		ironneed = 1;
 		type = TYPE_NPC;
 		direction = "down";
 		speed = 1;
@@ -53,6 +54,10 @@ public class NPC_AnDuongVuong extends Entity {
 		dialogues[0][11] = "An Dương Vương :\n Dùng tay không phá đá chặt cây ạ? Đây có phải\n Minecraft đâu.";
 		dialogues[0][12] = "An Dương Vương :\n Ta quên mất. Khi phá đá hãy dùng cây cuốc này này.\n Chặt cây hãy dùng chiếc rìu này.";
 		dialogues[0][13] = "An Dương Vương :\n Hãy kiếm đủ " + woodneed + " gỗ và " + ironneed + " sắt. Chúc may mắn!";
+		
+		dialogues[1][0] = "An Dương Vương :\n Đây chính là nỏ thần ư ? Đa tạ cậu.";
+		dialogues[1][1] = "An Dương Vương :\n Hãy nhận lấy đồng xu này, đi tìm một cái giếng và\nthả nó vào đó, sẽ có điều kì diệu xảy ra.";
+		dialogues[1][2] = "An Dương Vương :\n Chúc cậu thượng lộ bình an.";
 	}
 
 	public void speak() {
@@ -70,7 +75,21 @@ public class NPC_AnDuongVuong extends Entity {
 			gp.player.axe=1;
 			gp.player.sword=1;
 			gp.player.pickaxe=1;
-	
+		}
+		
+		if(gp.player.hasDivineWeapon == true) {
+			dialogueSet = 1;
+			dialogueIndex = 0;
+			
+			int index = gp.player.SearchItemInInventoty("Nỏ thần");
+			gp.player.inventory.remove(index);
+			gp.player.hasDivineWeapon = false;
+			
+			if(gp.player.coin == 0){
+				gp.ui.addMessage("Bạn nhận được 1 Đồng xu");
+				gp.player.coin = 1;
+				gp.player.inventory.add(new OBJ_Coin(gp));
+			}
 		}
 	}
 }
