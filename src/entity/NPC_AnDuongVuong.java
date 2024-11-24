@@ -3,6 +3,7 @@ package entity;
 import main.GamePanel;
 import object.OBJ_Axe;
 import object.OBJ_Pickaxe;
+import object.OBJ_Sword;
 
 public class NPC_AnDuongVuong extends Entity {
 	
@@ -60,8 +61,10 @@ public class NPC_AnDuongVuong extends Entity {
 		startDialogue(this, dialogueSet);
 		if( gp.player.axe == 0 && gp.player.sword == 0 && gp.player.pickaxe == 0)
 		{
+			gp.player.inventory.add(new OBJ_Sword(gp));
 			gp.player.inventory.add(new OBJ_Axe(gp));
 			gp.player.inventory.add(new OBJ_Pickaxe(gp));
+			gp.ui.addMessage("Bạn nhận được 1 Kiếm");
 			gp.ui.addMessage("Bạn nhận được 1 Rìu");
 			gp.ui.addMessage("Bạn nhận được 1 Cuốc");
 			gp.player.axe=1;

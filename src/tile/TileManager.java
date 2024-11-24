@@ -17,10 +17,11 @@ public class TileManager {
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        tile = new Tile[70]; // set số lượng tile <= 70
+        tile = new Tile[90]; // set số lượng tile <= 90
         mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
+        loadMap("/maps/dorm.txt", 0);
         loadMap("/maps/world01.txt", 1);
         loadMap("/maps/world02.txt", 2);
         loadMap("/maps/world03.txt", 3);
@@ -28,8 +29,9 @@ public class TileManager {
 
     public void getTileImage() {
     	// grass
-    	setup(0, "grass_1", false); // cỏ loại 1
-    	setup(1, "grass_2", false); // cỏ loại 2
+    	setup(0, "black", true); // nền đen
+    	setup(1, "grass_1", false); // cỏ loại 1
+    	setup(2, "grass_2", false); // cỏ loại 2
     	// resources
     	setup(10, "bush", true); // bụi cây
     	setup(11, "rock", true); // đá
@@ -71,7 +73,18 @@ public class TileManager {
     	setup(59, "wall_inner_corner_north_west", true); // góc tường trong hướng tây bắc
     	setup(60, "wall_inner_corner_south_east", true); // góc tường trong hướng đông nam
     	setup(61, "wall_inner_corner_south_west", true); // góc tường trong hướng tây nam
-    	
+    	// dorm
+    	setup(70, "dorm_tile", false); // sàn phòng trọ
+    	setup(71, "dorm_wall_east", true); // tường phòng trọ hướng đông
+    	setup(72, "dorm_wall_west", true); // tường phòng trọ hướng tây
+    	setup(73, "dorm_wall_north", true); // tường phòng trọ hướng bắc
+    	setup(74, "dorm_wall_south", true); // tường phòng trọ hướng nam
+    	setup(75, "dorm_wall_corner_north_east", true); // góc tường phòng trọ hướng đông bắc
+    	setup(76, "dorm_wall_corner_north_west", true); // góc tường phòng trọ hướng tây bắc
+    	setup(77, "dorm_wall_corner_south_east", true); // góc tường phòng trọ hướng đông nam
+    	setup(78, "dorm_wall_corner_south_west", true); // góc tường phòng trọ hướng tây nam
+    	setup(79, "dorm_wall_inner_corner_south_east", true); // góc tường trong phòng trọ hướng đông nam
+    	setup(80, "dorm_wall_inner_corner_south_west", true); // góc tường trong phòng trọ hướng tây nam
     }
     
     // Công cụ vẽ hình tile

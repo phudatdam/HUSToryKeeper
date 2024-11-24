@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int maxWorldCol = 50; // bản đồ dài 50 ô
     public final int maxWorldRow = 50; // bản đồ rộng 50 ô
     public final int maxMap = 4;
-    public int currentMap = 1;
+    public int currentMap = 0;
 
 
     // FPS : set Thời gian lặp lại
@@ -44,9 +44,11 @@ public class GamePanel extends JPanel implements Runnable{
     public KeyHandler keyH = new KeyHandler(this);
     public AssetSetter aSetter  = new AssetSetter(this);
     public UI ui = new UI(this);
+    public EventHandler eHandler = new EventHandler(this);
     public PathFinder pFinder = new PathFinder(this);
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
+    public CutsceneManager csManager = new CutsceneManager(this);
 
     // ENTITY AND OBJECT
     public Player player = new Player(this, keyH);
@@ -69,6 +71,10 @@ public class GamePanel extends JPanel implements Runnable{
     public final int characterState = 4;
     public final int optionsState = 5;
     public final int gameoverState = 6;
+    public final int cutsceneState = 7;
+
+    //other
+    public boolean cutsceneStart = false;
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -271,6 +277,9 @@ public class GamePanel extends JPanel implements Runnable{
 
             // UI
             ui.draw(g2);
+
+            // cutscene
+            csManager.draw(g2);
         }
         g2.dispose();
     }
