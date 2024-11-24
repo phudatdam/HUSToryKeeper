@@ -72,7 +72,7 @@ public class Player extends Entity {
         strength = 1;
         defense = 0;
         exp = 0;
-        expNeed = 1;
+        expNeed = 5;
         Lv = 1;
         coin = 0;
         currentWeapon = new OBJ_Wallet(gp);
@@ -541,7 +541,7 @@ public class Player extends Entity {
         if(exp == expNeed)
         {
             Lv++;
-            expNeed += 1;
+            expNeed += 5;
             maxLife += 2;
             strength ++;
             life = maxLife;
