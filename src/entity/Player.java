@@ -2,7 +2,8 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-import object.OBJ_Sword;
+import object.OBJ_Coin;
+import object.OBJ_Wallet;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -58,9 +59,8 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        gp.currentMap = 1;
-        worldX = gp.tileSize * 35;
-        worldY = gp.tileSize * 12;
+        worldX = gp.tileSize * 4;
+        worldY = gp.tileSize * 3;
         defaultSpeed = 5;
         speed = defaultSpeed;
         direction = "down";
@@ -76,7 +76,8 @@ public class Player extends Entity {
         exp = 0;
         expNeed = 5;
         Lv = 1;
-        currentWeapon = new OBJ_Sword(gp);
+        coin = 0;
+        currentWeapon = new OBJ_Wallet(gp);
     }
     // retry
     public void setbackBegin()
@@ -113,9 +114,16 @@ public class Player extends Entity {
     {
         dialogues[0][0] = "Bạn thả đồng xu thần kì xuống giếng.";
         dialogues[0][1] = "Một sức hút kì ảo hút bạn đi";
-        dialogues[0][2] = "Có vẻ như bạn đã du hành thời gian . . . một lần nữa";
-
         
+        dialogues[1][0] = "Bạn:\n Ah, oải quá. Đáng lẽ tối qua học xong nên đi ngủ\n luôn. Cái bài nghiên cứu lịch sử dài quá đi mất.\n Tờ note gì đây ?";
+        dialogues[1][1] = "Note:\n Có vẻ hôm qua làm bài muộn nhỉ ? Chắc giờ này m\n cũng tỉnh rồi nhỉ =))). Còn nhớ cách đứng dậy không\n bạn hiền.";
+        dialogues[1][2] = "Note:\n Nhấn WASD để di chuyển. I để mở túi đồ và xem việc.\n Nếu muốn dừng lại để suy nghĩ hay điều chỉnh gì\n thì nhấn P nhé. ";
+        dialogues[1][3] = "Note:\n À có gì mượn xe máy luôn nhé, t có hẹn với\n bạn gái chiều nay. M cũng có làm gì hẹn ai =)))";
+        dialogues[1][4] = "Bạn:\n Thô nhưng thật. Dù sao nay mình cũng không có tiết.\n Khát quá đi mua nước uống chút nhỉ.";
+        
+        dialogues[2][0] = "Ánh sáng lóe lên, chỉ trong chớp mắt bạn đã về\n lại phòng trọ";
+        dialogues[2][1] = "Cảm tưởng như cả cuộc hành trình trên chỉ như\n giấc mơ. Bạn không có thời gian để suy nghĩ nữa,\n cuộc hành trình đã khiến deadline bạn dí sát.";
+        dialogues[2][2] = "Bạn giờ phải tập trung vào việc cấp bách trước.\n Làm nốt bài nghiên cứu";
     }
 
     public void setItems() {
@@ -230,6 +238,9 @@ public class Player extends Entity {
             // Check NPCs collision
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
+
+            // check event
+            gp.eHandler.checkEvent();
 
             // Check monsters collision
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
@@ -357,8 +368,17 @@ public class Player extends Entity {
             		coin = 0;
             		inventory.removeIf( item -> item.name.equals("Đồng xu"));
             		gp.ui.addMessage("Tài khoản trừ 1 xu");
-                    startDialogue(this, 0);
-            		teleport();
+                    if(gp.currentMap == 3)
+                    {
+                        teleport();
+                        gp.gameState = gp.cutsceneState;
+                        gp.csManager.sceneNum = gp.csManager.ending;
+                    }
+                    else
+                    {
+                        //startDialogue(this, 0);
+                        teleport();
+                    }
                 }
             }
             // Nhặt gỗ, sắt
@@ -506,6 +526,11 @@ public class Player extends Entity {
 		    	col = 14;
 		    	row = 10;
 		    	break;
+            case 4:
+                gp.currentMap = 0;
+                col = 2;
+                row = 2;
+                break;
     	}
     	worldX = gp.tileSize * col;
     	worldY = gp.tileSize * row;

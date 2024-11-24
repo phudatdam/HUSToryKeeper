@@ -3,6 +3,7 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+
 public class KeyHandler implements KeyListener {
     GamePanel gp;
 
@@ -47,7 +48,7 @@ public class KeyHandler implements KeyListener {
         }
 
         // DIALOGUE STATE
-        else if (gp.gameState == gp.dialogueState) {
+        else if (gp.gameState == gp.dialogueState || gp.gameState == gp.cutsceneState) {
             dialogueState(code);
         }
 
@@ -142,11 +143,9 @@ public class KeyHandler implements KeyListener {
             gp.playSE(2);
             gp.gameState = gp.characterState;
         }
-
         if (code == KeyEvent.VK_E) {
             enterPressed = true;
         }
-
         if(code == KeyEvent.VK_J) {
             if(gp.player.currentWeapon.type == 3){ gp.playSE(4);}
             if(gp.player.currentWeapon.type == 4){ gp.playSE(1);}
