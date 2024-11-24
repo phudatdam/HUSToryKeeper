@@ -2,8 +2,7 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-import object.OBJ_Coin;
-import object.OBJ_Wallet;
+import object.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

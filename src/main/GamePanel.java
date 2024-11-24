@@ -33,9 +33,9 @@ public class GamePanel extends JPanel implements Runnable{
 
     // FPS : set Thời gian lặp lại
     int FPS = 60;
-	long respawnInterval = 1000000000 * 10;
-	long killedTime[][] = new long[maxMap][10]; 
-	long respawnTime[][] = new long[maxMap][10];
+	public long respawnInterval = 1000000000 * 90;
+	public long killedTime[][] = new long[maxMap][10]; 
+	public long respawnTime[][] = new long[maxMap][10];
 
     // SYSTEM
     public TileManager tileM = new TileManager(this);
