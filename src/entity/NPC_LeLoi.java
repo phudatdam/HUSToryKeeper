@@ -56,7 +56,7 @@ public class NPC_LeLoi extends Entity {
 			dialogueSet = 1;
 			dialogueIndex = 0;
 			
-			int index = gp.player.SearchItemInInventoty("Gươm thần");
+			int index = gp.player.SearchItemInInventory("Gươm thần");
 			gp.player.inventory.remove(index);
 			gp.player.hasDivineWeapon = false;
 			

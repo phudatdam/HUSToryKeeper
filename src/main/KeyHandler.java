@@ -110,7 +110,8 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_E) {
             if (gp.ui.commandNum == 0) {
-                gp.gameState = gp.playState;
+                gp.gameState = gp.cutsceneState;
+                gp.csManager.sceneNum = gp.csManager.intro;
             }
             if (gp.ui.commandNum == 1) {
                 gp.gameState = gp.optionsState;
