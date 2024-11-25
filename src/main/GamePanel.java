@@ -13,7 +13,7 @@ import java.awt.*;
 import java.util.*;
 
 public class GamePanel extends JPanel implements Runnable{
-    // Cài đặt màn hình
+	// Cài đặt màn hình
     final int originalTileSize = 32; // 32 x 32 tile
     final int scale = 2;
 
@@ -33,6 +33,9 @@ public class GamePanel extends JPanel implements Runnable{
 
     // FPS : set Thời gian lặp lại
     int FPS = 60;
+	public long respawnInterval = 90;
+	public long killedTime[][] = new long[maxMap][10]; 
+	public long respawnTime[][] = new long[maxMap][10];
 
     // SYSTEM
     public TileManager tileM = new TileManager(this);
@@ -55,6 +58,9 @@ public class GamePanel extends JPanel implements Runnable{
     public InteractiveTile iTile[][] = new InteractiveTile[maxMap][200];
     ArrayList<Entity> entityList = new ArrayList<>();
     public ArrayList<Entity> projectileList = new ArrayList<>();
+    
+	public int originalWorldX[][] = new int[maxMap][10];
+	public int originalWorldY[][] = new int[maxMap][10];
 
     // GAME STATE
     public int gameState;
@@ -82,7 +88,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setObject();
         aSetter.setNPC();
         aSetter.setMonsters();
-        aSetter.setInteractiveTile();
+        aSetter.setInteractiveTile();       
         playMusic(0);
         // stopMusic();
 
@@ -117,7 +123,7 @@ public class GamePanel extends JPanel implements Runnable{
 
         double drawInterval = 1000000000 / FPS; // vẽ screen: cứ sau 1/60s để có thể vẻ màn hình 60 lần
         double nextDrawTime = System.nanoTime() + drawInterval;
-
+        
         while(gameThread != null){
 
             // 1. Cập nhật: vị trí nhân vật,...
@@ -164,7 +170,18 @@ public class GamePanel extends JPanel implements Runnable{
                 		monster[currentMap][i].update();
                 	}
                 	if(monster[currentMap][i].alive == false){
+                		killedTime[currentMap][i] = System.nanoTime();
                 		monster[currentMap][i] = null;
+                	}
+                }  
+                if(monster[currentMap][i] == null){
+                	if (currentMap != 0) {
+                		respawnTime[currentMap][i] = killedTime[currentMap][i] + respawnInterval * 1000000000;
+                    	if (System.nanoTime() > respawnTime[currentMap][i]) {
+                    		monster[currentMap][i] = aSetter.respawnMonster(i);
+                    		killedTime[currentMap][i] = 0;
+                    		respawnTime[currentMap][i] = 0;
+                    	}
                 	}
                 }
             }
@@ -210,7 +227,7 @@ public class GamePanel extends JPanel implements Runnable{
             tileM.draw(g2);
             
             // INTERACTIVE TILE
-            for (int i = 0; i < iTile[1].length; i++) {
+            for (int i = 0; i < iTile[currentMap].length; i++) {
             	if (iTile[currentMap][i] != null) {
             		iTile[currentMap][i].draw(g2);
             	}
@@ -219,19 +236,19 @@ public class GamePanel extends JPanel implements Runnable{
             // ADD ENTITIES TO THE LIST
             entityList.add(player);
 
-            for (int i = 0; i < npc[1].length; i++) {
+            for (int i = 0; i < npc[currentMap].length; i++) {
                 if (npc[currentMap][i] != null) {
                     entityList.add(npc[currentMap][i]);
                 }
             }
 
-            for (int i = 0; i < obj[1].length; i++) {
+            for (int i = 0; i < obj[currentMap].length; i++) {
                 if (obj[currentMap][i] != null) {
                     entityList.add(obj[currentMap][i]);
                 }
             }
 
-            for (int i = 0; i < monster[1].length; i++) {
+            for (int i = 0; i < monster[currentMap].length; i++) {
                 if (monster[currentMap][i] != null) {
                     entityList.add(monster[currentMap][i]);
                 }

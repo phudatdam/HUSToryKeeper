@@ -81,7 +81,7 @@ public class NPC_AnDuongVuong extends Entity {
 			dialogueSet = 1;
 			dialogueIndex = 0;
 			
-			int index = gp.player.SearchItemInInventoty("Nỏ thần");
+			int index = gp.player.SearchItemInInventory("Nỏ thần");
 			gp.player.inventory.remove(index);
 			gp.player.hasDivineWeapon = false;
 			
