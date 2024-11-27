@@ -52,6 +52,7 @@ public class Player extends Entity {
         setDefaultValues();
         getPlayerImage();
         getPlayerAttackImage();
+        getPlayerDefeat();
         setItems();
         setMessage();
     }
@@ -173,6 +174,10 @@ public class Player extends Entity {
 		    attackRight1 = setup("/player/player_pickaxe_right_1", gp.tileSize * 2, gp.tileSize);
 		    attackRight2 = setup("/player/player_pickaxe_right_2", gp.tileSize * 2, gp.tileSize);
         }
+    }
+
+    public void getPlayerDefeat(){
+        image1 = setup("/player/player_defeat", gp.tileSize, gp.tileSize);
     }
 
     public void update(){ // được gọi 60 lần trong 1s
@@ -377,6 +382,7 @@ public class Player extends Entity {
                         startDialogue(this, 1);
                         teleport();
                     }
+                    gp.playSE(7);
                 }
             }
             // Nhặt gỗ, sắt
@@ -418,6 +424,7 @@ public class Player extends Entity {
     	entity.speed += 10;
     	entity.knockBack = true;
 	}
+
     // Đánh thường => gây sát thương
     public void damageMonster(int i, int attack) {  
     	if(i != 999){
