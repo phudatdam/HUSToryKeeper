@@ -16,7 +16,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	// ENTITY IMAGE
 	public BufferedImage up1, up2, up3, down1, down2, down3, left1,
 			left2, left3, right1, right2, right3;
-	public String direction = "down"; //
+	public String direction = "down";
 	public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2,
 			attackLeft1, attackLeft2, attackRight1, attackRight2;
 	public BufferedImage image1, image2, image3;
@@ -237,9 +237,11 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			
 			int damage = attack;
 			gp.player.life -= damage;
-			gp.ui.addMessage("Bạn vùa dính đòn");
+			gp.ui.addMessage("Bạn vừa dính đòn");
 			if (gp.player.life <= 0) {
-				gp.player.life = 0;
+				gp.gameState = gp.gameoverState;
+				gp.stopMusic();
+				gp.playSE(6);
 			}
 			gp.player.invincible = true;
 		}
@@ -269,7 +271,6 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
         	actionLockCounter = 0;
     	}
 	}
-	
 	// Công cụ tạo ảnh entity
 	public BufferedImage setup(String imagePath, int width, int height) {
 		// Khai báo công cụ scale
