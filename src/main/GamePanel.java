@@ -72,6 +72,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int optionsState = 5;
     public final int gameoverState = 6;
     public final int cutsceneState = 7;
+    public final int receiveWeaponState = 8;
 
     //other
     public boolean cutsceneStart = false;

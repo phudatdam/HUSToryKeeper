@@ -27,6 +27,7 @@ public class UI {
     public int slotCol = 0;
     public int slotRow = 0;
     public Entity npc;
+    public Entity finalWeapon;
     int subState = 0;
     int pauState = 0;
 
@@ -104,6 +105,11 @@ public class UI {
         // Game over STATE
         if(gp.gameState == gp.gameoverState){
             drawOverScreen();
+        }
+        
+        // RECEIVE WEAPON STATE
+        if (gp.gameState == gp.receiveWeaponState) {
+        	drawFinalWeapon();
         }
     }
 
@@ -558,7 +564,11 @@ public class UI {
         else{
             npc.dialogueIndex --;
             if(gp.gameState==gp.dialogueState) {
-                gp.gameState=gp.playState;
+            	if (finalWeapon != null) {
+            		gp.gameState = gp.receiveWeaponState;
+            	} else {
+            		gp.gameState = gp.playState;
+            	}
             }
             if(gp.gameState==gp.cutsceneState)
             {
@@ -752,6 +762,16 @@ public class UI {
                 dTextY += 28; // xuống dòng
             }
         }
+    }
+    
+    public void drawFinalWeapon() {
+    	// nền đen
+    	g2.setColor(new Color(0,0,0,200));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        // ảnh vũ khí
+        int x = gp.screenWidth / 2 - gp.tileSize * 3;
+        int y = gp.screenHeight / 2 - gp.tileSize * 3;
+        g2.drawImage(finalWeapon.image2, x, y, gp.tileSize * 6, gp.tileSize * 6, null);
     }
 
     void drawSubWindow(int x, int y, int width, int height) {
