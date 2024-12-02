@@ -566,6 +566,7 @@ public class UI {
             if(gp.gameState==gp.dialogueState) {
             	if (finalWeapon != null) {
             		gp.gameState = gp.receiveWeaponState;
+                    gp.playSE(8);
             	} else {
             		gp.gameState = gp.playState;
             	}

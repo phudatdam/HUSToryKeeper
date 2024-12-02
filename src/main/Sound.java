@@ -23,6 +23,7 @@ public class Sound {
         soundURL[5] = getClass().getResource("/sound/iron.wav");
         soundURL[6] = getClass().getResource("/sound/game_over.wav");
         soundURL[7] = getClass().getResource("/sound/level-up.wav");
+        soundURL[8] = getClass().getResource("/sound/weapon.wav");
     }
 
     public void setFile(int i){
