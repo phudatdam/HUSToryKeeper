@@ -60,6 +60,11 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.gameoverState) {
             OverState(code);
         }
+        
+        // RECEIVE WEAPON STATE
+        else if (gp.gameState == gp.receiveWeaponState) {
+        	receiveWeaponState(code);
+        }
     }
 
     public void OverState(int code)
@@ -280,6 +285,14 @@ public class KeyHandler implements KeyListener {
                     gp.playSE(2);
                 }
             }
+        }
+    }
+    
+    public void receiveWeaponState(int code) {
+    	if (code == KeyEvent.VK_E) {
+    		gp.ui.finalWeapon = null;
+            gp.gameState = gp.playState;
+            gp.playSE(2);
         }
     }
 

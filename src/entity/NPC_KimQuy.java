@@ -82,20 +82,23 @@ public class NPC_KimQuy extends Entity {
 				dialogueIndex=0;
 				if(gp.player.hasDivineWeapon == false) {
 					gp.player.hasDivineWeapon = true;
+					Entity finalWeapon = null;
 					switch(gp.currentMap) {
 					case 1:
 						gp.ui.addMessage("Bạn nhận được nỏ thần");
-						gp.player.inventory.add(new OBJ_Crossbow(gp));
+						finalWeapon = new OBJ_Crossbow(gp);
 						break;
 					case 2:
 						gp.ui.addMessage("Bạn nhận được ngựa sắt");
-						gp.player.inventory.add(new OBJ_IronHorse(gp));
+						finalWeapon = new OBJ_IronHorse(gp);
 						break;
 					case 3:
 						gp.ui.addMessage("Bạn nhận được gươm thần");
-						gp.player.inventory.add(new OBJ_GoldSword(gp));
+						finalWeapon = new OBJ_GoldSword(gp);
 						break;
 					}
+					gp.player.inventory.add(finalWeapon);
+					gp.ui.finalWeapon = finalWeapon;
 					
 					gp.player.iron -= gp.npc[gp.currentMap][0].ironneed; // giảm số lượng đang có
 					gp.player.wood -= gp.npc[gp.currentMap][0].woodneed;
