@@ -14,9 +14,9 @@ public class MON_SilverBow extends Monster {
 		name = "Bạc cung thủ";
 		defaultSpeed = 1;
         speed = defaultSpeed;
-		maxLife = 28;
+		maxLife = 18;
 		life = maxLife;
-		attack = 2;
+		attack = 1;
 		rangedAttack = true;
 		motion1_duration = 5;
 		motion2_duration = 25;

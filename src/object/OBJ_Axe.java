@@ -11,6 +11,8 @@ public class OBJ_Axe extends Entity{
 		name = "Rìu";
 		description = "[ "+ name +" ]\nchỉ để chặt gỗ";
 		attackValue = 1;
+		defValue = 0;
+		spdValue = 0;
 		image1 = setup("/objects/axe", gp.tileSize, gp.tileSize);
 	}
 }

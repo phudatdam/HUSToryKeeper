@@ -15,7 +15,7 @@ public class MON_SilverSword extends Monster {
 		name = "Bạc kiếm thủ";
 		defaultSpeed = 1;
         speed = defaultSpeed;
-		maxLife = 28;
+		maxLife = 26;
 		life = maxLife;
 		attack = 2;
 		defense = 0;

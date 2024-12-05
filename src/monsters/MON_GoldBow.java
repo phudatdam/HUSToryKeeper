@@ -14,9 +14,9 @@ public class MON_GoldBow extends Monster {
 		name = "Vàng cung thủ";
 		defaultSpeed = 1;
         speed = defaultSpeed;
-		maxLife = 28;
+		maxLife = 24;
 		life = maxLife;
-		attack = 4;
+		attack = 2;
 		rangedAttack = true;
 		motion1_duration = 5;
 		motion2_duration = 25;

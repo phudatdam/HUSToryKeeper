@@ -632,7 +632,7 @@ public class UI {
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = String.valueOf(gp.player.defense);
+        value = String.valueOf(gp.player.getDef());
         textX = getXforAlignRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;

@@ -47,7 +47,7 @@ public class NPC_AnDuongVuong extends Entity {
 		dialogues[0][4] = "An Dương Vương :\n Có hơi kì lạ không khi mà ngài biết chữ quốc ngữ ở\n thời này?";
 		dialogues[0][5] = "An Dương Vương :\n Cậu vừa được xuyên không về lịch sử nên điều này\n cũng bình thường thôi.";
 		dialogues[0][6] = "Bạn :\n Hợp lý.";
-		dialogues[0][7] = "An Dương Vương :\n Dù sao, quân địch bằng một cách thần kì đã biết\n được về sức mạnh của nỏ thần và phá hủy nó.";
+		dialogues[0][7] = "An Dương Vương :\n Dù sao, sau khi xây xong tòa thành vững chắc này\n quân địch đã có tin leak về nỏ thần\n Chúng chắc chắn sẽ ngăn cản việc hoàn thành nó";
 		dialogues[0][8] = "An Dương Vương :\n Cậu hay nhận lấy thanh kiếm này, Nhấn J để tấn\n công. Quân địch ở ngoài đó nên hãy cẩn thận.";
 		dialogues[0][9] = "Bạn :\n Kiếm thần ư?";
 		dialogues[0][10] = "An Dương Vương :\n Không phải, nếu là kiếm thần thì ta đã dùng rồi.\n Cậu hãy tiến lên tìm đủ gỗ và sắt, giao nó cho\n người thợ rèn để sửa lại nỏ thần.";
