@@ -9,7 +9,7 @@ public class OBJ_Claw extends Entity{
 		super(gp);
 		
 		this.gp = gp;
-		name = "Vuốt rồng";
+		name = "Móng rùa";
 		solidArea = new Rectangle (16, 16, 32, 32);
 		
 		description = "[ "+ name +" ]\nCực kì cứng cáp\nphủ lên khung nỏ mà bắn thì hết nước \nchấm";

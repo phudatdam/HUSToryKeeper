@@ -128,7 +128,7 @@ public class NPC_KimQuy extends Entity {
 					// xóa vật phẩm cần
 					switch(gp.currentMap) {
 						case 1:
-						index = gp.player.SearchItemInInventory("Vuốt rồng");
+						index = gp.player.SearchItemInInventory("Móng rùa");
 						{
 							if(gp.player.inventory.get(index).amount > 1){
 								gp.player.inventory.get(index).amount-= 1;

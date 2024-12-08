@@ -4,7 +4,6 @@ import java.util.Random;
 
 import entity.Monster;
 import main.GamePanel;
-import object.OBJ_FireStone;
 import object.OBJ_Heart;
 import object.OBJ_Iron;
 import object.OBJ_Wood;
@@ -14,7 +13,7 @@ public class MON_SilverSword extends Monster {
 		super(gp);
 		
 		name = "Bạc kiếm thủ";
-		defaultSpeed = 1;
+		defaultSpeed = 2;
         speed = defaultSpeed;
 		maxLife = 24;
 		life = maxLife;
@@ -82,12 +81,9 @@ public class MON_SilverSword extends Monster {
 
 		// SET THE MONSTER DROP
 		if(i < 40){
-			dropItem(new OBJ_FireStone(gp));
-		}
-		else if(i < 70){
 			dropItem(new OBJ_Heart(gp));
 		}
-		else if(i < 85){
+		else if(i < 70){
 			dropItem(new OBJ_Wood(gp));
 		}
 		else{

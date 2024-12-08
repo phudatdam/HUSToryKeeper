@@ -415,9 +415,9 @@ public class Player extends Entity {
                         wood ++;
                         gp.ui.addMessage("Thêm được 1 Gỗ nè");
                     }
-                    if( gp.obj[gp.currentMap][i].name == "Vuốt rồng") {
+                    if( gp.obj[gp.currentMap][i].name == "Móng rùa") {
                         spitem[gp.currentMap] ++;
-                        gp.ui.addMessage("Thêm được 1 Vuốt rồng nè");
+                        gp.ui.addMessage("Thêm được 1 Móng rùa nè");
                     }
                     if( gp.obj[gp.currentMap][i].name == "Đá lửa") {
                         spitem[gp.currentMap] ++;
