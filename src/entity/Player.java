@@ -18,9 +18,12 @@ public class Player extends Entity {
 
     public int def = 0;
     public int strength = 1;
+
     public int coin = 0;
     public int iron = 0;
     public int wood = 0;
+    public int[] spitem = new int[5];
+
     public int sword = 0;
     public int axe = 0;
     public int pickaxe = 0;
@@ -67,6 +70,10 @@ public class Player extends Entity {
         motion1_duration = 5; // fix
 		motion2_duration = 25; // fix
         gp.currentMap = 0;// set map
+
+        spitem[1] = 0;
+        spitem[2] = 0;
+        spitem[3] = 0;
 
         maxLife = 10;
         life = maxLife;
@@ -408,6 +415,18 @@ public class Player extends Entity {
                         wood ++;
                         gp.ui.addMessage("Thêm được 1 Gỗ nè");
                     }
+                    if( gp.obj[gp.currentMap][i].name == "Vuốt rồng") {
+                        spitem[gp.currentMap] ++;
+                        gp.ui.addMessage("Thêm được 1 Vuốt rồng nè");
+                    }
+                    if( gp.obj[gp.currentMap][i].name == "Đá lửa") {
+                        spitem[gp.currentMap] ++;
+                        gp.ui.addMessage("Thêm được 1 Đá lửa nè");
+                    }
+                    if( gp.obj[gp.currentMap][i].name == "Linh Thạch") {
+                        spitem[gp.currentMap] ++;
+                        gp.ui.addMessage("Thêm được 1 Linh Thạch nè");
+                    }
                     gp.obj[gp.currentMap][i] = null;
                 }
                 
@@ -554,7 +573,8 @@ public class Player extends Entity {
         if(exp == expNeed)
         {
             Lv++;
-            expNeed += 5;
+            exp=0;
+            expNeed +=1;
             maxLife += 2;
             strength ++;
             life = maxLife;

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import entity.Monster;
 import main.GamePanel;
+import object.OBJ_Gem;
 import object.OBJ_Heart;
 import object.OBJ_Iron;
 import object.OBJ_Wood;
@@ -15,7 +16,7 @@ public class MON_GoldPolearm extends Monster {
 		name = "Vàng giáo thủ";
 		defaultSpeed = 1;
         speed = defaultSpeed;
-		maxLife = 30;
+		maxLife = 36;
 		life = maxLife;
 		attack = 3;
 		defense = 0;
@@ -80,10 +81,13 @@ public class MON_GoldPolearm extends Monster {
 		int i = new Random().nextInt(100) + 1;
 
 		// SET THE MONSTER DROP
-		if(i < 35){
-			dropItem(new OBJ_Heart(gp));
+		if(i < 40){
+			dropItem(new OBJ_Gem(gp));
 		}
 		else if(i < 70){
+			dropItem(new OBJ_Heart(gp));
+		}
+		else if(i < 85){
 			dropItem(new OBJ_Wood(gp));
 		}
 		else{

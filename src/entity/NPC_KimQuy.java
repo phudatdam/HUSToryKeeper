@@ -76,7 +76,8 @@ public class NPC_KimQuy extends Entity {
 		startDialogue(this, dialogueSet);
         if(diaEnd)
         {
-            if(gp.player.iron >= gp.npc[gp.currentMap][0].ironneed && gp.player.wood >= gp.npc[gp.currentMap][0].woodneed)
+            if(gp.player.iron >= gp.npc[gp.currentMap][0].ironneed && gp.player.wood >= gp.npc[gp.currentMap][0].woodneed
+				&& gp.player.spitem[gp.currentMap] >= gp.npc[gp.currentMap][0].spitem[gp.currentMap])
             {
             	dialogueSet=4;
 				dialogueIndex=0;
@@ -102,6 +103,8 @@ public class NPC_KimQuy extends Entity {
 					
 					gp.player.iron -= gp.npc[gp.currentMap][0].ironneed; // giảm số lượng đang có
 					gp.player.wood -= gp.npc[gp.currentMap][0].woodneed;
+					gp.player.spitem[gp.currentMap] -= gp.npc[gp.currentMap][0].spitem[gp.currentMap];
+
 					int index = gp.player.SearchItemInInventory("Sắt");
 					{
 						if(gp.player.inventory.get(index).amount > gp.npc[gp.currentMap][0].ironneed){
@@ -122,7 +125,45 @@ public class NPC_KimQuy extends Entity {
 							gp.player.inventory.remove(index);
 						}
 					}
-					
+					// xóa vật phẩm cần
+					switch(gp.currentMap) {
+						case 1:
+						index = gp.player.SearchItemInInventory("Vuốt rồng");
+						{
+							if(gp.player.inventory.get(index).amount > 1){
+								gp.player.inventory.get(index).amount-= 1;
+							}
+							else
+							{
+								gp.player.inventory.remove(index);
+							}
+						}
+						break;
+						case 2:
+						index = gp.player.SearchItemInInventory("Đá lửa");
+						{
+							if(gp.player.inventory.get(index).amount > 2){
+								gp.player.inventory.get(index).amount-= 2;
+							}
+							else
+							{
+								gp.player.inventory.remove(index);
+							}
+						}
+						break;
+						case 3:
+						index = gp.player.SearchItemInInventory("Linh Thạch");
+						{
+							if(gp.player.inventory.get(index).amount > 3){
+								gp.player.inventory.get(index).amount-= 3;
+							}
+							else
+							{
+								gp.player.inventory.remove(index);
+							}
+						}
+						break;
+						}
 				}
               
             } 

@@ -7,8 +7,9 @@ public class NPC_ThanhGiong extends Entity {
 
 	public NPC_ThanhGiong(GamePanel gp) {
 		super(gp);
-		woodneed = 5;
-		ironneed = 5;
+		woodneed = 4;
+		ironneed = 10;
+		spitem[2] = 2;
 		type = TYPE_NPC;
 		direction = "down";
 		speed = 1;
@@ -47,7 +48,7 @@ public class NPC_ThanhGiong extends Entity {
 		dialogues[0][7] = "Thánh Gióng :\n Hãy cẩn thận vì giờ quân địch là rank bạc rồi.";
 		dialogues[0][8] = "Bạn :\n Việc này có vẻ đơn giản với ngài mà nhỉ ?";
 		dialogues[0][9] = "Thánh Gióng :\n Nếu ta làm thì game còn gì vui nữa.";
-		dialogues[0][10] = "Thánh Gióng :\n Ta cần " + woodneed + " gỗ và " + ironneed + " sắt. Nhanh nhẹn lên nào!";
+		dialogues[0][10] = "Thánh Gióng :\n Ta cần " + woodneed + " gỗ và " + ironneed + " sắt. Nhanh nhẹn lên nào!\n Nhớ kiếm cả nhiên liệu cho ngựa nữa";
 		
 		dialogues[1][0] = "Thánh Gióng :\n Con ngựa này thật dũng mãnh. Đa tạ cậu.";
 		dialogues[1][1] = "Thánh Gióng :\n Hãy nhận lấy đồng xu này, đi tìm một cái giếng và\nthả nó vào đó, sẽ có điều kì diệu xảy ra.";

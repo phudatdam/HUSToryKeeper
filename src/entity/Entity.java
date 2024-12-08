@@ -46,6 +46,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public boolean diaEnd = false;
 	public int woodneed;
 	public int ironneed;
+	public int[] spitem = new int[5];
 
     // ENTITY COUNTERS
     public int spriteCounter = 0;

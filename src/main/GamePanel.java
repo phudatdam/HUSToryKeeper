@@ -98,7 +98,76 @@ public class GamePanel extends JPanel implements Runnable{
         player.setbackBegin();
         aSetter.setNPC();
         aSetter.setMonsters();
+        aSetter.setInteractiveTile();
         playMusic(0);
+        player.wood -= 3;
+        player.iron -= 3;
+        player.spitem[currentMap]--;
+        player.exp -=3;
+        if(player.exp < 0)player.exp = 0;
+        if(player.wood < 0)player.wood = 0;
+        if(player.iron < 0)player.iron = 0;
+        if(player.spitem[currentMap] < 0)player.spitem[currentMap] = 0;
+        //Trừ vật phẩm và exp
+        int index = player.SearchItemInInventory("Sắt");
+			{
+				if(player.inventory.get(index).amount > 3){
+            		player.inventory.get(index).amount-= 3;
+				}
+				else
+				{
+                	player.inventory.remove(index); // xóa trên innventory
+				}
+				}
+		index = player.SearchItemInInventory("Gỗ");
+			{
+				if(player.inventory.get(index).amount > 3){
+					player.inventory.get(index).amount-= 3;
+				}
+				else
+				{
+				    player.inventory.remove(index);
+				}
+				}
+		// xóa vật phẩm cần
+		switch(currentMap) {
+			case 1:
+				index = player.SearchItemInInventory("Vuốt rồng");						
+                {
+                    if(player.inventory.get(index).amount > 1){
+				        player.inventory.get(index).amount-= 1;
+			    	}   
+				    else
+				    {
+				    	player.inventory.remove(index);
+				    }
+               }      
+				break;
+			case 2:
+				index = player.SearchItemInInventory("Đá lửa");
+					{
+						if(player.inventory.get(index).amount > 1){
+							player.inventory.get(index).amount-= 1;
+						}
+						else
+						{
+							player.inventory.remove(index);
+						}
+					}
+					break;
+			case 3:
+				index = player.SearchItemInInventory("Linh Thạch");
+					{
+						if(player.inventory.get(index).amount > 1){
+							player.inventory.get(index).amount-= 1;
+						}
+						else
+						{
+							player.inventory.remove(index);
+						}
+					}
+					break;
+			}
     }
 
     public void restart()

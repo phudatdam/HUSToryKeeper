@@ -4,6 +4,7 @@ import java.util.Random;
 
 import entity.Monster;
 import main.GamePanel;
+import object.OBJ_Claw;
 import object.OBJ_Heart;
 import object.OBJ_Iron;
 import object.OBJ_Wood;
@@ -79,11 +80,13 @@ public class MON_BronzePolearm extends Monster {
 	public void checkDrop(){
 		int i = new Random().nextInt(100) + 1;
 
-		// SET THE MONSTER DROP
-		if(i < 35){
-			dropItem(new OBJ_Heart(gp));
+		if(i < 40){
+			dropItem(new OBJ_Claw(gp));
 		}
 		else if(i < 70){
+			dropItem(new OBJ_Heart(gp));
+		}
+		else if(i < 85){
 			dropItem(new OBJ_Wood(gp));
 		}
 		else{
