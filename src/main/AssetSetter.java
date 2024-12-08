@@ -49,7 +49,7 @@ public class AssetSetter {
         gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/dorm_bed", gp.tileSize, gp.tileSize*3);
         gp.obj[mapNum][4].worldX = 6 * gp.tileSize;
         gp.obj[mapNum][4].worldY = 0;
-        
+
     	mapNum = 1;
         gp.obj[mapNum][0] = new OBJ_Heart(gp);
         gp.obj[mapNum][0].worldX = 16 * gp.tileSize;

@@ -237,9 +237,9 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			
 			int damage = attack;
 			gp.player.life -= damage;
-			gp.ui.addMessage("Bạn vùa dính đòn");
+			gp.ui.addMessage("Bạn vừa dính đòn");
 			if (gp.player.life <= 0) {
-				gp.gameState = gp.gameOverState;
+				gp.gameState = gp.gameoverState;
 				gp.stopMusic();
 				gp.playSE(6);
 			}
