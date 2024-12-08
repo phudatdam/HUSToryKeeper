@@ -2,13 +2,11 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-import object.OBJ_Coin;
-import object.OBJ_Wallet;
+import object.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class Player extends Entity {
 	GamePanel gp;
@@ -30,7 +28,7 @@ public class Player extends Entity {
     public int expNeed;
     public int Lv;
     public int randomtext;
-
+    public boolean hasDivineWeapon = false;
     
     public ArrayList<Entity> inventory = new ArrayList<Entity>();
     public int maxInventorySize = 15;
@@ -71,7 +69,6 @@ public class Player extends Entity {
         
         maxLife = 2;
         life = maxLife;
-        attack = 1; // fix
         strength = 1;
         defense = 0;
         exp = 0;
@@ -112,15 +109,15 @@ public class Player extends Entity {
     
     public void setMessage()
     {
-        dialogues[0][0] = "Bạn thả đồng xu thần kì xuống giếng.";
-        dialogues[0][1] = "Một sức hút kì ảo hút bạn đi";
+        dialogues[0][0] = "Bạn:\n Ah, oải quá. Đáng lẽ tối qua học xong nên đi ngủ\n luôn. Cái bài nghiên cứu lịch sử dài quá đi mất.\n Tờ note gì đây ?";
+        dialogues[0][1] = "Note:\n Có vẻ hôm qua làm bài muộn nhỉ ? Chắc giờ này m\n cũng tỉnh rồi nhỉ =))). Còn nhớ cách đứng dậy không\n bạn hiền.";
+        dialogues[0][2] = "Note:\n Nhấn WASD để di chuyển. I để mở túi đồ và xem việc.\n Nếu muốn dừng lại để suy nghĩ hay điều chỉnh gì\n thì nhấn P nhé. ";
+        dialogues[0][3] = "Note:\n À có gì mượn xe máy luôn nhé, t có hẹn với\n bạn gái chiều nay. M cũng có làm gì hẹn ai =)))";
+        dialogues[0][4] = "Bạn:\n Thô nhưng thật. Dù sao nay mình cũng không có tiết.\n Khát quá đi mua nước uống chút nhỉ.";
         
-        dialogues[1][0] = "Bạn:\n Ah, oải quá. Đáng lẽ tối qua học xong nên đi ngủ\n luôn. Cái bài nghiên cứu lịch sử dài quá đi mất.\n Tờ note gì đây ?";
-        dialogues[1][1] = "Note:\n Có vẻ hôm qua làm bài muộn nhỉ ? Chắc giờ này m\n cũng tỉnh rồi nhỉ =))). Còn nhớ cách đứng dậy không\n bạn hiền.";
-        dialogues[1][2] = "Note:\n Nhấn WASD để di chuyển. I để mở túi đồ và xem việc.\n Nếu muốn dừng lại để suy nghĩ hay điều chỉnh gì\n thì nhấn P nhé. ";
-        dialogues[1][3] = "Note:\n À có gì mượn xe máy luôn nhé, t có hẹn với\n bạn gái chiều nay. M cũng có làm gì hẹn ai =)))";
-        dialogues[1][4] = "Bạn:\n Thô nhưng thật. Dù sao nay mình cũng không có tiết.\n Khát quá đi mua nước uống chút nhỉ.";
-        
+        dialogues[1][0] = "Bạn thả đồng xu thần kì xuống giếng.";
+        dialogues[1][1] = "Một sức hút kì ảo hút bạn đi";
+
         dialogues[2][0] = "Ánh sáng lóe lên, chỉ trong chớp mắt bạn đã về\n lại phòng trọ";
         dialogues[2][1] = "Cảm tưởng như cả cuộc hành trình trên chỉ như\n giấc mơ. Bạn không có thời gian để suy nghĩ nữa,\n cuộc hành trình đã khiến deadline bạn dí sát.";
         dialogues[2][2] = "Bạn giờ phải tập trung vào việc cấp bách trước.\n Làm nốt bài nghiên cứu";
@@ -368,8 +365,9 @@ public class Player extends Entity {
             // Chuyển đến map tiếp theo khi chạm vào giếng
             else if ( gp.obj[gp.currentMap][i].name == "Well")
             {
-                if (coin == 1) {
-            		coin = 0;
+                if (coin >= 1) {
+            		coin --;
+                    gp.ui.npc = gp.player;
             		inventory.removeIf( item -> item.name.equals("Đồng xu"));
             		gp.ui.addMessage("Tài khoản trừ 1 xu");
                     if(gp.currentMap == 3)
@@ -380,9 +378,11 @@ public class Player extends Entity {
                     }
                     else
                     {
-                        //startDialogue(this, 0);
+                        gp.ui.npc.dialogueIndex=0;
+                        startDialogue(this, 1);
                         teleport();
                     }
+                    gp.playSE(7);
                 }
             }
             // Nhặt gỗ, sắt
@@ -479,7 +479,7 @@ public class Player extends Entity {
         }
     }
 
-    public int SearchItemInInventoty(String itemName) {
+    public int SearchItemInInventory(String itemName) {
         int itemIndex = 999;
         for(int i = 0 ; i < inventory.size() ; i++ )
         {
@@ -498,7 +498,7 @@ public class Player extends Entity {
         // stackable ?
         if(item.stackeable == true)
         {
-            int index = SearchItemInInventoty(item.name);
+            int index = SearchItemInInventory(item.name);
             if( index != 999)
             {
                 inventory.get(index).amount++;
@@ -542,6 +542,7 @@ public class Player extends Entity {
     }
 
     public void checkLv(){
+        gp.ui.npc = gp.player;
         if(exp == expNeed)
         {
             Lv++;
@@ -550,8 +551,9 @@ public class Player extends Entity {
             strength ++;
             life = maxLife;
             gp.playSE(8);
-            dialogues[1][0] = "Trình độ bạn đã lên 1 cấp\nBạn giờ là cấp " + Lv ;
-            startDialogue(this, 1);
+            dialogues[3][0] = "Trình độ bạn đã lên 1 cấp\nBạn giờ là cấp " + Lv ;
+            gp.ui.npc.dialogueIndex=0;
+            startDialogue(this, 3);
         }
     }
     

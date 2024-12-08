@@ -60,9 +60,14 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.gameoverState) {
             OverState(code);
         }
+        
+        // RECEIVE WEAPON STATE
+        else if (gp.gameState == gp.receiveWeaponState) {
+        	receiveWeaponState(code);
+        }
     }
 
-    public void OverState( int code)
+    public void OverState(int code)
     {
         if (code == KeyEvent.VK_W) { // lên
             gp.ui.commandNum--;
@@ -88,6 +93,7 @@ public class KeyHandler implements KeyListener {
                 gp.gameState = gp.titleState;
                 gp.restart();
                 gp.ui.addMessage("Bạn bắt đầu hành trình mới");
+                gp.ui.commandNum = 0;
             }
             gp.playSE(2);
         }
@@ -110,7 +116,8 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_E) {
             if (gp.ui.commandNum == 0) {
-                gp.gameState = gp.playState;
+                gp.gameState = gp.cutsceneState;
+                gp.csManager.sceneNum = gp.csManager.intro;
             }
             if (gp.ui.commandNum == 1) {
                 gp.gameState = gp.optionsState;
@@ -278,6 +285,14 @@ public class KeyHandler implements KeyListener {
                     gp.playSE(2);
                 }
             }
+        }
+    }
+    
+    public void receiveWeaponState(int code) {
+    	if (code == KeyEvent.VK_E) {
+    		gp.ui.finalWeapon = null;
+            gp.gameState = gp.playState;
+            gp.playSE(2);
         }
     }
 

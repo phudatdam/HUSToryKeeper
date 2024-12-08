@@ -1,12 +1,13 @@
 package entity;
 
 import main.GamePanel;
+import object.OBJ_Coin;
 
 public class NPC_ThanhGiong extends Entity {
 
 	public NPC_ThanhGiong(GamePanel gp) {
 		super(gp);
-		woodneed = 4;
+		woodneed = 5;
 		ironneed = 5;
 		type = TYPE_NPC;
 		direction = "down";
@@ -47,11 +48,30 @@ public class NPC_ThanhGiong extends Entity {
 		dialogues[0][8] = "Bạn :\n Việc này có vẻ đơn giản với ngài mà nhỉ ?";
 		dialogues[0][9] = "Thánh Gióng :\n Nếu ta làm thì game còn gì vui nữa.";
 		dialogues[0][10] = "Thánh Gióng :\n Ta cần " + woodneed + " gỗ và " + ironneed + " sắt. Nhanh nhẹn lên nào!";
+		
+		dialogues[1][0] = "Thánh Gióng :\n Con ngựa này thật dũng mãnh. Đa tạ cậu.";
+		dialogues[1][1] = "Thánh Gióng :\n Hãy nhận lấy đồng xu này, đi tìm một cái giếng và\nthả nó vào đó, sẽ có điều kì diệu xảy ra.";
+		dialogues[1][2] = "Thánh Gióng :\n Chúc cậu thượng lộ bình an.";
 	}
 
 	public void speak() {
 		//super.speak();
 		facePlayer();
 		startDialogue(this, dialogueSet);
+		
+		if(gp.player.hasDivineWeapon == true) {
+			dialogueSet = 1;
+			dialogueIndex = 0;
+			
+			int index = gp.player.SearchItemInInventory("Ngựa sắt");
+			gp.player.inventory.remove(index);
+			gp.player.hasDivineWeapon = false;
+			
+			if(gp.player.coin == 0){
+				gp.ui.addMessage("Bạn nhận được 1 Đồng xu");
+				gp.player.coin = 1;
+				gp.player.inventory.add(new OBJ_Coin(gp));
+			}
+		}
 	}
 }

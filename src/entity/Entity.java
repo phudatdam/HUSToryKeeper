@@ -41,11 +41,11 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     
     // DIALOGUES
     public String dialogues[][] = new String[50][50];
-    public int dialogueIndex = 0;
-    public int dialogueSet = 0;
+    public int dialogueIndex=0;
+    public int dialogueSet=0;
 	public boolean diaEnd = false;
-	public int woodneed ;
-	public int ironneed ;
+	public int woodneed;
+	public int ironneed;
 
     // ENTITY COUNTERS
     public int spriteCounter = 0;

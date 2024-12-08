@@ -6,15 +6,13 @@ public class EventHandler {
     EventRect eventRect[][][];
     int previousEventX,previousEventY;
     boolean eventTouch = true;
-    public EventHandler( GamePanel gp)
-    {
+    public EventHandler(GamePanel gp){
         this.gp = gp;
         eventRect = new EventRect[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
         int map=0;
         int col=0;
         int row=0;
-        while(map <gp.maxMap && col<gp.maxWorldCol && row < gp.maxWorldRow)
-        {
+        while (map < gp.maxMap && col < gp.maxWorldCol && row < gp.maxWorldRow){
             eventRect[map][col][row] = new EventRect();
             eventRect[map][col][row].x = 32;
             eventRect[map][col][row].y = 32;
@@ -23,12 +21,10 @@ public class EventHandler {
             eventRect[map][col][row].ERDefautX = eventRect[map][col][row].x;
             eventRect[map][col][row].ERDefautY = eventRect[map][col][row].y;
             col++;
-            if(col == gp.maxWorldCol)
-            {
+            if (col == gp.maxWorldCol){
                 col=0;
                 row++;
-                if(row == gp.maxWorldRow)
-                {
+                if (row == gp.maxWorldRow){
                     row=0;
                     map++;
                 }
@@ -36,18 +32,15 @@ public class EventHandler {
         }
         
     }
-    public void checkEvent()
-    {
+    public void checkEvent() {
         // check player 1 title away
         int xDistance = Math.abs(gp.player.worldX-previousEventX);
         int yDistance = Math.abs(gp.player.worldY-previousEventY);
         int distance = Math.max(xDistance,yDistance);
-        if( distance > gp.tileSize)
-        {
+        if (distance > gp.tileSize){
             eventTouch = true;
         }
-        if(eventTouch == true)
-        {
+        if (eventTouch == true){
             if(hit(0,4,5) == true){teleportEvent(1, 35, 12);}
             if(hit(0,4,4) == true){checkScene(1);}
         }

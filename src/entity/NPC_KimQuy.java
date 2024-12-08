@@ -1,16 +1,21 @@
 package entity;
 
 import main.GamePanel;
-import object.OBJ_Coin;
+import object.OBJ_Crossbow;
+import object.OBJ_GoldSword;
+import object.OBJ_IronHorse;
 
 public class NPC_KimQuy extends Entity {
-    public NPC_KimQuy(GamePanel gp) {
+	int mapNum;
+	
+    public NPC_KimQuy(GamePanel gp, int mapNum) {
 		super(gp);
+		
+		this.mapNum = mapNum;
 		
 		type = TYPE_NPC;
 		direction = "down";
 		speed = 1;
-		
 		
 		getImage();
 		setDialogue();
@@ -49,13 +54,20 @@ public class NPC_KimQuy extends Entity {
 		dialogues[3][1] = "Rùa Vàng :\n người gặp ta cũng là chuyện bình thường.\n Dù sao ta cũng là người cung cấp vũ khí mạnh\n nhất lịch sử.";
 		dialogues[3][2] = "Rùa Vàng :\n Hơn nữa việc làm thêm npc nữa tốn thời\n gian lắm. Nào, đủ nguyên liệu chưa chàng trai ?";
 		//Đủ nguyên liệu ko
-		dialogues[4][0] = "Rùa Vàng :\n Được rồi, việc của cậu đã xong, hãy nhận lấy\n đồng xu này";
-		dialogues[4][1] = "Rùa Vàng :\n Hãy thả đồng xu xuống giếng kia và tiếp tục\n cuộc hành trình phía trước";
+		dialogues[4][0] = "Rùa Vàng :\n Được rồi, nguyên liệu đã kiếm đủ, bây giờ ta\nsẽ chế tạo vũ khí thần...";
+		switch(mapNum) {
+		case 1:
+			dialogues[4][1] = "Rùa Vàng :\n Hãy đem vũ khí này trao cho An Dương Vương giúp\nta.";
+			break;
+		case 2:
+			dialogues[4][1] = "Rùa Vàng :\n Hãy đem vũ khí này trao cho chàng trai tên\nGióng giúp ta.";
+			break;
+		case 3:
+			dialogues[4][1] = "Rùa Vàng :\n Hãy đem vũ khí này trao cho Lê Lợi giúp ta.";
+			break;
+		}
 		//thiếu
 		dialogues[5][0] = "Rùa Vàng :\n Này vẫn chưa đủ đâu, cố gắng lên.";
-		//dialogue end
-		dialogues[6][0] = "Rùa Vàng :\n Ok, nốt lần này là xong rồi nhé.";
-		dialogues[6][1] = "Rùa Vàng :\n Ta chúc cậu mọi chuyện thuận buồm xuôi gió.";
 	}
 	public void speak() {
 		//super.speak();
@@ -64,34 +76,43 @@ public class NPC_KimQuy extends Entity {
 		startDialogue(this, dialogueSet);
         if(diaEnd)
         {
-            if( gp.player.iron >= gp.npc[gp.currentMap][0].ironneed && gp.player.wood >= gp.npc[gp.currentMap][0].woodneed)
+            if(gp.player.iron >= gp.npc[gp.currentMap][0].ironneed && gp.player.wood >= gp.npc[gp.currentMap][0].woodneed)
             {
-				if(gp.currentMap == 3)
-				{
-					dialogueSet = 6;
-					dialogueIndex = 0;
-				}
-				else{
-					dialogueSet=4;
-					dialogueIndex=0;
-				}
-				if(gp.player.coin == 0){
-					gp.ui.addMessage("Bạn được 1 Đồng xu");
-					gp.player.iron-= gp.npc[gp.currentMap][0].ironneed;
-					gp.player.wood-= gp.npc[gp.currentMap][0].woodneed;
-					gp.player.coin=1;
-					gp.player.inventory.add(new OBJ_Coin(gp));
-					int index = gp.player.SearchItemInInventoty("Sắt");
+            	dialogueSet=4;
+				dialogueIndex=0;
+				if(gp.player.hasDivineWeapon == false) {
+					gp.player.hasDivineWeapon = true;
+					Entity finalWeapon = null;
+					switch(gp.currentMap) {
+					case 1:
+						gp.ui.addMessage("Bạn nhận được nỏ thần");
+						finalWeapon = new OBJ_Crossbow(gp);
+						break;
+					case 2:
+						gp.ui.addMessage("Bạn nhận được ngựa sắt");
+						finalWeapon = new OBJ_IronHorse(gp);
+						break;
+					case 3:
+						gp.ui.addMessage("Bạn nhận được gươm thần");
+						finalWeapon = new OBJ_GoldSword(gp);
+						break;
+					}
+					gp.player.inventory.add(finalWeapon);
+					gp.ui.finalWeapon = finalWeapon;
+					
+					gp.player.iron -= gp.npc[gp.currentMap][0].ironneed; // giảm số lượng đang có
+					gp.player.wood -= gp.npc[gp.currentMap][0].woodneed;
+					int index = gp.player.SearchItemInInventory("Sắt");
 					{
 						if(gp.player.inventory.get(index).amount > gp.npc[gp.currentMap][0].ironneed){
 							gp.player.inventory.get(index).amount-= gp.npc[gp.currentMap][0].ironneed;
 						}
 						else
 						{
-							gp.player.inventory.remove(index);
+							gp.player.inventory.remove(index); // xóa trên innventory
 						}
 					}
-					index = gp.player.SearchItemInInventoty("Gỗ");
+					index = gp.player.SearchItemInInventory("Gỗ");
 					{
 						if(gp.player.inventory.get(index).amount > gp.npc[gp.currentMap][0].woodneed){
 							gp.player.inventory.get(index).amount-= gp.npc[gp.currentMap][0].woodneed;
@@ -101,11 +122,11 @@ public class NPC_KimQuy extends Entity {
 							gp.player.inventory.remove(index);
 						}
 					}
+					
 				}
               
-            }
-            else
-            {
+            } 
+            else {
                 dialogueSet=5;
                 dialogueIndex=0;
             }

@@ -27,6 +27,7 @@ public class UI {
     public int slotCol = 0;
     public int slotRow = 0;
     public Entity npc;
+    public Entity finalWeapon;
     int subState = 0;
     int pauState = 0;
 
@@ -105,6 +106,11 @@ public class UI {
         if(gp.gameState == gp.gameoverState){
             drawOverScreen();
         }
+        
+        // RECEIVE WEAPON STATE
+        if (gp.gameState == gp.receiveWeaponState) {
+        	drawFinalWeapon();
+        }
     }
 
     public void drawOverScreen(){
@@ -120,32 +126,36 @@ public class UI {
         // shadow
         g2.setColor(Color.BLACK);
         x = getXforCenteredText(text);
-        y = gp.tileSize * 4;
+        y = gp.tileSize * 2;
         g2.drawString(text, x, y);
         // main
         g2.setColor(Color.WHITE);
         x = getXforCenteredText(text);
-        y = gp.tileSize * 4;
+        y = gp.tileSize * 2;
         g2.drawString(text, x-4, y-4);
         // vài câu cổ động
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,24));
         y += gp.tileSize;
-        // random 
+        // random
         if(gp.player.randomtext < 10){
-           text = "Bạn thua à, lạ nhỉ, trò này dễ thế mà ?";
+            text = "Bạn thua à, lạ nhỉ, trò này dễ thế mà ?";
         }
         else if(gp.player.randomtext < 20){
-           text = "Thôi nào bạn qua hết mấy môn đại cương được cơ mà.";
-            }
+            text = "Thôi nào bạn qua hết mấy môn đại cương được cơ mà.";
+        }
         else{
             text = "“Sinh tồn” ở bách khoa khó hơn mà, cố lên";
         }
         x = getXforCenteredText(text);
         g2.drawString(text , x, y);
+        // Huster
+        x = gp.screenWidth / 2 - (gp.tileSize) - 30;
+        y += gp.tileSize - 25;
+        g2.drawImage(gp.player.image1, x, y, gp.tileSize * 3, gp.tileSize * 3, null);
         // retry
         text = "Thử lại nào";
         x = getXforCenteredText(text);
-        y += gp.tileSize;
+        y += gp.tileSize * 9 / 2;
         g2.drawString(text , x, y);
         if( commandNum == 0)
         {
@@ -358,7 +368,7 @@ public class UI {
     public void drawMessage()
     {
         int messX = gp.tileSize;
-        int messY = gp.tileSize*4;
+        int messY = gp.tileSize*6;
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN,24));
         for( int i = 0; i < message.size() ; i++)
         {
@@ -373,7 +383,7 @@ public class UI {
                 messageCounter.set(i,counter);
                 messY += 32;
 
-                if(messageCounter.get(i) > 120)
+                if(messageCounter.get(i) > 60)
                 {
                     message.remove(i);
                     messageCounter.remove(i);
@@ -431,15 +441,15 @@ public class UI {
         g2.drawString(text, x, y);
 
         // HUSTer
-        x = gp.screenWidth / 2 - (gp.tileSize) - 20;
-        y += gp.tileSize;
-        g2.drawImage(gp.player.down3, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
+        x = gp.screenWidth / 2 - (gp.tileSize) - 25;
+        y += gp.tileSize - 20;
+        g2.drawImage(gp.player.down3, x, y, gp.tileSize * 5 / 2, gp.tileSize * 5 / 2, null);
 
         // MENU
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
         text = "BẮT ĐẦU CHƠI";
         x = getXforCenteredText(text);
-        y += (int) gp.tileSize * 3;
+        y += (int) gp.tileSize * 3.5;
         g2.drawString(text, x ,y);
         if(commandNum == 0){
             g2.drawString(">", x - gp.tileSize, y);
@@ -554,7 +564,12 @@ public class UI {
         else{
             npc.dialogueIndex --;
             if(gp.gameState==gp.dialogueState) {
-                gp.gameState=gp.playState;
+            	if (finalWeapon != null) {
+            		gp.gameState = gp.receiveWeaponState;
+                    gp.playSE(8);
+            	} else {
+            		gp.gameState = gp.playState;
+            	}
             }
             if(gp.gameState==gp.cutsceneState)
             {
@@ -748,6 +763,16 @@ public class UI {
                 dTextY += 28; // xuống dòng
             }
         }
+    }
+    
+    public void drawFinalWeapon() {
+    	// nền đen
+    	g2.setColor(new Color(0,0,0,200));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        // ảnh vũ khí
+        int x = gp.screenWidth / 2 - gp.tileSize * 3;
+        int y = gp.screenHeight / 2 - gp.tileSize * 3;
+        g2.drawImage(finalWeapon.image2, x, y, gp.tileSize * 6, gp.tileSize * 6, null);
     }
 
     void drawSubWindow(int x, int y, int width, int height) {
