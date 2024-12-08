@@ -49,7 +49,13 @@ public class AssetSetter {
         gp.obj[mapNum][11].worldX = 0 * gp.tileSize;
         gp.obj[mapNum][11].worldY = 32 * gp.tileSize;
         
-        
+        gp.obj[mapNum][12] = new OBJ_Decoration(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2, 29, 9);
+        gp.obj[mapNum][13] = new OBJ_Decoration(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2, 39, 9);
+        gp.obj[mapNum][14] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2, 37, 14);
+        gp.obj[mapNum][15] = new OBJ_Decoration(gp, "/misc/co_loa_flag", gp.tileSize, gp.tileSize, 31, 12);
+        gp.obj[mapNum][16] = new OBJ_Decoration(gp, "/misc/co_loa_flag", gp.tileSize, gp.tileSize, 39, 12);
+        gp.obj[mapNum][17] = new OBJ_Decoration(gp, "/misc/co_loa_flag", gp.tileSize, gp.tileSize, 34, 18);
+        gp.obj[mapNum][18] = new OBJ_Decoration(gp, "/misc/co_loa_flag", gp.tileSize, gp.tileSize, 36, 18);
 
         mapNum = 2;
         gp.obj[mapNum][0] = new OBJ_Well(gp);
