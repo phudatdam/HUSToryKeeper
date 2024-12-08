@@ -74,6 +74,7 @@ public class Player extends Entity {
         spitem[1] = 0;
         spitem[2] = 0;
         spitem[3] = 0;
+        hasDivineWeapon = false;
 
         maxLife = 10;
         life = maxLife;
