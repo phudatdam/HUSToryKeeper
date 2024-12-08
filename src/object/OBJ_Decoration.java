@@ -7,11 +7,14 @@ import main.GamePanel;
 
 public class OBJ_Decoration extends Entity {
 	
-	public OBJ_Decoration(GamePanel gp, String imagePath, int width, int height) {
+	public OBJ_Decoration(GamePanel gp, String imagePath, int width, int height, int col, int row) {
 		super(gp);
 		down1 = setup(imagePath, width, height);
 		
 		solidArea = new Rectangle (0, 0, width, height);
 		collision = true;
+		
+		this.worldX = gp.tileSize * col;
+		this.worldY = gp.tileSize * row;
 	}
 }
