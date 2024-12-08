@@ -73,6 +73,13 @@ public class AssetSetter {
         gp.obj[mapNum][9] = new OBJ_Decoration(gp, "/misc/house_phu_dong_1", gp.tileSize*2, gp.tileSize*2, 20, 39);
         gp.obj[mapNum][10] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2, 16, 38);
         gp.obj[mapNum][11] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2, 12, 25);
+        gp.obj[mapNum][12] = new OBJ_Decoration(gp, "/misc/lotus", gp.tileSize, gp.tileSize, 14, 15);
+        gp.obj[mapNum][13] = new OBJ_Decoration(gp, "/misc/lotus", gp.tileSize, gp.tileSize, 17, 15);
+        gp.obj[mapNum][14] = new OBJ_Decoration(gp, "/misc/lotus", gp.tileSize, gp.tileSize, 16, 16);
+        gp.obj[mapNum][15] = new OBJ_Decoration(gp, "/misc/haystack", gp.tileSize, gp.tileSize, 11, 9);
+        gp.obj[mapNum][16] = new OBJ_Decoration(gp, "/misc/haystack", gp.tileSize, gp.tileSize, 10, 10);
+        gp.obj[mapNum][17] = new OBJ_Decoration(gp, "/misc/haystack", gp.tileSize, gp.tileSize, 20, 10);
+        gp.obj[mapNum][18] = new OBJ_Decoration(gp, "/misc/haystack", gp.tileSize, gp.tileSize, 11, 15);
         
         mapNum = 3;
         gp.obj[mapNum][0] = new OBJ_Well(gp);
