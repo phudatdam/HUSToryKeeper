@@ -7,10 +7,12 @@ public class OBJ_IronHorse extends Entity{
 	
 	public OBJ_IronHorse(GamePanel gp) {
 		super(gp);
-
+		type = TYPE_sword;
 		name = "Ngựa sắt";
-		description = "[ " + name + " ]\nMột con ngựa được làm từ sắt, có thể\nphun ra lửa";
-		
+		description = "[ " + name + " ]\n Ngựa sắt cháy phố \n Tán gái còn đổ chứ đừng nói đánh giặc";
+		attackValue = 3;
+		defValue = 1;
+		spdValue = 10;
 		image1 = setup("/objects/iron_horse", gp.tileSize, gp.tileSize);
 		image2 = setup("/misc/iron_horse", 96, 96);
 	}

@@ -11,6 +11,8 @@ public class OBJ_Wallet extends Entity{
 		name = "Ví tiền";
 		description = "[ "+ name +" ]\nVí nhìn sang nhưng chỉ còn 50k";
 		attackValue = 0;
+        defValue = 0;
+        spdValue = 0;
 		image1 = setup("/objects/wallet", gp.tileSize, gp.tileSize);
 
     }

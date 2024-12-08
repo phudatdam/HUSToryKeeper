@@ -16,11 +16,14 @@ public class Player extends Entity {
     public final int screenY;
     int standCounter = 0;
 
-    public int defense = 0;
+    public int def = 0;
     public int strength = 1;
+
     public int coin = 0;
     public int iron = 0;
     public int wood = 0;
+    public int[] spitem = new int[5];
+
     public int sword = 0;
     public int axe = 0;
     public int pickaxe = 0;
@@ -59,18 +62,24 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         worldX = gp.tileSize * 4;
-        worldY = gp.tileSize * 3;
+        worldY = gp.tileSize * 2;
         defaultSpeed = 5;
         speed = defaultSpeed;
         direction = "down";
         type = TYPE_PLAYER;
         motion1_duration = 5; // fix
 		motion2_duration = 25; // fix
-        
+        gp.currentMap = 0;// set map
+
+        spitem[1] = 0;
+        spitem[2] = 0;
+        spitem[3] = 0;
+        hasDivineWeapon = false;
+
         maxLife = 10;
         life = maxLife;
         strength = 1;
-        defense = 0;
+        def = 0;
         exp = 0;
         expNeed = 5;
         Lv = 1;
@@ -106,7 +115,14 @@ public class Player extends Entity {
     {
         return attack = strength + currentWeapon.attackValue;
     }
-    
+    public int getDef()
+    {
+        return defense = def + currentWeapon.defValue;
+    }
+    public int getSpd()
+    {
+        return speed = defaultSpeed + currentWeapon.spdValue;
+    }
     public void setMessage()
     {
         dialogues[0][0] = "Bạn:\n Ah, oải quá. Đáng lẽ tối qua học xong nên đi ngủ\n luôn. Cái bài nghiên cứu lịch sử dài quá đi mất.\n Tờ note gì đây ?";
@@ -184,7 +200,7 @@ public class Player extends Entity {
     	if (keyH.attackPressed) {
     		attacking = true;
     	}
-    		
+    	speed = getSpd();	
     	if (knockBack == true) {
 			checkCollision();
 			if (collisionOn == true) {
@@ -210,7 +226,7 @@ public class Player extends Entity {
 			if (knockBackCounter > 5) {
 				knockBackCounter = 0;
 				knockBack = false;
-				speed = defaultSpeed;
+				speed = getSpd();
 			}
 		} else if (attacking == true) {
     		attacking();
@@ -400,6 +416,18 @@ public class Player extends Entity {
                         wood ++;
                         gp.ui.addMessage("Thêm được 1 Gỗ nè");
                     }
+                    if( gp.obj[gp.currentMap][i].name == "Móng rùa") {
+                        spitem[gp.currentMap] ++;
+                        gp.ui.addMessage("Thêm được 1 Móng rùa nè");
+                    }
+                    if( gp.obj[gp.currentMap][i].name == "Đá lửa") {
+                        spitem[gp.currentMap] ++;
+                        gp.ui.addMessage("Thêm được 1 Đá lửa nè");
+                    }
+                    if( gp.obj[gp.currentMap][i].name == "Linh Thạch") {
+                        spitem[gp.currentMap] ++;
+                        gp.ui.addMessage("Thêm được 1 Linh Thạch nè");
+                    }
                     gp.obj[gp.currentMap][i] = null;
                 }
                 
@@ -546,7 +574,8 @@ public class Player extends Entity {
         if(exp == expNeed)
         {
             Lv++;
-            expNeed += 5;
+            exp=0;
+            expNeed +=1;
             maxLife += 2;
             strength ++;
             life = maxLife;

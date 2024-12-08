@@ -14,7 +14,7 @@ public class MON_SilverBow extends Monster {
 		name = "Bạc cung thủ";
 		defaultSpeed = 1;
         speed = defaultSpeed;
-		maxLife = 28;
+		maxLife = 18;
 		life = maxLife;
 		attack = 2;
 		rangedAttack = true;
@@ -74,10 +74,13 @@ public class MON_SilverBow extends Monster {
 		int i = new Random().nextInt(100) + 1;
 
 		// SET THE MONSTER DROP
-		if(i < 35){
+		if(i < 70){
+			dropItem(new OBJ_FireStone(gp));
+		}
+		else if(i < 80){
 			dropItem(new OBJ_Heart(gp));
 		}
-		else if(i < 70){
+		else if(i < 90){
 			dropItem(new OBJ_Wood(gp));
 		}
 		else{

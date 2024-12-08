@@ -13,11 +13,11 @@ public class MON_GoldPolearm extends Monster {
 		super(gp);
 		
 		name = "Vàng giáo thủ";
-		defaultSpeed = 1;
+		defaultSpeed = 2;
         speed = defaultSpeed;
-		maxLife = 28;
+		maxLife = 36;
 		life = maxLife;
-		attack = 4;
+		attack = 3;
 		defense = 0;
 		motion1_duration = 5;
 		motion2_duration = 25;
@@ -80,7 +80,7 @@ public class MON_GoldPolearm extends Monster {
 		int i = new Random().nextInt(100) + 1;
 
 		// SET THE MONSTER DROP
-		if(i < 35){
+		if(i < 40){
 			dropItem(new OBJ_Heart(gp));
 		}
 		else if(i < 70){
