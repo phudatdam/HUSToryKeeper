@@ -49,7 +49,6 @@ public class UI {
 
         OBJ_Heart heart = new OBJ_Heart(gp);
         heartImage = heart.image1;
-
         heart_full = heart.image1;
         heart_half = heart.image2;
         heart_blank = heart.image3;
@@ -92,6 +91,12 @@ public class UI {
             drawDialogueState();
         }
 
+        // NOTE STATE
+        if(gp.gameState == gp.noteState){
+            drawPlayerLife();
+            drawNoteState();
+        }
+
         // CHARACTER STATE: MISSIONS + INVENTORY
         if(gp.gameState == gp.characterState) {
             drawCharacterScreen();
@@ -102,6 +107,7 @@ public class UI {
         if(gp.gameState == gp.optionsState){
             drawOptionsState();
         }
+
         // Game over STATE
         if(gp.gameState == gp.gameoverState){
             drawOverScreen();
@@ -419,6 +425,15 @@ public class UI {
             i++;
             x += gp.tileSize;
         }
+    }
+
+    public void drawNoteState(){
+        g2.setColor( new Color(0,0,0,150));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        int x = gp.screenWidth / 2 - (gp.tileSize) - 30;
+        int y = gp.tileSize - 25;
+        g2.drawImage(gp.player.image2, x, y, gp.tileSize * 5, gp.tileSize * 3, null);
     }
 
     public void drawTitleScreen(){

@@ -52,6 +52,11 @@ public class KeyHandler implements KeyListener {
             dialogueState(code);
         }
 
+        // NOTE STATE
+        else if(gp.gameState == gp.noteState){
+            noteState(code);
+        }
+
         // OPTIONS STATE
         else if (gp.gameState == gp.optionsState) {
             optionsState(code);
@@ -187,6 +192,13 @@ public class KeyHandler implements KeyListener {
     public void dialogueState(int code) {
         if (code == KeyEvent.VK_E) {
             enterPressed = true;
+        }
+        gp.playSE(2);
+    }
+
+    public void noteState(int code){
+        if(code == KeyEvent.VK_E){
+            gp.gameState = gp.dialogueState;
         }
         gp.playSE(2);
     }
