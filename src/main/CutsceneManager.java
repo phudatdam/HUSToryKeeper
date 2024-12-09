@@ -55,6 +55,7 @@ public class CutsceneManager {
         {
             sceneNum = NA;
             scenePhase = 0;
+            gp.ui.npc.dialogueIndex=0;
             gp.gameState = gp.playState;
         }
     }

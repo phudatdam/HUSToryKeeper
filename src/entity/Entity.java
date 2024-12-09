@@ -46,6 +46,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public boolean diaEnd = false;
 	public int woodneed;
 	public int ironneed;
+	public int[] spitem = new int[5];
 
     // ENTITY COUNTERS
     public int spriteCounter = 0;
@@ -65,6 +66,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public final int TYPE_pickaxe = 5;
 	public final int TYPE_consumable = 6;
 	public int attackValue;
+	public int defValue;
+	public int spdValue;
 
     public String name;
     public String description;
@@ -235,7 +238,8 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		if (gp.player.invincible == false) {
 			// gp.playSE(1)
 			
-			int damage = attack;
+			int damage = attack - gp.player.getDef();
+			if(damage < 0)damage = 0;
 			gp.player.life -= damage;
 			gp.ui.addMessage("Bạn vừa dính đòn");
 			if (gp.player.life <= 0) {

@@ -14,9 +14,9 @@ public class MON_GoldBow extends Monster {
 		name = "Vàng cung thủ";
 		defaultSpeed = 1;
         speed = defaultSpeed;
-		maxLife = 28;
+		maxLife = 24;
 		life = maxLife;
-		attack = 4;
+		attack = 2;
 		rangedAttack = true;
 		motion1_duration = 5;
 		motion2_duration = 25;
@@ -74,10 +74,13 @@ public class MON_GoldBow extends Monster {
 		int i = new Random().nextInt(100) + 1;
 
 		// SET THE MONSTER DROP
-		if(i < 35){
+		if(i < 70){
+			dropItem(new OBJ_Gem(gp));
+		}
+		else if(i < 80){
 			dropItem(new OBJ_Heart(gp));
 		}
-		else if(i < 70){
+		else if(i < 90){
 			dropItem(new OBJ_Wood(gp));
 		}
 		else{
