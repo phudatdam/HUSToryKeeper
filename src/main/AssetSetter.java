@@ -16,25 +16,11 @@ public class AssetSetter {
     
     public void setObject(){
     	int mapNum = 0;
-    	gp.obj[mapNum][0] = new OBJ_Decoration(gp, "/misc/dorm_bed", gp.tileSize, gp.tileSize*3);
-        gp.obj[mapNum][0].worldX = gp.tileSize;
-        gp.obj[mapNum][0].worldY = 0;
-
-        gp.obj[mapNum][1] = new OBJ_Decoration(gp, "/misc/dorm_bookcase", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][1].worldX = 2 * gp.tileSize;
-        gp.obj[mapNum][1].worldY = 0;
-
-        gp.obj[mapNum][2] = new OBJ_Decoration(gp, "/misc/dorm_table", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][2].worldX = 4 * gp.tileSize;
-        gp.obj[mapNum][2].worldY = 0;
-
-        gp.obj[mapNum][3] = new OBJ_Decoration(gp, "/misc/dorm_chair", gp.tileSize, gp.tileSize);
-        gp.obj[mapNum][3].worldX = 5 * gp.tileSize;
-        gp.obj[mapNum][3].worldY = 2 * gp.tileSize;
-
-        gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/dorm_bed", gp.tileSize, gp.tileSize*3);
-        gp.obj[mapNum][4].worldX = 6 * gp.tileSize;
-        gp.obj[mapNum][4].worldY = 0;
+    	gp.obj[mapNum][0] = new OBJ_Decoration(gp, "/misc/dorm_bed", gp.tileSize, gp.tileSize*3, 1, 0);
+        gp.obj[mapNum][1] = new OBJ_Decoration(gp, "/misc/dorm_bookcase", gp.tileSize*2, gp.tileSize*2, 2, 0);
+        gp.obj[mapNum][2] = new OBJ_Decoration(gp, "/misc/dorm_table", gp.tileSize*2, gp.tileSize*2, 4, 0);
+        gp.obj[mapNum][3] = new OBJ_Decoration(gp, "/misc/dorm_chair", gp.tileSize, gp.tileSize, 5, 2);
+        gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/dorm_bed", gp.tileSize, gp.tileSize*3, 6, 0);
 
     	mapNum = 1;
         gp.obj[mapNum][0] = new OBJ_Heart(gp);
@@ -45,33 +31,13 @@ public class AssetSetter {
         gp.obj[mapNum][1].worldX = 32 * gp.tileSize;
         gp.obj[mapNum][1].worldY = 14 * gp.tileSize;
         
-        gp.obj[mapNum][2] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][2].worldX = 32 * gp.tileSize;
-        gp.obj[mapNum][2].worldY = 10 * gp.tileSize;
-        
-        gp.obj[mapNum][3] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][3].worldX = 37 * gp.tileSize;
-        gp.obj[mapNum][3].worldY = 10 * gp.tileSize;
-        
-        gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][4].worldX = 34 * gp.tileSize;
-        gp.obj[mapNum][4].worldY = 8 * gp.tileSize;
-        
-        gp.obj[mapNum][5] = new OBJ_Decoration(gp, "/misc/bronze_drum", gp.tileSize, gp.tileSize);
-        gp.obj[mapNum][5].worldX = 35 * gp.tileSize;
-        gp.obj[mapNum][5].worldY = 11 * gp.tileSize;
-        
-        gp.obj[mapNum][6] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][6].worldX = 21 * gp.tileSize;
-        gp.obj[mapNum][6].worldY = 22 * gp.tileSize;
-        
-        gp.obj[mapNum][7] = new OBJ_Decoration(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][7].worldX = 19 * gp.tileSize;
-        gp.obj[mapNum][7].worldY = 33 * gp.tileSize;
-        
-        gp.obj[mapNum][8] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][8].worldX = 40 * gp.tileSize;
-        gp.obj[mapNum][8].worldY = 33 * gp.tileSize;
+        gp.obj[mapNum][2] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2, 32, 10);
+        gp.obj[mapNum][3] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2, 37, 10);
+        gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2, 34, 8);
+        gp.obj[mapNum][5] = new OBJ_Decoration(gp, "/misc/bronze_drum", gp.tileSize, gp.tileSize, 35, 11);
+        gp.obj[mapNum][6] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2, 21, 22);
+        gp.obj[mapNum][7] = new OBJ_Decoration(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2, 19, 33);
+        gp.obj[mapNum][8] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2, 40, 33);
         
         gp.obj[mapNum][9] = new OBJ_Forest(gp, "/misc/forest_map_1_1", gp.tileSize*32, gp.tileSize*32);
         gp.obj[mapNum][9].worldX = 0 * gp.tileSize;
@@ -82,93 +48,61 @@ public class AssetSetter {
         gp.obj[mapNum][11] = new OBJ_Forest(gp, "/misc/forest_map_1_3", gp.tileSize*32, gp.tileSize*18);
         gp.obj[mapNum][11].worldX = 0 * gp.tileSize;
         gp.obj[mapNum][11].worldY = 32 * gp.tileSize;
+        
+        gp.obj[mapNum][12] = new OBJ_Decoration(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2, 29, 9);
+        gp.obj[mapNum][13] = new OBJ_Decoration(gp, "/misc/house_co_loa_2", gp.tileSize*3, gp.tileSize*2, 39, 9);
+        gp.obj[mapNum][14] = new OBJ_Decoration(gp, "/misc/house_co_loa_1", gp.tileSize*2, gp.tileSize*2, 37, 14);
+        gp.obj[mapNum][15] = new OBJ_Decoration(gp, "/misc/co_loa_flag", gp.tileSize, gp.tileSize, 31, 12);
+        gp.obj[mapNum][16] = new OBJ_Decoration(gp, "/misc/co_loa_flag", gp.tileSize, gp.tileSize, 39, 12);
+        gp.obj[mapNum][17] = new OBJ_Decoration(gp, "/misc/co_loa_flag", gp.tileSize, gp.tileSize, 34, 18);
+        gp.obj[mapNum][18] = new OBJ_Decoration(gp, "/misc/co_loa_flag", gp.tileSize, gp.tileSize, 36, 18);
 
         mapNum = 2;
         gp.obj[mapNum][0] = new OBJ_Well(gp);
         gp.obj[mapNum][0].worldX = 15 * gp.tileSize;
         gp.obj[mapNum][0].worldY = 10 * gp.tileSize;
         
-        gp.obj[mapNum][1] = new OBJ_Decoration(gp, "/misc/house_phu_dong_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][1].worldX = 9 * gp.tileSize;
-        gp.obj[mapNum][1].worldY = 11 * gp.tileSize;
-        
-        gp.obj[mapNum][2] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][2].worldX = 12 * gp.tileSize;
-        gp.obj[mapNum][2].worldY = 8 * gp.tileSize;
-        
-        gp.obj[mapNum][3] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][3].worldX = 17 * gp.tileSize;
-        gp.obj[mapNum][3].worldY = 8 * gp.tileSize;
-        
-        gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][4].worldX = 37 * gp.tileSize;
-        gp.obj[mapNum][4].worldY = 5 * gp.tileSize;
-        
-        gp.obj[mapNum][5] = new OBJ_Decoration(gp, "/misc/house_phu_dong_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][5].worldX = 39 * gp.tileSize;
-        gp.obj[mapNum][5].worldY = 18 * gp.tileSize;
-        
-        gp.obj[mapNum][6] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][6].worldX = 36 * gp.tileSize;
-        gp.obj[mapNum][6].worldY = 21 * gp.tileSize;
-        
-        gp.obj[mapNum][7] = new OBJ_Decoration(gp, "/misc/house_phu_dong_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][7].worldX = 39 * gp.tileSize;
-        gp.obj[mapNum][7].worldY = 35 * gp.tileSize;
-        
-        gp.obj[mapNum][8] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][8].worldX = 32 * gp.tileSize;
-        gp.obj[mapNum][8].worldY = 39 * gp.tileSize;
-        
-        gp.obj[mapNum][9] = new OBJ_Decoration(gp, "/misc/house_phu_dong_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][9].worldX = 20 * gp.tileSize;
-        gp.obj[mapNum][9].worldY = 39 * gp.tileSize;
-        
-        gp.obj[mapNum][10] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][10].worldX = 16 * gp.tileSize;
-        gp.obj[mapNum][10].worldY = 38 * gp.tileSize;
-        
-        gp.obj[mapNum][11] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][11].worldX = 12 * gp.tileSize;
-        gp.obj[mapNum][11].worldY = 25 * gp.tileSize;
+        gp.obj[mapNum][1] = new OBJ_Decoration(gp, "/misc/house_phu_dong_1", gp.tileSize*2, gp.tileSize*2, 9, 11);
+        gp.obj[mapNum][2] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2, 12, 8);
+        gp.obj[mapNum][3] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2, 17, 8);
+        gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2, 37, 5);
+        gp.obj[mapNum][5] = new OBJ_Decoration(gp, "/misc/house_phu_dong_1", gp.tileSize*2, gp.tileSize*2, 39, 18);
+        gp.obj[mapNum][6] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2, 36, 21);
+        gp.obj[mapNum][7] = new OBJ_Decoration(gp, "/misc/house_phu_dong_1", gp.tileSize*2, gp.tileSize*2, 39, 35);
+        gp.obj[mapNum][8] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2, 32, 39);
+        gp.obj[mapNum][9] = new OBJ_Decoration(gp, "/misc/house_phu_dong_1", gp.tileSize*2, gp.tileSize*2, 20, 39);
+        gp.obj[mapNum][10] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2, 16, 38);
+        gp.obj[mapNum][11] = new OBJ_Decoration(gp, "/misc/house_phu_dong_2", gp.tileSize*3, gp.tileSize*2, 12, 25);
+        gp.obj[mapNum][12] = new OBJ_Decoration(gp, "/misc/lotus", gp.tileSize, gp.tileSize, 14, 15);
+        gp.obj[mapNum][13] = new OBJ_Decoration(gp, "/misc/lotus", gp.tileSize, gp.tileSize, 17, 15);
+        gp.obj[mapNum][14] = new OBJ_Decoration(gp, "/misc/lotus", gp.tileSize, gp.tileSize, 16, 16);
+        gp.obj[mapNum][15] = new OBJ_Decoration(gp, "/misc/haystack", gp.tileSize, gp.tileSize, 11, 9);
+        gp.obj[mapNum][16] = new OBJ_Decoration(gp, "/misc/haystack", gp.tileSize, gp.tileSize, 10, 10);
+        gp.obj[mapNum][17] = new OBJ_Decoration(gp, "/misc/haystack", gp.tileSize, gp.tileSize, 20, 10);
+        gp.obj[mapNum][18] = new OBJ_Decoration(gp, "/misc/haystack", gp.tileSize, gp.tileSize, 11, 15);
         
         mapNum = 3;
         gp.obj[mapNum][0] = new OBJ_Well(gp);
         gp.obj[mapNum][0].worldX = 14 * gp.tileSize;
         gp.obj[mapNum][0].worldY = 12 * gp.tileSize;
         
-        gp.obj[mapNum][1] = new OBJ_Decoration(gp, "/misc/house_lam_son_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][1].worldX = 8 * gp.tileSize;
-        gp.obj[mapNum][1].worldY = 9 * gp.tileSize;
-        
-        gp.obj[mapNum][2] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][2].worldX = 11 * gp.tileSize;
-        gp.obj[mapNum][2].worldY = 7 * gp.tileSize;
-        
-        gp.obj[mapNum][3] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][3].worldX = 18 * gp.tileSize;
-        gp.obj[mapNum][3].worldY = 9 * gp.tileSize;
-        
-        gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][4].worldX = (int) (27.5 * gp.tileSize);
-        gp.obj[mapNum][4].worldY = 16 * gp.tileSize;
-        
-        gp.obj[mapNum][5] = new OBJ_Decoration(gp, "/misc/house_lam_son_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][5].worldX = 36 * gp.tileSize;
-        gp.obj[mapNum][5].worldY = 25 * gp.tileSize;
-        
-        gp.obj[mapNum][6] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][6].worldX = 9 * gp.tileSize;
-        gp.obj[mapNum][6].worldY = 29 * gp.tileSize;
-        
-        gp.obj[mapNum][7] = new OBJ_Decoration(gp, "/misc/house_lam_son_1", gp.tileSize*2, gp.tileSize*2);
-        gp.obj[mapNum][7].worldX = 13 * gp.tileSize;
-        gp.obj[mapNum][7].worldY = 30 * gp.tileSize;
-        
-        gp.obj[mapNum][8] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2);
-        gp.obj[mapNum][8].worldX = 39 * gp.tileSize;
-        gp.obj[mapNum][8].worldY = 38 * gp.tileSize;
-
+        gp.obj[mapNum][1] = new OBJ_Decoration(gp, "/misc/house_lam_son_1", gp.tileSize*2, gp.tileSize*2, 8, 9);
+        gp.obj[mapNum][2] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2, 11, 6);
+        gp.obj[mapNum][3] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2, 15, 6);
+        gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2, 27.5, 16);
+        gp.obj[mapNum][5] = new OBJ_Decoration(gp, "/misc/house_lam_son_1", gp.tileSize*2, gp.tileSize*2, 36, 25);
+        gp.obj[mapNum][6] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2, 9, 29);
+        gp.obj[mapNum][7] = new OBJ_Decoration(gp, "/misc/house_lam_son_1", gp.tileSize*2, gp.tileSize*2, 13, 30);
+        gp.obj[mapNum][8] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2, 39, 38);
+        gp.obj[mapNum][9] = new OBJ_Decoration(gp, "/misc/house_lam_son_1", gp.tileSize*2, gp.tileSize*2, 19, 9);
+        gp.obj[mapNum][10] = new OBJ_Decoration(gp, "/misc/house_lam_son_1", gp.tileSize*2, gp.tileSize*2, 9, 12);
+        gp.obj[mapNum][11] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 10, 8);
+        gp.obj[mapNum][12] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 14, 7);
+        gp.obj[mapNum][13] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 18, 8);
+        gp.obj[mapNum][14] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 11, 16);
+        gp.obj[mapNum][15] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 13, 16);
+        gp.obj[mapNum][16] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 11, 12);
+        gp.obj[mapNum][17] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 17, 12);
     }
     
     public void setNPC() {
