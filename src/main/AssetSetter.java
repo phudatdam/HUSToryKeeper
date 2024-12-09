@@ -37,10 +37,15 @@ public class AssetSetter {
         gp.obj[mapNum][4].worldX = 6 * gp.tileSize;
         gp.obj[mapNum][4].worldY = 0;
 
+        gp.obj[mapNum][5] = new OBJ_Note(gp);
+        gp.obj[mapNum][5].worldX = 5 * gp.tileSize;
+        gp.obj[mapNum][5].worldY = (2 + 8 / 10) * gp.tileSize;
+
     	mapNum = 1;
         gp.obj[mapNum][0] = new OBJ_Heart(gp);
         gp.obj[mapNum][0].worldX = 16 * gp.tileSize;
         gp.obj[mapNum][0].worldY = 22 * gp.tileSize;
+
         
         gp.obj[mapNum][1] = new OBJ_Well(gp);
         gp.obj[mapNum][1].worldX = 32 * gp.tileSize;

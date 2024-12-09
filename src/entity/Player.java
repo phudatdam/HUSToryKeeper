@@ -127,10 +127,9 @@ public class Player extends Entity {
     public void setMessage()
     {
         dialogues[0][0] = "Bạn:\n Ah, oải quá. Đáng lẽ tối qua học xong nên đi ngủ\n luôn. Cái bài nghiên cứu lịch sử dài quá đi mất.\n Tờ note gì đây ?";
-        /*dialogues[0][1] = "Note:\n Có vẻ hôm qua làm bài muộn nhỉ ? Chắc giờ này m\n cũng tỉnh rồi nhỉ =))). Còn nhớ cách đứng dậy không\n bạn hiền.";
-        dialogues[0][2] = "Note:\n Nhấn WASD để di chuyển. I để mở túi đồ và xem việc.\n Nếu muốn dừng lại để suy nghĩ hay điều chỉnh gì\n thì nhấn P nhé. ";
-        dialogues[0][3] = "Note:\n À có gì mượn xe máy luôn nhé, t có hẹn với\n bạn gái chiều nay. M cũng có làm gì hẹn ai =)))";*/
-        dialogues[0][1] = "Bạn:\n Thô nhưng thật. Dù sao nay mình cũng không có tiết.\n Khát quá đi mua nước uống chút nhỉ.";
+        dialogues[0][2] ="Bạn:\n . . .";
+        dialogues[0][3] ="Bạn:\n Ôi em Linh...";
+        dialogues[0][4] = "Bạn:\n Thôi kệ đi, vẫn còn em Trang. Khát quá đi mua nước\n uống chút nhỉ.";
         
         dialogues[1][0] = "Bạn thả đồng xu thần kì xuống giếng.";
         dialogues[1][1] = "Một sức hút kì ảo hút bạn đi";
@@ -198,7 +197,7 @@ public class Player extends Entity {
     }
 
     public void getNoteImage() {
-        image2 = setup("/misc/note", gp.tileSize * 2, gp.tileSize);
+        image2 = setup("/objects/note", gp.tileSize, gp.tileSize);
     }
 
     public void update(){ // được gọi 60 lần trong 1s
@@ -405,6 +404,12 @@ public class Player extends Entity {
                     }
                     gp.playSE(7);
                 }
+            }
+            // Xem note
+            else if(gp.obj[gp.currentMap][i].name == "Note"){
+                gp.playSE(3);
+                gp.gameState = gp.noteState;
+                gp.obj[gp.currentMap][i]=null;
             }
             // Nhặt gỗ, sắt
             else

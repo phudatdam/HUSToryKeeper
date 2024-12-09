@@ -13,7 +13,7 @@ import entity.Entity;
 public class UI {
     GamePanel gp;
     Graphics2D g2;
-    Font determinationSans, retron2000, maruMonica;
+    Font determinationSans, retron2000, maruMonica, KA;
     BufferedImage heart_full, heart_half, heart_blank;
     BufferedImage heartImage;
     public boolean messageOn = false;
@@ -41,6 +41,8 @@ public class UI {
             retron2000 = Font.createFont(Font.TRUETYPE_FONT, is1);
             InputStream is2 = getClass().getResourceAsStream("/font/SVN-MaruMonica.ttf");
             maruMonica = Font.createFont(Font.TRUETYPE_FONT, is2);
+            InputStream is3 = getClass().getResourceAsStream("/font/1KAwesomeQuote.ttf");
+            KA = Font.createFont(Font.TRUETYPE_FONT, is3);
         } catch (FontFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -431,9 +433,58 @@ public class UI {
         g2.setColor( new Color(0,0,0,150));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
-        int x = gp.screenWidth / 2 - (gp.tileSize) - 30;
-        int y = gp.tileSize - 25;
-        g2.drawImage(gp.player.image2, x, y, gp.tileSize * 5, gp.tileSize * 3, null);
+        int x = gp.screenWidth / 2 - gp.tileSize * 9 / 2;
+        int y = gp.screenHeight / 2 - gp.tileSize * 4;
+        g2.drawImage(gp.player.image2, x, y, gp.tileSize * 9, gp.tileSize * 9, null);
+
+        g2.setFont(KA);
+        g2.setColor(Color.black);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,20F));
+
+        String text = "Hê sờ lô hê sờ li li =]";
+        x += gp.tileSize * 2;
+        y += gp.tileSize * 3 / 2;
+        g2.drawString(text, x, y + 7);
+
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,16F));
+        text = "Có vẻ hôm qua làm bài muộn ha? Có";
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+
+        text = "em Linh dệt may tìm m mà m ngủ ";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        text = "chảy dãi, nên tao bảo em ấy m bận";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        text = "rồi...";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        text = "À tao mượn xe máy chở bồ đi chơi";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        text = "nhé, m cũng làm gì có hẹn ai =))";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        text = "Thân gửi";
+        x += gp.tileSize * 3;
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        text = "Tí Văn Tèo";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x - 5, y);
+
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,14F));
+        text = "(Đảm bảo đổ cho 10k xăng hehehe)";
+        x = getXforCenteredText(text);
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
     }
 
     public void drawTitleScreen(){

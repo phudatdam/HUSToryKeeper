@@ -198,6 +198,7 @@ public class KeyHandler implements KeyListener {
 
     public void noteState(int code){
         if(code == KeyEvent.VK_E){
+            gp.ui.npc.dialogueIndex = 2;
             gp.gameState = gp.dialogueState;
         }
         gp.playSE(2);
