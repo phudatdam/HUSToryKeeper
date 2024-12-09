@@ -407,7 +407,7 @@ public class Player extends Entity {
             }
             // Xem note
             else if(gp.obj[gp.currentMap][i].name == "Note"){
-                gp.playSE(3);
+                gp.playSE(9);
                 gp.gameState = gp.noteState;
                 gp.obj[gp.currentMap][i]=null;
             }
