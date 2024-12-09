@@ -87,14 +87,22 @@ public class AssetSetter {
         gp.obj[mapNum][0].worldY = 12 * gp.tileSize;
         
         gp.obj[mapNum][1] = new OBJ_Decoration(gp, "/misc/house_lam_son_1", gp.tileSize*2, gp.tileSize*2, 8, 9);
-        gp.obj[mapNum][2] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2, 11, 7);
-        gp.obj[mapNum][3] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2, 18, 9);
-        gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2, (int) (27.5 * gp.tileSize), 16);
+        gp.obj[mapNum][2] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2, 11, 6);
+        gp.obj[mapNum][3] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2, 15, 6);
+        gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2, 27.5, 16);
         gp.obj[mapNum][5] = new OBJ_Decoration(gp, "/misc/house_lam_son_1", gp.tileSize*2, gp.tileSize*2, 36, 25);
         gp.obj[mapNum][6] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2, 9, 29);
         gp.obj[mapNum][7] = new OBJ_Decoration(gp, "/misc/house_lam_son_1", gp.tileSize*2, gp.tileSize*2, 13, 30);
         gp.obj[mapNum][8] = new OBJ_Decoration(gp, "/misc/house_lam_son_2", gp.tileSize*3, gp.tileSize*2, 39, 38);
-
+        gp.obj[mapNum][9] = new OBJ_Decoration(gp, "/misc/house_lam_son_1", gp.tileSize*2, gp.tileSize*2, 19, 9);
+        gp.obj[mapNum][10] = new OBJ_Decoration(gp, "/misc/house_lam_son_1", gp.tileSize*2, gp.tileSize*2, 9, 12);
+        gp.obj[mapNum][11] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 10, 8);
+        gp.obj[mapNum][12] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 14, 7);
+        gp.obj[mapNum][13] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 18, 8);
+        gp.obj[mapNum][14] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 11, 16);
+        gp.obj[mapNum][15] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 13, 16);
+        gp.obj[mapNum][16] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 11, 12);
+        gp.obj[mapNum][17] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 17, 12);
     }
     
     public void setNPC() {
