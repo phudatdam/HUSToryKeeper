@@ -13,7 +13,7 @@ public class MON_GoldPolearm extends Monster {
 		super(gp);
 		
 		name = "Vàng giáo thủ";
-		defaultSpeed = 1;//2;
+		defaultSpeed = 2;
         speed = defaultSpeed;
 		maxLife = 36;
 		life = maxLife;

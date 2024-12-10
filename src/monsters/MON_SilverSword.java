@@ -13,7 +13,7 @@ public class MON_SilverSword extends Monster {
 		super(gp);
 		
 		name = "Bạc kiếm thủ";
-		defaultSpeed = 1;//2;
+		defaultSpeed = 2;
         speed = defaultSpeed;
 		maxLife = 24;
 		life = maxLife;

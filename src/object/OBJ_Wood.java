@@ -15,7 +15,7 @@ public class OBJ_Wood extends Entity{
 		name = "Gỗ";
 		solidArea = new Rectangle (16, 16, 32, 32);
 
-		description = "[ "+ name +" ]\nGỗ bình thường, sao chế được đồ thần\nnhỉ ?";
+		description = "[ "+ name +" ]\nGỗ bình thường, sao chế được đồ\nthần nhỉ ?";
 		stackeable = true;
 		collision = true;
 		down1 = setup("/objects/wood", 32, 32);

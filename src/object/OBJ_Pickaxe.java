@@ -9,7 +9,7 @@ public class OBJ_Pickaxe extends Entity{
 		super(gp);
 		type = TYPE_pickaxe;
 		name = "Cuốc";
-		description = "[ "+ name +" ]\nkhông biết bằng cách nào đào được\n cả miếng sắt";
+		description = "[ "+ name +" ]\nkhông biết bằng cách nào đào\nđược cả miếng sắt";
 		attackValue = 1;
 		defValue = 0;
 		spdValue = 0;

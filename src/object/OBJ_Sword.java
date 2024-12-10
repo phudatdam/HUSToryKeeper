@@ -9,7 +9,7 @@ public class OBJ_Sword extends Entity{
 		super(gp);
 		type = TYPE_sword;
 		name = "Kiếm";
-		description = "[ "+ name +" ]\nKhông phải kiếm thần nhưng đủ dùng";
+		description = "[ "+ name +" ]\nKhông phải kiếm thần nhưng đủ\ndùng";
 		attackValue = 3;
 		defValue = 0;
 		spdValue = 0;
