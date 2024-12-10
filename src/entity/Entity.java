@@ -67,6 +67,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public final int TYPE_consumable = 6;
 	public final int TYPE_crossbow = 7;
 	public final int TYPE_goldSword = 8;
+	public final int TYPE_ironHorse = 9;
 	
 	public int attackValue;
 	public int defValue;
