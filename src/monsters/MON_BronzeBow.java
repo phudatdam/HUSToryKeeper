@@ -73,7 +73,7 @@ public class MON_BronzeBow extends Monster {
 		int i = new Random().nextInt(100) + 1;
 
 		// SET THE MONSTER DROP
-		if(i < 70){
+		if(i < 100/*70*/){
 			dropItem(new OBJ_Claw(gp));
 		}
 		else if(i < 80){

@@ -14,7 +14,7 @@ public class MON_BronzeSword extends Monster {
 		
 		name = "Đồng kiếm thủ";
 		defaultSpeed = 2;
-        speed = defaultSpeed;
+        speed = defaultSpeed -1;
 		maxLife = 20;
 		life = maxLife;
 		attack = 2;

@@ -190,6 +190,26 @@ public class Player extends Entity {
 		    attackRight1 = setup("/player/player_pickaxe_right_1", gp.tileSize * 2, gp.tileSize);
 		    attackRight2 = setup("/player/player_pickaxe_right_2", gp.tileSize * 2, gp.tileSize);
         }
+        if(currentWeapon.type == TYPE_goldSword){
+            attackUp1 = setup("/player/player_attack_up_1", gp.tileSize, gp.tileSize * 2);
+            attackUp2 = setup("/player/player_attack_up_2", gp.tileSize, gp.tileSize * 2);
+	    	attackDown1 = setup("/player/player_attack_down_1", gp.tileSize, gp.tileSize * 2);
+	    	attackDown2 = setup("/player/player_attack_down_2", gp.tileSize, gp.tileSize * 2);
+	    	attackLeft1 = setup("/player/player_attack_left_1", gp.tileSize * 2, gp.tileSize);
+	    	attackLeft2 = setup("/player/player_attack_left_2", gp.tileSize * 2, gp.tileSize);
+	    	attackRight1 = setup("/player/player_attack_right_1", gp.tileSize * 2, gp.tileSize);
+	    	attackRight2 = setup("/player/player_attack_right_2", gp.tileSize * 2, gp.tileSize);
+        }
+        if(currentWeapon.type == TYPE_crossbow) {
+        	attackUp1 = setup("/player/player_crossbow_up", gp.tileSize, gp.tileSize*2);
+            attackUp2 = setup("/player/player_crossbow_up", gp.tileSize, gp.tileSize*2);
+	    	attackDown1 = setup("/player/player_down_1", gp.tileSize, gp.tileSize);
+	    	attackDown2 = setup("/player/player_down_1", gp.tileSize, gp.tileSize);
+	    	attackLeft1 = setup("/player/player_crossbow_left", gp.tileSize*2, gp.tileSize);
+	    	attackLeft2 = setup("/player/player_crossbow_left", gp.tileSize*2, gp.tileSize);
+	    	attackRight1 = setup("/player/player_right_1", gp.tileSize, gp.tileSize);
+	    	attackRight2 = setup("/player/player_right_1", gp.tileSize, gp.tileSize);
+        }
     }
 
     public void getPlayerDefeat(){
@@ -300,6 +320,22 @@ public class Player extends Entity {
         else {
         	spriteNum = 1;
         }
+    	
+    	if(gp.keyH.shotPressed == true && (currentWeapon.type == TYPE_crossbow || currentWeapon.type == TYPE_goldSword)) {
+    		
+    		if(projectile.alive == false) {
+    			switch(direction) {
+    				case("up"):		projectile.set(worldX, worldY-30, direction, true, this); break;
+    				case("down"):	projectile.set(worldX, worldY+30, direction, true, this); break;
+    				case("left"):	projectile.set(worldX-30, worldY, direction, true, this); break;
+    				case("right"):	projectile.set(worldX+30, worldY, direction, true, this); break;
+    			}
+    		
+    			gp.projectileList.add(projectile);
+    		
+    			//gp.playSE(); nếu thêm được SE
+    		}
+    	}
         
         if (invincible == true) {
         	invincibleCounter++;
@@ -449,7 +485,7 @@ public class Player extends Entity {
 	}   
 	public void setKnockBack(Entity entity) {
 		entity.direction = gp.player.direction;
-    	entity.speed += 10;
+    	entity.speed += 7;
     	entity.knockBack = true;
 	}
 
@@ -495,14 +531,23 @@ public class Player extends Entity {
         if (itemIndex < inventory.size())
         {
             Entity selectedItem = inventory.get(itemIndex);
-            if( selectedItem.type == TYPE_sword || selectedItem.type == TYPE_axe || selectedItem.type == TYPE_pickaxe)
-            {
-                currentWeapon= selectedItem;
+            if( selectedItem.type == TYPE_sword || selectedItem.type == TYPE_axe || selectedItem.type == TYPE_pickaxe) {
+                currentWeapon = selectedItem;
                 getPlayerAttackImage();
             }
             if( selectedItem.type == TYPE_consumable)
             {
                 //update
+            }
+            if(selectedItem.type == TYPE_crossbow) {
+            	currentWeapon = selectedItem;
+            	projectile = new OBJ_MagicArrow(gp);
+            	getPlayerAttackImage();
+            }
+            if(selectedItem.type == TYPE_goldSword) {
+            	currentWeapon = selectedItem;
+            	projectile = new OBJ_Slash(gp);
+            	getPlayerAttackImage();
             }
         }
     }
