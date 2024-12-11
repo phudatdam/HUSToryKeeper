@@ -69,6 +69,7 @@ public class NPC_KimQuy extends Entity {
 		//thiếu
 		dialogues[5][0] = "Rùa Vàng :\n Này vẫn chưa đủ đâu, cố gắng lên.";
 	}
+	
 	public void speak() {
 		//super.speak();
 		facePlayer();
