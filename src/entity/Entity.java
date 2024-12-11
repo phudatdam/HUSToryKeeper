@@ -2,10 +2,7 @@ package entity;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Random;
-
-import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.UtilityTool;
@@ -281,20 +278,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	}
 	// Công cụ tạo ảnh entity
 	public BufferedImage setup(String imagePath, int width, int height) {
-		// Khai báo công cụ scale
-		UtilityTool uTool = new UtilityTool();
-		BufferedImage image = null;
-
-		try {
-			// Fetch ảnh gốc vào entity
-			image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
-			// Scale ảnh gốc về kích thước tile
-			image = uTool.scaleImage(image, width, height);
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-
-		return image;
+		return UtilityTool.setup(imagePath, width, height);
 	}
 
 	public void draw(Graphics2D g2) {

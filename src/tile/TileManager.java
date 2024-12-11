@@ -3,10 +3,8 @@ package tile;
 import main.GamePanel;
 import main.UtilityTool;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -116,24 +114,12 @@ public class TileManager {
     
     // Công cụ vẽ hình tile
     public void setup(int index, String imagePath, boolean collision) {
-    	
-    	UtilityTool uTool = new UtilityTool();
-    	try {
-    		// Tạo tile mới trong mảng chứa tile
-    		tile[index] = new Tile();
-    		
-    		// Fetch ảnh gốc vào tile
-    		tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" + imagePath + ".png")); 
-    		
-    		// Gán ảnh cho tile rồi scale ảnh gốc về kích thước tile
-    		tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
-    		
-    		// Gán thuộc tính va chạm cho tile
-    		tile[index].collision = collision;
-    	} catch(IOException e) {
-    		e.printStackTrace();
-    	}
-    	
+    	// Tạo tile mới trong mảng chứa tile
+    	tile[index] = new Tile();
+    	// Gán ảnh cho tile rồi scale ảnh gốc về kích thước tile
+    	tile[index].image = UtilityTool.setup("/tiles/" + imagePath, gp.tileSize, gp.tileSize);
+    	// Gán thuộc tính va chạm cho tile
+    	tile[index].collision = collision;
     }
 
     public void loadMap(String filePath, int map){

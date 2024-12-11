@@ -422,9 +422,9 @@ public class UI {
     }
 
     public void drawTitleScreen(){
-
-        g2.setColor(new Color(120, 119, 70));
-        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+    	// BACKGROUND
+    	BufferedImage titleBackground = UtilityTool.setup("/misc/title_screen", gp.screenWidth, gp.screenHeight);
+    	g2.drawImage(titleBackground, 0, 0, gp.screenWidth, gp.screenHeight, null);
 
         // TITLE NAME
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,100F));
@@ -441,7 +441,7 @@ public class UI {
         g2.drawString(text, x, y);
 
         // HUSTer
-        x = gp.screenWidth / 2 - (gp.tileSize) - 25;
+        x = gp.screenWidth / 2 - gp.tileSize * 5/4;
         y += gp.tileSize - 20;
         g2.drawImage(gp.player.down3, x, y, gp.tileSize * 5 / 2, gp.tileSize * 5 / 2, null);
 
