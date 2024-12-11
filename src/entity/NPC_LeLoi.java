@@ -38,7 +38,7 @@ public class NPC_LeLoi extends Entity {
     }
 	public void setDialogue()
 	{
-		dialogues[0][0] = "Lê Lợi :\n Xin chào người anh hùng trẻ tuổi. có vẻ cậu là\n người đc chọn để bảo vệ lịch sử.";
+		dialogues[0][0] = "Lê Lợi :\n Xin chào người anh hùng trẻ tuổi. Có vẻ cậu là\n người đc chọn để bảo vệ lịch sử.";
 		dialogues[0][1] = "Lê Lơi :\n Hãy giúp ta thu thập lấy gỗ sắt và giao nó\n cho người thợ rèn.";
 		dialogues[0][2] = "Lê Lợi :\n Hãy cẩn thận với quân địch vì giờ là màn cuối\n nên chúng đang ở đỉnh cao sức mạnh";
 		dialogues[0][3] = "Lê Lợi :\n Chúc may mắn. Hãy kiếm đủ " + woodneed + " gỗ và " + ironneed + " sắt nhé.\n Đừng quên cả những viên ngọc phép";
