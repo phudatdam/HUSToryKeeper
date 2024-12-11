@@ -13,6 +13,7 @@ public class KeyHandler implements KeyListener {
     public boolean leftPressed; // nhấn trái
     public boolean enterPressed; // nhấn tương tác
     public boolean attackPressed; // đánh thường
+    public boolean shotPressed; // bắn xa
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
@@ -163,8 +164,8 @@ public class KeyHandler implements KeyListener {
             if(gp.player.currentWeapon.type == 4){ gp.playSE(1);}
             if(gp.player.currentWeapon.type == 5){ gp.playSE(5);}
             attackPressed = true;
+            shotPressed = true;
         }
-
     }
 
     public void pauseState(int code) {
@@ -329,6 +330,7 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_J){
             attackPressed = false;
+            shotPressed = false;
         }
     }
 }

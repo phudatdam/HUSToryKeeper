@@ -21,7 +21,7 @@ public class MON_SilverBow extends Monster {
 		motion1_duration = 5;
 		motion2_duration = 25;
 		projectile = new OBJ_Arrow(gp);
-		projectile.speed += 1;
+		//projectile.speed += 1;
 		
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
@@ -74,10 +74,10 @@ public class MON_SilverBow extends Monster {
 		int i = new Random().nextInt(100) + 1;
 
 		// SET THE MONSTER DROP
-		if(i < 70){
+		if(i < 100){
 			dropItem(new OBJ_FireStone(gp));
 		}
-		else if(i < 80){
+		/*else if(i < 80){
 			dropItem(new OBJ_Heart(gp));
 		}
 		else if(i < 90){
@@ -85,7 +85,7 @@ public class MON_SilverBow extends Monster {
 		}
 		else{
 			dropItem(new OBJ_Iron(gp));
-		}
+		}*/
 	}
 	
 	public void damageReaction() {

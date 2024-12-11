@@ -22,7 +22,11 @@ public class Projectile extends Entity{
 	public void update() {
 		
 		if(user == gp.player) {
-			// nếu player có thể bắn xa
+			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+			if(monsterIndex != 999) {
+				gp.player.damageMonster(monsterIndex, attack); // attack này là của vũ khí chứa projectile
+				alive = false;
+			}
 		}
 		
 		if(user != gp.player) {

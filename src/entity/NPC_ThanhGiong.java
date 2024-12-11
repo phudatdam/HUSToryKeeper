@@ -67,6 +67,7 @@ public class NPC_ThanhGiong extends Entity {
 			int index = gp.player.SearchItemInInventory("Ngựa sắt");
 			int wp = gp.player.SearchItemInInventory("Kiếm");
 			gp.player.currentWeapon = gp.player.inventory.get(wp);
+			gp.player.getPlayerAttackImage();
 			gp.player.inventory.remove(index);
 			gp.player.hasDivineWeapon = false;
 			

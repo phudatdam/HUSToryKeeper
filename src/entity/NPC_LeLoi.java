@@ -60,6 +60,7 @@ public class NPC_LeLoi extends Entity {
 			int index = gp.player.SearchItemInInventory("Gươm thần");
 			int wp = gp.player.SearchItemInInventory("Kiếm");
 			gp.player.currentWeapon = gp.player.inventory.get(wp);
+			gp.player.getPlayerAttackImage();
 			gp.player.inventory.remove(index);
 			gp.player.hasDivineWeapon = false;
 			

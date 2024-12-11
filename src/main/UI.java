@@ -825,7 +825,7 @@ public class UI {
     	int dTextX = dFrameX + 10;
     	int dTextY = dFrameY + 29;
     	g2.setFont(retron2000);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,16F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,19F));
         int itemIndex = getItemIndexOnSlot();
         if(itemIndex < gp.player.inventory.size()) {
             drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
