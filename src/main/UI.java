@@ -14,13 +14,16 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font determinationSans, retron2000, maruMonica, KA;
-    BufferedImage heart_full, heart_half, heart_blank;
+    BufferedImage heart_full, heart_half, heart_blank,atkbuff,defbuff;
     BufferedImage heartImage;
     public boolean messageOn = false;
     //public String message = "";
     //int messageCounter = 0;
     ArrayList<String> message = new ArrayList<>();
     ArrayList<Integer> messageCounter = new ArrayList<>();
+
+    ArrayList<BufferedImage> buff = new ArrayList<>();
+    ArrayList<Integer> buffCounter = new ArrayList<>();
     public boolean gameFinished = false;
     public String currentDialogue = "";
     public int commandNum = 0;
@@ -54,6 +57,8 @@ public class UI {
         heart_full = heart.image1;
         heart_half = heart.image2;
         heart_blank = heart.image3;
+        defbuff = heart.up1;
+        atkbuff = heart.up2;
     }
 
     public void addMessage(String text){
@@ -61,6 +66,11 @@ public class UI {
         messageCounter.add(0);
     }
 
+    public void addBuff(BufferedImage i)
+    {
+        buff.add(i);
+        buffCounter.add(0);
+    }
     public void draw(Graphics2D g2){
         this.g2 = g2;
 
@@ -79,6 +89,7 @@ public class UI {
         if(gp.gameState == gp.playState){
             drawPlayerLife();
             drawMessage();
+            drawStatus();
         }
 
         // PAUSE STATE
@@ -429,6 +440,27 @@ public class UI {
         }
     }
 
+    public void drawStatus(){
+        int x = gp.tileSize / 2;
+        int y = gp.tileSize / 2 + gp.tileSize;
+        for( int i = 0; i < buff.size() ; i++)
+        {
+            if(buff.get(i) != null)
+            {
+                g2.drawImage(buff.get(i), x, y, null);
+
+                int counter = buffCounter.get(i) + 1;
+                buffCounter.set(i, counter);
+                y += gp.tileSize;
+                if(buffCounter.get(i) > 1800)
+                {
+                    buff.remove(i);
+                    buffCounter.remove(i);
+                }
+            }
+        }
+        
+    }
     public void drawNoteState(){
         g2.setColor( new Color(0,0,0,150));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);

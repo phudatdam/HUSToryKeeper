@@ -4,6 +4,7 @@ import java.util.Random;
 
 import entity.Monster;
 import main.GamePanel;
+import object.OBJ_Drink;
 import object.OBJ_Heart;
 import object.OBJ_Iron;
 import object.OBJ_Wood;
@@ -83,7 +84,10 @@ public class MON_SilverSword extends Monster {
 		if(i < 40){
 			dropItem(new OBJ_Heart(gp));
 		}
-		else if(i < 70){
+		else if(i < 60){
+			dropItem(new OBJ_Drink(gp));
+		}
+		else if(i < 80){
 			dropItem(new OBJ_Wood(gp));
 		}
 		else{

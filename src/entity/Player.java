@@ -18,6 +18,8 @@ public class Player extends Entity {
 
     public int def = 0;
     public int strength = 1;
+    public boolean coffeOn = false;
+    public boolean StrOn = false;
 
     public int coin = 0;
     public int iron = 0;
@@ -76,6 +78,8 @@ public class Player extends Entity {
         spitem[2] = 0;
         spitem[3] = 0;
         hasDivineWeapon = false;
+        coffeOn = false;
+        StrOn = false;
 
         maxLife = 10;
         life = maxLife;
@@ -141,6 +145,8 @@ public class Player extends Entity {
     public void setItems() {
         inventory.clear();
         inventory.add(currentWeapon);
+        inventory.add(new OBJ_Coffee(gp));
+        inventory.add(new OBJ_Drink(gp));
     }
 
     public void getPlayerImage(){
@@ -362,6 +368,24 @@ public class Player extends Entity {
             randomtext = new Random().nextInt(30) + 1;
             gp.gameState = gp.gameoverState;
         }
+        if(coffeOn = true){
+            coffeRate++;
+            if(coffeRate > 1800)
+            {
+                coffeRate = 0;
+                coffeOn = false;
+                def--;
+            }
+        }
+        if(StrOn = true){
+            energyRate++;
+            if(energyRate > 1800)
+            {
+                energyRate = 0;
+                StrOn = false;
+                strength--;
+            }
+        }
     }
 
     public void attacking() {
@@ -483,6 +507,15 @@ public class Player extends Entity {
                         spitem[gp.currentMap] ++;
                         gp.ui.addMessage("Thêm được 1 Linh Thạch nè");
                     }
+                    if( gp.obj[gp.currentMap][i].name == "Táo") {
+                        gp.ui.addMessage("Thêm được 1 Táo nè");
+                    }
+                    if( gp.obj[gp.currentMap][i].name == "Cà phê") {
+                        gp.ui.addMessage("Thêm được 1 Cà phê nè");
+                    }
+                    if( gp.obj[gp.currentMap][i].name == "Nước tăng lực") {
+                        gp.ui.addMessage("Thêm được 1 Nước tăng lực nè");
+                    }
                     gp.obj[gp.currentMap][i] = null;
                 }
                 
@@ -556,7 +589,14 @@ public class Player extends Entity {
             }
             if( selectedItem.type == TYPE_consumable)
             {
-                //update
+                selectedItem.use(this);
+                if(selectedItem.amount > 1)
+                {
+                    selectedItem.amount--;
+                }
+                else{
+                    inventory.remove(itemIndex);
+                }
             }
             if(selectedItem.type == TYPE_crossbow) {
             	currentWeapon = selectedItem;

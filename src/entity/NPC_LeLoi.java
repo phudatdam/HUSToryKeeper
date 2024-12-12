@@ -7,8 +7,8 @@ public class NPC_LeLoi extends Entity {
 
 	public NPC_LeLoi(GamePanel gp) {
 		super(gp);
-		woodneed = 10;
-		ironneed = 8;
+		woodneed = 12;
+		ironneed = 12;
 		spitem[3] = 3;
 		type = TYPE_NPC;
 		direction = "down";

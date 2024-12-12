@@ -1,7 +1,10 @@
 package tile_interactive;
 
+import java.util.Random;
+
 import entity.Entity;
 import main.GamePanel;
+import object.OBJ_Apple;
 import object.OBJ_Wood;
 
 public class IT_Tree extends InteractiveTile {
@@ -21,7 +24,15 @@ public class IT_Tree extends InteractiveTile {
 	}
 	
 	public void checkDrop(){
-		dropItem(new OBJ_Wood(gp));
+		int i = new Random().nextInt(100) + 1;
+
+		// SET THE tree DROP
+		if(i > 70){
+			dropItem(new OBJ_Apple(gp));
+		}
+		else{
+			dropItem(new OBJ_Wood(gp));
+		}
 	}
 
 }

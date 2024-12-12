@@ -46,6 +46,9 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public int[] spitem = new int[5];
 
     // ENTITY COUNTERS
+	public int coffeRate= 0;
+	public int energyRate = 0;
+	
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
     public int invincibleCounter = 0; 
@@ -119,6 +122,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		}
     }
     
+	public void use(Entity entity){}
 	public void checkDrop(){}
 
 	public void dropItem (Entity droppedItem){
