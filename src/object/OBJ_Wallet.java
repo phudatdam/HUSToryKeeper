@@ -7,7 +7,7 @@ public class OBJ_Wallet extends Entity{
     public OBJ_Wallet(GamePanel gp)
     {
         super(gp);
-        type = TYPE_sword;
+        type = TYPE_wallet;
 		name = "Ví tiền";
 		description = "[ "+ name +" ]\nVí nhìn sang nhưng chỉ còn 50k";
 		attackValue = 0;

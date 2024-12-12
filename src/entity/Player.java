@@ -199,17 +199,7 @@ public class Player extends Entity {
 	    	attackRight1 = setup("/player/player_attack_right_1", gp.tileSize * 2, gp.tileSize);
 	    	attackRight2 = setup("/player/player_attack_right_2", gp.tileSize * 2, gp.tileSize);
         }
-        if(currentWeapon.type == TYPE_crossbow) {
-        	attackUp1 = setup("/player/player_crossbow_up", gp.tileSize, gp.tileSize*2);
-            attackUp2 = setup("/player/player_crossbow_up", gp.tileSize, gp.tileSize*2);
-	    	attackDown1 = setup("/player/player_down_1", gp.tileSize, gp.tileSize);
-	    	attackDown2 = setup("/player/player_down_1", gp.tileSize, gp.tileSize);
-	    	attackLeft1 = setup("/player/player_crossbow_left", gp.tileSize*2, gp.tileSize);
-	    	attackLeft2 = setup("/player/player_crossbow_left", gp.tileSize*2, gp.tileSize);
-	    	attackRight1 = setup("/player/player_right_1", gp.tileSize, gp.tileSize);
-	    	attackRight2 = setup("/player/player_right_1", gp.tileSize, gp.tileSize);
-        }
-        if(currentWeapon.type == TYPE_ironHorse) {
+        if(currentWeapon.type == TYPE_crossbow || currentWeapon.type == TYPE_ironHorse || currentWeapon.type == TYPE_wallet) {
         	attackUp1 = setup("/player/player_crossbow_up", gp.tileSize, gp.tileSize*2);
             attackUp2 = setup("/player/player_crossbow_up", gp.tileSize, gp.tileSize*2);
 	    	attackDown1 = setup("/player/player_down_1", gp.tileSize, gp.tileSize);
