@@ -145,8 +145,6 @@ public class Player extends Entity {
     public void setItems() {
         inventory.clear();
         inventory.add(currentWeapon);
-        inventory.add(new OBJ_Coffee(gp));
-        inventory.add(new OBJ_Drink(gp));
     }
 
     public void getPlayerImage(){
