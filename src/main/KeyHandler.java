@@ -53,6 +53,11 @@ public class KeyHandler implements KeyListener {
             dialogueState(code);
         }
 
+        // NOTE STATE
+        else if(gp.gameState == gp.noteState){
+            noteState(code);
+        }
+
         // OPTIONS STATE
         else if (gp.gameState == gp.optionsState) {
             optionsState(code);
@@ -158,6 +163,9 @@ public class KeyHandler implements KeyListener {
             if(gp.player.currentWeapon.type == 3){ gp.playSE(4);}
             if(gp.player.currentWeapon.type == 4){ gp.playSE(1);}
             if(gp.player.currentWeapon.type == 5){ gp.playSE(5);}
+            if(gp.player.currentWeapon.type == 7){ gp.playSE(11);}
+            if(gp.player.currentWeapon.type == 8){ gp.playSE(12);}
+            if(gp.player.currentWeapon.type == 9){ gp.playSE(10);}
             attackPressed = true;
             shotPressed = true;
         }
@@ -188,6 +196,14 @@ public class KeyHandler implements KeyListener {
     public void dialogueState(int code) {
         if (code == KeyEvent.VK_E) {
             enterPressed = true;
+        }
+        gp.playSE(2);
+    }
+
+    public void noteState(int code){
+        if(code == KeyEvent.VK_E){
+            gp.ui.npc.dialogueIndex = 2;
+            gp.gameState = gp.dialogueState;
         }
         gp.playSE(2);
     }

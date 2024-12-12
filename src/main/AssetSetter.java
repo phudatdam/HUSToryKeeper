@@ -9,6 +9,7 @@ import tile_interactive.*;
 
 public class AssetSetter {
     GamePanel gp;
+    public int mapNum;
 
     public AssetSetter(GamePanel gp){
         this.gp = gp;
@@ -22,10 +23,15 @@ public class AssetSetter {
         gp.obj[mapNum][3] = new OBJ_Decoration(gp, "/misc/dorm_chair", gp.tileSize, gp.tileSize, 5, 2);
         gp.obj[mapNum][4] = new OBJ_Decoration(gp, "/misc/dorm_bed", gp.tileSize, gp.tileSize*3, 6, 0);
 
+        gp.obj[mapNum][5] = new OBJ_Note(gp);
+        gp.obj[mapNum][5].worldX = 5 * gp.tileSize;
+        gp.obj[mapNum][5].worldY = (2 + 8 / 10) * gp.tileSize;
+
     	mapNum = 1;
         gp.obj[mapNum][0] = new OBJ_Heart(gp);
         gp.obj[mapNum][0].worldX = 16 * gp.tileSize;
         gp.obj[mapNum][0].worldY = 22 * gp.tileSize;
+
         
         gp.obj[mapNum][1] = new OBJ_Well(gp);
         gp.obj[mapNum][1].worldX = 32 * gp.tileSize;
@@ -106,7 +112,7 @@ public class AssetSetter {
     }
     
     public void setNPC() {
-    	int mapNum = 1;
+    	mapNum = 1;
     	gp.npc[mapNum][0] = new NPC_AnDuongVuong(gp);
     	gp.npc[mapNum][0].worldX = 37 * gp.tileSize;
         gp.npc[mapNum][0].worldY = 12 * gp.tileSize;
@@ -132,7 +138,7 @@ public class AssetSetter {
     }
     
     public void setMonsters() {
-    	int mapNum = 1;
+    	mapNum = 1;
     	gp.monster[mapNum][0] = new MON_BronzeSword(gp);
         gp.monster[mapNum][0].worldX = 19 * gp.tileSize;
         gp.monster[mapNum][0].worldY = 14 * gp.tileSize;       
@@ -233,7 +239,7 @@ public class AssetSetter {
     }
     
     public void setInteractiveTile() {
-    	int mapNum = 1;
+    	mapNum = 1;
     	int i = 0;
     	while (mapNum < gp.maxMap) {
     	    for (int row = 0; row < gp.maxWorldRow; row++) {

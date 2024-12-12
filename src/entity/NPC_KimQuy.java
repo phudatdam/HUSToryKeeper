@@ -42,17 +42,17 @@ public class NPC_KimQuy extends Entity {
 	public void setDialogue()
 	{
 		//map1
-		dialogues[1][0] = "Rùa Vàng :\n Vậy cậu là người được chọn để bảo vệ lịch sử ư ?";
-		dialogues[1][1] = "Bạn :\n ngài là người thợ rèn ư ? ";
-		dialogues[1][2] = "Rùa vàng:\n Thế cậu nghĩ ai là người đủ phép thuật để sửa\n nỏ thần ? Nào cậu có đủ đồ chưa ?";
+		dialogues[1][0] = "Rùa Vàng :\n Vậy ra cậu là người được chọn để bảo vệ lịch sử ư?";
+		dialogues[1][1] = "Bạn :\n Yes sir, ngài là người thợ rèn sao? ";
+		dialogues[1][2] = "Rùa vàng:\n Thế cậu nghĩ ai là người đủ phép thuật để sửa\n nỏ thần? Nào cậu có đủ đồ chưa?";
 		//map2
-		dialogues[2][0] = "Rùa Vàng :\n oh, chúng ta lại gặp nhau à ?";
-		dialogues[2][1] = "Bạn :\n sao lại là ngài nữa, tôi tưởng ngựa sắt là do\n triều đình làm ?";
-		dialogues[2][2] = "Rùa Vàng :\n Triều đình nhận deal rồi order cho ta làm.\n Vậy câu có đủ đồ chưa ?";
+		dialogues[2][0] = "Rùa Vàng :\n Oh, chúng ta lại gặp nhau à?";
+		dialogues[2][1] = "Bạn :\n Sao lại là ngài nữa, tôi tưởng ngựa sắt là do\n triều đình làm?";
+		dialogues[2][2] = "Rùa Vàng :\n Triều đình nhận deal rồi order cho ta làm.\n Vậy cậu có đủ đồ chưa?";
 		//map3
-		dialogues[3][0] = "Bạn :\n sao tôi không còn bất ngờ khi gặp ngài nhỉ ?";
-		dialogues[3][1] = "Rùa Vàng :\n người gặp ta cũng là chuyện bình thường.\n Dù sao ta cũng là người cung cấp vũ khí mạnh\n nhất lịch sử.";
-		dialogues[3][2] = "Rùa Vàng :\n Hơn nữa việc làm thêm npc nữa tốn thời\n gian lắm. Nào, đủ nguyên liệu chưa chàng trai ?";
+		dialogues[3][0] = "Bạn :\n Sao tôi không còn bất ngờ khi gặp ngài nhỉ?";
+		dialogues[3][1] = "Rùa Vàng :\n Người gặp ta cũng là chuyện bình thường.\n Dù sao ta cũng là người cung cấp vũ khí mạnh\n nhất lịch sử.";
+		dialogues[3][2] = "Rùa Vàng :\n Hơn nữa việc làm thêm npc nữa tốn thời\n gian lắm. Nào, đủ nguyên liệu chưa chàng trai?";
 		//Đủ nguyên liệu ko
 		dialogues[4][0] = "Rùa Vàng :\n Được rồi, nguyên liệu đã kiếm đủ, bây giờ ta\nsẽ chế tạo vũ khí thần...";
 		switch(mapNum) {

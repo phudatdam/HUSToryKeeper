@@ -13,7 +13,7 @@ import entity.Entity;
 public class UI {
     GamePanel gp;
     Graphics2D g2;
-    Font determinationSans, retron2000, maruMonica;
+    Font determinationSans, retron2000, maruMonica, KA;
     BufferedImage heart_full, heart_half, heart_blank;
     BufferedImage heartImage;
     public boolean messageOn = false;
@@ -41,6 +41,8 @@ public class UI {
             retron2000 = Font.createFont(Font.TRUETYPE_FONT, is1);
             InputStream is2 = getClass().getResourceAsStream("/font/SVN-MaruMonica.ttf");
             maruMonica = Font.createFont(Font.TRUETYPE_FONT, is2);
+            InputStream is3 = getClass().getResourceAsStream("/font/1KAwesomeQuote.ttf");
+            KA = Font.createFont(Font.TRUETYPE_FONT, is3);
         } catch (FontFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -49,7 +51,6 @@ public class UI {
 
         OBJ_Heart heart = new OBJ_Heart(gp);
         heartImage = heart.image1;
-
         heart_full = heart.image1;
         heart_half = heart.image2;
         heart_blank = heart.image3;
@@ -92,6 +93,12 @@ public class UI {
             drawDialogueState();
         }
 
+        // NOTE STATE
+        if(gp.gameState == gp.noteState){
+            drawPlayerLife();
+            drawNoteState();
+        }
+
         // CHARACTER STATE: MISSIONS + INVENTORY
         if(gp.gameState == gp.characterState) {
             drawCharacterScreen();
@@ -102,6 +109,7 @@ public class UI {
         if(gp.gameState == gp.optionsState){
             drawOptionsState();
         }
+
         // Game over STATE
         if(gp.gameState == gp.gameoverState){
             drawOverScreen();
@@ -138,7 +146,7 @@ public class UI {
         y += gp.tileSize;
         // random
         if(gp.player.randomtext < 10){
-            text = "Bạn thua à, lạ nhỉ, trò này dễ thế mà ?";
+            text = "Bạn thua à, lạ nhỉ, trò này dễ thế mà?";
         }
         else if(gp.player.randomtext < 20){
             text = "Thôi nào bạn qua hết mấy môn đại cương được cơ mà.";
@@ -421,6 +429,72 @@ public class UI {
         }
     }
 
+    public void drawNoteState(){
+        g2.setColor( new Color(0,0,0,150));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        int x = gp.screenWidth / 2 - gp.tileSize * 9 / 2;
+        int y = gp.screenHeight / 2 - gp.tileSize * 4;
+        g2.drawImage(gp.player.image2, x, y, gp.tileSize * 9, gp.tileSize * 9, null);
+
+        g2.setFont(KA);
+        g2.setColor(Color.black);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,20F));
+
+        String text = "Hê sờ lô hê sờ li li =]";
+        x += gp.tileSize * 2;
+        y += gp.tileSize * 3 / 2;
+        g2.drawString(text, x, y + 7);
+
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,16F));
+        text = "Có vẻ hôm qua làm bài muộn ha? Chắc";
+        y += gp.tileSize / 2 + 5;
+        g2.drawString(text, x, y);
+
+        text = "giờ này m cũng tỉnh rồi nhỉ =))).";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        text = "Nhớ cách đứng dậy không bạn hiền?";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        g2.setColor(new Color(241, 134, 102));
+        text = "Nhấn WASD để di chuyển, I để";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        text = "mở túi đồ và xem nhiệm vụ. Nếu muốn";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        text = "tạm dừng để suy nghĩ hay điều chỉnh";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        text = "thì nhấn P nhé.";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        g2.setColor(Color.black);
+        text = "À tao mượn xe máy chở bồ đi chơi";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y + 5);
+
+        text = "nhé, m cũng làm gì có hẹn ai =))";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        text = "Thân gửi";
+        x += gp.tileSize * 3;
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        text = "Tí Văn Tèo";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x - 5, y);
+    }
+
     public void drawTitleScreen(){
     	// BACKGROUND
     	BufferedImage titleBackground = UtilityTool.setup("/misc/title_screen", gp.screenWidth, gp.screenHeight);
@@ -612,7 +686,7 @@ public class UI {
         textY += lineHeight;
         g2.drawString("Cấp độ:", textX, textY);
         textY += lineHeight;
-        g2.drawString("kinh nghiệm:", textX, textY);
+        g2.drawString("Kinh nghiệm:", textX, textY);
         textY += 2*lineHeight;
         g2.drawString("Đang dùng", textX + 48, textY);
         textY += lineHeight;
