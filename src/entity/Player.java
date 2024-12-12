@@ -127,16 +127,15 @@ public class Player extends Entity {
     public void setMessage()
     {
         dialogues[0][0] = "Bạn:\n Ah, oải quá. Đáng lẽ tối qua học xong nên đi ngủ\n luôn. Cái bài nghiên cứu lịch sử dài quá đi mất.\n Tờ note gì đây ?";
-        dialogues[0][2] ="Bạn:\n . . .";
-        dialogues[0][3] ="Bạn:\n Ôi em Linh...";
-        dialogues[0][4] = "Bạn:\n Thôi kệ đi, vẫn còn em Trang. Khát quá đi mua nước\n uống chút nhỉ.";
+        dialogues[0][2] = "Bạn:\n .  .  .";
+        dialogues[0][3] = "Bạn:\n Thô nhưng thật. Dù sao nay mình cũng không có tiết.\n Khát quá đi mua nước uống chút nhỉ.";
         
         dialogues[1][0] = "Bạn thả đồng xu thần kì xuống giếng.";
         dialogues[1][1] = "Một sức hút kì ảo hút bạn đi";
 
         dialogues[2][0] = "Ánh sáng lóe lên, chỉ trong chớp mắt bạn đã về\n lại phòng trọ";
         dialogues[2][1] = "Cảm tưởng như cả cuộc hành trình trên chỉ như\n giấc mơ. Bạn không có thời gian để suy nghĩ nữa,\n cuộc hành trình đã khiến deadline bạn dí sát.";
-        dialogues[2][2] = "Bạn giờ phải tập trung vào việc cấp bách trước.\n Làm nốt bài nghiên cứu";
+        dialogues[2][2] = "Bạn giờ phải tập trung vào việc cấp bách trước.\n Làm nốt bài nghiên cứu thôi nào...";
     }
 
     public void setItems() {
@@ -453,7 +452,7 @@ public class Player extends Entity {
             }
             // Xem note
             else if(gp.obj[gp.currentMap][i].name == "Note"){
-                gp.playSE(3);
+                gp.playSE(9);
                 gp.gameState = gp.noteState;
                 gp.obj[gp.currentMap][i]=null;
             }

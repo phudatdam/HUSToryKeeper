@@ -146,7 +146,7 @@ public class UI {
         y += gp.tileSize;
         // random
         if(gp.player.randomtext < 10){
-            text = "Bạn thua à, lạ nhỉ, trò này dễ thế mà ?";
+            text = "Bạn thua à, lạ nhỉ, trò này dễ thế mà?";
         }
         else if(gp.player.randomtext < 20){
             text = "Thôi nào bạn qua hết mấy môn đại cương được cơ mà.";
@@ -447,25 +447,39 @@ public class UI {
         g2.drawString(text, x, y + 7);
 
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,16F));
-        text = "Có vẻ hôm qua làm bài muộn ha? Có";
-        y += gp.tileSize;
+        text = "Có vẻ hôm qua làm bài muộn ha? Chắc";
+        y += gp.tileSize / 2 + 5;
         g2.drawString(text, x, y);
 
-        text = "em Linh dệt may tìm m mà m ngủ ";
+        text = "giờ này m cũng tỉnh rồi nhỉ =))).";
         y += gp.tileSize / 2;
         g2.drawString(text, x, y);
 
-        text = "chảy dãi, nên tao bảo em ấy m bận";
+        text = "Nhớ cách đứng dậy không bạn hiền?";
         y += gp.tileSize / 2;
         g2.drawString(text, x, y);
 
-        text = "rồi...";
+        g2.setColor(new Color(241, 134, 102));
+        text = "Nhấn WASD để di chuyển, I để";
         y += gp.tileSize / 2;
         g2.drawString(text, x, y);
 
+        text = "mở túi đồ và xem nhiệm vụ. Nếu muốn";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        text = "tạm dừng để suy nghĩ hay điều chỉnh";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        text = "thì nhấn P nhé.";
+        y += gp.tileSize / 2;
+        g2.drawString(text, x, y);
+
+        g2.setColor(Color.black);
         text = "À tao mượn xe máy chở bồ đi chơi";
         y += gp.tileSize / 2;
-        g2.drawString(text, x, y);
+        g2.drawString(text, x, y + 5);
 
         text = "nhé, m cũng làm gì có hẹn ai =))";
         y += gp.tileSize / 2;
@@ -479,12 +493,6 @@ public class UI {
         text = "Tí Văn Tèo";
         y += gp.tileSize / 2;
         g2.drawString(text, x - 5, y);
-
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,14F));
-        text = "(Đảm bảo đổ cho 10k xăng hehehe)";
-        x = getXforCenteredText(text);
-        y += gp.tileSize / 2;
-        g2.drawString(text, x, y);
     }
 
     public void drawTitleScreen(){
@@ -678,7 +686,7 @@ public class UI {
         textY += lineHeight;
         g2.drawString("Cấp độ:", textX, textY);
         textY += lineHeight;
-        g2.drawString("kinh nghiệm:", textX, textY);
+        g2.drawString("Kinh nghiệm:", textX, textY);
         textY += 2*lineHeight;
         g2.drawString("Đang dùng", textX + 48, textY);
         textY += lineHeight;

@@ -163,6 +163,9 @@ public class KeyHandler implements KeyListener {
             if(gp.player.currentWeapon.type == 3){ gp.playSE(4);}
             if(gp.player.currentWeapon.type == 4){ gp.playSE(1);}
             if(gp.player.currentWeapon.type == 5){ gp.playSE(5);}
+            if(gp.player.currentWeapon.type == 7){ gp.playSE(11);}
+            if(gp.player.currentWeapon.type == 8){ gp.playSE(12);}
+            if(gp.player.currentWeapon.type == 9){ gp.playSE(10);}
             attackPressed = true;
             shotPressed = true;
         }
