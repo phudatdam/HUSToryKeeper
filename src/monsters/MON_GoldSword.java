@@ -15,7 +15,7 @@ public class MON_GoldSword extends Monster {
 		name = "Vàng kiếm thủ";
 		defaultSpeed = 2;
         speed = defaultSpeed;
-		maxLife = 30;
+		maxLife = 36;
 		life = maxLife;
 		attack = 4;
 		defense = 0;

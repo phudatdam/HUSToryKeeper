@@ -76,15 +76,7 @@ public class MON_BronzeBow extends Monster {
 		if(i < 100/*70*/){
 			dropItem(new OBJ_Claw(gp));
 		}
-		else if(i < 80){
-			dropItem(new OBJ_Heart(gp));
-		}
-		else if(i < 90){
-			dropItem(new OBJ_Wood(gp));
-		}
-		else{
-			dropItem(new OBJ_Iron(gp));
-		}
+		
 	}
 	
 	public void damageReaction() {

@@ -14,9 +14,9 @@ public class MON_SilverBow extends Monster {
 		name = "Bạc cung thủ";
 		defaultSpeed = 1;
         speed = defaultSpeed;
-		maxLife = 18;
+		maxLife = 22;
 		life = maxLife;
-		attack = 2;
+		attack = 1;
 		rangedAttack = true;
 		motion1_duration = 5;
 		motion2_duration = 25;
@@ -77,15 +77,7 @@ public class MON_SilverBow extends Monster {
 		if(i < 100){
 			dropItem(new OBJ_FireStone(gp));
 		}
-		/*else if(i < 80){
-			dropItem(new OBJ_Heart(gp));
-		}
-		else if(i < 90){
-			dropItem(new OBJ_Wood(gp));
-		}
-		else{
-			dropItem(new OBJ_Iron(gp));
-		}*/
+		
 	}
 	
 	public void damageReaction() {
