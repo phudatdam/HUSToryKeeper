@@ -287,10 +287,10 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 		int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
         // Vẽ tile nằm trong phạm vi màn hình và mở rộng thêm tile ngoài viền để tránh "sọc"
-        if (worldX + 32*gp.tileSize > gp.player.worldX - gp.player.screenX - gp.tileSize &&
-                worldX - 32*gp.tileSize < gp.player.worldX + gp.player.screenX + gp.tileSize &&
-                worldY + 32*gp.tileSize > gp.player.worldY - gp.player.screenY - gp.tileSize &&
-                worldY - 32*gp.tileSize < gp.player.worldY + gp.player.screenY + gp.tileSize) {
+        if (worldX + 33*gp.tileSize > gp.player.worldX - gp.player.screenX - gp.tileSize &&
+                worldX - 33*gp.tileSize < gp.player.worldX + gp.player.screenX + gp.tileSize &&
+                worldY + 33*gp.tileSize > gp.player.worldY - gp.player.screenY - gp.tileSize &&
+                worldY - 33*gp.tileSize < gp.player.worldY + gp.player.screenY + gp.tileSize) {
         	int tempScreenX = screenX;
             int tempScreenY = screenY;
         	

@@ -1,6 +1,5 @@
 package object;
 
-
 import entity.Entity;
 import main.GamePanel;
 
@@ -10,6 +9,6 @@ public class OBJ_Forest extends Entity {
 		super(gp);
 		down1 = setup(imagePath, width, height);
 		
-//		collision = true;
+		//collision = false;
 	}
 }

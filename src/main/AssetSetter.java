@@ -87,6 +87,19 @@ public class AssetSetter {
         gp.obj[mapNum][17] = new OBJ_Decoration(gp, "/misc/haystack", gp.tileSize, gp.tileSize, 20, 10);
         gp.obj[mapNum][18] = new OBJ_Decoration(gp, "/misc/haystack", gp.tileSize, gp.tileSize, 11, 15);
         
+        gp.obj[mapNum][19] = new OBJ_Forest(gp, "/misc/forest_map_2_1", gp.tileSize*32, gp.tileSize*32);
+        gp.obj[mapNum][19].worldX = 0 * gp.tileSize;
+        gp.obj[mapNum][19].worldY = 0 * gp.tileSize;
+        gp.obj[mapNum][20] = new OBJ_Forest(gp, "/misc/forest_map_2_2", gp.tileSize*18, gp.tileSize*32);
+        gp.obj[mapNum][20].worldX = 32 * gp.tileSize;
+        gp.obj[mapNum][20].worldY = 0 * gp.tileSize;
+        gp.obj[mapNum][21] = new OBJ_Forest(gp, "/misc/forest_map_2_3", gp.tileSize*32, gp.tileSize*18);
+        gp.obj[mapNum][21].worldX = 0 * gp.tileSize;
+        gp.obj[mapNum][21].worldY = 32 * gp.tileSize;
+        gp.obj[mapNum][22] = new OBJ_Forest(gp, "/misc/forest_map_2_4", gp.tileSize*18, gp.tileSize*18);
+        gp.obj[mapNum][22].worldX = 32 * gp.tileSize;
+        gp.obj[mapNum][22].worldY = 32 * gp.tileSize;
+        
         mapNum = 3;
         gp.obj[mapNum][0] = new OBJ_Well(gp);
         gp.obj[mapNum][0].worldX = 14 * gp.tileSize;
@@ -109,6 +122,20 @@ public class AssetSetter {
         gp.obj[mapNum][15] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 13, 16);
         gp.obj[mapNum][16] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 11, 12);
         gp.obj[mapNum][17] = new OBJ_Decoration(gp, "/misc/lam_son_flag", gp.tileSize, gp.tileSize, 17, 12);
+        
+        gp.obj[mapNum][18] = new OBJ_Forest(gp, "/misc/forest_map_3_1", gp.tileSize*32, gp.tileSize*32);
+        gp.obj[mapNum][18].worldX = 0 * gp.tileSize;
+        gp.obj[mapNum][18].worldY = 0 * gp.tileSize;
+        gp.obj[mapNum][19] = new OBJ_Forest(gp, "/misc/forest_map_3_2", gp.tileSize*18, gp.tileSize*32);
+        gp.obj[mapNum][19].worldX = 32 * gp.tileSize;
+        gp.obj[mapNum][19].worldY = 0 * gp.tileSize;
+        gp.obj[mapNum][20] = new OBJ_Forest(gp, "/misc/forest_map_3_3", gp.tileSize*32, gp.tileSize*18);
+        gp.obj[mapNum][20].worldX = 0 * gp.tileSize;
+        gp.obj[mapNum][20].worldY = 32 * gp.tileSize;
+        gp.obj[mapNum][21] = new OBJ_Forest(gp, "/misc/forest_map_3_4", gp.tileSize*18, gp.tileSize*18);
+        gp.obj[mapNum][21].worldX = 32 * gp.tileSize;
+        gp.obj[mapNum][21].worldY = 32 * gp.tileSize;
+        
     }
     
     public void setNPC() {
