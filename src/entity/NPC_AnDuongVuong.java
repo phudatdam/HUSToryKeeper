@@ -44,7 +44,7 @@ public class NPC_AnDuongVuong extends Entity {
 		dialogues[0][0] = "Bạn :\n Đây là đâu vậy?";
 		dialogues[0][1] = "An Dương Vương :\n Chào chàng trai trẻ mặc long bào,";
 		dialogues[0][2] = "An Dương Vương :\n Ta là Thục Phán aka An Dương Vương.";
-		dialogues[0][3] = "An Dương Vương :\n Cậu là người được ma thuật thần bí lựa chọn để bảo\n vệ lịch sử.";
+		dialogues[0][3] = "An Dương Vương :\n Cậu là người được ma thuật thần bí lựa chọn để\n bảo vệ lịch sử.";
 		dialogues[0][4] = "Bạn :\n Có hơi kì lạ không khi mà ngài biết chữ quốc ngữ ở\n thời này?";
 		dialogues[0][5] = "An Dương Vương :\n Cậu vừa được xuyên không về lịch sử nên điều này\n cũng bình thường thôi.";
 		dialogues[0][6] = "Bạn :\n Hợp lý.";
@@ -53,7 +53,7 @@ public class NPC_AnDuongVuong extends Entity {
 		dialogues[0][9] = "Bạn :\n Kiếm thần ư?";
 		dialogues[0][10] = "An Dương Vương :\n Không phải, nếu là kiếm thần thì ta đã dùng rồi.\n Cậu hãy tiến lên tìm đủ gỗ và sắt, giao nó cho\n người thợ rèn để sửa lại nỏ thần.";
 		dialogues[0][11] = "Bạn :\n Dùng tay không phá đá chặt cây ạ? Đây có phải\n Minecraft đâu.";
-		dialogues[0][12] = "An Dương Vương :\n Ồ, quên mất, sori sori. Khi phá đá hãy dùng cây cuốc này.\n Còn chặt cây thì hãy dùng chiếc rìu này nhé.";
+		dialogues[0][12] = "An Dương Vương :\n Ồ, quên mất, sori sori. Khi phá đá hãy dùng cây cuốc\n này. Còn chặt cây thì hãy dùng chiếc rìu này nhé.";
 		dialogues[0][13] = "An Dương Vương :\n Hãy kiếm đủ " + woodneed + " gỗ và " + ironneed + " sắt. Chúc may mắn!\n Ồ đừng quên vật phẩm đặc biệt nhé.";
 		
 		dialogues[1][0] = "An Dương Vương :\n Đây chính là nỏ thần ư? Đa tạ cậu.";
