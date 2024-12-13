@@ -9,15 +9,12 @@ import java.awt.image.BufferedImage;
 import java.util.*;
 
 public class Player extends Entity {
-	GamePanel gp;
     KeyHandler keyH;
 
     public final int screenX;
     public final int screenY;
-    int standCounter = 0;
-
-    public int def = 0;
-    public int strength = 1;
+    private int def = 0;
+    private int strength = 1;
 
     public int coin = 0;
     public int iron = 0;
@@ -30,7 +27,6 @@ public class Player extends Entity {
     public int exp;
     public int expNeed;
     public int Lv;
-    public int randomtext;
     public boolean hasDivineWeapon = false;
     
     public ArrayList<Entity> inventory = new ArrayList<Entity>();
@@ -39,7 +35,6 @@ public class Player extends Entity {
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
         
-        this.gp = gp;
         this.keyH = keyH;
 
         this.screenX = gp.screenWidth / 2 - gp.tileSize / 2;
@@ -66,16 +61,8 @@ public class Player extends Entity {
         worldY = gp.tileSize * 2;
         defaultSpeed = 5;
         speed = defaultSpeed;
-        direction = "down";
-        type = TYPE_PLAYER;
         motion1_duration = 5; // fix
 		motion2_duration = 25; // fix
-        gp.currentMap = 0;// set map
-
-        spitem[1] = 0;
-        spitem[2] = 0;
-        spitem[3] = 0;
-        hasDivineWeapon = false;
 
         maxLife = 10;
         life = maxLife;
@@ -159,7 +146,7 @@ public class Player extends Entity {
     }
     
     public void getPlayerAttackImage(){
-        if(currentWeapon.type == TYPE_sword){
+        if(currentWeapon.type == TYPE_sword || currentWeapon.type == TYPE_goldSword){
             attackUp1 = setup("/player/player_attack_up_1", gp.tileSize, gp.tileSize * 2);
             attackUp2 = setup("/player/player_attack_up_2", gp.tileSize, gp.tileSize * 2);
 	    	attackDown1 = setup("/player/player_attack_down_1", gp.tileSize, gp.tileSize * 2);
@@ -188,16 +175,6 @@ public class Player extends Entity {
 		    attackLeft2 = setup("/player/player_pickaxe_left_2", gp.tileSize * 2, gp.tileSize);
 		    attackRight1 = setup("/player/player_pickaxe_right_1", gp.tileSize * 2, gp.tileSize);
 		    attackRight2 = setup("/player/player_pickaxe_right_2", gp.tileSize * 2, gp.tileSize);
-        }
-        if(currentWeapon.type == TYPE_goldSword){
-            attackUp1 = setup("/player/player_attack_up_1", gp.tileSize, gp.tileSize * 2);
-            attackUp2 = setup("/player/player_attack_up_2", gp.tileSize, gp.tileSize * 2);
-	    	attackDown1 = setup("/player/player_attack_down_1", gp.tileSize, gp.tileSize * 2);
-	    	attackDown2 = setup("/player/player_attack_down_2", gp.tileSize, gp.tileSize * 2);
-	    	attackLeft1 = setup("/player/player_attack_left_1", gp.tileSize * 2, gp.tileSize);
-	    	attackLeft2 = setup("/player/player_attack_left_2", gp.tileSize * 2, gp.tileSize);
-	    	attackRight1 = setup("/player/player_attack_right_1", gp.tileSize * 2, gp.tileSize);
-	    	attackRight2 = setup("/player/player_attack_right_2", gp.tileSize * 2, gp.tileSize);
         }
         if(currentWeapon.type == TYPE_crossbow || currentWeapon.type == TYPE_ironHorse || currentWeapon.type == TYPE_wallet) {
         	attackUp1 = setup("/player/player_crossbow_up", gp.tileSize, gp.tileSize*2);
@@ -346,11 +323,6 @@ public class Player extends Entity {
         		invincible = false;
         		invincibleCounter = 0;
         	}
-        }
-        if ( life <= 0)
-        {
-            randomtext = new Random().nextInt(30) + 1;
-            gp.gameState = gp.gameoverState;
         }
     }
 
