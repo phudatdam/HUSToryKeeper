@@ -11,9 +11,9 @@ public class OBJ_Fireball extends Projectile{
 		super(gp);
 		this.gp = gp;
 		
-		speed = 7; // tốc độ mũi tên bay
+		speed = 9; // tốc độ mũi tên bay
 		//attack = 10;
-		maxLife = 60;
+		maxLife = 48;
 		life = maxLife;
 		alive = false;
 		

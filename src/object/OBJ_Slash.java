@@ -11,9 +11,9 @@ public class OBJ_Slash extends Projectile{
 		super(gp);
 		this.gp = gp;
 		
-		speed = 7; // tốc độ mũi tên bay
+		speed = 8; // tốc độ mũi tên bay
 		//attack = 10;
-		maxLife = 60;
+		maxLife = 48;
 		life = maxLife;
 		alive = false;
 		

@@ -11,9 +11,9 @@ public class OBJ_MagicArrow extends Projectile{
 		super(gp);
 		this.gp = gp;
 		
-		speed = 7; // tốc độ mũi tên bay
+		speed = 8; // tốc độ mũi tên bay
 		//attack = 10;
-		maxLife = 60; // thoi gian con hien thi tren man hinh
+		maxLife = 48; // thoi gian con hien thi tren man hinh
 		life = maxLife;
 		alive = false;
 		
