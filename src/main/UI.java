@@ -11,18 +11,18 @@ import java.util.ArrayList;
 import entity.Entity;
 
 public class UI {
-    GamePanel gp;
-    Graphics2D g2;
-    Font determinationSans, retron2000, maruMonica, KA;
-    BufferedImage heart_full, heart_half, heart_blank;
-    BufferedImage heartImage;
+	private GamePanel gp;
+    private Graphics2D g2;
+    private Font determinationSans, retron2000, KA;
+    private BufferedImage heart_full, heart_half, heart_blank;
+    private BufferedImage titleBackground;
+    public int randomText;
     public boolean messageOn = false;
     //public String message = "";
     //int messageCounter = 0;
-    ArrayList<String> message = new ArrayList<>();
-    ArrayList<Integer> messageCounter = new ArrayList<>();
-    public boolean gameFinished = false;
-    public String currentDialogue = "";
+    private ArrayList<String> message = new ArrayList<>();
+    private ArrayList<Integer> messageCounter = new ArrayList<>();
+    private String currentDialogue = "";
     public int commandNum = 0;
     public int slotCol = 0;
     public int slotRow = 0;
@@ -40,7 +40,7 @@ public class UI {
             InputStream is1 = getClass().getResourceAsStream("/font/SVN-Retron 2000.otf");
             retron2000 = Font.createFont(Font.TRUETYPE_FONT, is1);
             InputStream is2 = getClass().getResourceAsStream("/font/SVN-MaruMonica.ttf");
-            maruMonica = Font.createFont(Font.TRUETYPE_FONT, is2);
+            Font.createFont(Font.TRUETYPE_FONT, is2);
             InputStream is3 = getClass().getResourceAsStream("/font/1KAwesomeQuote.ttf");
             KA = Font.createFont(Font.TRUETYPE_FONT, is3);
         } catch (FontFormatException e) {
@@ -50,10 +50,11 @@ public class UI {
         }
 
         OBJ_Heart heart = new OBJ_Heart(gp);
-        heartImage = heart.image1;
         heart_full = heart.image1;
         heart_half = heart.image2;
         heart_blank = heart.image3;
+        
+        titleBackground = UtilityTool.setup("/misc/title_screen", gp.screenWidth, gp.screenHeight);
     }
 
     public void addMessage(String text){
@@ -66,9 +67,6 @@ public class UI {
 
         g2.setFont(determinationSans);
         g2.setColor(Color.white);
-
-        /*g2.drawImage(heartImage, gp.tileSize / 2, gp.tileSize / 2, 26, 26, null);
-        g2.drawString("x " + gp.player.hasHeart, 49, 39);*/
 
         // TITLE STATE
         if(gp.gameState == gp.titleState){
@@ -121,7 +119,7 @@ public class UI {
         }
     }
 
-    public void drawOverScreen(){
+    private void drawOverScreen(){
         g2.setColor( new Color(0,0,0,150));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
@@ -145,10 +143,10 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,24));
         y += gp.tileSize;
         // random
-        if(gp.player.randomtext < 10){
+        if(randomText < 10){
             text = "Bạn thua à, lạ nhỉ, trò này dễ thế mà?";
         }
-        else if(gp.player.randomtext < 20){
+        else if(randomText < 20){
             text = "Thôi nào bạn qua hết mấy môn đại cương được cơ mà.";
         }
         else{
@@ -202,7 +200,7 @@ public class UI {
         gp.keyH.enterPressed = false;
     }
 
-    public void options_top(int frameX, int frameY){
+    private void options_top(int frameX, int frameY){
         int textX;
         int textY;
 
@@ -289,7 +287,7 @@ public class UI {
 
     }
 
-    public void options_control(int frameX, int frameY){
+    private void options_control(int frameX, int frameY){
         int textX;
         int textY;
 
@@ -331,7 +329,7 @@ public class UI {
         }
     }
 
-    public void options_endGame(int frameX, int frameY){
+    private void options_endGame(int frameX, int frameY){
         int x = frameX + 5;
         int y = frameY + gp.tileSize * 3 / 2;
 
@@ -373,8 +371,7 @@ public class UI {
 
     }
 
-    public void drawMessage()
-    {
+    private void drawMessage() {
         int messX = gp.tileSize;
         int messY = gp.tileSize*6;
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN,24));
@@ -400,7 +397,7 @@ public class UI {
         }
     }
 
-    public void drawPlayerLife() {
+    private void drawPlayerLife() {
         int x = gp.tileSize / 2;
         int y = gp.tileSize / 2;
         int i = 0;
@@ -429,7 +426,7 @@ public class UI {
         }
     }
 
-    public void drawNoteState(){
+    private void drawNoteState(){
         g2.setColor( new Color(0,0,0,150));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
@@ -495,9 +492,8 @@ public class UI {
         g2.drawString(text, x - 5, y);
     }
 
-    public void drawTitleScreen(){
+    private void drawTitleScreen(){
     	// BACKGROUND
-    	BufferedImage titleBackground = UtilityTool.setup("/misc/title_screen", gp.screenWidth, gp.screenHeight);
     	g2.drawImage(titleBackground, 0, 0, gp.screenWidth, gp.screenHeight, null);
 
         // TITLE NAME
@@ -553,7 +549,7 @@ public class UI {
         g2.drawString(text, x ,y);
     }
 
-    public void drawPauseScreen(){
+    private void drawPauseScreen(){
         g2.setColor(Color.white);
         g2.setFont(retron2000);
         g2.setFont(g2.getFont().deriveFont(23f));
@@ -575,7 +571,7 @@ public class UI {
         gp.keyH.enterPressed = false;
     }
 
-    public void pause_0(int frameX, int frameY){
+    private void pause_0(int frameX, int frameY){
         int textX;
         int textY;
 
@@ -662,7 +658,7 @@ public class UI {
 
     }
 
-    public void drawCharacterScreen() {
+    private void drawCharacterScreen() {
         // FRAME
         int frameX = gp.tileSize*1;
         int frameY = gp.tileSize*1;
@@ -743,7 +739,7 @@ public class UI {
         
     }
 
-    public void drawQuest(String value,int textX, int textY, int lineHeight, int tailX){
+    private void drawQuest(String value,int textX, int textY, int lineHeight, int tailX){
         g2.drawString("Kiếm đủ tài nguyên yêu cầu", textX, textY);
         textY += lineHeight;
         g2.drawString("Yêu cầu Gỗ", textX, textY);
@@ -766,7 +762,7 @@ public class UI {
     	textY += lineHeight;
     }
 
-    public void drawInventory() {
+    private void drawInventory() {
         // FRAME
         int frameX = gp.tileSize*9;
         int frameY = gp.tileSize*1;
@@ -845,7 +841,7 @@ public class UI {
         }
     }
     
-    public void drawFinalWeapon() {
+    private void drawFinalWeapon() {
     	// nền đen
     	g2.setColor(new Color(0,0,0,200));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -855,7 +851,7 @@ public class UI {
         g2.drawImage(finalWeapon.image2, x, y, gp.tileSize * 6, gp.tileSize * 6, null);
     }
 
-    void drawSubWindow(int x, int y, int width, int height) {
+    private void drawSubWindow(int x, int y, int width, int height) {
         g2.setColor(new Color(0, 0, 0, 210));
         g2.fillRoundRect(x, y, width, height, 35, 35);
 
