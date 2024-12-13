@@ -245,6 +245,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			gp.player.life -= damage;
 			gp.ui.addMessage("Bạn vừa dính đòn");
 			if (gp.player.life <= 0) {
+				gp.ui.randomText = new Random().nextInt(30) + 1;
 				gp.gameState = gp.gameoverState;
 				gp.stopMusic();
 				gp.playSE(6);
