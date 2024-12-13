@@ -15,7 +15,7 @@ public class MON_SilverPolearm extends Monster {
 		name = "Bạc giáo thủ";
 		defaultSpeed = 2;
         speed = defaultSpeed;
-		maxLife = 30;
+		maxLife = 36;
 		life = maxLife;
 		attack = 2;
 		defense = 0;
