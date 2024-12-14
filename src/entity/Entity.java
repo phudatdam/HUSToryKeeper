@@ -235,7 +235,7 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
         	}
         }
 	}
-	public void attacking() {}
+	protected void attacking() {}
 	public void damagePlayer(int attack) {
 		if (gp.player.invincible == false) {
 			// gp.playSE(1)
@@ -253,10 +253,6 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 			gp.player.invincible = true;
 		}
 	}
-	public void checkShoot(int shotInterval) {}
-	public void checkStartChasingOrNot(Entity target, int distance, int rate) {}
-	public void checkStopChasingOrNot(Entity target, int distance, int rate) {}
-	public void checkAttackOrNot(int rate, int vertical, int horizontal) {}
 	public void getRandomDirection() {
 		actionLockCounter++;
     	if (actionLockCounter == 120) {
@@ -418,5 +414,4 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public void changeAlpha(Graphics2D g2, float alphaValue) {
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
 	}
-	public void searchPath(int goalCol, int goalRow) {}
 }
