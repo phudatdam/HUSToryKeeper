@@ -8,3 +8,7 @@ bin/
 .classpath
 .project
 .settings/
+.metadata/
+
+# VSCode
+.vscode/
