@@ -15,7 +15,7 @@ public class UI {
     private Graphics2D g2;
     private Font determinationSans, retron2000, KA;
     private BufferedImage heart_full, heart_half, heart_blank;
-    private BufferedImage titleBackground;
+    private BufferedImage titleBackground, noteImage;
     public int randomText;
     public boolean messageOn = false;
     //public String message = "";
@@ -55,6 +55,7 @@ public class UI {
         heart_blank = heart.image3;
         
         titleBackground = UtilityTool.setup("/misc/title_screen", gp.screenWidth, gp.screenHeight);
+        noteImage = UtilityTool.setup("/objects/note", gp.tileSize, gp.tileSize);
     }
 
     public void addMessage(String text){
@@ -432,7 +433,7 @@ public class UI {
 
         int x = gp.screenWidth / 2 - gp.tileSize * 9 / 2;
         int y = gp.screenHeight / 2 - gp.tileSize * 4;
-        g2.drawImage(gp.player.image2, x, y, gp.tileSize * 9, gp.tileSize * 9, null);
+        g2.drawImage(noteImage, x, y, gp.tileSize * 9, gp.tileSize * 9, null);
 
         g2.setFont(KA);
         g2.setColor(Color.black);

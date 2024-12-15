@@ -67,9 +67,9 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	public final int TYPE_ironHorse = 9;
 	public final int TYPE_wallet = 10;
 	
-	public int attackValue;
-	public int defValue;
-	public int spdValue;
+	protected int attackValue;
+	protected int defValue;
+	protected int spdValue;
 
     public String name;
     public String description;
@@ -77,10 +77,10 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
     public int speed;
     public int maxLife;
     public int life;
-	public int attack;
-	public int defense;
-	public int motion1_duration;
-	public int motion2_duration;
+    protected int attack;
+	protected int defense;
+	protected int motion1_duration;
+	protected int motion2_duration;
     public Projectile projectile;
     public Entity currentWeapon;
 	public boolean stackeable = false;
@@ -88,14 +88,24 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
-	}	
-	public void setAction() {
+	}
+	
+	protected void getImage(String name) {
+		up1 = setup(name + "_up_1", gp.tileSize, gp.tileSize);
+		up2 = setup(name + "_up_2", gp.tileSize, gp.tileSize);
+		down1 = setup(name + "_down_1", gp.tileSize, gp.tileSize);
+		down2 = setup(name + "_down_2", gp.tileSize, gp.tileSize);
+		left1 = setup(name + "_left_1", gp.tileSize, gp.tileSize);
+		left2 = setup(name + "_left_2", gp.tileSize, gp.tileSize);
+		right1 = setup(name + "_right_1", gp.tileSize, gp.tileSize);
+		right2 = setup(name + "_right_2", gp.tileSize, gp.tileSize);
+	}
+	
+	protected void setAction() {
 		getRandomDirection();
 	}	
-	public void damageReaction() {
-		
-	}	
-	public void speak() {}
+	void damageReaction() {}	
+	void speak() {}
 	
     public void startDialogue(Entity entity, int setNum){
     	gp.gameState = gp.dialogueState;
@@ -238,8 +248,6 @@ public class Entity { // lớp cha cho các lớp khác: nhân vật, NPC, monst
 	protected void attacking() {}
 	public void damagePlayer(int attack) {
 		if (gp.player.invincible == false) {
-			// gp.playSE(1)
-			
 			int damage = attack - gp.player.getDef();
 			if(damage < 0)damage = 0;
 			gp.player.life -= damage;

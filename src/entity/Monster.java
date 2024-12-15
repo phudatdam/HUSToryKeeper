@@ -17,14 +17,7 @@ public class Monster extends Entity {
 	}
 	
 	protected void getImage(String name) {
-		up1 = setup("/monsters/" + name + "_up_1", gp.tileSize, gp.tileSize);
-		up2 = setup("/monsters/" + name + "_up_2", gp.tileSize, gp.tileSize);
-		down1 = setup("/monsters/" + name + "_down_1", gp.tileSize, gp.tileSize);
-		down2 = setup("/monsters/" + name + "_down_2", gp.tileSize, gp.tileSize);
-		left1 = setup("/monsters/" + name + "_left_1", gp.tileSize, gp.tileSize);
-		left2 = setup("/monsters/" + name + "_left_2", gp.tileSize, gp.tileSize);
-		right1 = setup("/monsters/" + name + "_right_1", gp.tileSize, gp.tileSize);
-		right2 = setup("/monsters/" + name + "_right_2", gp.tileSize, gp.tileSize);
+		super.getImage("/monsters/" + name);
 	}
 	
 	protected void getAttackImage(String name) {
@@ -211,7 +204,7 @@ public class Monster extends Entity {
 		}
 	}
 	
-	public void setAction() {
+	protected void setAction() {
 		if (onPath == true) {
 			// Check if it stops chasing
 			checkStopChasingOrNot(gp.player, 15, 30);				
@@ -233,7 +226,7 @@ public class Monster extends Entity {
 		}
     }
 
-	public void damageReaction() {
+	void damageReaction() {
 		actionLockCounter = 0;
 	}
 }
