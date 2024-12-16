@@ -6,41 +6,19 @@ import object.OBJ_GoldSword;
 import object.OBJ_IronHorse;
 
 public class NPC_KimQuy extends Entity {
-	int mapNum;
+	private int mapNum;
 	
     public NPC_KimQuy(GamePanel gp, int mapNum) {
 		super(gp);
-		
 		this.mapNum = mapNum;
-		
 		type = TYPE_NPC;
-		direction = "down";
 		speed = 1;
 		
-		getImage();
+		getImage("/npc/kim_quy");
 		setDialogue();
 	}
-	
-	public void getImage() {
-        up1 = setup("/npc/kim_quy_up_1", gp.tileSize, gp.tileSize); 
-		up2 = setup("/npc/kim_quy_up_2", gp.tileSize, gp.tileSize);
-		up3 = setup("/npc/kim_quy_up_2", gp.tileSize, gp.tileSize);
-		down1 = setup("/npc/kim_quy_down_1", gp.tileSize, gp.tileSize);
-		down2 = setup("/npc/kim_quy_down_2", gp.tileSize, gp.tileSize);
-		down3 = setup("/npc/kim_quy_down_2", gp.tileSize, gp.tileSize);
-		left1 = setup("/npc/kim_quy_left_1", gp.tileSize, gp.tileSize);
-		left2 = setup("/npc/kim_quy_left_2", gp.tileSize, gp.tileSize);
-		left3 = setup("/npc/kim_quy_left_2", gp.tileSize, gp.tileSize);
-		right1 = setup("/npc/kim_quy_right_1", gp.tileSize, gp.tileSize);
-		right2 = setup("/npc/kim_quy_right_2", gp.tileSize, gp.tileSize);
-		right3 = setup("/npc/kim_quy_right_2", gp.tileSize, gp.tileSize);
-    }
-    public void setAction()
-    {
-        super.setAction();
-    }
-	public void setDialogue()
-	{
+    
+	private void setDialogue() {
 		//map1
 		dialogues[1][0] = "Rùa Vàng :\n Vậy ra cậu là người được chọn để bảo vệ lịch sử ư?";
 		dialogues[1][1] = "Bạn :\n Yes sir, ngài là người thợ rèn sao? ";
@@ -70,19 +48,20 @@ public class NPC_KimQuy extends Entity {
 		dialogues[5][0] = "Rùa Vàng :\n Này vẫn chưa đủ đâu, cố gắng lên.";
 	}
 	
-	public void speak() {
+	void speak() {
 		//super.speak();
 		facePlayer();
-		dialogueSet=gp.currentMap;
+		dialogueSet = gp.currentMap;
 		startDialogue(this, dialogueSet);
         if(diaEnd)
         {
             if(gp.player.iron >= gp.npc[gp.currentMap][0].ironneed && gp.player.wood >= gp.npc[gp.currentMap][0].woodneed
 				&& gp.player.spitem[gp.currentMap] >= gp.npc[gp.currentMap][0].spitem[gp.currentMap])
             {
-            	dialogueSet=4;
-				dialogueIndex=0;
+            	dialogueSet = 4;
+				dialogueIndex = 0;
 				if(gp.player.hasDivineWeapon == false) {
+					// Player receives divine weapon
 					gp.player.hasDivineWeapon = true;
 					Entity finalWeapon = null;
 					switch(gp.currentMap) {
@@ -102,75 +81,30 @@ public class NPC_KimQuy extends Entity {
 					gp.player.inventory.add(finalWeapon);
 					gp.ui.finalWeapon = finalWeapon;
 					
+					// Remove requirements
 					gp.player.iron -= gp.npc[gp.currentMap][0].ironneed; // giảm số lượng đang có
+					gp.player.removeItemFromInventory("Sắt", gp.npc[gp.currentMap][0].ironneed);
+					
 					gp.player.wood -= gp.npc[gp.currentMap][0].woodneed;
+					gp.player.removeItemFromInventory("Gỗ", gp.npc[gp.currentMap][0].woodneed);
+					
 					gp.player.spitem[gp.currentMap] -= gp.npc[gp.currentMap][0].spitem[gp.currentMap];
-
-					int index = gp.player.SearchItemInInventory("Sắt");
-					{
-						if(gp.player.inventory.get(index).amount > gp.npc[gp.currentMap][0].ironneed){
-							gp.player.inventory.get(index).amount-= gp.npc[gp.currentMap][0].ironneed;
-						}
-						else
-						{
-							gp.player.inventory.remove(index); // xóa trên innventory
-						}
-					}
-					index = gp.player.SearchItemInInventory("Gỗ");
-					{
-						if(gp.player.inventory.get(index).amount > gp.npc[gp.currentMap][0].woodneed){
-							gp.player.inventory.get(index).amount-= gp.npc[gp.currentMap][0].woodneed;
-						}
-						else
-						{
-							gp.player.inventory.remove(index);
-						}
-					}
-					// xóa vật phẩm cần
 					switch(gp.currentMap) {
 						case 1:
-						index = gp.player.SearchItemInInventory("Móng rùa");
-						{
-							if(gp.player.inventory.get(index).amount > 1){
-								gp.player.inventory.get(index).amount-= 1;
-							}
-							else
-							{
-								gp.player.inventory.remove(index);
-							}
-						}
-						break;
+							gp.player.removeItemFromInventory("Móng rùa", 1);
+							break;
 						case 2:
-						index = gp.player.SearchItemInInventory("Đá lửa");
-						{
-							if(gp.player.inventory.get(index).amount > 2){
-								gp.player.inventory.get(index).amount-= 2;
-							}
-							else
-							{
-								gp.player.inventory.remove(index);
-							}
-						}
+							gp.player.removeItemFromInventory("Đá lửa", 2);
 						break;
 						case 3:
-						index = gp.player.SearchItemInInventory("Linh Thạch");
-						{
-							if(gp.player.inventory.get(index).amount > 3){
-								gp.player.inventory.get(index).amount-= 3;
-							}
-							else
-							{
-								gp.player.inventory.remove(index);
-							}
-						}
-						break;
-						}
+							gp.player.removeItemFromInventory("Linh thạch", 3);
+						    break;
+					}
 				}
-              
             } 
             else {
-                dialogueSet=5;
-                dialogueIndex=0;
+                dialogueSet = 5;
+                dialogueIndex = 0;
             }
         }
 	}

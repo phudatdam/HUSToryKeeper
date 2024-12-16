@@ -1,7 +1,6 @@
 package entity;
 
 import main.GamePanel;
-import object.OBJ_Coin;
 
 public class NPC_ThanhGiong extends Entity {
 
@@ -11,33 +10,13 @@ public class NPC_ThanhGiong extends Entity {
 		ironneed = 14;
 		spitem[2] = 2;
 		type = TYPE_NPC;
-		direction = "down";
 		speed = 1;
 		
-		getImage();
+		getImage("/npc/thanh_giong");
 		setDialogue();
 	}
-	
-	public void getImage() {
-        up1 = setup("/npc/thanh_giong_up_1", gp.tileSize, gp.tileSize); 
-		up2 = setup("/npc/thanh_giong_up_2", gp.tileSize, gp.tileSize);
-		up3 = setup("/npc/thanh_giong_up_2", gp.tileSize, gp.tileSize);
-		down1 = setup("/npc/thanh_giong_down_1", gp.tileSize, gp.tileSize);
-		down2 = setup("/npc/thanh_giong_down_2", gp.tileSize, gp.tileSize);
-		down3 = setup("/npc/thanh_giong_down_2", gp.tileSize, gp.tileSize);
-		left1 = setup("/npc/thanh_giong_left_1", gp.tileSize, gp.tileSize);
-		left2 = setup("/npc/thanh_giong_left_2", gp.tileSize, gp.tileSize);
-		left3 = setup("/npc/thanh_giong_left_2", gp.tileSize, gp.tileSize);
-		right1 = setup("/npc/thanh_giong_right_1", gp.tileSize, gp.tileSize);
-		right2 = setup("/npc/thanh_giong_right_2", gp.tileSize, gp.tileSize);
-		right3 = setup("/npc/thanh_giong_right_2", gp.tileSize, gp.tileSize);
-    }
     
-    public void setAction() {
-    	super.setAction();
-    }
-	public void setDialogue()
-	{
+	private void setDialogue() {
 		dialogues[0][0] = "Thánh Gióng :\n Xin chào chàng trai trẻ, ta xin tự giới thiệu\n ta là Thánh Gióng.";
 		dialogues[0][1] = "Bạn :\n Ngài có vẻ không đô nhưng họ kể.";
 		dialogues[0][2] = "Thánh Gióng :\n Cậu biết body shaming bị phạt tiền đúng không.";
@@ -55,7 +34,7 @@ public class NPC_ThanhGiong extends Entity {
 		dialogues[1][2] = "Thánh Gióng :\n Chúc cậu thượng lộ bình an.";
 	}
 
-	public void speak() {
+	void speak() {
 		//super.speak();
 		facePlayer();
 		startDialogue(this, dialogueSet);
@@ -63,19 +42,7 @@ public class NPC_ThanhGiong extends Entity {
 		if(gp.player.hasDivineWeapon == true) {
 			dialogueSet = 1;
 			dialogueIndex = 0;
-			
-			int index = gp.player.SearchItemInInventory("Ngựa sắt");
-			int wp = gp.player.SearchItemInInventory("Kiếm");
-			gp.player.currentWeapon = gp.player.inventory.get(wp);
-			gp.player.getPlayerAttackImage();
-			gp.player.inventory.remove(index);
-			gp.player.hasDivineWeapon = false;
-			
-			if(gp.player.coin == 0){
-				gp.ui.addMessage("Bạn nhận được 1 Đồng xu");
-				gp.player.coin = 1;
-				gp.player.inventory.add(new OBJ_Coin(gp));
-			}
+			gp.player.giveDivineWeapon("Ngựa sắt");
 		}
 	}
 }

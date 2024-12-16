@@ -5,11 +5,8 @@ import main.GamePanel;
 import object.OBJ_Wood;
 
 public class IT_Tree extends InteractiveTile {
-	GamePanel gp;
-	
 	public IT_Tree(GamePanel gp, int col, int row) {
 		super(gp, col, row);
-		this.gp = gp;
 		
 		down1 = setup("/tiles/tree_1", gp.tileSize, gp.tileSize);
 		destructible = true;

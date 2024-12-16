@@ -5,11 +5,8 @@ import main.GamePanel;
 import object.OBJ_Iron;
 
 public class IT_IronOre extends InteractiveTile {
-	GamePanel gp;
-	
 	public IT_IronOre(GamePanel gp, int col, int row) {
 		super(gp, col, row);
-		this.gp = gp;
 		
 		down1 = setup("/tiles/iron_ore", gp.tileSize, gp.tileSize);
 		destructible = true;

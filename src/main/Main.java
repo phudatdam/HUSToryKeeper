@@ -7,7 +7,7 @@ public class Main {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // đóng cửa sổ game bằng dấu "x"
         window.setResizable(false); // thay đổi kích thước: Không
-        window.setTitle("2D Adventure"); // set tiêu đề game: 2D Adventure
+        window.setTitle("HUSTory Keeper"); // set tiêu đề game: HUSTory Keeper
 
         GamePanel gamepanel = new GamePanel();
         window.add(gamepanel);

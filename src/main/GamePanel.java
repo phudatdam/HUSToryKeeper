@@ -102,105 +102,45 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setInteractiveTile();
         playMusic(0);
         //Trừ vật phẩm và exp
-        int index;
-        if(player.iron > 0){
-            index = player.SearchItemInInventory("Sắt");
-			{
-				if(player.inventory.get(index).amount > 3){
-            		player.inventory.get(index).amount-= 3;
-				}
-				else
-				{
-                	player.inventory.remove(index); // xóa trên innventory
-				}
-				}
-        }
-        if(player.wood > 0){
-            index = player.SearchItemInInventory("Gỗ");
-			{
-				if(player.inventory.get(index).amount > 3){
-					player.inventory.get(index).amount-= 3;
-				}
-				else
-				{
-				    player.inventory.remove(index);
-				}
-			}
-        }
-        player.wood -= 3;
         player.iron -= 3;
-        player.spitem[currentMap]--;
+        player.removeItemFromInventory("Sắt", 3);
+        if (player.iron < 0) player.iron = 0;
+        
+        player.wood -= 3;
+        player.removeItemFromInventory("Gỗ", 3);
+        if (player.wood < 0) player.wood = 0;
+        
         player.exp -=3;
-        if(player.exp < 0)player.exp = 0;
-        if(player.wood < 0)player.wood = 0;
-        if(player.iron < 0)player.iron = 0;
-        if(player.spitem[currentMap] < 0)player.spitem[currentMap] = 0;
+        if (player.exp < 0) player.exp = 0;
+        
+        player.spitem[currentMap]--;
+        if (player.spitem[currentMap] < 0) player.spitem[currentMap] = 0;
 		// xóa vật phẩm cần
-        index = player.SearchItemInInventory("Kiếm");
+        int index = player.searchItemInInventory("Kiếm");
         player.currentWeapon = player.inventory.get(index);
 		switch(currentMap) {
 			case 1:
-            if(player.spitem[1] > 0)
-            {
-                index = player.SearchItemInInventory("Móng rùa");						
-                {
-                    if(player.inventory.get(index).amount > 1){
-				        player.inventory.get(index).amount-= 1;
-			    	}   
-				    else
-				    {
-				    	player.inventory.remove(index);
-				    }
-               } 
-            }
-			if(player.hasDivineWeapon){
-                index = player.SearchItemInInventory("Nỏ thần"); 
-                player.inventory.remove(index);
-                player.hasDivineWeapon = false;
-            }
-		    break;
+				player.removeItemFromInventory("Móng rùa", 1);
+			    if (player.hasDivineWeapon) {
+			    	player.removeItemFromInventory("Nỏ thần", 1);
+                    player.hasDivineWeapon = false;
+                }
+		        break;
 			case 2:
-            if(player.spitem[2] > 0)
-            {
-                index = player.SearchItemInInventory("Đá lửa");
-                {
-                    if(player.inventory.get(index).amount > 1){
-                        player.inventory.get(index).amount-= 1;
-                    }
-                    else
-                    {
-                        player.inventory.remove(index);
-                    }
+				player.removeItemFromInventory("Đá lửa", 1);
+			    if(player.hasDivineWeapon) {
+			    	player.removeItemFromInventory("Ngựa sắt", 1);
+                    player.hasDivineWeapon = false;
                 }
-            }
-			if(player.hasDivineWeapon)
-            {
-                index = player.SearchItemInInventory("Ngựa sắt"); 
-                player.inventory.remove(index);
-                player.hasDivineWeapon = false;
-            }
-            break;
+                break;
 			case 3:
-            if(player.spitem[3] > 0)
-            {
-                index = player.SearchItemInInventory("Linh Thạch");
-                {
-                    if(player.inventory.get(index).amount > 1){
-                        player.inventory.get(index).amount-= 1;
-                    }
-                    else
-                    {
-                        player.inventory.remove(index);
-                    }
+				player.removeItemFromInventory("Linh thạch", 1);
+			    if(player.hasDivineWeapon){
+			    	player.removeItemFromInventory("Gươm thần", 1);
+                    player.hasDivineWeapon = false;
                 }
-            }
-			if(player.hasDivineWeapon){
-                index = player.SearchItemInInventory("Gươm thần"); 
-                player.inventory.remove(index);
-                player.hasDivineWeapon = false;
-            }	
-            break;
-			}
+                break;
+		}
     }
 
     public void restart()
